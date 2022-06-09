@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "trike";
 
-// Create connection
+// Create connection test git
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
