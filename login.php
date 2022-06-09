@@ -62,7 +62,6 @@ include '\include\controller.php';
 </head>
 
 <body>
-
   <main>
     <div class="container">
 
