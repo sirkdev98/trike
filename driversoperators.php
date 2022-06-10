@@ -299,7 +299,7 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="trikedata.php">
               <i class="bi bi-circle"></i><span>Tricycle Data</span>
             </a>
           </li>

@@ -299,12 +299,12 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="trikedata.php" class="active">
               <i class="bi bi-circle"></i><span>Tricycle Data</span>
             </a>
           </li>
           <li>
-            <a href="operatordriver.php" class="active">
+            <a href="driversoperators.php">
               <i class="bi bi-circle"></i><span>Driver / Operator Data</span>
             </a>
           </li>
@@ -320,12 +320,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Drivers & Operators</h1>
+      <h1>TRICYCLE DATA</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Driver / Operator Data</li>
+          <li class="breadcrumb-item active">Trike Data</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
