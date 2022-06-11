@@ -535,12 +535,12 @@
 
                   <br><!--divider -->
                   <div class="row mb-3">
-                     <label for="inputEmail" class="col-sm-12 col-form-label"><font color= "Green">Tricycle Details</font></label>
+                     <label for="inputEmail" class="col-sm-12 col-form-label"><font color= "Green"><b>Tricycle Details</b></font></label>
                     </div>
 
               
-                     <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">SERIAL NUMBERS:</label>
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
                   <div class="col-sm-2">
                     MV File number
                     <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
@@ -559,27 +559,49 @@
                   </div>
                   </div>
             
+<br>
 
 
-
-                     <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">MV/PLATE/ENGINE/CHASIS NO.</label>
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
                   <div class="col-sm-2">
-                    MV File number
-                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                    Maker
+                    <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
                   </div>
                   <div class="col-sm-2">
-                    Plate Number
-                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno">
+                    Piston Displacement
+                    <input type="text" class="form-control" name="pdisplacement" placeholder="Piston Displacement" name="piston">
                   </div>
                    <div class="col-sm-2">
-                    Engine Number
-                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="plateno">
+                    Cert. of Reg.
+                    <input type="text" class="form-control" name="cor" placeholder="Certificate of Registration" name="cor">
                   </div>
                    <div class="col-sm-2">
-                    Chasis Number
-                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno">
+                    Official Receipt No.
+                    <input type="text" class="form-control" name="or" placeholder="OR" name="or">
                   </div>
+                  </div>
+
+
+
+<br>
+
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
+                  <div class="col-sm-4">
+                    Date of Issuance
+                    <input type="date" class="form-control" name="dateofissue" placeholder="dateofissue" name="dateofissue">
+                  </div>
+                  <div class="col-sm-1">
+                    Brgy #
+                    <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{4}" style="color:#888;" required/>
+                  </div>
+                  -
+                   <div class="col-sm-3">
+                    Body Number
+                    <input class="form-control" type="text" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required/>
+                  </div>
+                  
                   </div>
             
              <!-- End General Form Elements -->
