@@ -372,7 +372,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Driver / Operator</h5>
+              <h5 class="card-title">Operator Details</h5>
 
               <!-- General Form Elements -->
          <form method="POST" action="do_upload.php">
@@ -505,7 +505,7 @@
                       <option value="" disabled selected>SELECT TYPE HERE</option>
                       <option value="OPERATOR">OPERATOR</option>
                       <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
-                      <option value="DRIVER">DRIVER</option>
+                     
                     </select>
                   </div>
                 </div>
@@ -529,6 +529,56 @@
                   <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
                   <div class="col-sm-4">
                     <input type="date" class="form-control" name="bday" placeholder="EXPIRATION" name="expiration">
+                  </div>
+                  </div>
+
+
+                  <br><!--divider -->
+                  <div class="row mb-3">
+                     <label for="inputEmail" class="col-sm-12 col-form-label"><font color= "Green">Tricycle Details</font></label>
+                    </div>
+
+              
+                     <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">SERIAL NUMBERS:</label>
+                  <div class="col-sm-2">
+                    MV File number
+                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                  </div>
+                  <div class="col-sm-2">
+                    Plate Number
+                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno">
+                  </div>
+                   <div class="col-sm-2">
+                    Engine Number
+                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="plateno">
+                  </div>
+                   <div class="col-sm-2">
+                    Chasis Number
+                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno">
+                  </div>
+                  </div>
+            
+
+
+
+                     <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">MV/PLATE/ENGINE/CHASIS NO.</label>
+                  <div class="col-sm-2">
+                    MV File number
+                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                  </div>
+                  <div class="col-sm-2">
+                    Plate Number
+                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno">
+                  </div>
+                   <div class="col-sm-2">
+                    Engine Number
+                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="plateno">
+                  </div>
+                   <div class="col-sm-2">
+                    Chasis Number
+                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno">
                   </div>
                   </div>
             
