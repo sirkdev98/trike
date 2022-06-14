@@ -452,7 +452,7 @@
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                   <div class="col-sm-4">
-                    <input type="email" class="form-control" placeholder="Address Line 1">
+                    <input type="email" class="form-control" placeholder="Address Line 1" name="address1">
                   </div>
                 
                 
@@ -472,11 +472,22 @@
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" name="Contact">
+                    <input type="number" class="form-control" name="contactnum">
                   </div>
                 </div>
 
-                  <div class="row mb-2">
+             
+
+
+          
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" name="bday">
+                  </div>
+                </div>
+
+                     <div class="row mb-2">
                   <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
                   <div class="col-sm-3">
                     <input type="text" class="form-control" placeholder="First Name" name="sfname">
@@ -490,18 +501,10 @@
                  
                 </div>
 
-
-          
-                <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday">
-                  </div>
-                </div>
                 <div class="row mb-3">
                   <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
                   <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required>
+                    <select class="form-select" aria-label="Default select example" required name="type">
                       <option value="" disabled selected>SELECT TYPE HERE</option>
                       <option value="OPERATOR">OPERATOR</option>
                       <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
@@ -528,7 +531,7 @@
                    <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday" placeholder="EXPIRATION" name="expiration">
+                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
                   </div>
                   </div>
 
@@ -551,7 +554,7 @@
                   </div>
                    <div class="col-sm-2">
                     Engine Number
-                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="plateno">
+                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="engineno">
                   </div>
                    <div class="col-sm-2">
                     Chasis Number
@@ -570,7 +573,7 @@
                   </div>
                   <div class="col-sm-2">
                     Piston Displacement
-                    <input type="text" class="form-control" name="pdisplacement" placeholder="Piston Displacement" name="piston">
+                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
                   </div>
                    <div class="col-sm-2">
                     Cert. of Reg.
@@ -578,7 +581,7 @@
                   </div>
                    <div class="col-sm-2">
                     Official Receipt No.
-                    <input type="text" class="form-control" name="or" placeholder="OR" name="or">
+                    <input type="text" class="form-control" placeholder="OR" name="ornum">
                   </div>
                   </div>
 
@@ -594,7 +597,7 @@
                   </div>
                   <div class="col-sm-1">
                     Brgy #
-                    <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{4}" style="color:#888;" required/>
+                    <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{2}" style="color:#888;" required/>
                   </div>
                    <div class="col-sm-3">
                     Body Number
@@ -632,7 +635,7 @@
 
 
                 <div class="d-grid gap-2 mt-3">
-                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD DATA OPERATOR / DRIVER </button>
+                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD TRICYCLE DATA </button>
               </div>
               <br></br>
 
