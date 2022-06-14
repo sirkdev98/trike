@@ -596,7 +596,6 @@
                     Brgy #
                     <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{4}" style="color:#888;" required/>
                   </div>
-                  -
                    <div class="col-sm-3">
                     Body Number
                     <input class="form-control" type="text" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required/>

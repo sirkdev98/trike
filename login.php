@@ -12,13 +12,17 @@ if ($conn->connect_error) {
 }
 
 
-include '\include\controller.php';
-//if(isset($_SESSION['username'])){
-  // header("location:index.php");
+              
 
-  //testing git changes so i can code anywhere part 2
-  //}
-// test
+include '\include\controller.php';
+if(isset($_SESSION['username'])){
+   header("location:index.php");
+
+
+
+}
+
+
 ?>
 
 
