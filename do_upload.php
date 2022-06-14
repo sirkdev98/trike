@@ -53,7 +53,7 @@ $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 
 
-$sql = "INSERT INTO `tricycle` (`id`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`) VALUES (NULL, '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$last_id')";
+$sql = "INSERT INTO `tricycle` (`id`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`) VALUES (NULL, '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$last_id','','')";
 
 if ($conn->query($sql) === TRUE) { 
 

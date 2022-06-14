@@ -1,4 +1,38 @@
+<?php 
+  include '/include/controller.php';
+
+  ob_start();
+
+
+//$cidd = $_SESSION['myVariable'];
+if(isset($_SESSION['username'])){
+    
+      $cidd = $_SESSION['id'];
+      $userrole= $_SESSION['role'];
+      $userfname= $_SESSION['fname'];
+      $userlname= $_SESSION['lname'];
+
+ 
+
+//testing github for me
+
+}else{
+    header("location:logout.php");
+}
+
+   if(time() - $_SESSION['timestamp'] > 5600) { //subtract new timestamp from the old one
+    echo"<script>alert('15 Minutes over!');</script>";
+    unset($_SESSION['username']);
+    
+    header("Location:  logout.php"); //redirect to index.php
+    exit;
+} else {
+    $_SESSION['timestamp'] = time(); //set new timestamp
+}
+?>
+
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -52,6 +86,7 @@
 </head>
 
 <body>
+ 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -83,12 +118,12 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            <span class="badge bg-primary badge-number"><!-- notification count --></span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
+              You have 0 new notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
@@ -158,12 +193,12 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
+            <span class="badge bg-success badge-number"><!-- Messages Icon count--></span>
           </a><!-- End Messages Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
-              You have 3 new messages
+              You have 0 new messages
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
@@ -224,13 +259,13 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Vicente</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $userfname; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Khristian Vicente</h6>
-              <span>Web Developer</span>
+              <h6><?php echo $userfname; ?></h6>
+              <span><?php echo $userrole; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -642,32 +677,61 @@
              <table id="tblPeople" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Birthday</th>
-                <th>Gender</th>
-                <th>Barangay</th>
+                <th>ID</th>
+                <th>Owner</th>
+                <th>Body Number</th>
+                <th>Franchise Date</th>
+             
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
+
+          <?php
+      $sql = "SELECT * FROM `tricycle`";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $id = $row['id'];
+                            $fname =$row['fname'];
+                            $mname =$row['mname'];
+                            $lname =$row['lname'];
+                            $bodynum= $row['bodynum'];
+                            $operatorid = $row['operatorid'];
+                            $franchisedate = $row['franchisedate'];
+
+
+
+
+ ?>
             <tr>
-                <td>Tiger Nixon</td>
-                <td>Driver / Operator</td>
-                <td>2011-04-25</td>
-                <td>Male</td>
-                <td>Balut</td>
-                <td>xxx</td>
+                <td><?php echo  $id; ?></td>
+                <td><?php echo  $lname.", ".$fname." ".$mname; ?></td>
+                <td><?php echo  $bodynum; ?></td>
+                <td><?php echo  $franchisedate; ?></td>
+     
+                <td>
+  <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
+  <i class="bi bi-card-text"></i></button></a></i>
+
+  <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-sm'>
+  <i class="bi bi-pencil-fill"></i></button></a></i>
+
+  <a href="#" data-toggle="modal"><button type='button' class='btn btn-danger  btn-sm'>
+  <i class="bi bi-trash-fill"></i></button></a></i>
+
+                </td>
             </tr>
-            
+            <?php }} ?>
         </tbody>
         <tfoot>
             <tr>
-              <th>Name</th>
-                <th>Type</th>
-                <th>Birthday</th>
-                <th>Gender</th>
-                <th>Barangay</th>
+              <th>ID</th>
+                <th>Owner</th>
+                <th>Body Number</th>
+                <th>Franchise Date</th>
+             
                 <th>Action</th>
             </tr>
         </tfoot>

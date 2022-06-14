@@ -360,10 +360,10 @@ if(isset($_SESSION['username'])){
 
 
     <?php
-    $pid = $_GET['pid'];
-    $bdynum =$_GET['bdynum'];
+    $tid = $_GET['id'];
+   
     include '\include\connection.php';
-     $sql = "SELECT tricycle.id, tricycle.bodynum, tricycle.mvfileno, tricycle.plateno, tricycle.engineno, tricycle.chasisno, tricycle.maker, tricycle.pistondisp, tricycle.cor, tricycle.ornum, tricycle.franchisedate, tricycle.brgycode, tricycle.bodynum, driveroperator.fname, driveroperator.mname, driveroperator.lname, driveroperator.type, driveroperator.picname from tricycle right join driveroperator on tricycle.operatorid=driveroperator.pid WHERE driveroperator.pid = '10'";
+     $sql = "SELECT tricycle.id, tricycle.bodynum, tricycle.mvfileno, tricycle.plateno, tricycle.engineno, tricycle.chasisno, tricycle.maker, tricycle.pistondisp, tricycle.cor, tricycle.ornum, tricycle.franchisedate, tricycle.brgycode, tricycle.bodynum, driveroperator.fname, driveroperator.mname, driveroperator.lname, driveroperator.type, driveroperator.picname from tricycle right join driveroperator on tricycle.operatorid=driveroperator.pid WHERE tricycle.id = '$tid'";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
@@ -387,7 +387,7 @@ if(isset($_SESSION['username'])){
                             $picname = $row['picname']; 
 
 
-
+ 
 
 
 
