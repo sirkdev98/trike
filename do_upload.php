@@ -37,7 +37,8 @@ $sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname
 	(NULL, '$fname', '$mname', '$lname', '$xname', '$address1', '$barangay', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
-
+ 
+ $last_id = $conn->insert_id;
 
 $fileno = $_POST['fileno'];
 $plateno = $_POST['plateno'];
@@ -52,10 +53,16 @@ $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 
 
-$sql = "";
+$sql = "INSERT INTO `tricycle` (`id`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`) VALUES (NULL, '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$last_id')";
+
+if ($conn->query($sql) === TRUE) { 
+
+ echo "<script type='text/javascript'>alert(\"Successfully added  \")</script>";
+           echo "<script>window.location.href='trikedata.php'</script>"; 
+         }  else{
 
 
-
+}
 
 
 }
