@@ -372,7 +372,7 @@ if(isset($_SESSION['username'])){
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Drive and Operators Table</h5>
+              <h5 class="card-title">TRICYCLE Data Table</h5>
               <!-- Extra large modal -->
 
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">

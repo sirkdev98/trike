@@ -363,7 +363,7 @@ if(isset($_SESSION['username'])){
     $tid = $_GET['id'];
    
     include '\include\connection.php';
-     $sql = "SELECT tricycle.id, tricycle.bodynum, tricycle.mvfileno, tricycle.plateno, tricycle.engineno, tricycle.chasisno, tricycle.maker, tricycle.pistondisp, tricycle.cor, tricycle.ornum, tricycle.franchisedate, tricycle.brgycode, tricycle.bodynum, driveroperator.fname, driveroperator.mname, driveroperator.lname, driveroperator.type, driveroperator.picname from tricycle right join driveroperator on tricycle.operatorid=driveroperator.pid WHERE tricycle.id = '$tid'";
+     $sql = "SELECT tricycle.id, tricycle.bodynum, tricycle.mvfileno, tricycle.plateno, tricycle.engineno, tricycle.chasisno, tricycle.maker, tricycle.pistondisp, tricycle.cor, tricycle.ornum, tricycle.franchisedate, tricycle.brgycode, tricycle.toda, tricycle.sidecarcolor, tricycle.bodynum, driveroperator.fname, driveroperator.mname, driveroperator.lname, driveroperator.type, driveroperator.picname from tricycle right join driveroperator on tricycle.operatorid=driveroperator.pid WHERE tricycle.id = '$tid'";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
@@ -385,6 +385,8 @@ if(isset($_SESSION['username'])){
                             $lname = $row['lname']; 
                             $type = $row['type']; 
                             $picname = $row['picname']; 
+                            $toda = $row['toda']; 
+                            $sidecarcolor = $row['sidecarcolor']; 
 
 
  
