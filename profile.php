@@ -1136,11 +1136,18 @@ $sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname
 
 if ($conn->query($sql) === TRUE) {  
 
+ $last_id = $conn->insert_id;
+$sql = "INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES (NULL, '$bodynum', '$tid', '$last_id')";
 
-  echo "ok";
+if ($conn->query($sql) === TRUE) {  
+
+
+ echo "<script type='text/javascript'>alert(\"Successfully added  \")</script>";
+           echo "<script>window.location.href='profile.php?id=$tid'</script>"; 
+
 }
 
-
+}
 }
 
  ?>
