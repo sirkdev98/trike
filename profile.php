@@ -38,10 +38,10 @@ if(isset($_SESSION['username'])){
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
+   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard</title>
+  <title>Tricyclye Management</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -61,6 +61,20 @@ if(isset($_SESSION['username'])){
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    <style type="text/css">
+        #response { padding:20px; border:1px solid; background:#ccc; }
+    </style>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -428,17 +442,15 @@ if(isset($_SESSION['username'])){
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                 </li>
-
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-transactions">Transactions</button>
                 </li>
 
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                </li>
+                 <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                 </li>
 
               </ul>
@@ -590,46 +602,18 @@ if(isset($_SESSION['username'])){
 
                 </div>
 
-                <div class="tab-pane fade pt-3" id="profile-settings">
+                <div class="tab-pane fade pt-3" id="profile-transactions">
 
                   <!-- Settings Form -->
                   <form>
 
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
-                      <div class="col-md-8 col-lg-9">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
-                          <label class="form-check-label" for="changesMade">
-                            Changes made to your account
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="newProducts" checked>
-                          <label class="form-check-label" for="newProducts">
-                            Information on new products and services
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="proOffers">
-                          <label class="form-check-label" for="proOffers">
-                            Marketing and promo offers
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
-                          <label class="form-check-label" for="securityNotify">
-                            Security alerts
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="col-md-8 col-lg-9">
+                  <h5 class="card-title">Transactions History</h5>
+                  <p class="small fst-italic">Printed MTOP 05/23/2022</p>
+                  <p class="small fst-italic">Transfered ownership to ---------</p>
 
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
                   </form><!-- End settings Form -->
-
+</div>
                 </div>
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
@@ -662,7 +646,7 @@ if(isset($_SESSION['username'])){
                     </div>
                   </form><!-- End Change Password Form -->
 
-                </div>
+         
 
               </div><!-- End Bordered Tabs -->
 
@@ -672,6 +656,418 @@ if(isset($_SESSION['username'])){
         </div>
       </div>
     </section>
+      <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Driver List</h5>
+              <!-- Extra large modal -->
+
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+              <h4 class="modal-title">Add DATA</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+     
+
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Driver / Operator</h5>
+
+              <!-- General Form Elements -->
+         <form method="POST" action="do_upload.php">
+              
+
+  
+  
+         <div class="row mb-3">
+          
+                <div id="web_cam">
+                </div>
+                <br/>
+               
+               
+                <input type="hidden" name="image" class="image-tag">
+              </div>
+     
+            <div class="dsp col-md-3">
+                <div id="response">.</div>
+            </div>
+          
+ 
+<!-- simple here configuration part a few settings and attach camera -->
+
+      <div class="row mb-3">
+                 
+                  <div class="col-sm-3">
+   <script language="JavaScript">
+    Webcam.set({
+        width: 200,
+        height: 250,
+        image_format: 'jpeg',
+        jpeg_quality: 200
+    });
+  
+    Webcam.attach( '#web_cam' );
+  
+    function take_snapshot() {
+        Webcam.snap( function(web_cam_data) {
+            $(".image-tag").val(web_cam_data);
+            document.getElementById('response').innerHTML = '<img src="'+web_cam_data+'"/>';
+        } );
+    }
+</script>
+
+                  </div>
+                </div>
+
+                  <div class="row mb-2">
+                 
+                  <div class="col-sm-3">
+                    <input type=button class="btn-success" value="Take Snapshot" onClick="take_snapshot()">
+                  </div>
+                  
+                
+                </div>
+
+
+
+
+                <div class="row mb-2">
+                  <label for="inputText" class="col-sm-2 col-form-label">NAME</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Middle Name" name="mname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+                  </div>
+                   <div class="col-sm-1">
+                    <input type="text" class="form-control" placeholder="Jr./Sr." name="xname">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-4">
+                    <input type="email" class="form-control" placeholder="Address Line 1">
+                  </div>
+                
+                
+                  <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" name="barangay" required>
+                      <option value="" disabled selected>Barangay</option>
+                      <option value="Apollo">Apollo</option>
+                      <option value="Balut">Balut</option>
+                      <option value="Calero">Calero</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" name="Contact">
+                  </div>
+                </div>
+
+                  <div class="row mb-2">
+                  <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="First Name" name="sfname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Middle Name" name="smname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Last Name" name="slname">
+                  </div>
+                 
+                </div>
+
+
+          
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" name="bday">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
+                  <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" required>
+                      <option value="" disabled selected>SELECT TYPE HERE</option>
+                      <option value="OPERATOR">OPERATOR</option>
+                      <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
+                      <option value="DRIVER">DRIVER</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                   <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
+                  <div class="col-sm-4">
+                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
+                  </div>
+                    <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" required name="licensetype">
+                          <option value="" disabled selected>SELECT LICENSE TYPE</option>
+                      <option value="OPERATOR">PROFESSIONAL</option>
+                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
+                    </select>
+                  </div>
+                  </div>
+
+                   <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" name="bday" placeholder="EXPIRATION" name="expiration">
+                  </div>
+                  </div>
+            
+             <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+</div></section>
+
+
+
+          <div class="modal-footer">
+               <button type="submit" name="saveevent"class="btn btn-success">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+             </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="modal fade bd-example-modal-xl2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+              <h4 class="modal-title">Add Existing driver</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+     
+
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Driver</h5>
+
+              <!-- General Form Elements -->
+         <form method="POST" action="submit">
+              
+
+  
+  
+        
+     
+         
+      
+
+                <div class="row mb-2">
+                  <label for="inputText" class="col-sm-2 col-form-label">NAME</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Middle Name" name="mname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+                  </div>
+                   <div class="col-sm-1">
+                    <input type="text" class="form-control" placeholder="Jr./Sr." name="xname">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-4">
+                    <input type="email" class="form-control" placeholder="Address Line 1">
+                  </div>
+                
+                
+                  <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" name="barangay" required>
+                      <option value="" disabled selected>Barangay</option>
+                      <option value="Apollo">Apollo</option>
+                      <option value="Balut">Balut</option>
+                      <option value="Calero">Calero</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" name="Contact">
+                  </div>
+                </div>
+
+                  <div class="row mb-2">
+                  <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="First Name" name="sfname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Middle Name" name="smname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Last Name" name="slname">
+                  </div>
+                 
+                </div>
+
+
+          
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" name="bday">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
+                  <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" required>
+                      <option value="" disabled selected>SELECT TYPE HERE</option>
+                      <option value="OPERATOR">OPERATOR</option>
+                      <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
+                      <option value="DRIVER">DRIVER</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                   <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
+                  <div class="col-sm-4">
+                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
+                  </div>
+                    <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" required name="licensetype">
+                          <option value="" disabled selected>SELECT LICENSE TYPE</option>
+                      <option value="OPERATOR">PROFESSIONAL</option>
+                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
+                    </select>
+                  </div>
+                  </div>
+
+                   <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" name="bday" placeholder="EXPIRATION" name="expiration">
+                  </div>
+                  </div>
+            
+             <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+</div></section>
+
+
+
+          <div class="modal-footer">
+               <button type="submit" name="saveevent"class="btn btn-success">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+             </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+                <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD NEW DRIVER </button>
+
+                <button class="btn btn-warning" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl2">ADD EXISTING DRIVER </button>
+              </div>
+              <br></br>
+
+             <table id="tblPeople" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+                <th>Barangay</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>Driver / Operator</td>
+                <td>2011-04-25</td>
+                <td>Male</td>
+                <td>Balut</td>
+                <td>xxx</td>
+            </tr>
+            
+        </tbody>
+        <tfoot>
+            <tr>
+              <th>Name</th>
+                <th>Type</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+                <th>Barangay</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+    </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
 
   </main><!-- End #main -->
 
@@ -689,21 +1085,34 @@ if(isset($_SESSION['username'])){
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.min.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+<script>
+jQuery(document).ready(function($) {
+    $('#tblPeople').DataTable();
+} );
+</script>
+
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+</body>
 </body>
 
 </html>
