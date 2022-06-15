@@ -1055,32 +1055,77 @@ if(isset($_SESSION['username'])){
              <table id="tblPeople" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Birthday</th>
-                <th>Gender</th>
-                <th>Barangay</th>
+                <th>ID</th>
+                
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last NAme</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
+
+<?php
+
+
+
+
+$sql = "SELECT
+  driveroperator.pid,
+  driveroperator.fname,
+  driveroperator.mname,
+  driveroperator.lname,
+  tricycle.bodynum
+FROM driveroperator
+JOIN drivers
+ON driveroperator.pid = drivers.driverid
+JOIN tricycle
+ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $did = $row['pid'];  
+                            $dfname = $row['fname']; 
+                            $dmname = $row['mname']; 
+                            $dlname = $row['lname']; 
+
+
+
+
+
+
+
+
+
+
+?>
             <tr>
-                <td>Tiger Nixon</td>
-                <td>Driver / Operator</td>
-                <td>2011-04-25</td>
-                <td>Male</td>
-                <td>Balut</td>
-                <td>xxx</td>
+                <td><?php echo $did; ?></td>
+                <td><?php echo $dfname; ?></td>
+                <td><?php echo $dmname; ?></td>
+                <td><?php echo $dlname; ?></td>
+                
+                <td>
+  <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
+  <i class="bi bi-card-text"></i></button></a></i>
+
+  <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-sm'>
+  <i class="bi bi-pencil-fill"></i></button></a></i>
+
+  <a href="#" data-toggle="modal"><button type='button' class='btn btn-danger  btn-sm'>
+  <i class="bi bi-trash-fill"></i></button></a></i>
+                </td>
             </tr>
-            
+            <?php }} ?>
         </tbody>
         <tfoot>
             <tr>
-              <th>Name</th>
-                <th>Type</th>
-                <th>Birthday</th>
-                <th>Gender</th>
-                <th>Barangay</th>
+             <th>ID</th>
+                
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last NAme</th>
                 <th>Action</th>
             </tr>
         </tfoot>
