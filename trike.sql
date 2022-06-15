@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2022 at 12:58 PM
+-- Generation Time: Jun 15, 2022 at 02:43 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -34,6 +34,7 @@ CREATE TABLE `driveroperator` (
   `extname` varchar(55) NOT NULL,
   `address1` varchar(50) NOT NULL,
   `barangay` varchar(50) NOT NULL,
+  `contactnumber` varchar(55) NOT NULL,
   `sfname` varchar(50) NOT NULL,
   `smname` varchar(50) NOT NULL,
   `slaname` varchar(50) NOT NULL,
@@ -49,19 +50,21 @@ CREATE TABLE `driveroperator` (
 -- Dumping data for table `driveroperator`
 --
 
-INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`, `barangay`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
-(1, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'JR', 'ASDA@ASDA.COM', 'Balut', 'JEEMAY', 'A', '', '2024-09-16', 'OPERATOR', '123PCSS', 'OPERATOR', '', ''),
-(2, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'JR', 'ASDA@ASDA.COM', 'Balut', 'JEEMAY', 'A', 'LABRADOR', '2024-09-16', 'OPERATOR', '123PCSS', 'OPERATOR', '', ''),
-(3, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'JR', 'ASDA@ASDA.COM', 'Balut', 'JEEMAY', 'A', 'LABRADOR', '2024-09-16', 'OPERATOR', '123PCSS', 'OPERATOR', '', ''),
-(4, 'ali', 'rizal', 'tala', 'jr', 'pant@asd.com', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '', 'OPERATOR', '2022-06-15', ''),
-(5, 'ali', 'rizal', 'tala', 'jr', 'pant@asd.com', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '', 'OPERATOR', '2022-06-15', ''),
-(6, 'ali', 'rizal', 'tala', 'jr', 'pant@asd.com', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '', 'OPERATOR', '2022-06-15', ''),
-(7, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'ASDA@ASDA.COM', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR/DRIVER', '123asd', 'OPERATOR/DRIVER', '2022-06-30', ''),
-(8, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-21', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-22', '62a830f9db213.png'),
-(9, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Calero', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-15', '62a8383831573.png'),
-(10, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Calero', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-15', '62a838aaad124.png'),
-(11, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Balut', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR/DRIVER', '123PCSS', 'OPERATOR', '2022-06-21', '62a839d09d403.png'),
-(12, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Balut', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR/DRIVER', '123PCSS', 'OPERATOR', '2022-06-21', '62a83aae57670.png');
+INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
+(1, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'JR', 'ASDA@ASDA.COM', 'Balut', '', 'JEEMAY', 'A', '', '2024-09-16', 'OPERATOR', '123PCSS', 'OPERATOR', '', ''),
+(2, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'JR', 'ASDA@ASDA.COM', 'Balut', '', 'JEEMAY', 'A', 'LABRADOR', '2024-09-16', 'OPERATOR', '123PCSS', 'OPERATOR', '', ''),
+(3, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'JR', 'ASDA@ASDA.COM', 'Balut', '', 'JEEMAY', 'A', 'LABRADOR', '2024-09-16', 'OPERATOR', '123PCSS', 'OPERATOR', '', ''),
+(4, 'ali', 'rizal', 'tala', 'jr', 'pant@asd.com', 'Apollo', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '', 'OPERATOR', '2022-06-15', ''),
+(5, 'ali', 'rizal', 'tala', 'jr', 'pant@asd.com', 'Apollo', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '', 'OPERATOR', '2022-06-15', ''),
+(6, 'ali', 'rizal', 'tala', 'jr', 'pant@asd.com', 'Apollo', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '', 'OPERATOR', '2022-06-15', ''),
+(7, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'ASDA@ASDA.COM', 'Apollo', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR/DRIVER', '123asd', 'OPERATOR/DRIVER', '2022-06-30', ''),
+(8, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Apollo', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-21', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-22', '62a830f9db213.png'),
+(9, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Calero', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-15', '62a8383831573.png'),
+(10, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '', 'pant@asd.com', 'Calero', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-15', '62a838aaad124.png'),
+(11, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Balut', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR/DRIVER', '123PCSS', 'OPERATOR', '2022-06-21', '62a839d09d403.png'),
+(12, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'pant@asd.com', 'Balut', '', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-14', 'OPERATOR/DRIVER', '123PCSS', 'OPERATOR', '2022-06-21', '62a83aae57670.png'),
+(13, 'Testing fname', 'Middle', 'Last', 'ext', 'Leona@asd.acom', '09275109013', 'Apollo', 'Testing fname', 'Testing fname', 'Testing fname', '2022-06-14', 'OPERATOR/DRIVER', '22112', 'OPERATOR', '2022-06-14', '62a8a8272cfac.png'),
+(14, 'test2', 'test2', 'test2', 'test2', '22211@asd.com', '09275109013', 'Calero', 'Testing fname', 'Testing fname', 'Testing fname', '2022-06-14', 'OPERATOR/DRIVER', '22112', 'OPERATOR', '2022-06-15', '62a8a8e6ce47a.png');
 
 -- --------------------------------------------------------
 
@@ -97,6 +100,9 @@ INSERT INTO `tbl_user` (`id`, `username`, `password`, `first_name`, `last_name`,
 
 CREATE TABLE `tricycle` (
   `id` int(120) NOT NULL,
+  `fname` varchar(50) NOT NULL,
+  `mname` varchar(50) NOT NULL,
+  `lname` varchar(50) NOT NULL,
   `mvfileno` varchar(50) NOT NULL,
   `plateno` varchar(50) NOT NULL,
   `engineno` varchar(50) NOT NULL,
@@ -108,17 +114,21 @@ CREATE TABLE `tricycle` (
   `franchisedate` varchar(50) NOT NULL,
   `brgycode` varchar(22) NOT NULL,
   `bodynum` varchar(50) NOT NULL,
-  `operatorid` varchar(50) NOT NULL
+  `operatorid` varchar(50) NOT NULL,
+  `toda` varchar(55) NOT NULL,
+  `sidecarcolor` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tricycle`
 --
 
-INSERT INTO `tricycle` (`id`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`) VALUES
-(1, '11', '222', '333', '444', 'tttt', 'ppp', '555', '666', '2022-06-14', '12', '3456', '10'),
-(2, '3333', '4444', '5555', '6666', 'toyota', 'yea', 'cert1', 'or112', '2022-06-21', '12', '1234', '11'),
-(3, '3333', '4444', '5555', '6666', 'toyota', 'yea', 'cert1', 'or112', '2022-06-21', '12', '1234', '12');
+INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`) VALUES
+(1, 'khristian', 'perez', 'vicente', '11', '222', '333', '444', 'tttt', 'ppp', '555', '666', '2022-06-14', '12', '3456', '10', 'TOTODA', 'Red'),
+(2, '', '', '', '3333', '4444', '5555', '6666', 'toyota', 'yea', 'cert1', 'or112', '2022-06-21', '12', '1234', '11', 'TOTODA', 'Red'),
+(3, '', '', '', '3333', '4444', '5555', '6666', 'toyota', 'yea', 'cert1', 'or112', '2022-06-21', '12', '1234', '12', 'TOTODA', 'Red'),
+(4, '', '', '', '22', '22', '22', '221', 'asd', 'asd', 'asd', 'asdq', '2022-06-15', '22', '1234', '13', 'TOTODA', 'Red'),
+(5, 'test2', 'test2', 'test2', '22', '22', '22', '123', 'asd', 'asd', '123', '22112', '2022-06-15', '22', '1234', '14', 'TOTODA', 'Red');
 
 --
 -- Indexes for dumped tables
@@ -151,7 +161,7 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
@@ -161,7 +171,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
