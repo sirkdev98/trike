@@ -323,8 +323,8 @@ if(isset($_SESSION['username'])){
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="index.html">
+     <li class="nav-item">
+        <a class="nav-link collapsed" href="index.html">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -345,12 +345,14 @@ if(isset($_SESSION['username'])){
               <i class="bi bi-circle"></i><span>Driver / Operator Data</span>
             </a>
           </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Badges</span>
-            </a>
-          </li>
+         
        </ul>
+        <li class="nav-item">
+        <a class="nav-link " href="#">
+          <i class="bi bi-clipboard-data"></i>
+          <span>Tricycle Profile</span>
+        </a>
+      </li>
       </li><!-- End Components Nav -->
 
 

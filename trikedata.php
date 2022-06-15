@@ -322,7 +322,7 @@ if(isset($_SESSION['username'])){
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link collapsed" href="index.html">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -344,9 +344,7 @@ if(isset($_SESSION['username'])){
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Badges</span>
-            </a>
+           
           </li>
        </ul>
    
