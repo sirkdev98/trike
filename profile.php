@@ -1075,7 +1075,8 @@ $sql = "SELECT
   driveroperator.fname,
   driveroperator.mname,
   driveroperator.lname,
-  tricycle.bodynum
+  tricycle.bodynum,
+  drivers.id
 FROM driveroperator
 JOIN drivers
 ON driveroperator.pid = drivers.driverid
@@ -1089,6 +1090,7 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
                             $dfname = $row['fname']; 
                             $dmname = $row['mname']; 
                             $dlname = $row['lname']; 
+                            $tbldriversid = $row['id']; 
 
 
 
@@ -1110,14 +1112,76 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
   <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
   <i class="bi bi-card-text"></i></button></a></i>
 
-  <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-sm'>
-  <i class="bi bi-pencil-fill"></i></button></a></i>
-
-  <a href="#" data-toggle="modal"><button type='button' class='btn btn-danger  btn-sm'>
+ 
+  <a href="#delete<?php echo $tbldriversid;?>" data-toggle="modal"><button type='button' class='btn btn-danger  btn-sm'>
   <i class="bi bi-trash-fill"></i></button></a></i>
                 </td>
             </tr>
-            <?php }} ?>
+
+
+
+
+  <div id="delete<?php echo $tbldriversid; ?>" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <form method="post">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                       
+                                        <h4 class="modal-title">Delete</h4>
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="delete_id" value="<?php echo $tbldriversid; ?>">
+                                         <input type="hidden" name="profileid" value="<?php echo $tid; ?>">
+
+                                        <div class="alert alert-danger">Are you sure you want Remove <b><?php echo $dfname." ".$dlname; ?></b> as a driver in this tricycle <strong>
+                                                <?php echo $item_name; ?>?</strong> </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" name="delete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <?php }}
+ if(isset($_POST['delete'])){
+                            // sql to delete a record
+                            $delete_id = $_POST['delete_id'];
+                              $profileid = $_POST['profileid'];
+                            $sql = "DELETE FROM drivers     WHERE id='$delete_id' ";
+                            if ($conn->query($sql) === TRUE) {
+                                $sql = "DELETE FROM drivers WHERE id='$delete_id' ";
+                                if ($conn->query($sql) === TRUE) {
+                                    $sql = "DELETE FROM drivers WHERE id='$delete_id' ";
+                                    echo "<script type='text/javascript'>alert(\"Successfully Removed  \")</script>";
+                                      echo '<script>window.location.href="profile.php?id='.$profileid.'"</script>';
+                                } else {
+                                    echo "Error deleting record: " . $conn->error;
+                                }
+                            } else {
+                                echo "Error deleting record: " . $conn->error;
+                            }
+                        }
+
+
+
+
+             ?>
         </tbody>
         <tfoot>
             <tr>
@@ -1138,6 +1202,22 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
         </div>
       </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <?php
