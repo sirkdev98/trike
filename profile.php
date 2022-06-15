@@ -665,6 +665,15 @@ if(isset($_SESSION['username'])){
               <h5 class="card-title">Driver List</h5>
               <!-- Extra large modal -->
 
+
+
+
+
+
+<!-- Extra large modal NEW -->
+
+
+
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -685,7 +694,7 @@ if(isset($_SESSION['username'])){
               <h5 class="card-title">Driver / Operator</h5>
 
               <!-- General Form Elements -->
-         <form method="POST" action="submit">
+         <form method="POST" role="form">
               
 
   
@@ -762,7 +771,7 @@ if(isset($_SESSION['username'])){
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                   <div class="col-sm-4">
-                    <input type="email" class="form-control" placeholder="Address Line 1">
+                    <input type="text" class="form-control" placeholder="Address Line 1" name="address1">
                   </div>
                 
                 
@@ -782,7 +791,7 @@ if(isset($_SESSION['username'])){
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" name="Contact">
+                    <input type="number" class="form-control" name="contactnum">
                   </div>
                 </div>
 
@@ -811,11 +820,9 @@ if(isset($_SESSION['username'])){
                 <div class="row mb-3">
                   <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
                   <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required>
-                      <option value="" disabled selected>SELECT TYPE HERE</option>
-                      <option value="OPERATOR">OPERATOR</option>
-                      <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
-                      <option value="DRIVER">DRIVER</option>
+                    <select class="form-select" aria-label="Default select example" required name="type">
+                      <option value="DRIVER" selected>DRIVER</option>
+                    
                     </select>
                   </div>
                 </div>
@@ -827,7 +834,7 @@ if(isset($_SESSION['username'])){
                      <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
                   </div>
                     <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="licensetype">
+                    <select class="form-select" aria-label="Default select example" required name="lictype">
                           <option value="" disabled selected>SELECT LICENSE TYPE</option>
                       <option value="OPERATOR">PROFESSIONAL</option>
                       <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
@@ -838,7 +845,7 @@ if(isset($_SESSION['username'])){
                    <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday" placeholder="EXPIRATION" name="expiration">
+                    <input type="date" class="form-control"  placeholder="EXPIRATION" name="expiration">
                   </div>
                   </div>
             
@@ -862,6 +869,28 @@ if(isset($_SESSION['username'])){
   </div>
 </div>
 
+
+  <!-- End ADD NEW MODAL -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Extra large modal EXISTING -->
 
 
 <div class="modal fade bd-example-modal-xl2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -913,7 +942,7 @@ if(isset($_SESSION['username'])){
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                   <div class="col-sm-4">
-                    <input type="email" class="form-control" placeholder="Address Line 1">
+                    <input type="email" class="form-control" placeholder="Address Line 1" name="address1">
                   </div>
                 
                 
@@ -933,7 +962,7 @@ if(isset($_SESSION['username'])){
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" name="Contact">
+                    <input type="number" class="form-control" name="contactnum">
                   </div>
                 </div>
 
@@ -962,11 +991,9 @@ if(isset($_SESSION['username'])){
                 <div class="row mb-3">
                   <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
                   <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required>
-                      <option value="" disabled selected>SELECT TYPE HERE</option>
-                      <option value="OPERATOR">OPERATOR</option>
-                      <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
-                      <option value="DRIVER">DRIVER</option>
+                    <select class="form-select" aria-label="Default select example" required name="type">
+                      <option value="DRIVER" selected>DRIVER</option>
+                     
                     </select>
                   </div>
                 </div>
@@ -978,7 +1005,7 @@ if(isset($_SESSION['username'])){
                      <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
                   </div>
                     <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="licensetype">
+                    <select class="form-select" aria-label="Default select example" required name="lictype">
                           <option value="" disabled selected>SELECT LICENSE TYPE</option>
                       <option value="OPERATOR">PROFESSIONAL</option>
                       <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
@@ -989,7 +1016,7 @@ if(isset($_SESSION['username'])){
                    <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday" placeholder="EXPIRATION" name="expiration">
+                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
                   </div>
                   </div>
             
@@ -1074,7 +1101,7 @@ if (isset($_POST['savedriver'])) {
     $img = $_POST['image'];
     $folderPath = "upload/";
   
-    $fetch_imgParts = explode(";base64,", $img);
+    $fetch_imgParts = explode("base64", $img);
     $image_type_aux = explode("image/", $fetch_imgParts[0]);
     $image_type = $image_type_aux[1];
   
@@ -1100,11 +1127,11 @@ $smname = $_POST['smname'];
 $slname = $_POST['slname'];
 $type = $_POST['type'];
 $licensid = $_POST['licensid'];
-$licensetype = $_POST['licensetype'];
+$licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
-$contactnum = $_POST['contactnum'];
 
-$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`,`contactnumber`, `barangay`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
+
+$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`, `barangay`,`contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
   (NULL, '$fname', '$mname', '$lname', '$xname', '$address1', '$barangay','$contactnum', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
