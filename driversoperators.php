@@ -293,25 +293,48 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-     <li class="nav-item">
-        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Tricycle</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="trikedata.php">
-              <i class="bi bi-circle"></i><span>Tricycle Data</span>
+            <a href="trikedata.php?filter=all">
+              <i class="bi bi-circle"></i><span>All Tricycle Data</span>
             </a>
           </li>
           <li>
-            <a href="driversoperators.php" class="active">
-              <i class="bi bi-circle"></i><span>Driver / Operator Data</span>
+            <a href="trikedata.php?filter=public">
+              <i class="bi bi-circle"></i><span>Public Tricycle</span>
+            </a>
+          </li>
+           <li>
+            <a href="trikedata.php?filter=private">
+              <i class="bi bi-circle"></i><span>Private Tricycle</span>
+            </a>
+          </li>
+       </ul>
+<?php $filter  = $_GET['filter']; ?>
+        <li class="nav-item">
+        <a class="nav-link" data-bs-target="#tables2-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Drivers And Operators</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables2-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="driversoperators.php?filter=all" <?php if($filter == "allops"){ echo "class='active'";} ?>>
+              <i class="bi bi-circle"></i><span>Drivers And Operators</span>
+            </a>
+          </li>
+          <li>
+            <a href="driversoperators.php?filter=operators"<?php if($filter == "operators"){ echo "class='active'";} ?>>
+              <i class="bi bi-circle"></i><span>Operators</span>
             </a>
           </li>
           <li>
            
           </li>
        </ul>
+   
    
   </aside><!-- End Sidebar-->
 

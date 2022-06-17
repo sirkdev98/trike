@@ -57,9 +57,9 @@ $bdynumber = $_POST['bdynumber'];
 $sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`) VALUES (NULL,'$fname', '$mname', '$lname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$last_id','','')";
 
 if ($conn->query($sql) === TRUE) { 
-
+ $last_idtrike = $conn->insert_id;
  echo "<script type='text/javascript'>alert(\"Successfully added  \")</script>";
-           echo "<script>window.location.href='trikedata.php'</script>"; 
+           echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
 
 
