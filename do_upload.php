@@ -58,11 +58,15 @@ $sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plat
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
+
+ $sql2 = "INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES (NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '$last_idtrike')";
+
+if ($conn->query($sql2) === TRUE) { 
  echo "<script type='text/javascript'>alert(\"Successfully added  \")</script>";
            echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
 
-
+}
 }
 
 

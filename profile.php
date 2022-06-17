@@ -379,7 +379,45 @@ if(isset($_SESSION['username'])){
     $tid = $_GET['id'];
    
     include '\include\connection.php';
-     $sql = "SELECT tricycle.id, tricycle.bodynum, tricycle.mvfileno, tricycle.plateno, tricycle.engineno, tricycle.chasisno, tricycle.maker, tricycle.pistondisp, tricycle.cor, tricycle.ornum, tricycle.franchisedate, tricycle.brgycode, tricycle.toda, tricycle.sidecarcolor, tricycle.bodynum, driveroperator.fname, driveroperator.mname, driveroperator.lname, driveroperator.type, driveroperator.picname from tricycle right join driveroperator on tricycle.operatorid=driveroperator.pid WHERE tricycle.id = '$tid'";
+     $sql = "SELECT
+  tricycle.id,
+  tricycle.bodynum,
+  tricycle.mvfileno,
+  tricycle.plateno,
+  tricycle.engineno,
+  tricycle.chasisno,
+  tricycle.maker,
+  tricycle.pistondisp,
+  tricycle.cor,
+  tricycle.ornum,
+  tricycle.franchisedate,
+  tricycle.brgycode,tricycle.toda, 
+  tricycle.sidecarcolor, 
+  tricycle.bodynum, 
+  tricycle.inspectionstat,
+  driveroperator.fname,
+  driveroperator.mname, 
+  driveroperator.lname, 
+  driveroperator.type,
+  driveroperator.picname,
+  inspection.sidecar_windshield,
+  inspection.funcitioning_horn,
+  inspection.signal_lights,
+  inspection.tail_lights,
+  inspection.topchain_cover,
+  inspection.whitered_headlights,
+  inspection.light_inside,
+  inspection.mufflers,
+  inspection.roof,
+  inspection.side_mirrors,
+  inspection.upholstery,
+  inspection.wheels,
+  inspection.remarks
+FROM tricycle
+JOIN driveroperator
+ON tricycle.operatorid = driveroperator.pid
+JOIN inspection
+ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
@@ -404,9 +442,19 @@ if(isset($_SESSION['username'])){
                             $picname = $row['picname']; 
                             $toda = $row['toda']; 
                             $sidecarcolor = $row['sidecarcolor']; 
-
-
- 
+                            $sidecar_windshield = $row['sidecar_windshield'];
+                            $funcitioning_horn = $row['funcitioning_horn'];
+                            $signal_lights = $row['signal_lights'];
+                            $tail_lights = $row['tail_lights'];
+                            $topchain_cover = $row['topchain_cover'];
+                            $whitered_headlights = $row['whitered_headlights'];
+                            $light_inside = $row['light_inside'];
+                            $mufflers = $row['mufflers'];
+                            $roof = $row['roof'];
+                            $side_mirrors = $row['side_mirrors'];
+                            $upholstery = $row['upholstery'];
+                            $wheels = $row['wheels'];
+                            $remarks = $row['remarks'];
 
 
 
@@ -445,6 +493,9 @@ if(isset($_SESSION['username'])){
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                 </li>
                 <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-inspection">Inspection</button>
+                </li>
+                <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-transactions">Transactions</button>
                 </li>
 
@@ -457,6 +508,7 @@ if(isset($_SESSION['username'])){
 
               </ul>
               <div class="tab-content pt-2">
+
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                   <h5 class="card-title">Tricycle Details</h5>
@@ -497,6 +549,75 @@ if(isset($_SESSION['username'])){
                  
 
                 </div>
+
+
+
+                  <div class="tab-pane fade profile-overview" id="profile-inspection">
+                  <h5 class="card-title">Tricycle Details</h5>
+                  <p class="small fst-italic">Below are the details for the selected tricycle</p>
+
+                  <h5 class="card-title"><?php echo $toda; ?> - <?php echo $bodynum; ?></h5>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">sidecar_windshield</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $sidecar_windshield; ?></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">funcitioning_horn</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $funcitioning_horn; ?></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">signal_lights</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $signal_lights; ?></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">tail_lights</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $tail_lights; ?></div>
+                  </div>
+                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label">topchain_cover</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $topchain_cover; ?></div>
+                  </div>
+                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label">whitered_headlights</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $whitered_headlights; ?></div>
+                  </div>
+                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label">light_inside</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $light_inside; ?></div>
+                  </div>
+                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label">mufflers</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $mufflers; ?></div>
+                  </div>
+                     <div class="row">
+                    <div class="col-lg-3 col-md-4 label">side_mirrors</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $side_mirrors; ?></div>
+                  </div>
+                     <div class="row">
+                    <div class="col-lg-3 col-md-4 label">upholstery</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $upholstery; ?></div>
+                  </div>
+                     <div class="row">
+                    <div class="col-lg-3 col-md-4 label">wheels</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $wheels; ?></div>
+                  </div>
+                     <div class="row">
+                    <div class="col-lg-3 col-md-4 label">remarks</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $remarks; ?></div>
+                  </div>
+
+                  
+
+
+                 
+
+                </div>
+
+
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
