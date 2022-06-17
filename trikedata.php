@@ -597,13 +597,19 @@ if(isset($_SESSION['username'])){
                     </div>
 
               <div class="row mb-6">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
-                  <div class="col-sm-2">
-                    MV File number
-                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Classification</b></label>
+                  <div class="col-sm-3">
+                   
+                   <select class="form-select" aria-label="Default select example" required name="classification">
+                      <option value="" disabled selected>SELECT CLASSIFICATION</option>
+                      <option value="Public">Public Motorized Tricycle for Hire</option>
+                      <option value="Utility">Utility Motorized Tricycle</option>
+                      <option value="Family">Family-Use Motorized Tricycle</option>
+                    </select>
                   </div>
                   
                   </div>
+                  <br>
                      <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
                   <div class="col-sm-2">
@@ -715,7 +721,17 @@ if(isset($_SESSION['username'])){
         <tbody>
 
           <?php
-      $sql = "SELECT * FROM `tricycle`";
+  if ($filter =="all") {
+        $sql = "SELECT * FROM `tricycle`";
+      } 
+  elseif ($filter =="public") {
+       $sql = "SELECT * FROM `tricycle` WHERE classification ='public'";
+      }
+  elseif ($filter =="private") {
+       $sql = "SELECT * FROM `tricycle` WHERE classification ='utility' OR classification ='family'";
+      }            
+
+    
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
