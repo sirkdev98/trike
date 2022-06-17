@@ -596,7 +596,14 @@ if(isset($_SESSION['username'])){
                      <label for="inputEmail" class="col-sm-12 col-form-label"><font color= "Green"><b>Tricycle Details</b></font></label>
                     </div>
 
-              
+              <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
+                  <div class="col-sm-2">
+                    MV File number
+                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                  </div>
+                  
+                  </div>
                      <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
                   <div class="col-sm-2">
