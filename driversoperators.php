@@ -321,7 +321,7 @@
         </a>
         <ul id="tables2-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="driversoperators.php?filter=all" <?php if($filter == "allops"){ echo "class='active'";} ?>>
+            <a href="driversoperators.php?filter=allops" <?php if($filter == "allops"){ echo "class='active'";} ?>>
               <i class="bi bi-circle"></i><span>Drivers And Operators</span>
             </a>
           </li>
@@ -396,7 +396,7 @@
               <h5 class="card-title">Driver / Operator</h5>
 
               <!-- General Form Elements -->
-         <form method="POST" action="do_upload.php">
+         <form method="POST" action="do_uploadoperators.php">
               
 
   
@@ -473,7 +473,7 @@
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                   <div class="col-sm-4">
-                    <input type="email" class="form-control" placeholder="Address Line 1">
+                    <input type="text" class="form-control" placeholder="Address Line 1">
                   </div>
                 
                 
