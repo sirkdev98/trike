@@ -408,7 +408,7 @@ if(isset($_SESSION['username'])){
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
-                      $row = $result->fetch_assoc();
+                     while( $row = $result->fetch_assoc()){
                         
 
                             $id = $row['pid'];  
@@ -427,6 +427,7 @@ if(isset($_SESSION['username'])){
                             $licensetype = $row['licensetype']; 
                             $licensevalid = $row['licensevalid']; 
                             $picname = $row['picname']; 
+                     }
                             
 
 
@@ -445,13 +446,11 @@ if(isset($_SESSION['username'])){
               <h2><?php echo $fname." ".$lname ; ?></h2>
               <h3><?php echo $type; ?></h3>
               <div class="social-links mt-2">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                
               </div>
             </div>
           </div>
+
 
         </div>
 
@@ -482,26 +481,37 @@ if(isset($_SESSION['username'])){
               </ul>
               <div class="tab-content pt-2">
 
+                            $bday = $row['bday']; 
+                            $type = $row['type']; 
+                            $licensenum = $row['licensenum']; 
+                            $licensetype = $row['licensetype']; 
+                            $licensevalid = $row['licensevalid']; 
+                            $picname = $row['picname']; 
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                   <h5 class="card-title"><?php echo $type." Profile";?></h5>
-                  <p class="small fst-italic">Below are the details for the selected tricycle</p>
+                  <p class="small fst-italic">Below are the details for the selected <?php echo $type?> </p>
 
                   <h5 class="card-title"><?php echo $toda; ?> - <?php echo $bodynum; ?></h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">MV File No.</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $mvfileno; ?></div>
+                    <div class="col-lg-3 col-md-4 label ">Address</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $address1.", ".$barangay; ?></div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Plate Number</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $plateno; ?></div>
+                    <div class="col-lg-3 col-md-4 label">Contact Number</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $contactnumber; ?></div>
+                  </div>
+
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Birthday</div>
+                    <div class="col-lg-9 col-md-8"><?php echo date('M-d-Y',$bday) ?></div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Engine Number</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $engineno; ?></div>
+                    <div class="col-lg-3 col-md-4 label">Spouse Name</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $sfname." ".$smname." ".$slaname; ?></div>
                   </div>
 
                   <div class="row">

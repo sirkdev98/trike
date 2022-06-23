@@ -473,7 +473,7 @@
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" placeholder="Address Line 1">
+                    <input type="text" class="form-control" placeholder="Address Line 1" name="address1">
                   </div>
                 
                 
@@ -493,7 +493,7 @@
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" name="Contact">
+                    <input type="number" class="form-control" name="contactnum">
                   </div>
                 </div>
 
@@ -522,7 +522,7 @@
                 <div class="row mb-3">
                   <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
                   <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required>
+                    <select class="form-select" aria-label="Default select example" required name="type">
                       <option value="" disabled selected>SELECT TYPE HERE</option>
                       <option value="OPERATOR">OPERATOR</option>
                       <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
@@ -538,7 +538,7 @@
                      <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
                   </div>
                     <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="licensetype">
+                    <select class="form-select" aria-label="Default select example" required name="lictype">
                           <option value="" disabled selected>SELECT LICENSE TYPE</option>
                       <option value="OPERATOR">PROFESSIONAL</option>
                       <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
@@ -549,7 +549,7 @@
                    <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday" placeholder="EXPIRATION" name="expiration">
+                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
                   </div>
                   </div>
             
