@@ -31,7 +31,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <style type="text/css">
-        #response { padding:20px; border:1px solid; background:#ccc; }
+        #response { padding:15px; border:1px solid; background:#87CEEB; }
     </style>
 
 
@@ -401,8 +401,16 @@
 
   
   
-         <div class="row mb-3">
           
+          
+ 
+<!-- simple here configuration part a few settings and attach camera -->
+
+      <div class="row mb-3">
+
+
+          <div class="col-sm-4">
+
                 <div id="web_cam">
                 </div>
                 <br/>
@@ -411,22 +419,19 @@
                 <input type="hidden" name="image" class="image-tag">
               </div>
      
-            <div class="dsp col-md-3">
-                <div id="response">.</div>
-            </div>
-          
- 
-<!-- simple here configuration part a few settings and attach camera -->
+            <div class="col-md-4">
+               <center> <div id="response">..</div></center>
 
-      <div class="row mb-3">
+                  </div>
+
                  
                   <div class="col-sm-3">
    <script language="JavaScript">
     Webcam.set({
-        width: 200,
-        height: 250,
+        width: 300,
+        height: 300,
         image_format: 'jpeg',
-        jpeg_quality: 200
+        jpeg_quality: 600
     });
   
     Webcam.attach( '#web_cam' );
@@ -440,6 +445,8 @@
 </script>
 
                   </div>
+
+
                 </div>
 
                   <div class="row mb-2">
@@ -539,9 +546,9 @@
                   </div>
                     <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" required name="lictype">
-                          <option value="" disabled selected>SELECT LICENSE TYPE</option>
-                      <option value="OPERATOR">PROFESSIONAL</option>
-                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
+                          <option value="" disabled selected>SELECT LICENSE CLASSIFICATION</option>
+                      <option value="PROFESSIONAL">PROFESSIONAL</option>
+                      <option value="NON-PROFESSIONAL">NON-PROFESSIONAL</option>
                     </select>
                   </div>
                   </div>
@@ -592,28 +599,62 @@
                 <th>Name</th>
                 <th>Type</th>
                 <th>Birthday</th>
-                <th>Gender</th>
+                
                 <th>Barangay</th>
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody><?php
+        include 'include/connection.php';
+        if ($filter == "operators") {
+         $sql = "SELECT * from driveroperator WHERE type ='Operator' OR type ='OPERATOR/DRIVER';";
+        }else{
+          $sql = "SELECT * from driveroperator";
+        }
+          
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
+
+                            $id = $row['pid'];  
+                            $fname = $row['fname']; 
+                            $mname = $row['mname']; 
+                            $lname = $row['lname']; 
+                            $address1 = $row['address1']; 
+                            $barangay = $row['barangay']; 
+                            $contactnumber = $row['contactnumber']; 
+                            $sfname = $row['sfname']; 
+                            $smname = $row['smname']; 
+                            $slaname = $row['slaname']; 
+                            $bday = $row['bday']; 
+                            $type = $row['type']; 
+                            $licensenum = $row['licensenum']; 
+                            $licensetype = $row['licensetype']; 
+                            $licensevalid = $row['licensevalid']; 
+                            $picname = $row['picname']; 
+                    ?> 
+      
             <tr>
-                <td>Tiger Nixon</td>
-                <td>Driver / Operator</td>
-                <td>2011-04-25</td>
-                <td>Male</td>
-                <td>Balut</td>
-                <td>xxx</td>
+                <td><?php echo $fname." ".$mname." ".$lname; ?></td>
+                <td><?php echo $type; ?></td>
+                <td><?php echo $bday;?></td>
+               
+                <td><?php echo $barangay;?></td>
+                <td>
+                  <a href="driveroperatorprofile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
+  <i class="bi bi-card-text"></i></button></a></i>
+</td>
             </tr>
-            
+            <?php }}?>
         </tbody>
         <tfoot>
             <tr>
               <th>Name</th>
                 <th>Type</th>
                 <th>Birthday</th>
-                <th>Gender</th>
+                
                 <th>Barangay</th>
                 <th>Action</th>
             </tr>

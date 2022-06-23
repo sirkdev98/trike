@@ -411,22 +411,23 @@ if(isset($_SESSION['username'])){
                      while( $row = $result->fetch_assoc()){
                         
 
-                            $id = $row['pid'];  
-                            $fname = $row['fname']; 
-                            $mname = $row['mname']; 
-                            $lname = $row['lname']; 
-                            $address1 = $row['address1']; 
-                            $barangay = $row['barangay']; 
-                            $contactnumber = $row['contactnumber']; 
-                            $sfname = $row['sfname']; 
-                            $smname = $row['smname']; 
-                            $slaname = $row['slaname']; 
-                            $bday = $row['bday']; 
-                            $type = $row['type']; 
-                            $licensenum = $row['licensenum']; 
-                            $licensetype = $row['licensetype']; 
-                            $licensevalid = $row['licensevalid']; 
-                            $picname = $row['picname']; 
+                          $_SESSION['opid'] = $id = $row['pid'];  
+                          $_SESSION['opfname'] =  $fname = $row['fname']; 
+                          $_SESSION['opmname'] =  $mname = $row['mname']; 
+                          $_SESSION['oplname'] =  $lname = $row['lname']; 
+                          $_SESSION['opaddress1'] =  $address1 = $row['address1']; 
+                          $_SESSION['opbarangay'] =  $barangay = $row['barangay']; 
+                          $_SESSION['opcontactnumber'] =  $contactnumber = $row['contactnumber']; 
+                          $_SESSION['opsfname'] =  $sfname = $row['sfname']; 
+                          $_SESSION['opsmname'] =  $smname = $row['smname']; 
+                          $_SESSION['opslaname'] =  $slaname = $row['slaname']; 
+                          $_SESSION['opbday'] =  $bday = $row['bday']; 
+                          $_SESSION['optype'] = $type = $row['type']; 
+                          $_SESSION['oplicensenum'] =  $licensenum = $row['licensenum']; 
+                          $_SESSION['oplicensetype'] = $licensetype = $row['licensetype']; 
+                          $_SESSION['oplicensevalid'] = $licensevalid = $row['licensevalid']; 
+                          $_SESSION['oppicname'] =  $picname = $row['picname']; 
+                          $_SESSION['addcheck'] = "driverexist";
                      }
                             
 
@@ -443,7 +444,7 @@ if(isset($_SESSION['username'])){
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="upload/<?php echo $picname; ?>" alt="Profile" class="rounded-circle">
-              <h2><?php echo $fname." ".$lname ; ?></h2>
+              <h2><?php echo $fname." ".$mname." ".$lname ; ?></h2>
               <h3><?php echo $type; ?></h3>
               <div class="social-links mt-2">
                 
@@ -465,34 +466,25 @@ if(isset($_SESSION['username'])){
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Profile</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-inspection">Inspection</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-inspection">Violations</button>
                 </li>
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-transactions">Transactions</button>
                 </li>
 
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
-                </li>
-                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
-                </li>
+              
 
               </ul>
               <div class="tab-content pt-2">
 
-                            $bday = $row['bday']; 
-                            $type = $row['type']; 
-                            $licensenum = $row['licensenum']; 
-                            $licensetype = $row['licensetype']; 
-                            $licensevalid = $row['licensevalid']; 
-                            $picname = $row['picname']; 
+                          
+              
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                   <h5 class="card-title"><?php echo $type." Profile";?></h5>
                   <p class="small fst-italic">Below are the details for the selected <?php echo $type?> </p>
 
-                  <h5 class="card-title"><?php echo $toda; ?> - <?php echo $bodynum; ?></h5>
+                  
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Address</div>
@@ -506,28 +498,39 @@ if(isset($_SESSION['username'])){
 
                     <div class="row">
                     <div class="col-lg-3 col-md-4 label">Birthday</div>
-                    <div class="col-lg-9 col-md-8"><?php echo date('M-d-Y',$bday) ?></div>
+                    <div class="col-lg-9 col-md-8"><?php echo date('F-d-Y',strtotime($bday)); ?></div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Spouse Name</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $sfname." ".$smname." ".$slaname; ?></div>
+                    <div class="col-lg-3 col-md-4 label">License Number</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $licensenum; ?></div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Chasis Number</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $chasisno; ?></div>
+                    <div class="col-lg-3 col-md-4 label">License Type</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $licensetype; ?></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">License Expiration</div>
+                    <div class="col-lg-9 col-md-8">
+<?php
+//Check if licensed Expired
+$date = new DateTime($licensevalid);
+$now = new DateTime();
+
+if($date < $now) {
+   echo "<font color=red>".date('F-d-Y',strtotime($licensevalid))."</font>";
+}else{
+  echo "<font color=green>".date('F-d-Y',strtotime($licensevalid))."</font>";
+}  ?>
+                   
+                
+                     
+
+                    </div>
                   </div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Sidecar Color</div>
-                    <div class="col-lg-9 col-md-8"><font color="<?php echo $sidecarcolor; ?>"><?php echo $sidecarcolor; ?></font></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Franchise Date</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $franchisedate; ?></div>
-                  </div>
+               
 
                  
 
@@ -536,63 +539,17 @@ if(isset($_SESSION['username'])){
 
 
                   <div class="tab-pane fade profile-overview" id="profile-inspection">
-                  <h5 class="card-title">Tricycle Details</h5>
-                  <p class="small fst-italic">Below are the details for the selected tricycle</p>
+                  <h5 class="card-title">VIOLATIONS</h5>
+                  <p class="small fst-italic">THIS SECTION IS UNDER DEVELOPMENT</p>
 
-                  <h5 class="card-title"><?php echo $toda; ?> - <?php echo $bodynum; ?></h5>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">sidecar_windshield</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $sidecar_windshield; ?></div>
-                  </div>
+                  <h5 class="card-title">....</h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">funcitioning_horn</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $funcitioning_horn; ?></div>
+                    <div class="col-lg-3 col-md-4 label ">THIS SECTION IS UNDER DEVELOPMENT</div>
+                    <div class="col-lg-9 col-md-8"></div>
                   </div>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">signal_lights</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $signal_lights; ?></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">tail_lights</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $tail_lights; ?></div>
-                  </div>
-                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">topchain_cover</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $topchain_cover; ?></div>
-                  </div>
-                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">whitered_headlights</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $whitered_headlights; ?></div>
-                  </div>
-                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">light_inside</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $light_inside; ?></div>
-                  </div>
-                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">mufflers</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $mufflers; ?></div>
-                  </div>
-                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label">side_mirrors</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $side_mirrors; ?></div>
-                  </div>
-                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label">upholstery</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $upholstery; ?></div>
-                  </div>
-                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label">wheels</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $wheels; ?></div>
-                  </div>
-                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label">remarks</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $remarks; ?></div>
-                  </div>
-
+                 
                   
 
 
@@ -715,8 +672,8 @@ if(isset($_SESSION['username'])){
 
                   <div class="col-md-8 col-lg-9">
                   <h5 class="card-title">Transactions History</h5>
-                  <p class="small fst-italic">Printed MTOP 05/23/2022</p>
-                  <p class="small fst-italic">Transfered ownership to ---------</p>
+                  <p class="small fst-italic">-----------------------</p>
+                  <p class="small fst-italic">-----------------------</p>
 
                   </form><!-- End settings Form -->
 </div>
@@ -768,27 +725,20 @@ if(isset($_SESSION['username'])){
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Driver List</h5>
-              <!-- Extra large modal -->
+              <h5 class="card-title">OWNED FRANCHISE</h5>
+          
 
-
-
-
-
-
-<!-- Extra large modal NEW -->
-
-
-
+<!-- Extra large modal EXISTING -->
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
        <div class="modal-header">
-              <h4 class="modal-title">Add DATA</h4>
+              <h4 class="modal-title">Add Franchise</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
      
 
   <section class="section">
@@ -797,162 +747,96 @@ if(isset($_SESSION['username'])){
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Driver / Operator</h5>
+              <h5 class="card-title">Add Franchise</h5>
 
               <!-- General Form Elements -->
-         <form method="POST" role="form">
-              
+         <form method="POST" action="do_upload.php">
 
-  
-  
-         <div class="row mb-3">
-          
-                <div id="web_cam">
-                </div>
-                <br/>
-               
-               
-                <input type="hidden" name="image" class="image-tag">
-              </div>
-     
-            <div class="dsp col-md-3">
-                <div id="response">.</div>
-            </div>
-          
- 
-<!-- simple here configuration part a few settings and attach camera -->
 
-      <div class="row mb-3">
-                 
+            
+            
+           
+                  <br><!--divider -->
+                  <div class="row mb-3">
+                     <label for="inputEmail" class="col-sm-12 col-form-label"><font color= "Green"><b>Tricycle Details</b></font></label>
+                    </div>
+
+              <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Classification</b></label>
                   <div class="col-sm-3">
-   <script language="JavaScript">
-    Webcam.set({
-        width: 200,
-        height: 250,
-        image_format: 'jpeg',
-        jpeg_quality: 200
-    });
-  
-    Webcam.attach( '#web_cam' );
-  
-    function take_snapshot() {
-        Webcam.snap( function(web_cam_data) {
-            $(".image-tag").val(web_cam_data);
-            document.getElementById('response').innerHTML = '<img src="'+web_cam_data+'"/>';
-        } );
-    }
-</script>
-
-                  </div>
-                </div>
-
-                  <div class="row mb-2">
-                 
-                  <div class="col-sm-3">
-                    <input type=button class="btn-success" value="Take Snapshot" onClick="take_snapshot()">
+                   
+                   <select class="form-select" aria-label="Default select example" required name="classification">
+                      <option value="" disabled selected>SELECT CLASSIFICATION</option>
+                      <option value="Public">Public Motorized Tricycle for Hire</option>
+                      <option value="Utility">Utility Motorized Tricycle</option>
+                      <option value="Family">Family-Use Motorized Tricycle</option>
+                    </select>
                   </div>
                   
-                
-                </div>
+                  </div>
+                  <br>
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
+                  <div class="col-sm-2">
+                    MV File number
+                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                  </div>
+                  <div class="col-sm-2">
+                    Plate Number
+                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno">
+                  </div>
+                   <div class="col-sm-2">
+                    Engine Number
+                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="engineno">
+                  </div>
+                   <div class="col-sm-2">
+                    Chasis Number
+                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno">
+                  </div>
+                  </div>
+            
+<br>
+
+
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
+                  <div class="col-sm-2">
+                    Maker
+                    <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
+                  </div>
+                  <div class="col-sm-2">
+                    Piston Displacement
+                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
+                  </div>
+                   <div class="col-sm-2">
+                    Cert. of Reg.
+                    <input type="text" class="form-control" name="cor" placeholder="Certificate of Registration" name="cor">
+                  </div>
+                   <div class="col-sm-2">
+                    Official Receipt No.
+                    <input type="text" class="form-control" placeholder="OR" name="ornum">
+                  </div>
+                  </div>
 
 
 
+<br>
 
-                <div class="row mb-2">
-                  <label for="inputText" class="col-sm-2 col-form-label">NAME</label>
-                  <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
+                  <div class="col-sm-4">
+                    Date of Issuance
+                    <input type="date" class="form-control" name="dateofissue" placeholder="dateofissue" name="dateofissue">
+                  </div>
+                  <div class="col-sm-1">
+                    Brgy #
+                    <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{2}" style="color:#888;" required/>
                   </div>
                    <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Middle Name" name="mname">
+                    Body Number
+                    <input class="form-control" type="text" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required/>
                   </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
-                  </div>
-                   <div class="col-sm-1">
-                    <input type="text" class="form-control" placeholder="Jr./Sr." name="xname">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
-                  <div class="col-sm-4">
-                    <input type="text" class="form-control" placeholder="Address Line 1" name="address1">
-                  </div>
-                
-                
-                  <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" name="barangay" required>
-                      <option value="" disabled selected>Barangay</option>
-                      <option value="Apollo">Apollo</option>
-                      <option value="Balut">Balut</option>
-                      <option value="Calero">Calero</option>
-                    </select>
-                  </div>
-                </div>
-
-
-
-
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
-                  <div class="col-sm-4">
-                    <input type="number" class="form-control" name="contactnum">
-                  </div>
-                </div>
-
-                  <div class="row mb-2">
-                  <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
-                  <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="First Name" name="sfname">
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Middle Name" name="smname">
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="slname">
-                  </div>
-                 
-                </div>
-
-
-          
-                <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
-                  <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="type">
-                      <option value="DRIVER" selected>DRIVER</option>
-                    
-                    </select>
-                  </div>
-                </div>
-
-
-                   <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
-                  <div class="col-sm-4">
-                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
-                  </div>
-                    <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="lictype">
-                          <option value="" disabled selected>SELECT LICENSE TYPE</option>
-                      <option value="OPERATOR">PROFESSIONAL</option>
-                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
-                    </select>
-                  </div>
-                  </div>
-
-                   <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control"  placeholder="EXPIRATION" name="expiration">
-                  </div>
+                  
                   </div>
             
              <!-- End General Form Elements -->
@@ -964,175 +848,6 @@ if(isset($_SESSION['username'])){
 </div></section>
 
 
-
-          <div class="modal-footer">
-               <button type="submit" name="savedriver"class="btn btn-success">Save</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-             </form>
-    </div>
-
-  </div>
-</div>
-
-
-  <!-- End ADD NEW MODAL -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Extra large modal EXISTING -->
-
-
-<div class="modal fade bd-example-modal-xl2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-       <div class="modal-header">
-              <h4 class="modal-title">Add Existing driver</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-     
-
-  <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Driver</h5>
-
-              <!-- General Form Elements -->
-         <form method="POST" action="submit">
-              
-
-  
-  
-        
-     
-         
-      
-
-                <div class="row mb-2">
-                  <label for="inputText" class="col-sm-2 col-form-label">NAME</label>
-                  <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="First Name" name="fname" required>
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Middle Name" name="mname">
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
-                  </div>
-                   <div class="col-sm-1">
-                    <input type="text" class="form-control" placeholder="Jr./Sr." name="xname">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
-                  <div class="col-sm-4">
-                    <input type="email" class="form-control" placeholder="Address Line 1" name="address1">
-                  </div>
-                
-                
-                  <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" name="barangay" required>
-                      <option value="" disabled selected>Barangay</option>
-                      <option value="Apollo">Apollo</option>
-                      <option value="Balut">Balut</option>
-                      <option value="Calero">Calero</option>
-                    </select>
-                  </div>
-                </div>
-
-
-
-
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
-                  <div class="col-sm-4">
-                    <input type="number" class="form-control" name="contactnum">
-                  </div>
-                </div>
-
-                  <div class="row mb-2">
-                  <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
-                  <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="First Name" name="sfname">
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Middle Name" name="smname">
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="slname">
-                  </div>
-                 
-                </div>
-
-
-          
-                <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
-                  <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="type">
-                      <option value="DRIVER" selected>DRIVER</option>
-                     
-                    </select>
-                  </div>
-                </div>
-
-
-                   <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
-                  <div class="col-sm-4">
-                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
-                  </div>
-                    <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="lictype">
-                          <option value="" disabled selected>SELECT LICENSE TYPE</option>
-                      <option value="OPERATOR">PROFESSIONAL</option>
-                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
-                    </select>
-                  </div>
-                  </div>
-
-                   <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
-                  </div>
-                  </div>
-            
-             <!-- End General Form Elements -->
-
-            </div>
-          </div>
-
-        </div>
-</div></section>
 
 
 
@@ -1152,9 +867,9 @@ if(isset($_SESSION['username'])){
 
 
                 <div class="d-grid gap-2 mt-3">
-                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD NEW DRIVER </button>
+                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD NEW FRANCHISE </button>
 
-                <button class="btn btn-warning" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl2">ADD EXISTING DRIVER </button>
+               
               </div>
               <br></br>
 
@@ -1163,9 +878,10 @@ if(isset($_SESSION['username'])){
             <tr>
                 <th>ID</th>
                 
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last NAme</th>
+                <th>BODY #</th>
+                <th>FRANCHISE DATE</th>
+                <th>CLASSIFICATION</th>
+                <th>TODA</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -1174,29 +890,18 @@ if(isset($_SESSION['username'])){
 <?php
 
 
+$oppid =$_GET['id'];
 
-
-$sql = "SELECT
-  driveroperator.pid,
-  driveroperator.fname,
-  driveroperator.mname,
-  driveroperator.lname,
-  tricycle.bodynum,
-  drivers.id
-FROM driveroperator
-JOIN drivers
-ON driveroperator.pid = drivers.driverid
-JOIN tricycle
-ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
+$sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
                         while($row = $result->fetch_assoc()) {
-                            $did = $row['pid'];  
-                            $dfname = $row['fname']; 
-                            $dmname = $row['mname']; 
-                            $dlname = $row['lname']; 
-                            $tbldriversid = $row['id']; 
+                            $id = $row['id'];  
+                            $bdynumber = $row['bodynum']; 
+                            $franchisedate = $row['franchisedate']; 
+                            $classification = $row['classification']; 
+                            $toda = $row['toda']; 
 
 
 
@@ -1209,11 +914,11 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
 
 ?>
             <tr>
-                <td><?php echo $did; ?></td>
-                <td><?php echo $dfname; ?></td>
-                <td><?php echo $dmname; ?></td>
-                <td><?php echo $dlname; ?></td>
-                
+                <td><?php echo $id; ?></td>
+                <td><?php echo $bdynumber; ?></td>
+                <td><?php echo $franchisedate; ?></td>
+                <td><?php echo $classification; ?></td>
+                <td><?php echo $toda; ?></td>
                 <td>
   <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
   <i class="bi bi-card-text"></i></button></a></i>
@@ -1293,9 +998,11 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
             <tr>
              <th>ID</th>
                 
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last NAme</th>
+                 
+                <th>BODY #</th>
+                <th>FRANCHISE DATE</th>
+                <th>CLASSIFICATION</th>
+                <th>TODA</th>
                 <th>Action</th>
             </tr>
         </tfoot>

@@ -1,5 +1,7 @@
 <?php
-  
+
+
+                         
 include '\include\controller.php';
     $img = $_POST['image'];
     $folderPath = "upload/";
@@ -13,8 +15,51 @@ include '\include\controller.php';
   
     $file = $folderPath . $img_name;
     file_put_contents($file, $image_base64);
-  
-    print_r($img_name);
+
+                        $opid=$_SESSION['opid'];
+                        $opfname=$_SESSION['opfname'];
+                        $opmname=$_SESSION['opmname'];
+                        $oplname=$_SESSION['oplname'];
+
+                if ($opid != "") {
+
+
+ 
+ 
+$fileno = $_POST['fileno'];
+$plateno = $_POST['plateno'];
+$engineno = $_POST['engineno'];
+$chasisno = $_POST['chasisno'];
+$maker = $_POST['maker'];
+$piston = $_POST['piston'];
+$cor = $_POST['cor'];
+$ornum = $_POST['ornum'];
+$dateofissue = $_POST['dateofissue'];
+$brgycode = $_POST['brgycode'];
+$bdynumber = $_POST['bdynumber'];
+$classification = $_POST['classification'];
+
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$opfname', '$opmname', '$oplname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$opid','','','$classification')";
+
+if ($conn->query($sql) === TRUE) { 
+ $last_idtrike = $conn->insert_id;
+
+ $sql2 = "INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES (NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '$last_idtrike')";
+
+if ($conn->query($sql2) === TRUE) { 
+ echo "<script type='text/javascript'>alert(\"Successfully added $opid \")</script>";
+           echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
+         }  else{
+            echo "<script type='text/javascript'>alert(\"Data not inserted\")</script>";
+
+}
+}
+
+
+
+
+                 
+                }else{
   
 
 $fname = $_POST['fname'];
@@ -62,7 +107,7 @@ if ($conn->query($sql) === TRUE) {
  $sql2 = "INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES (NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '$last_idtrike')";
 
 if ($conn->query($sql2) === TRUE) { 
- echo "<script type='text/javascript'>alert(\"Successfully added  \")</script>";
+ echo "<script type='text/javascript'>alert(\"Successfully added ALL \")</script>";
            echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
 
@@ -74,7 +119,7 @@ if ($conn->query($sql2) === TRUE) {
 
 
 
-
+}
 
 
 
