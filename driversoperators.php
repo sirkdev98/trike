@@ -320,7 +320,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Drive and Operators Table</h5>
+              <h5 class="card-title">Driver and Operators Table</h5>
               <!-- Extra large modal -->
 
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -558,6 +558,7 @@
              <table id="tblPeople" class="display" style="width:100%">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Type</th>
                 <th>Birthday</th>
@@ -599,6 +600,7 @@
                     ?> 
       
             <tr>
+                <td><?php echo $id; ?></td>
                 <td><?php echo $fname." ".$mname." ".$lname; ?></td>
                 <td><?php echo $type; ?></td>
                 <td><?php echo $bday;?></td>
@@ -613,6 +615,7 @@
         </tbody>
         <tfoot>
             <tr>
+               <th>ID</th>
               <th>Name</th>
                 <th>Type</th>
                 <th>Birthday</th>

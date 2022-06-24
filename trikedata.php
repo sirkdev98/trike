@@ -434,9 +434,11 @@ if(isset($_SESSION['username'])){
               
 
   
-  
-         <div class="row mb-3">
-          
+     <div class="row mb-3">
+
+
+          <div class="col-sm-4">
+
                 <div id="web_cam">
                 </div>
                 <br/>
@@ -445,22 +447,19 @@ if(isset($_SESSION['username'])){
                 <input type="hidden" name="image" class="image-tag">
               </div>
      
-            <div class="dsp col-md-3">
-                <div id="response">.</div>
-            </div>
-          
- 
-<!-- simple here configuration part a few settings and attach camera -->
+            <div class="col-md-4">
+               <center> <div id="response">..</div></center>
 
-      <div class="row mb-3">
+                  </div>
+
                  
                   <div class="col-sm-3">
    <script language="JavaScript">
     Webcam.set({
-        width: 200,
-        height: 250,
+        width: 300,
+        height: 300,
         image_format: 'jpeg',
-        jpeg_quality: 200
+        jpeg_quality: 600
     });
   
     Webcam.attach( '#web_cam' );
@@ -474,6 +473,8 @@ if(isset($_SESSION['username'])){
 </script>
 
                   </div>
+
+
                 </div>
 
                   <div class="row mb-2">
@@ -484,6 +485,7 @@ if(isset($_SESSION['username'])){
                   
                 
                 </div>
+
 
 
 

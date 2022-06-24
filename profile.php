@@ -324,7 +324,7 @@ if(isset($_SESSION['username'])){
     <ul class="sidebar-nav" id="sidebar-nav">
 
      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -794,10 +794,10 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="upload/<?php echo $picname; ?>" alt="Profile" class="rounded-circle">
-              <h2><?php echo $fname." ".$lname ; ?></h2>
+              <h5><B><?php echo $fname." ".$lname ; ?></B></h5>
               <h3><?php echo $type; ?></h3>
               <div class="social-links mt-2">
-             <a href="driveroperatorprofile.php?id=<?php echo $pid; ?>">   <button class="btn btn-success" > Show Profile </button>
+             <a href="driveroperatorprofile.php?id=<?php echo $pid; ?>">   <button class="btn btn-success" > Show Profile </button></a>
               </div>
             </div>
           </div>
@@ -846,9 +846,11 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
               
 
   
-  
-         <div class="row mb-3">
-          
+    <div class="row mb-3">
+
+
+          <div class="col-sm-4">
+
                 <div id="web_cam">
                 </div>
                 <br/>
@@ -857,22 +859,19 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                 <input type="hidden" name="image" class="image-tag">
               </div>
      
-            <div class="dsp col-md-3">
-                <div id="response">.</div>
-            </div>
-          
- 
-<!-- simple here configuration part a few settings and attach camera -->
+            <div class="col-md-4">
+               <center> <div id="response">..</div></center>
 
-      <div class="row mb-3">
+                  </div>
+
                  
                   <div class="col-sm-3">
    <script language="JavaScript">
     Webcam.set({
-        width: 200,
-        height: 250,
+        width: 300,
+        height: 300,
         image_format: 'jpeg',
-        jpeg_quality: 200
+        jpeg_quality: 600
     });
   
     Webcam.attach( '#web_cam' );
@@ -886,6 +885,8 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 </script>
 
                   </div>
+
+
                 </div>
 
                   <div class="row mb-2">
@@ -896,7 +897,6 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   
                 
                 </div>
-
 
 
 
@@ -1062,112 +1062,36 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
               <!-- General Form Elements -->
          <form method="POST" action="submit">
-              
+          <a id="button" href="#">Reload</a>
+     
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+<script type="text/javascript">
+    var auto_refresh = setInterval(
+  $("#button").click( function(){
+    
+    $('#Status').load('profile.php');
+    }
+</script>
   
-  
+
         
      
          
       
 
                 <div class="row mb-2">
-                  <label for="inputText" class="col-sm-2 col-form-label">NAME</label>
+                  <label for="inputText" class="col-sm-2 col-form-label">DRIVER ID</label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+                    <input type="text" class="form-control" placeholder="Driver ID" name="fname" required>
                   </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Middle Name" name="mname">
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
-                  </div>
-                   <div class="col-sm-1">
-                    <input type="text" class="form-control" placeholder="Jr./Sr." name="xname">
-                  </div>
-                </div>
+                   
+                   <DIV id="Status">
+                     asdsd asd
 
-                <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
-                  <div class="col-sm-4">
-                    <input type="email" class="form-control" placeholder="Address Line 1" name="address1">
-                  </div>
-                
-                
-                  <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" name="barangay" required>
-                      <option value="" disabled selected>Barangay</option>
-                      <option value="Apollo">Apollo</option>
-                      <option value="Balut">Balut</option>
-                      <option value="Calero">Calero</option>
-                    </select>
-                  </div>
-                </div>
+                   </DIV>
+             
 
-
-
-
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
-                  <div class="col-sm-4">
-                    <input type="number" class="form-control" name="contactnum">
-                  </div>
-                </div>
-
-                  <div class="row mb-2">
-                  <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
-                  <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="First Name" name="sfname">
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Middle Name" name="smname">
-                  </div>
-                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="slname">
-                  </div>
-                 
-                </div>
-
-
-          
-                <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
-                  <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="type">
-                      <option value="DRIVER" selected>DRIVER</option>
-                     
-                    </select>
-                  </div>
-                </div>
-
-
-                   <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
-                  <div class="col-sm-4">
-                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
-                  </div>
-                    <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="lictype">
-                          <option value="" disabled selected>SELECT LICENSE TYPE</option>
-                      <option value="OPERATOR">PROFESSIONAL</option>
-                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
-                    </select>
-                  </div>
-                  </div>
-
-                   <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
-                  </div>
-                  </div>
-            
              <!-- End General Form Elements -->
 
             </div>

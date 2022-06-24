@@ -729,7 +729,15 @@ if($date < $now) {
         </div>
       </div>
     </section>
-      <section class="section">
+    <?php if ($type =="DRIVER"){
+      echo "<section class='section' hidden>";
+    }
+    
+else{
+ echo "<section class='section'>";
+}
+      ?>
+
       <div class="row">
         <div class="col-lg-12">
 
@@ -870,6 +878,7 @@ if($date < $now) {
 
   </div>
 </div>
+
 
 
 
