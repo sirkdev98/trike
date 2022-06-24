@@ -274,7 +274,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -284,7 +284,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -294,7 +294,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -391,7 +391,7 @@ if(isset($_SESSION['username'])){
       <h1>Profile</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item">Tricycle</li>
           <li class="breadcrumb-item active">Tricycle Profile</li>
         </ol>
@@ -420,6 +420,7 @@ if(isset($_SESSION['username'])){
   tricycle.sidecarcolor, 
   tricycle.bodynum, 
   tricycle.inspectionstat,
+  driveroperator.pid,
   driveroperator.fname,
   driveroperator.mname, 
   driveroperator.lname, 
@@ -459,7 +460,8 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $ornum = $row['ornum']; 
                             $franchisedate = $row['franchisedate']; 
                             $brgycode = $row['brgycode']; 
-                            $bodynum = $row['bodynum']; 
+                            $bodynum = $row['bodynum'];
+                            $pid = $row['pid'];  
                             $fname = $row['fname']; 
                             $mname = $row['mname']; 
                             $lname = $row['lname']; 
@@ -488,25 +490,8 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
     <section class="section profile">
       <div class="row">
-        <div class="col-xl-4">
-
-          <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-              <img src="upload/<?php echo $picname; ?>" alt="Profile" class="rounded-circle">
-              <h2><?php echo $fname." ".$lname ; ?></h2>
-              <h3><?php echo $type; ?></h3>
-              <div class="social-links mt-2">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
+      
+    
         <div class="col-xl-8">
 
           <div class="card">
@@ -803,6 +788,21 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
         </div>
       </div>
+        <div class="col-xl-4">
+
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+              <img src="upload/<?php echo $picname; ?>" alt="Profile" class="rounded-circle">
+              <h2><?php echo $fname." ".$lname ; ?></h2>
+              <h3><?php echo $type; ?></h3>
+              <div class="social-links mt-2">
+             <a href="driveroperatorprofile.php?id=<?php echo $pid; ?>">   <button class="btn btn-success" > Show Profile </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
     </section>
       <section class="section">
       <div class="row">

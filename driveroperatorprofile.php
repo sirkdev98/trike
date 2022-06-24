@@ -274,7 +274,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -284,7 +284,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -294,7 +294,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -447,7 +447,17 @@ if(isset($_SESSION['username'])){
               <h2><?php echo $fname." ".$mname." ".$lname ; ?></h2>
               <h3><?php echo $type; ?></h3>
               <div class="social-links mt-2">
-                
+               <?php  
+
+
+$oppid =$_GET['id'];
+
+$sql = "SELECT * from tricycle WHERE operatorid =$oppid";
+                    $result = $conn->query($sql);
+                    $countfranchise = $result ->num_rows;
+                    echo "<font color='Green'><b>".$countfranchise."</b></font> Franchise Owned";
+
+               ?>
               </div>
             </div>
           </div>
@@ -890,11 +900,14 @@ if($date < $now) {
 <?php
 
 
+
 $oppid =$_GET['id'];
 
 $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     $result = $conn->query($sql);
+                    $count  = $result->num_rows;
                     if ($result->num_rows > 0) {
+                  
                         // output data of each row
                         while($row = $result->fetch_assoc()) {
                             $id = $row['id'];  
