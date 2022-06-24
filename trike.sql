@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2022 at 07:09 PM
+-- Generation Time: Jun 24, 2022 at 10:28 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -51,10 +51,7 @@ CREATE TABLE `driveroperator` (
 --
 
 INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
-(39, 'Testing fname', 'Middle', 'Last', 'ext', 'SUBOK@gnau.com', '09275109013', 'Apollo', 'Testing fname', 'Testing fname', 'Testing fname', '2022-06-17', 'OPERATOR/DRIVER', '22112', 'OPERATOR/DRIVER', '2022-06-17', '62ac858c64b3a.png'),
-(40, 'Testing fname', 'Middle', 'Last', 'ext', 'Leona@asd.acom', 'Balut', '123123', 'Testing fname', 'Testing fname', 'SUBOK', '2022-06-17', 'DRIVER', '22112', 'OPERATOR', '2022-06-17', '62ac91642c074.png'),
-(41, 'Testing fname', 'Middle', 'Last', 'ext', 'SUBOK@gnau.com', '22133', 'Apollo', 'Testing fname', 'Testing fname', 'Testing fname', '2022-06-17', 'OPERATOR', '22112', 'OPERATOR', '2022-06-18', '62aca4b0c9fa2.png'),
-(42, 'PUBLIC', 'PUBLIC', 'PUBLIC', 'PUBLIC', 'asdasd@ASD.COM', '123123', 'Apollo', 'Testing fname', 'Testing fname', 'Testing fname', '2022-06-18', 'OPERATOR', '22112', 'OPERATOR', '2022-06-25', '62aca5ce71f0f.png');
+(45, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'JR', 'LEONA SUBD', 'Balut', '09275109013', 'JEEMAY', 'ANGELES', 'LABRADOR', '2022-06-24', 'OPERATOR', 'COA2211029', 'NON-PROFESSIONAL', '2031-05-23', '62b52ef09cf56.png');
 
 -- --------------------------------------------------------
 
@@ -68,13 +65,6 @@ CREATE TABLE `drivers` (
   `trikeid` varchar(55) NOT NULL,
   `driverid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `drivers`
---
-
-INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES
-(1, '1233', '10', '40');
 
 -- --------------------------------------------------------
 
@@ -105,9 +95,8 @@ CREATE TABLE `inspection` (
 --
 
 INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES
-(5, 'sidecar_windshield', 'funcitioning_horn', 'signal_lights', 'tail_lights', 'topchain_cover', 'whitered_headlights', 'light_inside', 'mufflers', 'roof	', 'side_mirrors', 'upholstery', 'wheels', 'remarks', '10'),
-(6, '', '', '', '', '', '', '', '', '', '', '', '', '', '11'),
-(7, '', '', '', '', '', '', '', '', '', '', '', '', '', '12');
+(10, 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', '15'),
+(11, '', '', '', '', '', '', '', '', '', '', '', '', '', '16');
 
 -- --------------------------------------------------------
 
@@ -169,9 +158,8 @@ CREATE TABLE `tricycle` (
 --
 
 INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES
-(10, 'Testing fname', 'Middle', 'Last', 'asdasd', 'SUBOK', 'SUBOK', 'SUBOK', 'SUBOK', 'asd', 'SUBOK', 'SUBOK', '2022-06-17', '22', '1233', '39', '', '', '', 'Utility'),
-(11, 'Testing fname', 'Middle', 'Last', 'asdasd', 'SUBOK', 'SUBOK', 'SUBOK', 'SUBOK', 'asd', 'SUBOK', 'SUBOK', '2022-06-17', '22', '1233', '41', '', '', '', 'Public'),
-(12, 'PUBLIC', 'PUBLIC', 'PUBLIC', 'asdasd', 'SUBOK', 'SUBOK', 'SUBOK', 'SUBOK', 'asd', 'SUBOK', 'SUBOK', '2022-06-18', '22', '1234', '42', '', '', '', 'Family');
+(15, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '00122921', 'ZXC 231', '8891228', '25112', 'KAWASAKI', 'YES', '21002', '90221', '2022-06-24', '12', '2221', '45', '', '', '', 'Public'),
+(16, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '231', '123123', '1231', '1312', 'asdad', 'ppp', 'adasd', '12313', '2022-06-24', '12', '1231', '45', '', '', '', 'Public');
 
 --
 -- Indexes for dumped tables
@@ -216,7 +204,7 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
@@ -226,7 +214,7 @@ ALTER TABLE `drivers`
 -- AUTO_INCREMENT for table `inspection`
 --
 ALTER TABLE `inspection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
@@ -236,7 +224,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
