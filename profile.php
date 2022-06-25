@@ -1061,36 +1061,23 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
               <h5 class="card-title">Driver</h5>
 
               <!-- General Form Elements -->
-         <form method="POST" action="submit">
-          <a id="button" href="#">Reload</a>
-     
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
-<script type="text/javascript">
-    var auto_refresh = setInterval(
-  $("#button").click( function(){
-    
-    $('#Status').load('profile.php');
-    }
-</script>
-  
-
+         <form method="POST">
         
-     
-         
+
       
 
                 <div class="row mb-2">
                   <label for="inputText" class="col-sm-2 col-form-label">DRIVER ID</label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Driver ID" name="fname" required>
-                  </div>
-                   
-                   <DIV id="Status">
-                     asdsd asd
+                    <input type="text" class="form-control" placeholder="Driver ID" name="driverid" required  oninvalid="this.setCustomValidity('ENTER THE ID # OF THE SELECTED DRIVER')"> 
+                  
 
-                   </DIV>
-             
+                  </div>
+
+
+                   
+               
+             <div class="col-sm-3">   <button type="submit" name="adddriver" class="btn btn-success">Save</button></div>
 
              <!-- End General Form Elements -->
 
@@ -1098,12 +1085,81 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
           </div>
 
         </div>
+
+
 </div></section>
+             <table id="tbldriver" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                
+                <th>Name</th>
+                <th>License Numver</th>
+                <th>Birthday</th>
+                <th>Barangay</th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php
+        include 'include/connection.php';
+       
+         $sql = "SELECT * from driveroperator WHERE type ='DRIVER';";
+      
+        
+          
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
+
+                            $id = $row['pid'];  
+                            $fname = $row['fname']; 
+                            $mname = $row['mname']; 
+                            $lname = $row['lname']; 
+                            $address1 = $row['address1']; 
+                            $barangay = $row['barangay']; 
+                            $contactnumber = $row['contactnumber']; 
+                            $sfname = $row['sfname']; 
+                            $smname = $row['smname']; 
+                            $slaname = $row['slaname']; 
+                            $bday = $row['bday']; 
+                            $type = $row['type']; 
+                            $licensenum = $row['licensenum']; 
+                            $licensetype = $row['licensetype']; 
+                            $licensevalid = $row['licensevalid']; 
+                            $picname = $row['picname']; 
+                    ?> 
+      
+            <tr>
+                <td><?php echo $id; ?></td>
+                <td><?php echo $fname." ".$mname." ".$lname; ?></td>
+                <td><?php echo $licensenum; ?></td>
+                <td><?php echo $bday;?></td>
+               
+                <td><?php echo $barangay;?></td>
+             
+ <?php }}?>
+
+
+        </tbody>
+        <tfoot>
+            <tr>
+            <th>ID</th>
+                
+                <th>Name</th>
+                <th>License Numver</th>
+                <th>Birthday</th>
+                <th>Barangay</th>
+            </tr>
+        </tfoot>
+    </table>
+
 
 
 
           <div class="modal-footer">
-               <button type="submit" name="saveevent"class="btn btn-success">Save</button>
+             
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
              </form>
@@ -1111,8 +1167,13 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
   </div>
 </div>
+             <table id="tbldriver" class="display" style="width:100%">
+        <thead>
+            <tr>
 
 
+
+            
 
 
 
@@ -1293,6 +1354,25 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
 
 
 <?php
+if (isset($_POST['adddriver'])) {
+
+  $driverid =$_POST['driverid'];
+$sqlcheck = "select * from drivers where trikeid='$tid' and driverid='$driverid'";
+$result = $conn->query($sqlcheck);
+if ($result->num_rows > 0)  { 
+ echo "<script type='text/javascript'>alert(\"Not added,Already a driver in this franchise\")</script>";
+           echo "<script>window.location.href='profile.php?id=$tid'</script>";
+           } else{ 
+
+$sql = "INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES (NULL, '$bodynum', '$tid', '$driverid')";
+
+if ($conn->query($sql) === TRUE) {  
+
+ echo "<script type='text/javascript'>alert(\"Successfully added driver \")</script>";
+           echo "<script>window.location.href='profile.php?id=$tid'</script>"; 
+
+ 
+}}}
 
 if (isset($_POST['savedriver'])) {
     $img = $_POST['image'];
@@ -1381,6 +1461,11 @@ if ($conn->query($sql) === TRUE) {
 <script>
 jQuery(document).ready(function($) {
     $('#tblPeople').DataTable();
+} );
+</script>
+<script>
+jQuery(document).ready(function($) {
+    $('#tbldriver').DataTable();
 } );
 </script>
 
