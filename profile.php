@@ -801,6 +801,27 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
               </div>
             </div>
           </div>
+             <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+
+                  <div class="row">
+                  
+  <button type='button' class='btn btn-primary btn-sm'>
+  <i class="bi bi-cash"></i> PAY MTOP</button></a></i>
+
+
+                  </div>
+
+
+
+          
+          
+          
+              
+            </div>
+          </div>
+
 
         </div>
     </section>
@@ -1242,7 +1263,7 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
                 <td><?php echo $dlname; ?></td>
                 
                 <td>
-  <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
+  <a href="driveroperatorprofile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
   <i class="bi bi-card-text"></i></button></a></i>
 
  
