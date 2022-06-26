@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2022 at 08:15 AM
+-- Generation Time: Jun 26, 2022 at 05:51 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -107,7 +107,12 @@ CREATE TABLE `inspection` (
 INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES
 (10, 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', '15'),
 (11, '', '', '', '', '', '', '', '', '', '', '', '', '', '16'),
-(12, '', '', '', '', '', '', '', '', '', '', '', '', '', '17');
+(12, '', '', '', '', '', '', '', '', '', '', '', '', '', '17'),
+(13, '', '', '', '', '', '', '', '', '', '', '', '', '', '18'),
+(14, '', '', '', '', '', '', '', '', '', '', '', '', '', '19'),
+(15, '', '', '', '', '', '', '', '', '', '', '', '', '', '20'),
+(16, '', '', '', '', '', '', '', '', '', '', '', '', '', '21'),
+(17, '', '', '', '', '', '', '', '', '', '', '', '', '', '22');
 
 -- --------------------------------------------------------
 
@@ -149,6 +154,28 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`id`, `username`, `password`, `first_name`, `last_name`, `middle_name`, `role`, `position`, `mac_address`, `date_reg`) VALUES
 (2, 'admin', 'admin1', 'Khristian Harold', 'Vicente', '', 'ADMIN', '', '', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `toda`
+--
+
+CREATE TABLE `toda` (
+  `id` int(55) NOT NULL,
+  `toda` varchar(50) NOT NULL,
+  `barangay` varchar(50) NOT NULL,
+  `description` varchar(51) NOT NULL,
+  `color` varchar(23) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `toda`
+--
+
+INSERT INTO `toda` (`id`, `toda`, `barangay`, `description`, `color`) VALUES
+(1, 'MUTODA', 'MULAWIN', '', 'RED'),
+(2, 'BATODA', 'BALUT', '', 'BLUE');
 
 -- --------------------------------------------------------
 
@@ -202,7 +229,12 @@ CREATE TABLE `tricycle` (
 INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES
 (15, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '00122921', 'ZXC 231', '8891228', '25112', 'KAWASAKI', 'YES', '21002', '90221', '2022-06-24', '12', '2221', '45', '', '', '', 'Public'),
 (16, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '231', '123123', '1231', '1312', 'asdad', 'ppp', 'adasd', '12313', '2022-06-24', '12', '1231', '45', '', '', '', 'Public'),
-(17, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '231', '123123', '123123', '123123', 'qwe', 'qwe', '123123', '90221', '2022-06-24', '11', '2512', '45', '', '', '', 'Public');
+(17, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '231', '123123', '123123', '123123', 'qwe', 'qwe', '123123', '90221', '2022-06-24', '11', '2512', '45', '', '', '', 'Public'),
+(18, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'asdasd', 'SUBOK', 'SUBOK', 'SUBOK', 'asd', 'asd', 'SUBOK', 'SUBOK', '2022-06-16', '33', '1234', '45', '', '', '', 'Public'),
+(19, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'asdasd', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '12', '2211', '45', '', 'BLUE', '', 'Public'),
+(20, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '22', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '23', '1244', '45', 'MUTODA', 'WHITE', '', 'Public'),
+(21, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'asdasd', '22', 'SUBOK', '221', 'asd', 'qwe', '123', '22112', '2022-06-26', '22', '1234', '45', 'MUTODA', '', '', 'Public'),
+(22, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '22', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '33', '2231', '45', 'MUTODA', 'RED', '', 'Utility');
 
 --
 -- Indexes for dumped tables
@@ -240,6 +272,12 @@ ALTER TABLE `tbl_user`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `toda`
+--
+ALTER TABLE `toda`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
@@ -269,7 +307,7 @@ ALTER TABLE `drivers`
 -- AUTO_INCREMENT for table `inspection`
 --
 ALTER TABLE `inspection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `mtop`
 --
@@ -281,6 +319,11 @@ ALTER TABLE `mtop`
 ALTER TABLE `tbl_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `toda`
+--
+ALTER TABLE `toda`
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
@@ -289,7 +332,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
