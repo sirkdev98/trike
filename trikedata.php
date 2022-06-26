@@ -509,7 +509,7 @@ if(isset($_SESSION['username'])){
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                   <div class="col-sm-4">
-                    <input type="email" class="form-control" placeholder="Address Line 1" name="address1">
+                    <input type="text" class="form-control" placeholder="Address Line 1" name="address1">
                   </div>
                 
                 
@@ -609,7 +609,26 @@ if(isset($_SESSION['username'])){
                       <option value="Family">Family-Use Motorized Tricycle</option>
                     </select>
                   </div>
-                  
+               
+                    <div class="col-sm-3">
+              
+                   <select class="form-select" aria-label="Default select example" required name="toda">
+                      <option value="" disabled selected>SELECT TODA</option>
+                    <?php
+                      $sql = "SELECT `toda` FROM toda";
+                       $result = $conn->query($sql);
+                      if($result->num_rows> 0){
+                         $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
+                           }
+                           foreach ($options as $option) {
+  ?>
+    <option value="<?php echo $option['toda']; ?>"><?php echo $option['toda']; ?> </option>
+    <?php 
+    }
+                    ?>
+                    
+                    </select>
+                  </div>
                   </div>
                   <br>
                      <div class="row mb-6">

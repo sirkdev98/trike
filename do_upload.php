@@ -25,7 +25,6 @@ include '\include\controller.php';
 
 
  
- 
 $fileno = $_POST['fileno'];
 $plateno = $_POST['plateno'];
 $engineno = $_POST['engineno'];
@@ -38,8 +37,17 @@ $dateofissue = $_POST['dateofissue'];
 $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 $classification = $_POST['classification'];
+$toda = $_POST['toda'];
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$opfname', '$opmname', '$oplname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$opid','','','$classification')";
+ $selectquery = "SELECT `color` from toda where `toda` = '$toda'";
+  $result = $conn->query($selectquery);
+                      if($result->num_rows> 0){
+                        while($row = $result->fetch_assoc()) {
+                            $sidecarcolor = $row['color'];
+                        }
+                      }
+
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$opfname', '$opmname', '$oplname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
@@ -83,6 +91,8 @@ $sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname
 	(NULL, '$fname', '$mname', '$lname', '$xname', '$address1', '$barangay','$contactnum', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
+
+
  
  $last_id = $conn->insert_id;
 
@@ -98,8 +108,17 @@ $dateofissue = $_POST['dateofissue'];
 $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 $classification = $_POST['classification'];
+$toda = $_POST['toda'];
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$fname', '$mname', '$lname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$last_id','','','$classification')";
+ $selectquery = "SELECT `color` from toda where `toda` = '$toda'";
+  $result = $conn->query($selectquery);
+                      if($result->num_rows> 0){
+                        while($row = $result->fetch_assoc()) {
+                            $sidecarcolor = $row['color'];
+                        }
+                      }
+
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$opfname', '$opmname', '$oplname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
@@ -135,10 +154,6 @@ if ($conn->query($sql2) === TRUE) {
 
 
 
-
-
-
-echo $fname;
 
 
 ?>

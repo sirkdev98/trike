@@ -791,7 +791,26 @@ else{
                     </select>
                   </div>
                   
+                   <div class="col-sm-3">
+              
+                   <select class="form-select" aria-label="Default select example" required name="toda">
+                      <option value="" disabled selected>SELECT TODA</option>
+                    <?php
+                      $sql = "SELECT `toda` FROM toda";
+                       $result = $conn->query($sql);
+                      if($result->num_rows> 0){
+                         $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
+                           }
+                           foreach ($options as $option) {
+  ?>
+    <option value="<?php echo $option['toda']; ?>"><?php echo $option['toda']; ?> </option>
+    <?php 
+    }
+                    ?>
+                    
+                    </select>
                   </div>
+                </div>
                   <br>
                      <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>

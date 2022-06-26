@@ -802,16 +802,18 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
             </div>
           </div>
              <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+            <div class="card-body profile-card pt-4">
 
 
-                  <div class="row">
-                  
+                  <div class="row col-sm-5">
+        
   <button type='button' class='btn btn-primary btn-sm'>
   <i class="bi bi-cash"></i> PAY MTOP</button></a></i>
 
+  
 
-                  </div>
+
+          </div>
 
 
 
