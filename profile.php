@@ -803,14 +803,22 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
           </div>
              <div class="card">
             <div class="card-body profile-card pt-4">
-
-
-                  <div class="row col-sm-5">
-        
-  <button type='button' class='btn btn-primary btn-sm'>
-  <i class="bi bi-cash"></i> PAY MTOP</button></a></i>
-
+<div class="row">
   
+  <div class="col-sm-3" style="width: 100%;"><button type='button' class='btn btn-primary btn-sm'>
+  <i class="bi bi-cash"></i> PAY &nbsp;MTOP</button></a></i>
+</div>
+ <div class="col-sm-3"> <a href="formpdf.php?id=<?php echo $tid; ?>"><button type='button' class='btn btn-warning btn-sm'>
+ <i class="bi bi-printer"></i>PRINT FORM</button></i></a>
+</div>
+ <div class="col-sm-3"><button type='button' class='btn btn-primary btn-sm'>
+  <i class="bi bi-cash"></i> PAY MTOP</button></a></i>
+</div>
+  <div class="col-sm-3"><button type='button' class='btn btn-primary btn-sm'>
+  <i class="bi bi-cash"></i> PAY MTOP</button></a></i>
+</div>
+
+         
 
 
           </div>
