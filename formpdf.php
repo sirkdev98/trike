@@ -39,6 +39,11 @@ $sql = "SELECT
   driveroperator.lname, 
   driveroperator.type,
   driveroperator.picname,
+  driveroperator.bday,
+  driveroperator.gender,
+  driveroperator.address1,
+  driveroperator.barangay,
+  driveroperator.licensenum,
   inspection.sidecar_windshield,
   inspection.funcitioning_horn,
   inspection.signal_lights,
@@ -95,7 +100,13 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
                             $upholstery = $row['upholstery'];
                             $wheels = $row['wheels'];
                             $remarks = $row['remarks'];
+                            $bday = $row['bday'];
+                            $gender = $row['gender'];
+                            $opaddress1 = $row['address1'];
+                            $opbarangay = $row['barangay'];
+                            $licensenum = $row['licensenum'];
 
+$bday = date("F-d-Y", strtotime($bday));
 
 
 
@@ -106,11 +117,6 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
 
 
  
-
-
-
-
-
 
 
 
@@ -128,6 +134,13 @@ $pdf->Image('orani2.png',160,10,28);
 
 $pdf->Image('orani.png',25,10,28);
 $pdf->Image('Capture.png',8,270,200);
+
+if ($picname=="") {
+
+}else{
+  $pdf->Image('upload/'.$picname,135,45,51,51);
+}
+
 $pdf ->Cell(72,10,'',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,5,'Republic of the Philippines',0,1);
@@ -138,50 +151,110 @@ $pdf ->Cell(55,5,'',0,0);
 $pdf->SetFont('Arial', 'B', 12);
 $pdf ->Cell(9,5,'MUNICIPAL GOVERNMENT OF ORANI',0,1);
 
-$pdf ->Cell(45,6,'',0,0);
-$pdf->SetFont('Arial', 'B', 11);
-$pdf ->Cell(9,6,'OFFICE OF THE TRICYCLE REGULATORY OFFICER',0,1);
-
-
-$pdf ->Cell(51,5,'',0,1);
-$pdf ->Cell(51,5,'',0,1);
-$pdf ->Cell(60,5,'',0,0);
-$pdf->SetFont('Arial', 'UB', 14);
-$pdf ->Cell(9,5,'G U A R A N T E E   L E T T E R',0,1);
+$pdf ->Cell(52,6,'',0,0);
+$pdf->SetFont('Arial', 'B', 12);
+$pdf ->Cell(9,6,'ORANI TRICYCLE REGULATORY OFFICE',0,1);
 
 $pdf->SetFont('Arial', '', 12);
 
 
 
-$pdf ->Cell(50,10,'',0,1);
-$pdf ->Cell(155,10,'',0,0);
-$pdf ->Cell(50,10,'',0,1);
+$pdf ->Cell(155,15,'',0,0);
+$pdf ->Cell(50,15,'',0,1);
 
 
 
 
 
 $pdf->SetFont('Arial', 'B', 12);
+$pdf ->Cell(10,1,'',0,0);
+$pdf ->SetTextColor(0,0,255);
+$pdf ->Cell(55,2,'OPERATORS INFORMATION',0,1);
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->SetTextColor(0,0,0);
+
+
+$pdf->SetFont('Arial', 'B', 10);
 $pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(55,5,'ORANI DISTRICT HOSPITAL',0,1);
+$pdf ->Cell(25,5,'NAME',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(65,5,'Lourdes St., Ma. Fe',0,1);
+$pdf ->Cell(50,5,$fname." ".$mname." ".$lname,0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
 $pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,'Orani, Bataan',0,1);
+$pdf ->Cell(25,5,'DATE OF BIRTH',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$bday,0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(25,5,'GENDER',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$gender,0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(25,5,'ADDRESS',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$opbarangay.", ".$opbarangay,0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(25,5,'LICENSE NUMBER',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$licensenum,0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(25,5,'CTC NUMBER',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(25,5,'TODA',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$toda,0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+
+$pdf ->Cell(155,15,'',0,0);
+$pdf ->Cell(50,15,'',0,1);
+
+
+$pdf->SetFont('Arial', 'B', 12);
+$pdf ->Cell(10,1,'',0,0);
+$pdf ->SetTextColor(0,0,255);
+$pdf ->Cell(55,2,'UNIT INFORMATION',0,1);
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->SetTextColor(0,0,0);
 
 
 
-$pdf->SetFont('Arial', '', 12);
-$pdf ->Cell(15,5,'',0,1);
-$pdf ->Cell(15,5,'',0,1);
-$pdf ->Cell(10,5,'',0,0);
-$pdf ->Cell(50,10,"Dear Ma'am/Sir:",0,1);
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,5,'',0,1);
 
-$pdf ->Cell(20,5,'',0,0);
-$pdf ->Cell(50,8,"The Municipality of Orani thru the Municipality Social Welafare and Development office",0,1);
-$pdf ->Cell(10,8,'',0,0);
-$pdf ->Cell(60,8,"guarantees to pay the amount of ",0,0);
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,5,'',0,1);
+
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,5,'',0,1);
 
 
 

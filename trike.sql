@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2022 at 05:51 PM
+-- Generation Time: Jun 27, 2022 at 10:16 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -31,6 +31,7 @@ CREATE TABLE `driveroperator` (
   `fname` varchar(50) NOT NULL,
   `mname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
+  `gender` varchar(50) NOT NULL,
   `extname` varchar(55) NOT NULL,
   `address1` varchar(50) NOT NULL,
   `barangay` varchar(50) NOT NULL,
@@ -50,10 +51,15 @@ CREATE TABLE `driveroperator` (
 -- Dumping data for table `driveroperator`
 --
 
-INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
-(45, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'JR', 'LEONA SUBD', 'Balut', '09275109013', 'JEEMAY', 'ANGELES', 'LABRADOR', '2022-06-24', 'OPERATOR', 'COA2211029', 'NON-PROFESSIONAL', '2031-05-23', '62b52ef09cf56.png'),
-(46, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'TALA', 'Balut', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-02', 'DRIVER', '123PCSS', 'PROFESSIONAL', '2022-05-31', '62b677e3950b3.png'),
-(47, 'Test driver', 'Test driver', 'Test driver', '', 'asdas', 'Apollo', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-07', 'DRIVER', '123PCSS', 'NON-PROFESSIONAL', '2022-06-23', '62b67a963ad4b.png');
+INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
+(45, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '', 'JR', 'LEONA SUBD', 'Balut', '09275109013', 'JEEMAY', 'ANGELES', 'LABRADOR', '2022-06-24', 'OPERATOR', 'COA2211029', 'NON-PROFESSIONAL', '2031-05-23', '62b52ef09cf56.png'),
+(46, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '', 'TALA', 'Balut', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-02', 'DRIVER', '123PCSS', 'PROFESSIONAL', '2022-05-31', '62b677e3950b3.png'),
+(47, 'Test driver', 'Test driver', 'Test driver', '', '', 'asdas', 'Apollo', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-07', 'DRIVER', '123PCSS', 'NON-PROFESSIONAL', '2022-06-23', '62b67a963ad4b.png'),
+(48, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-27', 'OPERATOR', 'COA2211029', 'OPERATOR/DRIVER', '2022-06-28', '62b958c759c69'),
+(49, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '123123', 'TALA', '09082646040', 'Balut', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-22', 'OPERATOR/DRIVER', '123PCSS', 'OPERATOR', '2022-06-28', '62b95a5d3bfbb.jpeg'),
+(50, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '123', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-11', 'OPERATOR', 'COA2211029', 'OPERATOR', '2022-06-24', '62b95aabbb6de.jpeg'),
+(51, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '', 'TALA', '09082646040', 'Balut', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-20', 'OPERATOR/DRIVER', '123PCSS', 'OPERATOR', '2022-06-08', '62b95cc02a099.jpeg'),
+(52, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '', 'HE', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-27', 'OPERATOR', 'COA2211029', 'OPERATOR', '2022-06-27', '62b9668d009a2.jpeg');
 
 -- --------------------------------------------------------
 
@@ -112,7 +118,15 @@ INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `sign
 (14, '', '', '', '', '', '', '', '', '', '', '', '', '', '19'),
 (15, '', '', '', '', '', '', '', '', '', '', '', '', '', '20'),
 (16, '', '', '', '', '', '', '', '', '', '', '', '', '', '21'),
-(17, '', '', '', '', '', '', '', '', '', '', '', '', '', '22');
+(17, '', '', '', '', '', '', '', '', '', '', '', '', '', '22'),
+(18, '', '', '', '', '', '', '', '', '', '', '', '', '', '23'),
+(19, '', '', '', '', '', '', '', '', '', '', '', '', '', '24'),
+(20, '', '', '', '', '', '', '', '', '', '', '', '', '', '25'),
+(21, '', '', '', '', '', '', '', '', '', '', '', '', '', '26'),
+(22, '', '', '', '', '', '', '', '', '', '', '', '', '', '27'),
+(23, '', '', '', '', '', '', '', '', '', '', '', '', '', '28'),
+(24, '', '', '', '', '', '', '', '', '', '', '', '', '', '29'),
+(25, '', '', '', '', '', '', '', '', '', '', '', '', '', '30');
 
 -- --------------------------------------------------------
 
@@ -193,6 +207,28 @@ CREATE TABLE `transactions` (
   `trikeid` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES
+(1, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
+(2, 'Print Form', 'generate or print form', '2022-06-27', 'done', '', 1),
+(3, 'Print Form', 'generate or print form', '2022-06-27', 'done', '', 1),
+(4, 'Print Form', 'generate or print form', '2022-06-27', 'done', '', 19),
+(5, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
+(6, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
+(7, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
+(8, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
+(9, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
+(10, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 15),
+(11, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 15),
+(12, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 15),
+(13, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 26),
+(14, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 26),
+(15, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 28),
+(16, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 30);
+
 -- --------------------------------------------------------
 
 --
@@ -234,7 +270,15 @@ INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `mvfileno`, `plateno`, 
 (19, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'asdasd', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '12', '2211', '45', '', 'BLUE', '', 'Public'),
 (20, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '22', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '23', '1244', '45', 'MUTODA', 'WHITE', '', 'Public'),
 (21, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'asdasd', '22', 'SUBOK', '221', 'asd', 'qwe', '123', '22112', '2022-06-26', '22', '1234', '45', 'MUTODA', '', '', 'Public'),
-(22, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '22', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '33', '2231', '45', 'MUTODA', 'RED', '', 'Utility');
+(22, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '22', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '33', '2231', '45', 'MUTODA', 'RED', '', 'Utility'),
+(23, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '11', '123', '333', '444', 'asdad', 'ppp', '123123', '90221', '2022-06-27', '22', '1223', '45', 'BATODA', 'BLUE', '', 'Public'),
+(24, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '11', '123', '1231', '1312', 'tttt', '123123', '123123', '90221', '2022-06-27', '11', '1212', '45', 'BATODA', 'BLUE', '', 'Utility'),
+(25, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '11', '123', '1231', '1312', 'asdad', 'ppp', 'adasd', '90221', '2022-06-21', '11', '1122', '45', 'MUTODA', 'RED', '', 'Public'),
+(26, '', '', '', '231', '123', '1231', '123123', '123', 'yea', '123', 'or112', '2022-06-29', '11', '1123', '48', 'MUTODA', 'RED', '', 'Public'),
+(27, '', '', '', '11', '123', '123123', '', 'asdad', '123123', '123123', '12313', '2022-06-21', '55', '8674', '', 'BATODA', 'BLUE', '', 'Utility'),
+(28, '', '', '', '231', '123123', '1231', '1312', '13123', 'yea', '555', '666', '2022-06-28', '13', '1231', '50', 'BATODA', 'BLUE', '', 'Public'),
+(29, '', '', '', '11', '222', '333', '123', '13123', 'ppp', 'adasd', '90221', '2022-07-07', '15', '1231', '51', 'MUTODA', 'RED', '', 'Utility'),
+(30, '', '', '', '231', '123123', '123123', '1312', 'toyota', 'qwe', '123', '123', '2022-06-27', '77', '6766', '52', 'MUTODA', 'RED', '', 'Public');
 
 --
 -- Indexes for dumped tables
@@ -297,7 +341,7 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
@@ -307,7 +351,7 @@ ALTER TABLE `drivers`
 -- AUTO_INCREMENT for table `inspection`
 --
 ALTER TABLE `inspection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `mtop`
 --
@@ -327,12 +371,12 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

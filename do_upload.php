@@ -11,7 +11,7 @@ include '\include\controller.php';
     $image_type = $image_type_aux[1];
   
     $image_base64 = base64_decode($fetch_imgParts[1]);
-    $img_name = uniqid() . '.png';
+    $img_name = uniqid() . '.jpeg';
   
     $file = $folderPath . $img_name;
     file_put_contents($file, $image_base64);
@@ -96,6 +96,10 @@ if ($conn->query($sql) === TRUE) {
  
  $last_id = $conn->insert_id;
 
+$fname = $_POST['fname'];
+$mname = $_POST['mname'];
+$lname = $_POST['lname'];
+$xname = $_POST['xname'];
 $fileno = $_POST['fileno'];
 $plateno = $_POST['plateno'];
 $engineno = $_POST['engineno'];
@@ -118,7 +122,7 @@ $toda = $_POST['toda'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$opfname', '$opmname', '$oplname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification')";
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$opfname', '$opmname', '$oplname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$last_id','$toda','$sidecarcolor','$classification')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;

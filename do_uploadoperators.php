@@ -9,7 +9,7 @@ include '\include\controller.php';
     $image_type = $image_type_aux[1];
   
     $image_base64 = base64_decode($fetch_imgParts[1]);
-    $img_name = uniqid() . '.png';
+    $img_name = uniqid();
   
     $file = $folderPath . $img_name;
     file_put_contents($file, $image_base64);

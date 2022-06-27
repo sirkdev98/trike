@@ -736,18 +736,31 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                 </div>
 
                 <div class="tab-pane fade pt-3" id="profile-transactions">
+                	 <div class="col-md-8 col-lg-9">
 
                   <!-- Settings Form -->
                   <form>
+                  	 <h5 class="card-title">Transactions History</h5>
+                  	 <?php
+                  	 $tid = $_GET['id'];
+                  	 $sql33 = "SELECT * from transactions where trikeid =$tid";
+                    $result = $conn->query($sql33);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $id = $row['id'];  
+                            $transaction = $row['transaction']; 
+                            $transactdate = $row['date']; 
+                            $status = $row['status'];
 
-                  <div class="col-md-8 col-lg-9">
-                  <h5 class="card-title">Transactions History</h5>
-                  <p class="small fst-italic">Printed MTOP 05/23/2022</p>
-                  <p class="small fst-italic">Transfered ownership to ---------</p>
+?>
+                 
+                 
+                  <p class="small fst-italic"><?php echo $transaction." --- ".$transactdate;?></p>
+                
 
-                  </form><!-- End settings Form -->
-</div>
-                </div>
+<?php }}?>
+                  </form></div></div>
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
@@ -793,7 +806,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="upload/<?php echo $picname; ?>" alt="Profile" class="rounded-circle">
+          <img src="upload/<?php echo $picname; ?>" alt="Profile" class="rounded-circle">
               <h5><B><?php echo $fname." ".$lname ; ?></B></h5>
               <h3><?php echo $type; ?></h3>
               <div class="social-links mt-2">
@@ -802,26 +815,25 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
             </div>
           </div>
              <div class="card">
-            <div class="card-body profile-card pt-4">
-<div class="row">
+         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
   
-  <div class="col-sm-3" style="width: 100%;"><button type='button' class='btn btn-primary btn-sm'>
-  <i class="bi bi-cash"></i> PAY &nbsp;MTOP</button></a></i>
-</div>
- <div class="col-sm-3"> <a href="formpdf.php?id=<?php echo $tid; ?>"><button type='button' class='btn btn-warning btn-sm'>
- <i class="bi bi-printer"></i>PRINT FORM</button></i></a>
-</div>
- <div class="col-sm-3"><button type='button' class='btn btn-primary btn-sm'>
-  <i class="bi bi-cash"></i> PAY MTOP</button></a></i>
-</div>
-  <div class="col-sm-3"><button type='button' class='btn btn-primary btn-sm'>
-  <i class="bi bi-cash"></i> PAY MTOP</button></a></i>
-</div>
+<div class="social-links mt-2">
 
-         
+ <a href="#delete<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
+  <i class="bi bi-printer"></i> PRINT FORM</button></a></i>
+</div>
+<div class="social-links mt-2">
+  <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-lg'>
+  <i class="bi bi-pencil-fill"></i></button></a></i>
+</div>
+<div class="social-links mt-2">
+  <a href="#" data-toggle="modal"><button type='button' class='btn btn-danger  btn-lg'>
+  <i class="bi bi-trash-fill"></i></button></a></i>
 
 
-          </div>
+</div>
+
 
 
 
@@ -835,6 +847,49 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
         </div>
     </section>
+
+     <div id="delete<?php echo $tid;?>" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                        <form method="post"> <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                       
+                                        <h4 class="modal-title">Generate form</h4>
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="pid" value="<?php echo $tid; ?>">
+                
+
+                                        <div class="alert alert-info">Do you want to generate form for <strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
+                                        <div class="modal-footer">
+                                           <button type="submit" name="printform" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+               
+<?php 
+ if(isset($_POST['printform'])){
+	$rowprintid= $_POST['pid'];
+
+$sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Printed Form', 'generate or print form', now(), 'done', '', '$rowprintid')";
+if ($conn->query($sql) === TRUE) {  
+
+  echo "<script type='text/javascript'>alert(\"Successfully Generated  \")</script>";
+                                      echo '<script>window.location.href="formpdf.php?id='.$rowprintid.'"</script>';;
+	 
+}}
+
+
+?>                
       <section class="section">
       <div class="row">
         <div class="col-lg-12">
@@ -843,7 +898,6 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
             <div class="card-body">
               <h5 class="card-title">Driver List</h5>
               <!-- Extra large modal -->
-
 
 
 
@@ -1221,9 +1275,10 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
             <tr>
                 <th>ID</th>
                 
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last NAme</th>
+                <th>Name</th>
+                <th>License #</th>
+                <th>Birthday</th>
+                <th>Barangay</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -1239,6 +1294,9 @@ $sql = "SELECT
   driveroperator.fname,
   driveroperator.mname,
   driveroperator.lname,
+  driveroperator.licensenum,
+  driveroperator.barangay,
+  driveroperator.bday,
   tricycle.bodynum,
   drivers.id
 FROM driveroperator
@@ -1254,6 +1312,9 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
                             $dfname = $row['fname']; 
                             $dmname = $row['mname']; 
                             $dlname = $row['lname']; 
+                            $dlicensenum = $row['licensenum']; 
+                            $dbarangay = $row['barangay']; 
+                            $dbday = $row['bday']; 
                             $tbldriversid = $row['id']; 
 
 
@@ -1268,9 +1329,10 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
 ?>
             <tr>
                 <td><?php echo $did; ?></td>
-                <td><?php echo $dfname; ?></td>
-                <td><?php echo $dmname; ?></td>
-                <td><?php echo $dlname; ?></td>
+                <td><?php echo $dfname." ".$dmname." ".$dlname; ?></td>
+                <td><?php echo $dlicensenum; ?></td>
+                <td><?php echo $dbday; ?></td>
+                <td><?php echo $dbarangay; ?></td>
                 
                 <td>
   <a href="driveroperatorprofile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>

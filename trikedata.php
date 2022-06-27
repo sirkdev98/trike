@@ -776,7 +776,7 @@ if(isset($_SESSION['username'])){
                 <td><?php echo  $franchisedate; ?></td>
      
                 <td>
-  <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
+  <a href="profile.php?id=<?php echo  $id; ?>" target="_blank"><button type='button' class='btn btn-primary btn-sm' >
   <i class="bi bi-card-text"></i></button></a></i>
 
   <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-sm'>
