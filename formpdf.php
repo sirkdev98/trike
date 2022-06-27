@@ -167,7 +167,7 @@ $pdf ->Cell(50,15,'',0,1);
 
 
 $pdf->SetFont('Arial', 'B', 12);
-$pdf ->Cell(10,1,'',0,0);
+$pdf ->Cell(5,1,'',0,0);
 $pdf ->SetTextColor(0,0,255);
 $pdf ->Cell(55,2,'OPERATORS INFORMATION',0,1);
 $pdf ->Cell(10,5,'',0,1);
@@ -175,32 +175,32 @@ $pdf ->SetTextColor(0,0,0);
 
 
 $pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(25,5,'NAME',0,0);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'NAME',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
 $pdf ->Cell(50,5,$fname." ".$mname." ".$lname,0,1);
 $pdf ->Cell(10,2,'',0,1);
 
 $pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(25,5,'DATE OF BIRTH',0,0);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'DATE OF BIRTH',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
 $pdf ->Cell(50,5,$bday,0,1);
 $pdf ->Cell(10,2,'',0,1);
 
 $pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(25,5,'GENDER',0,0);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'GENDER',0,0);
 $pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(50,5,$gender,0,1);
 $pdf ->Cell(10,2,'',0,1);
 
 $pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(25,5,'ADDRESS',0,0);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'ADDRESS',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
 $pdf ->Cell(50,5,$opbarangay.", ".$opbarangay,0,1);
@@ -208,24 +208,24 @@ $pdf ->Cell(10,2,'',0,1);
 
 
 $pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(25,5,'LICENSE NUMBER',0,0);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'LICENSE NUMBER',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
 $pdf ->Cell(50,5,$licensenum,0,1);
 $pdf ->Cell(10,2,'',0,1);
 
 $pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(25,5,'CTC NUMBER',0,0);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'CTC NUMBER',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
 $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(10,2,'',0,1);
 
 $pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(25,5,'TODA',0,0);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'TODA',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
 $pdf ->Cell(50,5,$toda,0,1);
@@ -237,11 +237,68 @@ $pdf ->Cell(50,15,'',0,1);
 
 
 $pdf->SetFont('Arial', 'B', 12);
-$pdf ->Cell(10,1,'',0,0);
+$pdf ->Cell(5,1,'',0,0);
 $pdf ->SetTextColor(0,0,255);
 $pdf ->Cell(55,2,'UNIT INFORMATION',0,1);
 $pdf ->Cell(10,5,'',0,1);
 $pdf ->SetTextColor(0,0,0);
+
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'APPLICATION DATE',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$toda,0,0);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'2nd',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(50,5,'TEST',0,0);
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'BODY NUMBER',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$bodynum,0,0);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'2nd',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(50,5,'TEST',0,0);
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'PLATE NUMBER',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$bodynum,0,0);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'2nd',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(50,5,'TEST',0,0);
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'MOTOR COLOR',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$bodynum,0,0);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'2nd',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(50,5,'TEST',0,0);
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(10,2,'',0,1);
 
 
 
