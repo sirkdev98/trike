@@ -194,7 +194,7 @@ $pdf->SetFont('Arial', 'B', 10);
 $pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(30,5,'GENDER',0,0);
 $pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(10,10,'',0,0);
 $pdf ->Cell(50,5,$gender,0,1);
 $pdf ->Cell(10,2,'',0,1);
 
