@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 10:34 AM
+-- Generation Time: Jun 28, 2022 at 05:11 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -54,7 +54,11 @@ CREATE TABLE `driveroperator` (
 INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
 (73, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', 'JR', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-28', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-28', '62ba6fa95e024.jpeg'),
 (74, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'hehe', 'TALA', 'Apollo', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-28', 'DRIVER', 'COA20192WS553', 'OPERATOR', '2022-06-28', '62ba6fc81ca10.png'),
-(75, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'rere', 'TALA', 'Balut', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-28', 'DRIVER', 'COA2211029', 'OPERATOR', '2022-06-29', '62ba703148a78.png');
+(75, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'rere', 'TALA', 'Balut', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-28', 'DRIVER', 'COA2211029', 'OPERATOR', '2022-06-29', '62ba703148a78.png'),
+(76, 'Testing fname', 'Middle', 'test2', 'MALE', 'ext', 'SUBOK@gnau.com', '12312312', 'Apollo', 'Testing fname', 'SUBOK', 'Testing fname', '2022-06-28', 'OPERATOR', '22112', 'OPERATOR', '2022-06-28', '62bb0aa8be48b.jpeg'),
+(77, 'Testing fname', 'Middle', 'test2', 'MALE', 'ext', 'SUBOK@gnau.com', '12312312', 'Apollo', 'Testing fname', 'SUBOK', 'Testing fname', '2022-06-28', 'OPERATOR', '22112', 'OPERATOR', '2022-06-28', '62bb0b36d487f.jpeg'),
+(78, 'Testing fname', 'Middle', 'test2', 'MALE', 'ext', 'SUBOK@gnau.com', '12312312', 'Apollo', 'Testing fname', 'SUBOK', 'Testing fname', '2022-06-28', 'OPERATOR', '22112', 'OPERATOR', '2022-06-28', '62bb0c17c87c6.jpeg'),
+(79, 'JUAN', 'PEREZ', 'CRUZ', 'MALE', 'JR', 'LEONA BALUT', '09275109013', 'Apollo', 'Jeemay', 'Angeles', 'Labrador', '1998-02-05', 'OPERATOR', 'COA22112', 'OPERATOR', '2022-06-28', '62bb0c85bc6e2.jpeg');
 
 -- --------------------------------------------------------
 
@@ -106,7 +110,13 @@ CREATE TABLE `inspection` (
 --
 
 INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES
-(42, '', '', '', '', '', '', '', '', '', '', '', '', '', '47');
+(42, '', '', '', '', '', '', '', '', '', '', '', '', '', '47'),
+(43, '', '', '', '', '', '', '', '', '', '', '', '', '', '48'),
+(44, '', '', '', '', '', '', '', '', '', '', '', '', '', '49'),
+(45, '', '', '', '', '', '', '', '', '', '', '', '', '', '50'),
+(46, '', '', '', '', '', '', '', '', '', '', '', '', '', '51'),
+(47, '', '', '', '', '', '', '', '', '', '', '', '', '', '52'),
+(48, '', '', '', '', '', '', '', '', '', '', '', '', '', '53');
 
 -- --------------------------------------------------------
 
@@ -242,7 +252,10 @@ CREATE TABLE `transactions` (
 
 INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES
 (23, 'Printed Form', 'generate or print form', '2022-06-28', 'done', '', 47),
-(24, 'Printed Form', 'generate or print form', '2022-06-28', 'done', '', 47);
+(24, 'Printed Form', 'generate or print form', '2022-06-28', 'done', '', 47),
+(25, 'Printed Form', 'generate or print form', '2022-06-28', 'done', '', 47),
+(26, 'Printed Form', 'generate or print form', '2022-06-28', 'done', '', 52),
+(27, 'Printed Form', 'generate or print form', '2022-06-28', 'done', '', 53);
 
 -- --------------------------------------------------------
 
@@ -261,6 +274,7 @@ CREATE TABLE `tricycle` (
   `engineno` varchar(50) NOT NULL,
   `chasisno` varchar(50) NOT NULL,
   `maker` varchar(50) NOT NULL,
+  `motorcolor` varchar(55) NOT NULL,
   `pistondisp` varchar(50) NOT NULL,
   `cor` varchar(50) NOT NULL,
   `ornum` varchar(50) NOT NULL,
@@ -278,8 +292,14 @@ CREATE TABLE `tricycle` (
 -- Dumping data for table `tricycle`
 --
 
-INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES
-(47, 'MATAWARAN', 'MATAWARAN', 'LALUNA', 'JR', '231', '123', '123123', '444', '13123', 'ppp', '555', '90221', '2022-06-28', '99', '1123', '73', 'KABALUTANTODA', 'RED', '', 'Public');
+INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES
+(47, 'MATAWARAN', 'MATAWARAN', 'LALUNA', 'JR', '231', '123', '123123', '444', '13123', '', 'ppp', '555', '90221', '2022-06-28', '99', '1123', '73', 'KABALUTANTODA', 'RED', '', 'Public'),
+(48, 'MATAWARAN', '', 'JR', '<br /><b>Notice</b>:  Undefined variable: ex', '22', 'SUBOK', '052389', 'SUBOK', 'asd', 'blue', 'asd', 'asd', 'asdq', '2022-06-28', '55', '1231', '73', 'BACMATODA', 'GREEN', '', 'Public'),
+(49, 'MATAWARAN', '', 'LALUNA', 'JR', 'asdasd', '22', '052389', '123', 'asd', 'blue', 'qwe', 'SUBOK', 'asdq', '2022-06-15', '22', '1111', '73', 'BACMATODA', 'GREEN', '', 'Public'),
+(50, 'OLIVER', 'MATAWARAN', 'LALUNA', 'JR', 'asdasd', '', 'SUBOK', '221', 'SUBOK', 'blue', 'asd', 'SUBOK', 'asdq', '2022-06-28', '99', '9766', '73', 'APOTODA', 'GREEN', '', 'Public'),
+(51, 'Middle', 'Middle', 'test2', 'ext', 'asdasd', 'SUBOK', 'SUBOK', 'SUBOK', 'asd', 'blue', 'asd', 'SUBOK', 'SUBOK', '2022-06-28', '66', '6699', '78', 'MTTODA ', 'GREEN', '', 'Public'),
+(52, 'PEREZ', 'PEREZ', 'CRUZ', 'JR', 'asdasd', 'SUBOK', '052389', '9901ASD', 'MAKER', 'RED', 'PISTONDIS', '091COR', 'OR1123', '2022-06-28', '99', '9999', '79', 'MUTODA ', 'GREEN', '', 'Public'),
+(53, 'OLIVER', 'MATAWARAN', 'LALUNA', 'JR', 'asdasd', 'CAF 1548', 'ENGINE123', 'CHASIS123', 'HONDA123', 'GREEN', 'PISTON123', 'COR123', 'OR123', '2022-06-28', '99', '1234', '73', 'BALTODA 2', 'RED', '', 'Public');
 
 --
 -- Indexes for dumped tables
@@ -342,7 +362,7 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
@@ -352,7 +372,7 @@ ALTER TABLE `drivers`
 -- AUTO_INCREMENT for table `inspection`
 --
 ALTER TABLE `inspection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `mtop`
 --
@@ -372,12 +392,12 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
