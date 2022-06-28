@@ -464,6 +464,16 @@
                   <div class="col-sm-4">
                     <input type="number" class="form-control" name="contactnum">
                   </div>
+
+
+                   <div class="col-sm-4">
+                       <select class="form-select" aria-label="Default select example" name="gender" required>
+                      <option value="" disabled selected>SELECT GENDER</option>
+                      <option value="MALE">MALE</option>
+                      <option value="FEMALE">FEMALE</option>
+
+                    </select>
+                  </div>
                 </div>
 
                   <div class="row mb-2">

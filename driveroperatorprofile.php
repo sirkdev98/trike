@@ -93,7 +93,7 @@ if(isset($_SESSION['username'])){
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Tricycle Management</span>
       </a>
@@ -324,7 +324,7 @@ if(isset($_SESSION['username'])){
     <ul class="sidebar-nav" id="sidebar-nav">
 
      <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -415,6 +415,7 @@ if(isset($_SESSION['username'])){
                           $_SESSION['opfname'] =  $fname = $row['fname']; 
                           $_SESSION['opmname'] =  $mname = $row['mname']; 
                           $_SESSION['oplname'] =  $lname = $row['lname']; 
+                           $_SESSION['extname'] =  $lname = $row['extname']; 
                           $_SESSION['opaddress1'] =  $address1 = $row['address1']; 
                           $_SESSION['opbarangay'] =  $barangay = $row['barangay']; 
                           $_SESSION['opcontactnumber'] =  $contactnumber = $row['contactnumber']; 
@@ -778,7 +779,9 @@ else{
                   <div class="row mb-3">
                      <label for="inputEmail" class="col-sm-12 col-form-label"><font color= "Green"><b>Tricycle Details</b></font></label>
                     </div>
-
+  <input type="text" class="form-control"  name="fname" hidden value="<?php echo $fname; ?>">  <input type="text" class="form-control"  name="mname" hidden value="<?php echo $mname; ?>">
+  <input type="text" class="form-control" name="lname" hidden value="<?php echo $lname; ?>">  <input type="text" class="form-control" name="xname" hidden value="<?php echo $extname; ?>">
+   <input type="text" class="form-control" name="operatorid" hidden value="<?php echo $id; ?>">
               <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>Classification</b></label>
                   <div class="col-sm-3">

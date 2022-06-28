@@ -388,7 +388,7 @@ if(isset($_SESSION['username'])){
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Profile</h1>
+      <h1>SHOWING DATA OF TRICYCLE</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -1025,6 +1025,16 @@ if ($conn->query($sql) === TRUE) {
                   <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
                   <div class="col-sm-4">
                     <input type="number" class="form-control" name="contactnum">
+                  </div>
+
+
+                   <div class="col-sm-4">
+                       <select class="form-select" aria-label="Default select example" name="gender" required>
+                      <option value="" disabled selected>SELECT GENDER</option>
+                      <option value="MALE">MALE</option>
+                      <option value="FEMALE">FEMALE</option>
+
+                    </select>
                   </div>
                 </div>
 

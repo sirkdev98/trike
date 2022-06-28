@@ -9,7 +9,7 @@ include '\include\controller.php';
     $image_type = $image_type_aux[1];
   
     $image_base64 = base64_decode($fetch_imgParts[1]);
-    $img_name = uniqid();
+ $img_name = uniqid() . '.jpeg';
   
     $file = $folderPath . $img_name;
     file_put_contents($file, $image_base64);
@@ -21,6 +21,7 @@ $fname = $_POST['fname'];
 $mname = $_POST['mname'];
 $lname = $_POST['lname'];
 $xname = $_POST['xname'];
+$gender = $_POST['gender'];
 $address1 = $_POST['address1'];
 $barangay = $_POST['barangay'];
 $contactnum = $_POST['contactnum'];
@@ -34,8 +35,8 @@ $licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
 
 
-$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`,`contactnumber`, `barangay`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
-	(NULL, '$fname', '$mname', '$lname', '$xname', '$address1', '$contactnum','$barangay', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
+$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`,`gender`, `extname`, `address1`,`contactnumber`, `barangay`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
+	(NULL, '$fname', '$mname', '$lname', '$gender', '$xname', '$address1', '$contactnum','$barangay', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
  
