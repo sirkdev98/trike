@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2022 at 10:16 AM
+-- Generation Time: Jun 28, 2022 at 10:34 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -52,14 +52,9 @@ CREATE TABLE `driveroperator` (
 --
 
 INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
-(45, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '', 'JR', 'LEONA SUBD', 'Balut', '09275109013', 'JEEMAY', 'ANGELES', 'LABRADOR', '2022-06-24', 'OPERATOR', 'COA2211029', 'NON-PROFESSIONAL', '2031-05-23', '62b52ef09cf56.png'),
-(46, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '', 'TALA', 'Balut', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-02', 'DRIVER', '123PCSS', 'PROFESSIONAL', '2022-05-31', '62b677e3950b3.png'),
-(47, 'Test driver', 'Test driver', 'Test driver', '', '', 'asdas', 'Apollo', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-07', 'DRIVER', '123PCSS', 'NON-PROFESSIONAL', '2022-06-23', '62b67a963ad4b.png'),
-(48, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-27', 'OPERATOR', 'COA2211029', 'OPERATOR/DRIVER', '2022-06-28', '62b958c759c69'),
-(49, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '123123', 'TALA', '09082646040', 'Balut', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-22', 'OPERATOR/DRIVER', '123PCSS', 'OPERATOR', '2022-06-28', '62b95a5d3bfbb.jpeg'),
-(50, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '123', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-11', 'OPERATOR', 'COA2211029', 'OPERATOR', '2022-06-24', '62b95aabbb6de.jpeg'),
-(51, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '', 'TALA', '09082646040', 'Balut', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-20', 'OPERATOR/DRIVER', '123PCSS', 'OPERATOR', '2022-06-08', '62b95cc02a099.jpeg'),
-(52, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '', 'HE', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-27', 'OPERATOR', 'COA2211029', 'OPERATOR', '2022-06-27', '62b9668d009a2.jpeg');
+(73, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', 'JR', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-28', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-28', '62ba6fa95e024.jpeg'),
+(74, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'hehe', 'TALA', 'Apollo', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-28', 'DRIVER', 'COA20192WS553', 'OPERATOR', '2022-06-28', '62ba6fc81ca10.png'),
+(75, 'OLIVER', 'MATAWARAN', 'LALUNA', '', 'rere', 'TALA', 'Balut', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-28', 'DRIVER', 'COA2211029', 'OPERATOR', '2022-06-29', '62ba703148a78.png');
 
 -- --------------------------------------------------------
 
@@ -79,8 +74,8 @@ CREATE TABLE `drivers` (
 --
 
 INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES
-(9, '2221', '15', '123'),
-(10, '2221', '15', '47');
+(11, '1123', '47', '74'),
+(12, '1123', '47', '75');
 
 -- --------------------------------------------------------
 
@@ -111,22 +106,7 @@ CREATE TABLE `inspection` (
 --
 
 INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES
-(10, 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', 'YES', '15'),
-(11, '', '', '', '', '', '', '', '', '', '', '', '', '', '16'),
-(12, '', '', '', '', '', '', '', '', '', '', '', '', '', '17'),
-(13, '', '', '', '', '', '', '', '', '', '', '', '', '', '18'),
-(14, '', '', '', '', '', '', '', '', '', '', '', '', '', '19'),
-(15, '', '', '', '', '', '', '', '', '', '', '', '', '', '20'),
-(16, '', '', '', '', '', '', '', '', '', '', '', '', '', '21'),
-(17, '', '', '', '', '', '', '', '', '', '', '', '', '', '22'),
-(18, '', '', '', '', '', '', '', '', '', '', '', '', '', '23'),
-(19, '', '', '', '', '', '', '', '', '', '', '', '', '', '24'),
-(20, '', '', '', '', '', '', '', '', '', '', '', '', '', '25'),
-(21, '', '', '', '', '', '', '', '', '', '', '', '', '', '26'),
-(22, '', '', '', '', '', '', '', '', '', '', '', '', '', '27'),
-(23, '', '', '', '', '', '', '', '', '', '', '', '', '', '28'),
-(24, '', '', '', '', '', '', '', '', '', '', '', '', '', '29'),
-(25, '', '', '', '', '', '', '', '', '', '', '', '', '', '30');
+(42, '', '', '', '', '', '', '', '', '', '', '', '', '', '47');
 
 -- --------------------------------------------------------
 
@@ -188,8 +168,57 @@ CREATE TABLE `toda` (
 --
 
 INSERT INTO `toda` (`id`, `toda`, `barangay`, `description`, `color`) VALUES
-(1, 'MUTODA', 'MULAWIN', '', 'RED'),
-(2, 'BATODA', 'BALUT', '', 'BLUE');
+(3, 'APOTODA', '', '', 'GREEN'),
+(4, 'BACMATODA', '', '', 'GREEN'),
+(5, 'BALTODA 1', '', '', 'RED'),
+(6, 'BALTODA 2', '', '', 'RED'),
+(7, 'BAMODA', '', '', 'GREEN'),
+(8, 'BASITODA', '', '', 'BLUE'),
+(9, 'CALTODA', '', '', 'YELLOW'),
+(10, 'DATTODA', '', '', 'RED'),
+(11, 'GUECO-PARAISOTODA', '', '', 'GREEN'),
+(12, 'KABALUTANTODA', '', '', 'RED'),
+(13, 'KAMADO', '', '', 'GREEN'),
+(14, 'KATODA', '', '', 'WHITE'),
+(15, 'LOTODA', '', '', 'BLUE'),
+(16, 'MARIAFETODA', '', '', 'GREEN'),
+(17, 'MASTODA', '', '', 'YELLOW'),
+(18, 'METODA', '', '', 'GREEN'),
+(19, 'MPTODA', '', '', 'GREEN'),
+(20, 'MTTODA', '', '', 'GREEN'),
+(21, 'MUTODA', '', '', 'GREEN'),
+(22, 'NVLTODA', '', '', 'WHITE'),
+(23, 'NVMHTODA', '', '', 'WHITE'),
+(24, 'OPMTODA', '', '', 'GREEN'),
+(25, 'OPTODA', '', '', 'BLUE'),
+(26, 'OTTODA', '', '', 'WHITE'),
+(27, 'P.B.TODA', '', '', 'YELLOW'),
+(28, 'PACARTODA', '', '', 'YELLOW'),
+(29, 'PALTODA', '', '', 'YELLOW'),
+(30, 'PANT. LUMA PH. 2TODA', '', '', 'BLUE'),
+(31, 'PAPATODA', '', '', 'YELLOW'),
+(32, 'PAPTODA', '', '', 'BLUE'),
+(33, 'PARATODA', '', '', 'GREEN'),
+(34, 'PETODA', '', '', 'GREEN'),
+(35, 'PIL TODA 1', '', '', 'YELLOW'),
+(36, 'PIL TODA 2', '', '', 'YELLOW'),
+(37, 'POTODA POB', '', '', 'BLUE'),
+(38, 'POTODAPAG', '', '', 'WHITE'),
+(39, 'PSRTODA', '', '', 'RED'),
+(40, 'RHEATODA', '', '', 'GREEN'),
+(41, 'SHOTODA', '', '', 'GREEN'),
+(42, 'SILAHISTODA', '', '', 'BLUE'),
+(43, 'ST. JOSEPHTODA', '', '', 'GREEN'),
+(44, 'TAGTODA', '', '', 'RED'),
+(45, 'TALATODA', '', '', 'WHITE'),
+(46, 'TALTODA', '', '', 'RED'),
+(47, 'TAPTODA', '', '', 'RED'),
+(48, 'TETODA 1', '', '', 'BLUE'),
+(49, 'TETODA 2', '', '', 'BLUE'),
+(50, 'TMTODA', '', '', 'GREEN'),
+(51, 'VILLATODA', '', '', 'WHITE'),
+(52, 'WATODA', '', '', 'BLUE'),
+(53, 'ZAMTODA', '', '', 'YELLOW');
 
 -- --------------------------------------------------------
 
@@ -212,22 +241,8 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES
-(1, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
-(2, 'Print Form', 'generate or print form', '2022-06-27', 'done', '', 1),
-(3, 'Print Form', 'generate or print form', '2022-06-27', 'done', '', 1),
-(4, 'Print Form', 'generate or print form', '2022-06-27', 'done', '', 19),
-(5, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
-(6, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
-(7, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
-(8, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
-(9, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 19),
-(10, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 15),
-(11, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 15),
-(12, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 15),
-(13, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 26),
-(14, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 26),
-(15, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 28),
-(16, 'Printed Form', 'generate or print form', '2022-06-27', 'done', '', 30);
+(23, 'Printed Form', 'generate or print form', '2022-06-28', 'done', '', 47),
+(24, 'Printed Form', 'generate or print form', '2022-06-28', 'done', '', 47);
 
 -- --------------------------------------------------------
 
@@ -240,6 +255,7 @@ CREATE TABLE `tricycle` (
   `fname` varchar(50) NOT NULL,
   `mname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
+  `extname` varchar(44) NOT NULL,
   `mvfileno` varchar(50) NOT NULL,
   `plateno` varchar(50) NOT NULL,
   `engineno` varchar(50) NOT NULL,
@@ -262,23 +278,8 @@ CREATE TABLE `tricycle` (
 -- Dumping data for table `tricycle`
 --
 
-INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES
-(15, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '00122921', 'ZXC 231', '8891228', '25112', 'KAWASAKI', 'YES', '21002', '90221', '2022-06-24', '12', '2221', '45', '', '', '', 'Public'),
-(16, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '231', '123123', '1231', '1312', 'asdad', 'ppp', 'adasd', '12313', '2022-06-24', '12', '1231', '45', '', '', '', 'Public'),
-(17, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '231', '123123', '123123', '123123', 'qwe', 'qwe', '123123', '90221', '2022-06-24', '11', '2512', '45', '', '', '', 'Public'),
-(18, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'asdasd', 'SUBOK', 'SUBOK', 'SUBOK', 'asd', 'asd', 'SUBOK', 'SUBOK', '2022-06-16', '33', '1234', '45', '', '', '', 'Public'),
-(19, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'asdasd', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '12', '2211', '45', '', 'BLUE', '', 'Public'),
-(20, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '22', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '23', '1244', '45', 'MUTODA', 'WHITE', '', 'Public'),
-(21, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'asdasd', '22', 'SUBOK', '221', 'asd', 'qwe', '123', '22112', '2022-06-26', '22', '1234', '45', 'MUTODA', '', '', 'Public'),
-(22, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '22', '22', '052389', '221', 'asd', 'qwe', 'asd', 'asdq', '2022-06-26', '33', '2231', '45', 'MUTODA', 'RED', '', 'Utility'),
-(23, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '11', '123', '333', '444', 'asdad', 'ppp', '123123', '90221', '2022-06-27', '22', '1223', '45', 'BATODA', 'BLUE', '', 'Public'),
-(24, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '11', '123', '1231', '1312', 'tttt', '123123', '123123', '90221', '2022-06-27', '11', '1212', '45', 'BATODA', 'BLUE', '', 'Utility'),
-(25, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', '11', '123', '1231', '1312', 'asdad', 'ppp', 'adasd', '90221', '2022-06-21', '11', '1122', '45', 'MUTODA', 'RED', '', 'Public'),
-(26, '', '', '', '231', '123', '1231', '123123', '123', 'yea', '123', 'or112', '2022-06-29', '11', '1123', '48', 'MUTODA', 'RED', '', 'Public'),
-(27, '', '', '', '11', '123', '123123', '', 'asdad', '123123', '123123', '12313', '2022-06-21', '55', '8674', '', 'BATODA', 'BLUE', '', 'Utility'),
-(28, '', '', '', '231', '123123', '1231', '1312', '13123', 'yea', '555', '666', '2022-06-28', '13', '1231', '50', 'BATODA', 'BLUE', '', 'Public'),
-(29, '', '', '', '11', '222', '333', '123', '13123', 'ppp', 'adasd', '90221', '2022-07-07', '15', '1231', '51', 'MUTODA', 'RED', '', 'Utility'),
-(30, '', '', '', '231', '123123', '123123', '1312', 'toyota', 'qwe', '123', '123', '2022-06-27', '77', '6766', '52', 'MUTODA', 'RED', '', 'Public');
+INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES
+(47, 'MATAWARAN', 'MATAWARAN', 'LALUNA', 'JR', '231', '123', '123123', '444', '13123', 'ppp', '555', '90221', '2022-06-28', '99', '1123', '73', 'KABALUTANTODA', 'RED', '', 'Public');
 
 --
 -- Indexes for dumped tables
@@ -341,17 +342,17 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
 ALTER TABLE `drivers`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `inspection`
 --
 ALTER TABLE `inspection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT for table `mtop`
 --
@@ -366,17 +367,17 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `toda`
 --
 ALTER TABLE `toda`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
