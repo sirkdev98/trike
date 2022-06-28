@@ -25,6 +25,7 @@ $sql = "SELECT
   tricycle.engineno,
   tricycle.chasisno,
   tricycle.maker,
+  tricycle.motorcolor,
   tricycle.pistondisp,
   tricycle.cor,
   tricycle.ornum,
@@ -73,6 +74,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
                             $chasisno = $row['chasisno']; 
                             $engineno = $row['engineno']; 
                             $maker = $row['maker']; 
+                            $motorcolor = $row['motorcolor']; 
                             $pistondisp = $row['pistondisp']; 
                             $cor = $row['cor']; 
                             $ornum = $row['ornum']; 
@@ -249,12 +251,12 @@ $pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(30,5,'APPLICATION DATE',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$toda,0,0);
+$pdf ->Cell(50,5,$franchisedate,0,0);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'2nd',0,0);
+$pdf ->Cell(45,5,'MTOP NUMBER',0,0);
 $pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'TEST',0,0);
+$pdf ->Cell(50,5,'--',0,0);
 $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(10,2,'',0,1);
 
@@ -266,9 +268,9 @@ $pdf ->Cell(10,10,'',0,0);
 $pdf ->Cell(50,5,$bodynum,0,0);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'2nd',0,0);
+$pdf ->Cell(45,5,'MTOP VALIDITY',0,0);
 $pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'TEST',0,0);
+$pdf ->Cell(50,5,'--',0,0);
 $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(10,2,'',0,1);
 
@@ -277,12 +279,12 @@ $pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(30,5,'PLATE NUMBER',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$bodynum,0,0);
+$pdf ->Cell(50,5,$plateno,0,0);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'2nd',0,0);
+$pdf ->Cell(45,5,'FRANCHISE VALIDITY',0,0);
 $pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'TEST',0,0);
+$pdf ->Cell(50,5,'--',0,0);
 $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(10,2,'',0,1);
 
@@ -291,14 +293,58 @@ $pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(30,5,'MOTOR COLOR',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$bodynum,0,0);
+$pdf ->Cell(50,5,$motorcolor,0,0);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'2nd',0,0);
+$pdf ->Cell(30,5,'',0,0);
 $pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'TEST',0,0);
+$pdf ->Cell(50,5,'',0,0);
 $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(10,2,'',0,1);
+
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'SIDECAR COLOR',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$sidecarcolor,0,0);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'',0,0);//TEXT TITLE
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(50,5,'',0,0);//TEXT 2ND COLUMNT
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'ENGINE NUMBER',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$engineno,0,0);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(50,5,'',0,0);
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(10,2,'',0,1);
+
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'CHASIS NUMBER',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(10,10,'',0,0);
+$pdf ->Cell(50,5,$chasisno,0,0);
+$pdf->SetFont('Arial', 'B', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'',0,0);
+$pdf->SetFont('Arial', '', 10);
+$pdf ->Cell(50,5,'',0,0);
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(10,2,'',0,1);
+
 
 
 

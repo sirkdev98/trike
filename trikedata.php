@@ -671,12 +671,16 @@ if(isset($_SESSION['username'])){
                     <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
                   </div>
                   <div class="col-sm-2">
+                    Motor Color
+                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
+                  </div>
+                  <div class="col-sm-2">
                     Piston Displacement
                     <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
                   </div>
                    <div class="col-sm-2">
                     Cert. of Reg.
-                    <input type="text" class="form-control" name="cor" placeholder="Certificate of Registration" name="cor">
+                    <input type="text" class="form-control" placeholder="Certificate of Registration" name="cor">
                   </div>
                    <div class="col-sm-2">
                     Official Receipt No.

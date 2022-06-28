@@ -415,7 +415,7 @@ if(isset($_SESSION['username'])){
                           $_SESSION['opfname'] =  $fname = $row['fname']; 
                           $_SESSION['opmname'] =  $mname = $row['mname']; 
                           $_SESSION['oplname'] =  $lname = $row['lname']; 
-                           $_SESSION['extname'] =  $lname = $row['extname']; 
+                          $_SESSION['extname'] =  $extname = $row['extname']; 
                           $_SESSION['opaddress1'] =  $address1 = $row['address1']; 
                           $_SESSION['opbarangay'] =  $barangay = $row['barangay']; 
                           $_SESSION['opcontactnumber'] =  $contactnumber = $row['contactnumber']; 
@@ -843,6 +843,10 @@ else{
                   <div class="col-sm-2">
                     Maker
                     <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
+                  </div>
+                    <div class="col-sm-2">
+                    Motor Color
+                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
                   </div>
                   <div class="col-sm-2">
                     Piston Displacement
