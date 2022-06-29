@@ -383,7 +383,31 @@ if(isset($_SESSION['username'])){
 
     </ul>
   </aside><!-- End Sidebar-->
+ <?php
+    $tid = $_GET['id'];
 
+          $sql = "SELECT  * FROM `mtop` where trikeid ='$tid' and mtopexpiration < now()";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+
+   while($row = $result->fetch_assoc()) {
+          $mtopid = $row['id'];
+          $mtopexpiration = $row['mtopexpiration'];
+          $status  = $row['status'];
+          $mtopyear = $row['mtopyear'];
+          $mtoptrikeid  = $row['trikeid'];
+
+
+   }
+
+
+  }else {
+
+          $mtopexpiration  = "expired";
+  }
+
+
+    ?>
 
   <main id="main" class="main">
 
@@ -415,7 +439,7 @@ if(isset($_SESSION['username'])){
   tricycle.pistondisp,
   tricycle.cor,
   tricycle.ornum,
-  tricycle.franchisedate,
+  tricycle.applicationdate,
   tricycle.brgycode,tricycle.toda, 
   tricycle.sidecarcolor, 
   tricycle.bodynum, 
@@ -458,7 +482,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $pistondisp = $row['pistondisp']; 
                             $cor = $row['cor']; 
                             $ornum = $row['ornum']; 
-                            $franchisedate = $row['franchisedate']; 
+                            $applicationdate = $row['applicationdate']; 
                             $brgycode = $row['brgycode']; 
                             $bodynum = $row['bodynum'];
                             $pid = $row['pid'];  
@@ -553,7 +577,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Franchise Date</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $franchisedate; ?></div>
+                    <div class="col-lg-9 col-md-8"><?php echo $applicationdate; ?></div>
                   </div>
 
                  
@@ -1397,6 +1421,7 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
             <?php }}
  if(isset($_POST['delete'])){
                             // sql to delete a record
+   $rowprintid= $_GET['id'];
                             $delete_id = $_POST['delete_id'];
                               $profileid = $_POST['profileid'];
                             $sql = "DELETE FROM drivers     WHERE id='$delete_id' ";
@@ -1404,6 +1429,10 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
                                 $sql = "DELETE FROM drivers WHERE id='$delete_id' ";
                                 if ($conn->query($sql) === TRUE) {
                                     $sql = "DELETE FROM drivers WHERE id='$delete_id' ";
+                                   
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Removed Driver $delete_id', 'removed driver from tricycle', now(), 'done', '', '$rowprintid')";
+$conn->query($sqlt);
                                     echo "<script type='text/javascript'>alert(\"Successfully Removed  \")</script>";
                                       echo '<script>window.location.href="profile.php?id='.$profileid.'"</script>';
                                 } else {
@@ -1470,11 +1499,13 @@ if ($result->num_rows > 0)  {
 $sql = "INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES (NULL, '$bodynum', '$tid', '$driverid')";
 
 if ($conn->query($sql) === TRUE) {  
+  $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added Existing Driver', 'added driver to tricycle', now(), 'done', '', '$tranid')";
+if ($conn->query($sqlt) === TRUE) {  
 
  echo "<script type='text/javascript'>alert(\"Successfully added driver \")</script>";
            echo "<script>window.location.href='profile.php?id=$tid'</script>"; 
 
- 
+ }
 }}}
 
 if (isset($_POST['savedriver'])) {
@@ -1509,6 +1540,7 @@ $type = $_POST['type'];
 $licensid = $_POST['licensid'];
 $licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
+$tranid = $_GET['id'];
 
 
 $sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`, `barangay`,`contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
@@ -1522,12 +1554,14 @@ $sql = "INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES 
 if ($conn->query($sql) === TRUE) {  
 
 
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added New Driver', 'added driver to tricycle', now(), 'done', '', '$tranid')";
+if ($conn->query($sqlt) === TRUE) {  
  echo "<script type='text/javascript'>alert(\"Successfully added  \")</script>";
            echo "<script>window.location.href='profile.php?id=$tid'</script>"; 
 
 }
 
-}
+}}
 }
 
  ?>

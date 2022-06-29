@@ -35,7 +35,7 @@ $motorcolor = $_POST['motorcolor'];
 $piston = $_POST['piston'];
 $cor = $_POST['cor'];
 $ornum = $_POST['ornum'];
-$dateofissue = $_POST['dateofissue'];
+$applicationdate = $_POST['applicationdate'];
 $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 $classification = $_POST['classification'];
@@ -49,7 +49,7 @@ $toda = $_POST['toda'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification')";
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
@@ -112,7 +112,7 @@ $motorcolor = $_POST['motorcolor'];
 $piston = $_POST['piston'];
 $cor = $_POST['cor'];
 $ornum = $_POST['ornum'];
-$dateofissue = $_POST['dateofissue'];
+$applicationdate = $_POST['applicationdate'];
 $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 $classification = $_POST['classification'];
@@ -126,7 +126,7 @@ $toda = $_POST['toda'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `franchisedate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES (NULL, '$fname', '$mname', '$lname', '$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$motorcolor', '$piston', '$cor', '$ornum', '$dateofissue', '$brgycode', '$bdynumber', '$last_id', '$toda ', '$sidecarcolor', '', '$classification')";
+$sql = "INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES (NULL, '$fname', '$mname', '$lname', '$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$motorcolor', '$piston', '$cor', '$ornum', '$applicationdate', '$brgycode', '$bdynumber', '$last_id', '$toda ', '$sidecarcolor', '', '$classification')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;

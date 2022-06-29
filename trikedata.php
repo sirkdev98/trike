@@ -695,8 +695,8 @@ if(isset($_SESSION['username'])){
                      <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
                   <div class="col-sm-4">
-                    Date of Issuance
-                    <input type="date" class="form-control" name="dateofissue" placeholder="dateofissue" name="dateofissue">
+                    Date of Application
+                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate">
                   </div>
                   <div class="col-sm-1">
                     Brgy #
@@ -777,7 +777,7 @@ if(isset($_SESSION['username'])){
                             $lname =$row['lname'];
                             $bodynum= $row['bodynum'];
                             $operatorid = $row['operatorid'];
-                            $franchisedate = $row['franchisedate'];
+                            $applicationdate = $row['applicationdate'];
 
 
 
@@ -787,7 +787,7 @@ if(isset($_SESSION['username'])){
                 <td><?php echo  $id; ?></td>
                 <td><?php echo  $lname.", ".$fname." ".$mname; ?></td>
                 <td><?php echo  $bodynum; ?></td>
-                <td><?php echo  $franchisedate; ?></td>
+                <td><?php echo  $applicationdate; ?></td>
      
                 <td>
   <a href="profile.php?id=<?php echo  $id; ?>" target="_blank"><button type='button' class='btn btn-primary btn-sm' >

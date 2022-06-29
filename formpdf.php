@@ -29,7 +29,7 @@ $sql = "SELECT
   tricycle.pistondisp,
   tricycle.cor,
   tricycle.ornum,
-  tricycle.franchisedate,
+  tricycle.applicationdate,
   tricycle.brgycode,tricycle.toda, 
   tricycle.sidecarcolor, 
   tricycle.bodynum, 
@@ -78,7 +78,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
                             $pistondisp = $row['pistondisp']; 
                             $cor = $row['cor']; 
                             $ornum = $row['ornum']; 
-                            $franchisedate = $row['franchisedate']; 
+                            $applicationdate = $row['applicationdate']; 
                             $brgycode = $row['brgycode']; 
                             $bodynum = $row['bodynum'];
                             $pid = $row['pid'];  
@@ -251,7 +251,7 @@ $pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(30,5,'APPLICATION DATE',0,0);
 $pdf->SetFont('Arial', '', 10);
 $pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$franchisedate,0,0);
+$pdf ->Cell(50,5,$applicationdate,0,0);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(45,5,'MTOP NUMBER',0,0);

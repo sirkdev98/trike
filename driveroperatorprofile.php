@@ -869,8 +869,8 @@ else{
                      <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
                   <div class="col-sm-4">
-                    Date of Issuance
-                    <input type="date" class="form-control" name="dateofissue" placeholder="dateofissue" name="dateofissue">
+                    Date of Application
+                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate">
                   </div>
                   <div class="col-sm-1">
                     Brgy #
@@ -947,7 +947,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                         while($row = $result->fetch_assoc()) {
                             $id = $row['id'];  
                             $bdynumber = $row['bodynum']; 
-                            $franchisedate = $row['franchisedate']; 
+                            $applicationdate = $row['applicationdate']; 
                             $classification = $row['classification']; 
                             $toda = $row['toda']; 
 
