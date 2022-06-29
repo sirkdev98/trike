@@ -70,7 +70,7 @@ if(isset($_SESSION['username'])){
         #response { padding:20px; border:1px solid; background:#ccc; }
     </style>
 
-
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -534,7 +534,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-mtop">MTOP</button>
                 </li>
                  <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
@@ -786,37 +786,79 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 <?php }}?>
                   </form></div></div>
 
-                <div class="tab-pane fade pt-3" id="profile-change-password">
+                <div class="tab-pane fade pt-3" id="profile-mtop">
                   <!-- Change Password Form -->
                   <form>
 
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
-                      </div>
+                   <div class="row mb-3">
+                 
+                  <div class="col-sm-10">
+
+
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="chck1" checked onclick="return false;">
+                      <label class="form-check-label" for="gridCheck1" id="text">
+                      MTOP 
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="form-check-label" for="gridCheck1" id="text">
+                      200.00
+                      </label>
                     </div>
 
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
-                      </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="sticekerfee"  onclick="checkfunction()" name="garbage">
+                      <label class="form-check-label" for="gridCheck2" >
+                       STICKER FEE
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="sticekerfeeamount">
+                      0.00
+                      </label>
                     </div>
 
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                      </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="plate"  onclick="checkfunction2()" name="mtopplate">
+                      <label class="form-check-label" for="gridCheck2" >
+                       MTOP PLATE
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="plateamount">
+                     0.00
+                      </label>
                     </div>
+                    
+                    
+                  </div>
 
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Change Password</button>
-                    </div>
+                </div>
+
+                    
                   </form><!-- End Change Password Form -->
 
-         
+          <script type="text/javascript">
+  function checkfunction() {
+    var sticekerfee = document.getElementById("sticekerfee");
+    var sticekerfeeamount = document.getElementById("sticekerfeeamount");
+ 
+
+    if (sticekerfee.checked == true) {
+         document.getElementById("sticekerfeeamount").innerHTML = "200.00"
+    } 
+    else {
+       document.getElementById("sticekerfeeamount").innerHTML = "0.00"
+    }
+}
+   function checkfunction2() {   
+       var sticekerfee = document.getElementById("plate");
+    var sticekerfeeamount = document.getElementById("plateamount");
+      if (plate.checked == true) {
+        document.getElementById("plateamount").innerHTML = "200.00"
+    } 
+    else {
+       document.getElementById("plateamount").innerHTML = "0.00"
+    }
+    
+}
+</script>
 
               </div><!-- End Bordered Tabs -->
 
