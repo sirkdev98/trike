@@ -964,7 +964,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
             <tr>
                 <td><?php echo $id; ?></td>
                 <td><?php echo $bdynumber; ?></td>
-                <td><?php echo $franchisedate; ?></td>
+                <td><?php echo $applicationdate; ?></td>
                 <td><?php echo $classification; ?></td>
                 <td><?php echo $toda; ?></td>
                 <td>

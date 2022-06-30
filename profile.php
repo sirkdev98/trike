@@ -895,6 +895,18 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     </div>
 
 
+                       <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="confirmationfee"  onclick="funcconfirmationfee()" name="confirmationfee" value="<?php echo $confirmationfee; ?>">
+                      <label class="form-check-label" for="gridCheck2" >
+                       Confirmation Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="confirmationfeeamount">
+                     0.00
+                      </label>
+                    </div>
+
+
+
 
                      <label class="form-check-label" for="gridCheck2" id="total">
                      0.00
@@ -1007,6 +1019,22 @@ function funcoperatoridfee() {
            document.getElementById("total").innerHTML = totalamount
     }
 }
+
+ function funcconfirmationfee() {   
+    var confirmationfee = document.getElementById("confirmationfee");
+    var confirmationfeeamount = document.getElementById("confirmationfeeamount");
+      if (confirmationfee.checked == true) {
+        document.getElementById("confirmationfeeamount").innerHTML = php_certificationofnorecordfee;
+        totalamount = totalamount + php_certificationofnorecordfee
+         document.getElementById("total").innerHTML = totalamount
+    } 
+    else {
+       document.getElementById("confirmationfeeamount").innerHTML = "0.00"
+          totalamount = totalamount -php_certificationofnorecordfee;
+           document.getElementById("total").innerHTML = totalamount
+    }
+}
+
 
 
 
