@@ -794,38 +794,111 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                  
                   <div class="col-sm-10">
 
+ <?php
+                     $tid = $_GET['id'];
+                     $sql33 = "SELECT * from mtopamount where id = '1'";
+                    $result = $conn->query($sql33);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
 
+                          $mtopfee = $row['mtopfee'];
+                          $annualstickerfee = $row['annualstickerfee'];
+                          $mtopplatefee = $row['mtopplatefee'];
+                          $operatoridfee = $row['operatoridfee'];
+                          $driveridfee = $row['driveridfee'];
+                          $parkingfee = $row['parkingfee'];
+                          $droppingfee = $row['droppingfee'];
+                          $confirmationfee = $row['confirmationfee'];
+                          $certificationofnorecordfee = $row['certificationofnorecordfee'];
+                          $transferfee = $row['transferfee'];
+                          $farematrix = $row['farematrix'];
+                          $bodynumberstickerfee = $row['bodynumberstickerfee'];
+                          $environmentalfee = $row['environmentalfee'];
+
+
+                   }}
+
+?>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="chck1" checked onclick="return false;">
+                      <input class="form-check-input" type="checkbox" id="chck1" checked onclick="return false;" value="<?php echo $mtopfee; ?>">
                       <label class="form-check-label" for="gridCheck1" id="text">
                       MTOP 
                       </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <label class="form-check-label" for="gridCheck1" id="text">
-                      200.00
+                      <?php echo $mtopfee ?>
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="sticekerfee"  onclick="checkfunction()" name="garbage">
+                      <input class="form-check-input" type="checkbox" id="sticekerfee"  onclick="annualsticker()" name="garbage" value="<?php echo $annualstickerfee; ?>">
                       <label class="form-check-label" for="gridCheck2" >
                        STICKER FEE
                       </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label class="form-check-label" for="gridCheck2" id="sticekerfeeamount">
-                      0.00
+                      <label class="form-check-label" for="gridCheck2" id="sticekerfeeamount" >
+                    0.00
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="plate"  onclick="checkfunction2()" name="mtopplate">
+                      <input class="form-check-input" type="checkbox" id="plate"  onclick="mtopplate()" name="annualstickerfee" value="<?php echo $mtopplatefee; ?>">
                       <label class="form-check-label" for="gridCheck2" >
                        MTOP PLATE
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <label class="form-check-label" for="gridCheck2" id="plateamount">
                      0.00
                       </label>
                     </div>
-                    
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="operatoridfee"  onclick="funcoperatoridfee()" name="annualstickerfee" value="<?php echo $operatoridfee; ?>">
+                      <label class="form-check-label" for="gridCheck2" >
+                       Operator's ID Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="operatoridamount">
+                     0.00
+                      </label>
+                    </div>
+                      <div class="form-row">
+                        
+                      <label class="form-check-label" for="gridCheck2" >
+                       Driver's ID Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                      <label class="form-check-label" for="gridCheck2" id="driveridamount">
+                     0.00
+                      </label>
+                       <div class="col-md-2">
+                       <input type="number" class="form-control" id="driveridfeecount" name="driveridfeecount" style="height: 75%" max="5"></div>
+                    </div>
+
+
+                     <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="parkingfee"  onclick="funcparkingfee()" name="parkingfee" value="<?php echo $parkingfee; ?>">
+                      <label class="form-check-label" for="gridCheck2" >
+                       Parking Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="parkingfeeamount">
+                     0.00
+                      </label>
+                    </div>
+
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="droppingfee"  onclick="funcdroppingfee()" name="parkingfee" value="<?php echo $droppingfee; ?>">
+                      <label class="form-check-label" for="gridCheck2" >
+                       Dropping Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="droppingfeeamount">
+                     0.00
+                      </label>
+                    </div>
+
+
+
+                     <label class="form-check-label" for="gridCheck2" id="total">
+                     0.00
+                      </label>
                     
                   </div>
 
@@ -835,29 +908,122 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   </form><!-- End Change Password Form -->
 
           <script type="text/javascript">
-  function checkfunction() {
+var total = document.getElementById("total");
+let totalamount = 200;
+document.getElementById("total").innerHTML = totalamount
+
+var php_varstikcerfee = <?php echo $annualstickerfee; ?>;
+var php_mtopfee =<?php echo $mtopfee; ?>;
+
+
+var php_operatoridfee =<?php echo $operatoridfee; ?>;
+var php_driveridfee =<?php echo $driveridfee; ?>;
+var php_parkingfee =<?php echo $parkingfee; ?>;
+var php_droppingfee =<?php echo $droppingfee; ?>;
+var php_confirmationfee =<?php echo $confirmationfee; ?>;
+var php_certificationofnorecordfee =<?php echo $certificationofnorecordfee; ?>;
+var php_transferfee =<?php echo $transferfee; ?>;
+var php_farematrix =<?php echo $farematrix; ?>;
+var php_bodynumberstickerfee =<?php echo $bodynumberstickerfee; ?>;
+var php_environmentalfee =<?php echo $environmentalfee; ?>;
+
+  function annualsticker() {
     var sticekerfee = document.getElementById("sticekerfee");
     var sticekerfeeamount = document.getElementById("sticekerfeeamount");
- 
+
 
     if (sticekerfee.checked == true) {
-         document.getElementById("sticekerfeeamount").innerHTML = "200.00"
+         document.getElementById("sticekerfeeamount").innerHTML = php_varstikcerfee
+         totalamount = totalamount + php_varstikcerfee
+          document.getElementById("total").innerHTML = totalamount
     } 
     else {
        document.getElementById("sticekerfeeamount").innerHTML = "0.00"
+        totalamount = totalamount - php_varstikcerfee
+        document.getElementById("total").innerHTML = totalamount
     }
 }
-   function checkfunction2() {   
-       var sticekerfee = document.getElementById("plate");
+   function mtopplate() {   
+       var plate = document.getElementById("plate");
     var sticekerfeeamount = document.getElementById("plateamount");
       if (plate.checked == true) {
-        document.getElementById("plateamount").innerHTML = "200.00"
+        document.getElementById("plateamount").innerHTML = php_mtopfee
+        totalamount = totalamount + php_mtopfee
+         document.getElementById("total").innerHTML = totalamount
     } 
     else {
        document.getElementById("plateamount").innerHTML = "0.00"
+          totalamount = totalamount -php_mtopfee
+           document.getElementById("total").innerHTML = totalamount
     }
-    
 }
+//
+function funcoperatoridfee() {   
+    var operatoridfee = document.getElementById("operatoridfee");
+    var operatoridamount = document.getElementById("operatoridamount");
+      if (operatoridfee.checked == true) {
+        document.getElementById("operatoridamount").innerHTML = php_operatoridfee
+        totalamount = totalamount +php_operatoridfee
+         document.getElementById("total").innerHTML = totalamount
+    } 
+    else {
+       document.getElementById("operatoridamount").innerHTML = "0.00"
+          totalamount = totalamount -php_operatoridfee
+           document.getElementById("total").innerHTML = totalamount
+    }
+}
+ 
+
+
+ function funcparkingfee() {   
+    var parkingfee = document.getElementById("parkingfee");
+    var parkingfeeamount = document.getElementById("parkingfeeamount");
+      if (parkingfee.checked == true) {
+        document.getElementById("parkingfeeamount").innerHTML = php_parkingfee;
+        totalamount = totalamount + php_parkingfee
+         document.getElementById("total").innerHTML = totalamount
+    } 
+    else {
+       document.getElementById("parkingfeeamount").innerHTML = "0.00"
+          totalamount = totalamount -php_parkingfee
+           document.getElementById("total").innerHTML = totalamount
+    }
+}
+
+
+
+
+ function funcdroppingfee() {   
+    var droppingfee = document.getElementById("droppingfee");
+    var droppingfeeamount = document.getElementById("droppingfeeamount");
+      if (droppingfee.checked == true) {
+        document.getElementById("droppingfeeamount").innerHTML = php_droppingfee;
+        totalamount = totalamount + php_droppingfee
+         document.getElementById("total").innerHTML = totalamount
+    } 
+    else {
+       document.getElementById("droppingfeeamount").innerHTML = "0.00"
+          totalamount = totalamount -php_droppingfee
+           document.getElementById("total").innerHTML = totalamount
+    }
+}
+
+
+
+
+
+ $('input').keyup(function(){ // run anytime the value changes
+    var firstValue  = Number($('#driveridfeecount').val());   // get value of field
+    
+
+    $('#total').html(totalamount+(firstValue * php_driveridfee)); // add them and output it
+     $('#driveridamount').html(firstValue * php_driveridfee);
+    document.getElementById('total_expenses2').value = firstValue;
+    document.getElementById('driveridamount').value = firstValue * php_driveridfee;
+
+// add them and output it
+});
+
 </script>
 
               </div><!-- End Bordered Tabs -->
