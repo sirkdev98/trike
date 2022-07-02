@@ -937,7 +937,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                       <input class="form-check-input" type="checkbox" id="farematrix"  onclick="funcfarematrix()" name="farematrix" value="<?php echo $farematrix; ?>">
                       <label class="form-check-label" for="gridCheck2" >
                        Fare Matrix
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <label class="form-check-label" for="gridCheck2" id="farematrixamount">
                      
                       </label>
@@ -947,8 +947,20 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                       <input class="form-check-input" type="checkbox" id="bodynumberstickerfee"  onclick="funcbodynumberstickerfee()" name="bodynumberstickerfee" value="<?php echo $bodynumberstickerfee; ?>">
                       <label class="form-check-label" for="gridCheck2" >
                        Body Sticker
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <label class="form-check-label" for="gridCheck2" id="bodynumberstickerfeeamount">
+                     
+                      </label>
+                    </div>
+
+
+
+                     <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="environmentalfee"  onclick="funcenvironmentalfee()" name="environmentalfee" value="<?php echo $environmentalfee; ?>">
+                      <label class="form-check-label" for="gridCheck2" >
+                       Environmental Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="environmentalfeeamount">
                      
                       </label>
                     </div>
@@ -1130,7 +1142,7 @@ function funcfarematrix() {
     }
 }
 
-
+environmentalfee
 
 function funcbodynumberstickerfee() {   
     var bodynumberstickerfee = document.getElementById("bodynumberstickerfee");
@@ -1143,6 +1155,23 @@ function funcbodynumberstickerfee() {
     else {
        document.getElementById("bodynumberstickerfeeamount").innerHTML = ""
           totalamount = totalamount -php_bodynumberstickerfee;
+           document.getElementById("total").innerHTML = totalamount
+    }
+}
+
+
+
+function funcenvironmentalfee() {   
+    var environmentalfee = document.getElementById("environmentalfee");
+    var environmentalfeeamount = document.getElementById("environmentalfeeamount");
+      if (environmentalfee.checked == true) {
+        document.getElementById("environmentalfeeamount").innerHTML = php_environmentalfee;
+        totalamount = totalamount + php_environmentalfee
+         document.getElementById("total").innerHTML = totalamount
+    } 
+    else {
+       document.getElementById("environmentalfeeamount").innerHTML = ""
+          totalamount = totalamount -php_environmentalfee;
            document.getElementById("total").innerHTML = totalamount
     }
 }
