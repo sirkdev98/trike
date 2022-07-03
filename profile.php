@@ -985,6 +985,7 @@ document.getElementById("total").innerHTML = totalamount
 
 var php_varstikcerfee = <?php echo $annualstickerfee; ?>;
 var php_mtopfee =<?php echo $mtopfee; ?>;
+var php_mtopplatefee =<?php echo $mtopplatefee; ?>;
 
 
 var php_operatoridfee =<?php echo $operatoridfee; ?>;
@@ -1018,13 +1019,13 @@ var php_environmentalfee =<?php echo $environmentalfee; ?>;
        var plate = document.getElementById("plate");
     var sticekerfeeamount = document.getElementById("plateamount");
       if (plate.checked == true) {
-        document.getElementById("plateamount").innerHTML = php_mtopfee
-        totalamount = totalamount + php_mtopfee
+        document.getElementById("plateamount").innerHTML = php_mtopplatefee
+        totalamount = totalamount + php_mtopplatefee
          document.getElementById("total").innerHTML = totalamount
     } 
     else {
        document.getElementById("plateamount").innerHTML = ""
-          totalamount = totalamount -php_mtopfee
+          totalamount = totalamount -php_mtopplatefee
            document.getElementById("total").innerHTML = totalamount
     }
 }
