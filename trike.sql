@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2022 at 10:53 AM
+-- Generation Time: Jul 03, 2022 at 06:23 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -52,7 +52,8 @@ CREATE TABLE `driveroperator` (
 --
 
 INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
-(81, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', '', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-30', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-30', '62bcf0fe4f867.jpeg');
+(81, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', '', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-30', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-30', '62bcf0fe4f867.jpeg'),
+(82, 'Testing fname', 'Middle', 'Last', '', 'ext', 'SUBOK@gnau.com', 'Apollo', '123123', 'qwe', 'qwe', 'qwe', '2022-07-03', 'DRIVER', 'SUBOK', 'OPERATOR', '2022-07-03', '62c15ef81b78a.png');
 
 -- --------------------------------------------------------
 
@@ -66,6 +67,13 @@ CREATE TABLE `drivers` (
   `trikeid` varchar(55) NOT NULL,
   `driverid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `drivers`
+--
+
+INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES
+(1, '2421', '3095', '82');
 
 -- --------------------------------------------------------
 
@@ -105,12 +113,24 @@ INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `sign
 --
 
 CREATE TABLE `mtop` (
-  `id` int(50) NOT NULL,
-  `mtopdate` date NOT NULL,
-  `mtopexpiration` date NOT NULL,
-  `status` varchar(50) NOT NULL,
-  `mtopyear` varchar(50) NOT NULL,
-  `trikeid` varchar(50) NOT NULL
+  `id` int(55) NOT NULL,
+  `mtopfee` varchar(55) NOT NULL,
+  `annualstickerfee` varchar(55) NOT NULL,
+  `mtopplatefee` varchar(55) NOT NULL,
+  `operatoridfee` varchar(55) NOT NULL,
+  `driveridfee` varchar(55) NOT NULL,
+  `parkingfee` varchar(55) NOT NULL,
+  `droppingfee` varchar(55) NOT NULL,
+  `confirmationfee` varchar(55) NOT NULL,
+  `certificationofnorecordfee` varchar(55) NOT NULL,
+  `transferfee` varchar(55) NOT NULL,
+  `farematrix` varchar(55) NOT NULL,
+  `bodynumberstickerfee` varchar(55) NOT NULL,
+  `environmentalfee` varchar(55) NOT NULL,
+  `mtoptotal` varchar(55) NOT NULL,
+  `mtopdate` varchar(55) NOT NULL,
+  `mtopexpiration` varchar(55) NOT NULL,
+  `trikeid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -256,6 +276,15 @@ CREATE TABLE `transactions` (
   `trikeid` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES
+(1, 'Added New Driver', 'added driver to tricycle', '2022-07-03', 'done', '', 3095),
+(2, 'Printed Form', 'generate or print form', '2022-07-03', 'done', '', 3095),
+(3, 'Printed Form', 'generate or print form', '2022-07-03', 'done', '', 3095);
+
 -- --------------------------------------------------------
 
 --
@@ -361,12 +390,12 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
 ALTER TABLE `drivers`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `inspection`
 --
@@ -376,7 +405,7 @@ ALTER TABLE `inspection`
 -- AUTO_INCREMENT for table `mtop`
 --
 ALTER TABLE `mtop`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mtopamount`
 --
@@ -396,7 +425,7 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
