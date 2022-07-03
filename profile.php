@@ -788,7 +788,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
                 <div class="tab-pane fade pt-3" id="profile-mtop">
                   <!-- Change Password Form -->
-                  <form>
+                  <form method="POST">
 
                    <div class="row mb-3">
                  
@@ -820,9 +820,9 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                    }}
 
 ?>
-                        <form>
+                        
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="chck1" checked onclick="return false;" value="<?php echo $mtopfee; ?>">
+                      <input class="form-check-input" type="checkbox" id="chck1" name="mtopfee" checked onclick="return false;" value="<?php echo $mtopfee; ?>">
                       <label class="form-check-label" for="gridCheck1" id="text">
                       MTOP 
                       </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -833,7 +833,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="sticekerfee"  onclick="annualsticker()" name="garbage" value="<?php echo $annualstickerfee; ?>">
+                      <input class="form-check-input" type="checkbox" id="sticekerfee"  onclick="annualsticker()" name="annualstickerfee" value="<?php echo $annualstickerfee; ?>">
                       <label class="form-check-label" for="gridCheck2" >
                        STICKER FEE
                       </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -966,16 +966,57 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     </div>
 
 
+<div> 
+<br>
 
-                     <label class="form-check-label" for="gridCheck2" id="total">
+ <label class="form-check-label"><b>
+  TOTAL: &nbsp;&nbsp;&nbsp;&nbsp;</b>
                      
                       </label>
-                    
+
+                  <font color="blue">    <label class="form-check-label"  id="total">
+                     
+                      </label></font>
+</div>                    
+
+
+<br><br>
+ <a href="#mtop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
+  <i class="bi bi-printer"></i>ADD MTOP</button></a></i>
                   </div>
 
                 </div>
 
                     
+  <div id="mtop<?php echo $tid;?>" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                       <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                       
+                                        <h4 class="modal-title">ADD MTOP</h4>
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="pid" value="<?php echo $tid; ?>">
+                
+
+                                        <div class="alert alert-info">Are you sure you want to MTOP to the franchise of <strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
+                                        <div class="modal-footer">
+                                           <button type="submit" name="addmtop" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                        </div>
+                    </div>
+
+
+
+
+
                   </form><!-- End Change Password Form -->
 
           <script type="text/javascript">
@@ -1192,6 +1233,80 @@ function funcenvironmentalfee() {
 });
 
 </script>
+<?php
+if(isset($_POST['addmtop'])){
+
+ if (isset($_POST['mtopfee'])) {
+      $inmtopfee = $_POST['mtopfee'];
+    }else { $inmtopfee =""}
+
+
+    if (isset($_POST['annualstickerfee'])) {
+      $inannualstickerfee = $_POST['annualstickerfee'];
+    }else { $inannualstickerfee =""}
+
+
+ if (isset($_POST['mtopplatefee'])) {
+      $inmtopplatefee = $_POST['mtopplatefee'];
+    }else { $inmtopplatefee =""}
+
+
+
+
+ if (isset($_POST['operatoridfee'])) {
+      $inoperatoridfee = $_POST['operatoridfee'];
+    }else { $inoperatoridfee =""}
+
+
+ if ($_POST['driveridfee'] !="") {
+      $dfee = $_POST['driveridfee'];
+      $indriveridfee = $dfee * $driveridfee;
+
+    }else { $indriveridfee =""}
+
+ if (isset($_POST['parkingfee'])) {
+      $inparkingfee = $_POST['parkingfee'];
+    }else { $inparkingfee =""}
+
+
+ if (isset($_POST['droppingfee'])) {
+      $indroppingfee = $_POST['droppingfee'];
+    }else { $inpindroppingfeearkingfee =""}
+
+ if (isset($_POST['confirmationfee'])) {
+      $inconfirmationfee = $_POST['confirmationfee'];
+    }else { $inconfirmationfee =""}
+
+ if (isset($_POST['certificationofnorecordfee'])) {
+      $incertificationofnorecordfee = $_POST['certificationofnorecordfee'];
+    }else { $incertificationofnorecordfee =""}
+
+
+ if (isset($_POST['transferfee'])) {
+      $intransferfee = $_POST['transferfee'];
+    }else { $intransferfee =""}
+
+
+ if (isset($_POST['farematrix'])) {
+      $infarematrix = $_POST['farematrix'];
+    }else { $infarematrix =""}
+
+
+ if (isset($_POST['bodynumberstickerfee'])) {
+      $inbodynumberstickerfee = $_POST['bodynumberstickerfee'];
+    }else { $bodynumberstickerfee =""}
+
+
+ if (isset($_POST['environmentalfee'])) {
+      $inenvironmentalfee = $_POST['environmentalfee'];
+    }else { $inenvironmentalfee =""}
+
+
+
+
+
+
+  ?>
 
               </div><!-- End Bordered Tabs -->
 
