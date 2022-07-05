@@ -1251,8 +1251,6 @@ if(isset($_POST['addmtop'])){
     }else { $inmtopplatefee =""}
 
 
-
-
  if (isset($_POST['operatoridfee'])) {
       $inoperatoridfee = $_POST['operatoridfee'];
     }else { $inoperatoridfee =""}
@@ -1300,6 +1298,15 @@ if(isset($_POST['addmtop'])){
  if (isset($_POST['environmentalfee'])) {
       $inenvironmentalfee = $_POST['environmentalfee'];
     }else { $inenvironmentalfee =""}
+
+
+
+
+$sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`) VALUES ('', 'mtopfee', 'annualstickerfee', 'mtopplatefee', 'operatoridfee', 'driveridfee', 'parkingfee', 'droppingfee', 'confirmationfee', 'certificationofnorecordfee', 'transferfee', 'farematrix', 'bodynumberstickerfee', 'environmentalfee', 'mtoptotal', 'mtopdate', 'mtopexpiration', 'trikeid')";
+
+if ($conn->query($sql) === TRUE) { 
+
+
 
 
 
