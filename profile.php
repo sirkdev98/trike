@@ -843,7 +843,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="plate"  onclick="mtopplate()" name="annualstickerfee" value="<?php echo $mtopplatefee; ?>">
+                      <input class="form-check-input" type="checkbox" id="plate"  onclick="mtopplate()" name="mtopplatefee" value="<?php echo $mtopplatefee; ?>">
                       <label class="form-check-label" for="gridCheck2" >
                        MTOP PLATE
                       </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -852,7 +852,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="operatoridfee"  onclick="funcoperatoridfee()" name="annualstickerfee" value="<?php echo $operatoridfee; ?>">
+                      <input class="form-check-input" type="checkbox" id="operatoridfee"  onclick="funcoperatoridfee()" name="operatoridfee" value="<?php echo $operatoridfee; ?>">
                       <label class="form-check-label" for="gridCheck2" >
                        Operator's ID Fee
                       </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -861,19 +861,22 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                      
                       </label>
                     </div>
-                      <div class="form-row">
-                        
-                      <label class="form-check-label" for="gridCheck2" >
+
+
+                      <div class="form-check">
+                        <label class="form-check-label" for="gridCheck2" >
                        Driver's ID Fee
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </label><br>
+                      <input class="form-check-input" type="checkbox" id="driveridfee"  onclick="funcdriveridfee()" name="driveridfee" value="<?php echo $driveridfee; ?>">
 
+<input class="col-md-2" type="number" id="driveridfeecount" name="driveridfeecount" size="4">
+<input class="col-md-2" type="number" id="getdriveramount1" name="getdriveramount" size="4" hidden>
 
-
-                      <label class="form-check-label" for="gridCheck2" id="driveridamount">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      
+                      <label class="form-check-label" for="gridCheck2" id="driveridfeeamount">
                      
                       </label>
-                       <div class="col-md-2">
-                       <input type="number" class="form-control" id="driveridfeecount" name="driveridfeecount" style="height: 75%" min ="0" max="5"></div>
                     </div>
 
 
@@ -964,6 +967,24 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                      
                       </label>
                     </div>
+
+
+                      
+                    <div class="form-row">
+                        
+                      <label class="form-check-label" for="gridCheck2" >
+                       MTOP DATE
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+                      <label class="form-check-label" for="gridCheck2" id="driveridamount">
+                     
+                      </label>
+                       <div class="col-md-2">
+                       <input type="date" class="form-control" value ="<?php echo date('dd-mm-yyy'); ?>" name="mtopdate" style="height: 75%" min ="0" max="5"></div>
+                    </div>
+
 
 
 <div> 
@@ -1135,7 +1156,6 @@ function funcoperatoridfee() {
            document.getElementById("total").innerHTML = totalamount
     }
 }
-transferfee
 
 function funccertificationofnorecordfee() {   
     var certificationofnorecordfee = document.getElementById("certificationofnorecordfee");
@@ -1184,7 +1204,7 @@ function funcfarematrix() {
     }
 }
 
-environmentalfee
+
 
 function funcbodynumberstickerfee() {   
     var bodynumberstickerfee = document.getElementById("bodynumberstickerfee");
@@ -1219,18 +1239,29 @@ function funcenvironmentalfee() {
 }
 
 
+function funcdriveridfee() {   
+    var driveridfee = document.getElementById("driveridfee");
+    var environmentalfeeamount = document.getElementById("environmentalfeeamount");
+    var multipliers = +document.getElementById("driveridfeecount").value;
+      if (driveridfee.checked == true) {
+        document.getElementById("driveridfeeamount").innerHTML = php_driveridfee * multipliers;
+        totalamount = totalamount + (php_driveridfee * multipliers)
+     
+         document.getElementById("getdriveramount1").value = multipliers;
+         
+          document.getElementById("driveridfeecount").disabled = true;
+              document.getElementById("total").innerHTML = totalamount
+    } 
+    else {
+       document.getElementById("driveridfeeamount").innerHTML = ""
+          totalamount = totalamount -(php_driveridfee * multipliers);
+           document.getElementById("total").innerHTML = totalamount
+           document.getElementById("getdriveramount1").value = 0;
+            document.getElementById("driveridfeecount").disabled = false;
+    }
+}
 
- $('input').keyup(function(){ // run anytime the value changes
-    var firstValue  = Number($('#driveridfeecount').val());   // get value of field
-    
 
-    $('#total').html(totalamount+(firstValue * php_driveridfee)); // add them and output it
-     $('#driveridamount').html(firstValue * php_driveridfee);
-    document.getElementById('total_expenses2').value = firstValue;
-    document.getElementById('driveridamount').value = firstValue * php_driveridfee;
-
-// add them and output it
-});
 
 </script>
 <?php
@@ -1238,81 +1269,79 @@ if(isset($_POST['addmtop'])){
 
  if (isset($_POST['mtopfee'])) {
       $inmtopfee = $_POST['mtopfee'];
-    }else { $inmtopfee =""}
+    } else { $inmtopfee ="";}
 
 
     if (isset($_POST['annualstickerfee'])) {
       $inannualstickerfee = $_POST['annualstickerfee'];
-    }else { $inannualstickerfee =""}
+    }else { $inannualstickerfee ="";}
 
 
  if (isset($_POST['mtopplatefee'])) {
       $inmtopplatefee = $_POST['mtopplatefee'];
-    }else { $inmtopplatefee =""}
+    }else { $inmtopplatefee ="";}
 
 
  if (isset($_POST['operatoridfee'])) {
       $inoperatoridfee = $_POST['operatoridfee'];
-    }else { $inoperatoridfee =""}
+    }else { $inoperatoridfee ="";}
 
 
- if ($_POST['driveridfee'] !="") {
-      $dfee = $_POST['driveridfee'];
+ if ($_POST['getdriveramount'] !="") {
+      $dfee = $_POST['getdriveramount'];
       $indriveridfee = $dfee * $driveridfee;
 
-    }else { $indriveridfee =""}
+    }else { $indriveridfee ="";}
 
  if (isset($_POST['parkingfee'])) {
       $inparkingfee = $_POST['parkingfee'];
-    }else { $inparkingfee =""}
+    }else { $inparkingfee ="";}
 
 
  if (isset($_POST['droppingfee'])) {
       $indroppingfee = $_POST['droppingfee'];
-    }else { $inpindroppingfeearkingfee =""}
+    }else { $inpindroppingfeearkingfee ="";}
 
  if (isset($_POST['confirmationfee'])) {
       $inconfirmationfee = $_POST['confirmationfee'];
-    }else { $inconfirmationfee =""}
+    }else { $inconfirmationfee ="";}
 
  if (isset($_POST['certificationofnorecordfee'])) {
       $incertificationofnorecordfee = $_POST['certificationofnorecordfee'];
-    }else { $incertificationofnorecordfee =""}
+    }else { $incertificationofnorecordfee ="";}
 
 
  if (isset($_POST['transferfee'])) {
       $intransferfee = $_POST['transferfee'];
-    }else { $intransferfee =""}
+    }else { $intransferfee ="";}
 
 
  if (isset($_POST['farematrix'])) {
       $infarematrix = $_POST['farematrix'];
-    }else { $infarematrix =""}
+    }else { $infarematrix ="";}
 
 
  if (isset($_POST['bodynumberstickerfee'])) {
       $inbodynumberstickerfee = $_POST['bodynumberstickerfee'];
-    }else { $bodynumberstickerfee =""}
+    }else { $bodynumberstickerfee ="";}
 
 
  if (isset($_POST['environmentalfee'])) {
       $inenvironmentalfee = $_POST['environmentalfee'];
-    }else { $inenvironmentalfee =""}
+    }else { $inenvironmentalfee ="";}
+$mtopdate = $_POST['mtopdate'];
+$mtopexpiration = $mtopdate +1;
 
+$mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee + $indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee;
 
-
-
-$sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`) VALUES ('', 'mtopfee', 'annualstickerfee', 'mtopplatefee', 'operatoridfee', 'driveridfee', 'parkingfee', 'droppingfee', 'confirmationfee', 'certificationofnorecordfee', 'transferfee', 'farematrix', 'bodynumberstickerfee', 'environmentalfee', 'mtoptotal', 'mtopdate', 'mtopexpiration', 'trikeid')";
+$sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`) 
+VALUES ('', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee', '$mtoptotal', '$mtopdate', '$mtopexpiration', '$tid')";
 
 if ($conn->query($sql) === TRUE) { 
+  echo "<script type='text/javascript'>alert(\"Successfully Removed  \")</script>";
+                                      echo '<script>window.location.href="profile.php?id='.$tid.'"</script>';
 
-
-
-
-
-
-
-
+}}
   ?>
 
               </div><!-- End Bordered Tabs -->
