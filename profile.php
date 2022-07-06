@@ -383,31 +383,6 @@ if(isset($_SESSION['username'])){
 
     </ul>
   </aside><!-- End Sidebar-->
- <?php
-    $tid = $_GET['id'];
-
-          $sql = "SELECT  * FROM `mtop` where trikeid ='$tid' and mtopexpiration < now()";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-
-   while($row = $result->fetch_assoc()) {
-          $mtopid = $row['id'];
-          $mtopexpiration = $row['mtopexpiration'];
-          $status  = $row['status'];
-          $mtopyear = $row['mtopyear'];
-          $mtoptrikeid  = $row['trikeid'];
-
-
-   }
-
-
-  }else {
-
-          $mtopexpiration  = "expired";
-  }
-
-
-    ?>
 
   <main id="main" class="main">
 
@@ -463,6 +438,7 @@ if ($result->num_rows > 0) {
   inspection.upholstery,
   inspection.wheels,
   inspection.remarks
+
 FROM tricycle
 JOIN driveroperator
 ON tricycle.operatorid = driveroperator.pid
@@ -515,7 +491,30 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
     <section class="section profile">
       <div class="row">
       
-    
+     <?php
+                     $tid = $_GET['id'];
+                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now()";
+                    $results = $conn->query($sqlmtop);
+                    if ($results->num_rows > 0) {
+                        // output data of each row
+                      $mtopstat = 'mtopvalid';
+                        while($row = $results->fetch_assoc()) {
+
+                          $mtopexpiration = $row['mtopexpiration'];
+                     }}else{
+                         $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' ORDER BY id DESC limit 1;";
+                        $resultss = $conn->query($sqlmtop);
+                          if ($resultss->num_rows > 0) {
+                        // output data of each row
+                      $mtopstat = 'mtopexpired';
+                        while($row = $resultss->fetch_assoc()) {
+                             $mtopexpiration = $row['mtopexpiration'];
+                     }}else{
+                        $mtopexpiration = '';
+                      $mtopstat = 'mtopexpired';
+                      
+                     }}
+                          ?>
         <div class="col-xl-8">
 
           <div class="card">
@@ -534,7 +533,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-mtop">MTOP</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-<?php echo $mtopstat; ?>">MTOP</button>
                 </li>
                  <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
@@ -783,10 +782,33 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   <p class="small fst-italic"><?php echo $transaction." --- ".$transactdate;?></p>
                 
 
-<?php }}?>
+<?php }}  
+
+ ?>
                   </form></div></div>
 
-                <div class="tab-pane fade pt-3" id="profile-mtop">
+
+<?php 
+
+if ($mtopexpiration =='') {
+ $mtopexpformatted = "No record";
+}else{
+
+  $mtopexpformatted = date('F-d-Y', strtotime($mtopexpiration));
+}
+ ?>
+
+
+                   <div class="tab-pane fade pt-3" id="profile-mtopvalid">
+                      <h5 class="card-title">MTOP IS UP TO DATE UNTIL: <font color="green"><?php echo $mtopexpformatted; ?></font></h5>
+
+                   </div>
+
+
+
+
+                <div class="tab-pane fade pt-3" id="profile-mtopexpired">
+                    <h5 class="card-title">MTOP LAST Registration:  <font color="red"><?php echo $mtopexpformatted;  ?></font> </h5>
                   <!-- Change Password Form -->
                   <form method="POST">
 
@@ -892,7 +914,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="droppingfee"  onclick="funcdroppingfee()" name="parkingfee" value="<?php echo $droppingfee; ?>">
+                      <input class="form-check-input" type="checkbox" id="droppingfee"  onclick="funcdroppingfee()" name="droppingfee" value="<?php echo $droppingfee; ?>">
                       <label class="form-check-label" for="gridCheck2" >
                        Dropping Fee
                       </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -982,7 +1004,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                      
                       </label>
                        <div class="col-md-2">
-                       <input type="date" class="form-control" value ="<?php echo date('dd-mm-yyy'); ?>" name="mtopdate" style="height: 75%" min ="0" max="5"></div>
+                       <input type="date" class="form-control" value ="<?php echo date('dd-mm-yyy'); ?>" name="mtopdate" style="height: 75%" min ="0" max="5" required></div>
                     </div>
 
 
@@ -1330,18 +1352,29 @@ if(isset($_POST['addmtop'])){
       $inenvironmentalfee = $_POST['environmentalfee'];
     }else { $inenvironmentalfee ="";}
 $mtopdate = $_POST['mtopdate'];
-$mtopexpiration = $mtopdate +1;
+$mtopexpiration = date('Y-m-d', strtotime('+1 year', strtotime($mtopdate)) );
 
-$mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee + $indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee;
+
+$mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee +$inoperatoridfee +$indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee;
 
 $sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`) 
-VALUES ('', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee', '$mtoptotal', '$mtopdate', '$mtopexpiration', '$tid')";
+VALUES ('NULL', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee', '$mtoptotal', '$mtopdate', '$mtopexpiration', '$tid')";
 
 if ($conn->query($sql) === TRUE) { 
-  echo "<script type='text/javascript'>alert(\"Successfully Removed  \")</script>";
-                                      echo '<script>window.location.href="profile.php?id='.$tid.'"</script>';
 
-}}
+  $sql = "UPDATE `tricycle` SET `currentmtop` = '2022-07-06' WHERE `tricycle`.`id` = $tid";
+  if ($conn->query($sql) === TRUE) { 
+
+
+$sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Updated MTOP', 'updated mtop', now(), 'done', '', '$tid')";
+if ($conn->query($sql) === TRUE) {  
+
+ 
+
+  echo "<script type='text/javascript'>alert(\"Successfully Updated MTOP RECORD  \")</script>";
+                                      echo '<script>window.location.href="profile.php?id='.$tid.'"</script>';
+}
+}}}
   ?>
 
               </div><!-- End Bordered Tabs -->
@@ -1434,7 +1467,7 @@ $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, 
 if ($conn->query($sql) === TRUE) {  
 
   echo "<script type='text/javascript'>alert(\"Successfully Generated  \")</script>";
-                                      echo '<script>window.location.href="formpdf.php?id='.$rowprintid.'"</script>';;
+                                      echo '<script>window.location.href="formpdf.php?id='.$rowprintid.'"</script>';
 	 
 }}
 

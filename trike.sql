@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2022 at 06:23 PM
+-- Generation Time: Jul 06, 2022 at 05:10 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -52,8 +52,7 @@ CREATE TABLE `driveroperator` (
 --
 
 INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
-(81, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', '', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-30', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-30', '62bcf0fe4f867.jpeg'),
-(82, 'Testing fname', 'Middle', 'Last', '', 'ext', 'SUBOK@gnau.com', 'Apollo', '123123', 'qwe', 'qwe', 'qwe', '2022-07-03', 'DRIVER', 'SUBOK', 'OPERATOR', '2022-07-03', '62c15ef81b78a.png');
+(81, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', '', 'TALA', '09082646040', 'Apollo', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-06-30', 'OPERATOR', '123asd', 'OPERATOR', '2022-06-30', '62bcf0fe4f867.jpeg');
 
 -- --------------------------------------------------------
 
@@ -67,13 +66,6 @@ CREATE TABLE `drivers` (
   `trikeid` varchar(55) NOT NULL,
   `driverid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `drivers`
---
-
-INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES
-(1, '2421', '3095', '82');
 
 -- --------------------------------------------------------
 
@@ -132,6 +124,13 @@ CREATE TABLE `mtop` (
   `mtopexpiration` varchar(55) NOT NULL,
   `trikeid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mtop`
+--
+
+INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`) VALUES
+(11, '200', '150', '250', '25', '25', '35', '60', '100', '100', '1000', '50', '300', '75', '2670', '2022-07-06', '2023-07-06', '3095');
 
 -- --------------------------------------------------------
 
@@ -281,9 +280,7 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES
-(1, 'Added New Driver', 'added driver to tricycle', '2022-07-03', 'done', '', 3095),
-(2, 'Printed Form', 'generate or print form', '2022-07-03', 'done', '', 3095),
-(3, 'Printed Form', 'generate or print form', '2022-07-03', 'done', '', 3095);
+(1, 'Updated MTOP', 'updated mtop', '2022-07-06', 'done', '', 3095);
 
 -- --------------------------------------------------------
 
@@ -313,15 +310,16 @@ CREATE TABLE `tricycle` (
   `toda` varchar(55) NOT NULL,
   `sidecarcolor` varchar(55) NOT NULL,
   `inspectionstat` varchar(55) NOT NULL,
-  `classification` varchar(55) NOT NULL
+  `classification` varchar(55) NOT NULL,
+  `currentmtop` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tricycle`
 --
 
-INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES
-(3095, 'MATAWARAN', 'MATAWARAN', 'LALUNA', '', '231', '123123', '333', '1312', 'toyota', 'red', '123123', 'adasd', '90221', '2022-06-30', '66', '2421', '81', 'KAMADO ', 'GREEN', '', 'Public');
+INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`, `currentmtop`) VALUES
+(3095, 'MATAWARAN', 'MATAWARAN', 'LALUNA', '', '231', '123123', '333', '1312', 'toyota', 'red', '123123', 'adasd', '90221', '2022-06-30', '66', '2421', '81', 'KAMADO ', 'GREEN', '', 'Public', '2022-07-06');
 
 --
 -- Indexes for dumped tables
@@ -390,12 +388,12 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
 ALTER TABLE `drivers`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `inspection`
 --
@@ -405,7 +403,7 @@ ALTER TABLE `inspection`
 -- AUTO_INCREMENT for table `mtop`
 --
 ALTER TABLE `mtop`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `mtopamount`
 --
@@ -425,7 +423,7 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
