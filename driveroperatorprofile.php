@@ -1,5 +1,5 @@
 <?php 
-  include '/include/controller.php';
+include 'include/controller.php';
 
   ob_start();
 
@@ -402,8 +402,7 @@ if(isset($_SESSION['username'])){
 
     <?php
     $doid = $_GET['id'];
-   
-    include '\include\connection.php';
+ 
      $sql = "SELECT * from driveroperator WHERE pid = '$doid'";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {

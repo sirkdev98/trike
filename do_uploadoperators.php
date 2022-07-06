@@ -1,6 +1,6 @@
 <?php
   
-include '\include\controller.php';
+include 'include/controller.php';
     $img = $_POST['image'];
     $folderPath = "upload/";
   

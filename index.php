@@ -1,5 +1,6 @@
 <?php 
-  include '/include/controller.php';
+
+include 'include/controller.php';
 
   ob_start();
 

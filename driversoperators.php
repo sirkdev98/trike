@@ -1,3 +1,38 @@
+<?php 
+
+include 'include/controller.php';
+
+  ob_start();
+
+
+//$cidd = $_SESSION['myVariable'];
+if(isset($_SESSION['username'])){
+    
+      $cidd = $_SESSION['id'];
+      $userrole= $_SESSION['role'];
+      $userfname= $_SESSION['fname'];
+      $userlname= $_SESSION['lname'];
+
+ 
+
+//testing github for me
+
+}else{
+    header("location:logout.php");
+}
+
+   if(time() - $_SESSION['timestamp'] > 5600) { //subtract new timestamp from the old one
+    echo"<script>alert('15 Minutes over!');</script>";
+    unset($_SESSION['username']);
+    
+    header("Location:  logout.php"); //redirect to index.php
+    exit;
+} else {
+    $_SESSION['timestamp'] = time(); //set new timestamp
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,5 +1,6 @@
 <?php 
-  include '/include/controller.php';
+
+include 'include/controller.php';
 
   ob_start();
 
@@ -30,6 +31,7 @@ if(isset($_SESSION['username'])){
     $_SESSION['timestamp'] = time(); //set new timestamp
 }
 ?>
+
 
 <!DOCTYPE html>
 
