@@ -1404,6 +1404,13 @@ if ($conn->query($sql) === TRUE) {
 
  <a href="#delete<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
   <i class="bi bi-printer"></i> PRINT FORM</button></a></i>
+
+</div>
+<div class="social-links mt-2">
+
+ <a href="cpcpdf.php?id=<?php echo $tid;?>"><button type='button' class='btn btn-primary btn-lg'>
+  <i class="bi bi-printer"></i> PRINT CPC</button></a></i>
+  
 </div>
 <div class="social-links mt-2">
   <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-lg'>
