@@ -140,7 +140,7 @@ $pdf->Image('Capture.png',8,270,200);
 if ($picname=="") {
 
 }else{
-  $pdf->Image('cpc.jpg',1,1,210,148);
+  $pdf->Image('cpc.jpg',0,1,210,148);
 }
 
 
