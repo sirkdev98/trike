@@ -373,7 +373,7 @@ $lastyear = date("Y",strtotime("-1 year"));
     (SELECT COUNT(*) FROM tricycle WHERE `currentfranchise` >= now())AS withfranchise,
     (SELECT COUNT(*) FROM tricycle )AS trikecount,
     (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= YEAR(CURDATE())) AS mtopcollection,
-    (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= $lastyear) AS mtopcollectionlastyear";
+    (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= '$lastyear') AS mtopcollectionlastyear";
    //di pa gumagana yearr hahah   
         
           
@@ -390,7 +390,7 @@ $lastyear = date("Y",strtotime("-1 year"));
 
 }}
 
-$increase = $mtopcollection - $mtopcollection;
+$increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionlastyear)*100, 2); 
 
 ?>
 
@@ -502,7 +502,12 @@ $increase = $mtopcollection - $mtopcollection;
                     </div>
                     <div class="ps-3">
                       <h6>&#x20B1;<?php echo $mtopcollection; ?></h6>
-                      <span class="text-success small pt-1 fw-bold"><?php echo $increase; ?>%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <span class="text-success small pt-1 fw-bold"><?php echo $increase; ?>%</span> <span class="text-muted small pt-2 ps-1">
+
+
+                        <?php if ($increase <0) {
+                          echo "Lower ";
+                        }else { echo "Higher ";} ?>last year</span>
 
                     </div>
                   </div>
