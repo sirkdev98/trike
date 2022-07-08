@@ -367,13 +367,14 @@ if(isset($_SESSION['username'])){
 
   <main id="main" class="main">
 <?php 
-
+$lastyear = date("Y",strtotime("-1 year"));
  $sql = "SELECT
     (SELECT COUNT(*) FROM tricycle WHERE YEAR(`currentmtop`) = YEAR(CURDATE()))AS withmtop,
     (SELECT COUNT(*) FROM tricycle WHERE `currentfranchise` >= now())AS withfranchise,
     (SELECT COUNT(*) FROM tricycle )AS trikecount,
-    (SELECT SUM(mtoptotal)FROM mtop)AS mtopcollection";
-      
+    (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= YEAR(CURDATE())) AS mtopcollection,
+    (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= $lastyear) AS mtopcollectionlastyear";
+   //di pa gumagana yearr hahah   
         
           
  $result = $conn->query($sql);
@@ -385,14 +386,18 @@ if(isset($_SESSION['username'])){
                             $withfranchise =$row['withfranchise'];
                             $trikecount = $row['trikecount'];
                             $mtopcollection = $row['mtopcollection'];
+                             $mtopcollectionlastyear = $row['mtopcollectionlastyear'];
 
 }}
+
+$increase = $mtopcollection - $mtopcollection;
+
 ?>
 
     
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1>Dashboard </h1>
       <nav>
         <ol class="breadcrumb">
           
@@ -419,7 +424,7 @@ if(isset($_SESSION['username'])){
                      <i class="ri-motorbike-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6><?php echo $trikecount; ?></h6>
+                      <h6><?php echo $trikecount ?></h6>
                     
 
                     </div>
@@ -443,7 +448,7 @@ if(isset($_SESSION['username'])){
                     </div>
                     <div class="ps-3">
                       <h6><?php echo $withfranchise; ?></h6>
-                    
+                        
 
                     </div>
                   </div>
@@ -486,18 +491,7 @@ if(isset($_SESSION['username'])){
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
+               
 
                 <div class="card-body">
                   <h5 class="card-title">Collection <span>| This Year</span></h5>
@@ -507,8 +501,8 @@ if(isset($_SESSION['username'])){
                       <i class="bi bi-cash-stack"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6>&#x20B1;<?php echo $mtopcollection; ?></h6>
+                      <span class="text-success small pt-1 fw-bold"><?php echo $increase; ?>%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
                   </div>
