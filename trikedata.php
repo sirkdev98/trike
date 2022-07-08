@@ -734,13 +734,127 @@ if(isset($_SESSION['username'])){
 
 
 
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+              <h4 class="modal-title">ISSUE FRANCHISE</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+    <h5 class="card-title">Grant Franchise, Please insert Application date period:</h5>
+<font color="skyblue"> <strong></strong></font>
+              <form method="POST" method="POST">
+              
+<div class="row mb-12">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>FROM:</b></label>
+                  <div class="col-sm-4">
+                
+                    <input type="date" class="form-control" name="startDatePicker"  id="startDatePicker" required>
+                  </div>
 
+  <label for="inputEmail" class="col-sm-2 col-form-label"><b>TO:</b></label>
+                  <div class="col-sm-4">
+                
+                    <input type="date" class="form-control" name="endDatePicker"  id="endDatePicker" required>
+                  </div>
+
+
+                </div>
+
+<Br>
+
+<div class="row mb-6">
+                  <label for="startDatePicker" class="col-sm-2 col-form-label"><font color="orange"><b>DATE OF FRANCHISE ISSUANCE:</b></label></font>
+                  <div class="col-sm-4">
+                <Br>
+                    <input type="date" class="form-control" name="franchisedate"  id="franchisedate" required>
+                  </div>
+
+</div>
+
+</div>
+
+
+
+               <div class="modal-footer">
+               <button type="submit" name="issuefranchise"class="btn btn-success">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+             </form>
+    </div>
+
+  </div></div>
+<script>
+  
+$("#startDatePicker").datepicker({ 
+    dateFormat: 'dd-mm-yyyy',
+    changeMonth: true,
+    minDate: new Date(),
+    maxDate: '+2y',
+    onSelect: function(date){
+
+        var selectedDate = new Date(date);
+        var msecsInADay = 86400000;
+        var endDate = new Date(selectedDate.getTime() + msecsInADay);
+
+       //Set Minimum Date of EndDatePicker After Selected Date of StartDatePicker
+        $("#endDatePicker").datepicker( "option", "minDate", endDate );
+        $("#endDatePicker").datepicker( "option", "maxDate", '+2y' );
+
+    }
+});
+
+$("#endDatePicker").datepicker({ 
+    dateFormat: 'dd-mm-yyyy',
+    changeMonth: true
+});
+</script>
+
+<?php 
+
+
+if (isset($_POST['issuefranchise'])) {
+
+  $startDatePicker =$_POST['startDatePicker'];
+  $endDatePicker =$_POST['endDatePicker'];
+  $franchisedate =$_POST['franchisedate'];
+
+  $franchiseexpiration = date('Y-m-d', strtotime('+3 year', strtotime($franchisedate)));
+$sqlfranchise = "UPDATE `tricycle` SET `currentfranchise` = '$franchiseexpiration' WHERE `applicationdate` BETWEEN '$startDatePicker' AND '$endDatePicker'";
+ $result = $conn->query($sqlfranchise);
+                      if($conn->query($sqlfranchise) === TRUE) { 
+
+$sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$franchisedate', `franchiseexpiration` = '$franchiseexpiration' WHERE `franchiseapplication` BETWEEN '$startDatePicker' AND '$endDatePicker'";
+ $result = $conn->query($sqlfranchiserecord);
+                       if ($conn->affected_rows > 0) {
+
+                        $countt = $conn->affected_rows;
+                         echo "<script type='text/javascript'>alert(\"Successfully Updated Franchise Record of $countt  \")</script>";
+                                      echo '<script>window.location.href="trikedata.php?filter=all"</script>';
+
+
+}
+
+
+
+}else
+  echo "<script type='text/javascript'>alert(\"No record found $countt  \")</script>";
+                                     
+
+}
+
+?>
 
 
 
 
                 <div class="d-grid gap-2 mt-3">
                 <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD TRICYCLE DATA </button>
+
+                   <button class="btn btn-warning" type="button" data-toggle="modal"  data-target=".bd-example-modal-lg">ISSUE FRANCHISE</button>
               </div>
               <br></br>
 
@@ -750,6 +864,7 @@ if(isset($_SESSION['username'])){
                 <th>ID</th>
                 <th>Owner</th>
                 <th>Body Number</th>
+                <th>Application Date</th>
                 <th>Franchise Date</th>
              
                 <th>Action</th>
@@ -780,6 +895,7 @@ if(isset($_SESSION['username'])){
                             $bodynum= $row['bodynum'];
                             $operatorid = $row['operatorid'];
                             $applicationdate = $row['applicationdate'];
+                              $currentfranchise = $row['currentfranchise'];
 
 
 
@@ -790,6 +906,14 @@ if(isset($_SESSION['username'])){
                 <td><?php echo  $lname.", ".$fname." ".$mname; ?></td>
                 <td><?php echo  $bodynum; ?></td>
                 <td><?php echo  $applicationdate; ?></td>
+                <td><?php 
+                if ($currentfranchise=='0000-00-00') {
+                echo  "Franchise pending";
+                }else {
+                echo  "<font color='skyblue'>".$currentfranchise."</font>";
+                } ?>
+                  
+                </td>
      
                 <td>
   <a href="profile.php?id=<?php echo  $id; ?>" target="_blank"><button type='button' class='btn btn-primary btn-sm' >
@@ -810,6 +934,7 @@ if(isset($_SESSION['username'])){
               <th>ID</th>
                 <th>Owner</th>
                 <th>Body Number</th>
+                <th>Application Date</th>
                 <th>Franchise Date</th>
              
                 <th>Action</th>

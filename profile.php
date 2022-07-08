@@ -1043,7 +1043,7 @@ if ($mtopexpiration =='') {
                                         <input type="hidden" name="pid" value="<?php echo $tid; ?>">
                 
 
-                                        <div class="alert alert-info">Are you sure you want to MTOP to the franchise of <strong>
+                                        <div class="alert alert-info">Are you sure you want to issue MTOP to the franchise of <strong>
                                                 <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
                                         <div class="modal-footer">
                                            <button type="submit" name="addmtop" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
@@ -1408,7 +1408,7 @@ if ($conn->query($sql) === TRUE) {
 </div>
 <div class="social-links mt-2">
 
- <a href="cpcpdf.php?id=<?php echo $tid;?>"><button type='button' class='btn btn-primary btn-lg'>
+ <a href="cpcpdf.php?id=<?php echo $tid;?>" target="_blank"><button type='button' class='btn btn-primary btn-lg'>
   <i class="bi bi-printer"></i> PRINT CPC</button></a></i>
   
 </div>
@@ -1473,8 +1473,8 @@ $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, 
 if ($conn->query($sql) === TRUE) {  
 
   echo "<script type='text/javascript'>alert(\"Successfully Generated  \")</script>";
-                                      echo '<script>window.location.href="formpdf.php?id='.$rowprintid.'"</script>';
-	 
+                                      echo "<script> window.open ('formpdf.php?id=$rowprintid', 'Editar notícia', 'location=1, status=1, scrollbars=1, width=800, height=455');</script>";
+	                                                  
 }}
 
 

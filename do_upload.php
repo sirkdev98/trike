@@ -57,13 +57,16 @@ if ($conn->query($sql) === TRUE) {
  $sql2 = "INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES (NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '$last_idtrike')";
 
 if ($conn->query($sql2) === TRUE) { 
+
+  $sql3 = "INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchiseapproval`, `franchiseexpiration`, `trikeid`) VALUES (NULL, '$applicationdate', '', '', '$last_idtrike')";
+
+if ($conn->query($sql3) === TRUE) { 
  echo "<script type='text/javascript'>alert(\"Successfully added Tricycle \")</script>";
            echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
             echo "<script type='text/javascript'>alert(\"Data not inserted\")</script>";
 
-}
-}
+}}}
 
 
 
@@ -132,21 +135,23 @@ if ($conn->query($sql) === TRUE) {
  $last_idtrike = $conn->insert_id;
 
  $sql2 = "INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES (NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '$last_idtrike')";
-
 if ($conn->query($sql2) === TRUE) { 
- echo "<script type='text/javascript'>alert(\"Successfully added Operator and Tricycle Details \")</script>";
+
+$sql3 = "INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchiseapproval`, `franchiseexpiration`, `trikeid`) VALUES (NULL, '$applicationdate', '', '', '$last_idtrike')";
+
+if ($conn->query($sql3) === TRUE) { 
+ echo "<script type='text/javascript'>alert(\"Successfully added Tricycle \")</script>";
            echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
-
-}
-}
-
-
+            echo "<script type='text/javascript'>alert(\"Data not inserted\")</script>";
 }
 
 
+}}
 
-}
+
+
+}}
 
 
 
