@@ -360,7 +360,16 @@ if(isset($_SESSION['username'])){
           <li>
            
           </li>
+
+
        </ul>
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="downloads.php">
+          <i class="bi bi-download"></i>
+          <span>Downloadables</span>
+        </a>
+      </li>
+
    
   </aside><!-- End Sidebar-->
 
@@ -374,7 +383,7 @@ $lastyear = date("Y",strtotime("-1 year"));
     (SELECT COUNT(*) FROM tricycle )AS trikecount,
     (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= YEAR(CURDATE())) AS mtopcollection,
     (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= '$lastyear') AS mtopcollectionlastyear";
-   //di pa gumagana yearr hahah   
+   
         
           
  $result = $conn->query($sql);
@@ -440,7 +449,7 @@ $increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionla
               <div class="card info-card sales-card">
 
                 <div class="card-body">
-                  <h5 class="card-title">Total Franchise</h5>
+                  <h5 class="card-title">Franchise Registered</h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

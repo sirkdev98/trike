@@ -418,6 +418,7 @@ if(isset($_SESSION['username'])){
   tricycle.sidecarcolor, 
   tricycle.bodynum, 
   tricycle.inspectionstat,
+  tricycle.currentfranchise,
   driveroperator.pid,
   driveroperator.fname,
   driveroperator.mname, 
@@ -481,6 +482,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $upholstery = $row['upholstery'];
                             $wheels = $row['wheels'];
                             $remarks = $row['remarks'];
+                            $currentfrachise = $row['currentfranchise'];
 
 
 
@@ -575,7 +577,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Franchise Date</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $applicationdate; ?></div>
+                    <div class="col-lg-9 col-md-8"><?php echo $currentfrachise; ?></div>
                   </div>
 
                  
@@ -1721,7 +1723,6 @@ if ($conn->query($sql) === TRUE) {
 
 
 
-
 <!-- Extra large modal EXISTING -->
 
 
@@ -1772,8 +1773,10 @@ if ($conn->query($sql) === TRUE) {
 
 
 </div></section>
+
              <table id="tbldriver" class="display" style="width:100%">
-        <thead>
+              <div>
+                      <thead>
             <tr>
                 <th>ID</th>
                 
@@ -1856,7 +1859,7 @@ if ($conn->query($sql) === TRUE) {
             <tr>
 
 
-
+</div>
             
 
 

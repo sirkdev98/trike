@@ -330,7 +330,17 @@ if(isset($_SESSION['username'])){
           <li>
            
           </li>
+
+
+
        </ul>
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="downloads.php">
+          <i class="bi bi-download"></i>
+          <span>Downloadables</span>
+        </a>
+      </li>
+
    
    
   </aside><!-- End Sidebar-->

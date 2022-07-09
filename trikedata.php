@@ -371,7 +371,15 @@ if(isset($_SESSION['username'])){
           <li>
            
           </li>
+
+
        </ul>
+          <li class="nav-item">
+        <a class="nav-link collapsed" href="downloads.php">
+          <i class="bi bi-download"></i>
+          <span>Downloadables</span>
+        </a>
+      </li>
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -780,7 +788,7 @@ if(isset($_SESSION['username'])){
 
 
                <div class="modal-footer">
-               <button type="submit" name="issuefranchise"class="btn btn-success">Save</button>
+               <button type="submit" name="issuefranchise" class="btn btn-success">Save</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
              </form>

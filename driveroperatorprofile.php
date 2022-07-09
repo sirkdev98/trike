@@ -379,9 +379,16 @@ if(isset($_SESSION['username'])){
         </a>
       </li>
       </li><!-- End Components Nav -->
-
+ <li class="nav-item">
+        <a class="nav-link collapsed" href="downloads.php">
+          <i class="bi bi-download"></i>
+          <span>Downloadables</span>
+        </a>
+      </li>
 
     </ul>
+
+     
   </aside><!-- End Sidebar-->
 
 
