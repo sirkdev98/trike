@@ -382,7 +382,9 @@ $lastyear = date("Y",strtotime("-1 year"));
     (SELECT COUNT(*) FROM tricycle WHERE `currentfranchise` >= now())AS withfranchise,
     (SELECT COUNT(*) FROM tricycle )AS trikecount,
     (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= YEAR(CURDATE())) AS mtopcollection,
-    (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= '$lastyear') AS mtopcollectionlastyear";
+    (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= '$lastyear') AS mtopcollectionlastyear,
+    (SELECT COUNT(*) FROM driveroperator WHERE type = 'OPERATOR') AS operatorcount,
+    (SELECT COUNT(*) FROM driveroperator WHERE type = 'OPERATOR/DRIVER') AS opdrivecount";
    
         
           
@@ -395,11 +397,11 @@ $lastyear = date("Y",strtotime("-1 year"));
                             $withfranchise =$row['withfranchise'];
                             $trikecount = $row['trikecount'];
                             $mtopcollection = $row['mtopcollection'];
-                             $mtopcollectionlastyear = $row['mtopcollectionlastyear'];
-
+                            $mtopcollectionlastyear = $row['mtopcollectionlastyear'];
+                            $operatorcount = $row['operatorcount'];
+                            $opdrivecount = $row['opdrivecount'];
 }}
-
-$increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionlastyear)*100, 2); 
+$increase = $mtopcollectionlastyear - $mtopcollection; 
 
 ?>
 
@@ -511,12 +513,12 @@ $increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionla
                     </div>
                     <div class="ps-3">
                       <h6>&#x20B1;<?php echo $mtopcollection; ?></h6>
-                      <span class="text-success small pt-1 fw-bold"><?php echo $increase; ?>%</span> <span class="text-muted small pt-2 ps-1">
+                      <span class="text-success small pt-1 fw-bold">&#x20B1;<?php echo $increase; ?></span><span class="text-muted small pt-2 ps-1">
 
 
-                        <?php if ($increase <0) {
+                        <?php if ($increase >0) {
                           echo "Lower ";
-                        }else { echo "Higher ";} ?>last year</span>
+                        }else { echo "Higher ";} ?> last year</span>
 
                     </div>
                   </div>
@@ -530,29 +532,18 @@ $increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionla
 
               <div class="card info-card customers-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
+              
 
                 <div class="card-body">
-                  <h5 class="card-title">Tricycle Registered <span>| This Year</span></h5>
+                  <h5 class="card-title">Operator<span> | total</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                      <h6><?php echo $operatorcount;?></h6>
+                    
 
                     </div>
                   </div>
@@ -561,6 +552,46 @@ $increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionla
               </div>
 
             </div><!-- End Customers Card -->
+
+
+
+  <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+              
+
+                <div class="card-body">
+                  <h5 class="card-title">Driver / Operator<span> | total</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6><?php echo $opdrivecount;?></h6>
+                     
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <!-- Reports -->
             <div class="col-12">
