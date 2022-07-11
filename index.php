@@ -401,7 +401,7 @@ $lastyear = date("Y",strtotime("-1 year"));
                             $operatorcount = $row['operatorcount'];
                             $opdrivecount = $row['opdrivecount'];
 }}
-$increase = $mtopcollectionlastyear - $mtopcollection; 
+$increase = number_format((($mtopcollection - $mtopcollectionlastyear)/$mtopcollectionlastyear)*100,2);
 
 ?>
 
@@ -513,10 +513,13 @@ $increase = $mtopcollectionlastyear - $mtopcollection;
                     </div>
                     <div class="ps-3">
                       <h6>&#x20B1;<?php echo $mtopcollection; ?></h6>
-                      <span class="text-success small pt-1 fw-bold">&#x20B1;<?php echo $increase; ?></span><span class="text-muted small pt-2 ps-1">
+                         <?php if ($increase <0) {
+                         $color ="danger";
+                        }else { $color ="success";} ?>
+                      <span class="text-<?php echo $color; ?> small pt-1 fw-bold">&#x20B1;<?php echo $increase; ?></span><span class="text-muted small pt-2 ps-1">
 
 
-                        <?php if ($increase >0) {
+                        <?php if ($increase <0) {
                           echo "Lower ";
                         }else { echo "Higher ";} ?> last year</span>
 

@@ -17,12 +17,15 @@ if(isset($_POST["export"]))
                     <tr>  
                          <th>ID</th>  
                          
-                         <th>Fname</th>
+                        <th>Fname</th>
                         <th>Mname</th> 
-                        <th>Lname</th>   
-                         <th>Toda</th>  
-                         <th>Body Number</th>  
-                         <th>Application date</th>
+                        <th>Lname</th> 
+                        <th>Full Name</th> 
+                        <th>Motor Number</th>   
+                        <th>Chasis Number</th>  
+                        <th>Toda</th>  
+                        <th>Body Number</th>  
+                        <th>Application date</th>
                        
     
                     </tr>
@@ -32,11 +35,13 @@ if(isset($_POST["export"]))
    $output .= '
     <tr>  
                          <td>'.$row["id"].'</td>  
-                         
                          <td>'.$row["fname"].'</td>  
                          <td>'.$row["mname"].'</td>  
-                         <td>'.$row["lname"].'</td>  
-                         <td>'.$row["toda"].'</t4d>  
+                         <td>'.$row["lname"].'</td> 
+                         <td>'.$row["fname"].' '.$row["mname"].' '.$row["lname"].'</td>
+                         <td>'.$row["engineno"].'</td>
+                         <td>'.$row["chasisno"].'</td>   
+                         <td>'.$row["toda"].'</td>  
                          <td>'.$row["brgycode"].'-'.$row["bodynum"].'</td>  
                          <td>'.$row["applicationdate"].'</td>
                         

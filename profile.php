@@ -419,6 +419,7 @@ if(isset($_SESSION['username'])){
   tricycle.bodynum, 
   tricycle.inspectionstat,
   tricycle.currentfranchise,
+  tricycle.status,
   driveroperator.pid,
   driveroperator.fname,
   driveroperator.mname, 
@@ -483,6 +484,8 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $wheels = $row['wheels'];
                             $remarks = $row['remarks'];
                             $currentfrachise = $row['currentfranchise'];
+                            $trikestatus = $row['status'];
+
 
 
 
@@ -534,7 +537,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-<?php echo $mtopstat; ?>">MTOP</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-<?php echo $mtopstat; ?>"<?php if($trikestatus=="dropped"){echo "hidden";}?> >MTOP</button>
                 </li>
                  <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
@@ -1385,9 +1388,9 @@ if ($conn->query($sql) === TRUE) {
 
         </div>
       </div>
-        <div class="col-xl-4">
+        <div class="col-xl-4" >
 
-          <div class="card">
+          <div class="card" hiddne>
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
           <img src="upload/<?php echo $picname; ?>" alt="Profile" class="rounded-circle">
@@ -1398,7 +1401,10 @@ if ($conn->query($sql) === TRUE) {
               </div>
             </div>
           </div>
-             <div class="card">
+             <div class="card" <?php if ($trikestatus=="dropped") {
+          echo "hidden";
+          # code...
+        } ?>>
          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
   
@@ -1419,11 +1425,18 @@ if ($conn->query($sql) === TRUE) {
   <i class="bi bi-pencil-fill"></i></button></a></i>
 </div>
 <div class="social-links mt-2">
-  <a href="#" data-toggle="modal"><button type='button' class='btn btn-danger  btn-lg'>
-  <i class="bi bi-trash-fill"></i></button></a></i>
+  <a href="#drop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-lg'>
+  <i class="bi bi-trash-fill"></i> DROP</button> </a></i>
 
 
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -1435,7 +1448,33 @@ if ($conn->query($sql) === TRUE) {
             </div>
           </div>
 
+ <div class="card" <?php if ($trikestatus !="dropped") {
+   echo "hidden";
+ } ?>>
+         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
+  
+<div class="social-links mt-2">
+
+<strong><font color = "red">Notice this franchise was dropped</font></strong>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+          
+              
+            </div>
         </div>
     </section>
 
@@ -1465,6 +1504,32 @@ if ($conn->query($sql) === TRUE) {
                     </div>
 
 
+  <div id="drop<?php echo $tid;?>" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                        <form method="post"> <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                       
+                                        <h4 class="modal-title">Drop record</h4>
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="pid" value="<?php echo $tid; ?>">
+                
+
+                                        <div class="alert alert-danger">Are you sure you want to drop the franchise of <strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
+                                        <div class="modal-footer">
+                                           <button type="submit" name="droprecord" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
 
                
 <?php 
@@ -1475,9 +1540,24 @@ $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, 
 if ($conn->query($sql) === TRUE) {  
 
   echo "<script type='text/javascript'>alert(\"Successfully Generated  \")</script>";
-                                      echo "<script> window.open ('formpdf.php?id=$rowprintid', 'Editar notícia', 'location=1, status=1, scrollbars=1, width=800, height=455');</script>";
-	                                                  
+
+   echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
+                                      
 }}
+
+if(isset($_POST['droprecord'])){
+  $rowprintid= $_POST['pid'];
+
+$sql = "UPDATE `tricycle` SET `status` = 'dropped' WHERE `tricycle`.`id` = $rowprintid";
+if ($conn->query($sql) === TRUE) {  
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'DROPPED FRANCHISE', 'drop franchise', now(), 'done', '', '$rowprintid')";
+if ($conn->query($sqlt) === TRUE) {  
+  echo "<script type='text/javascript'>alert(\"Successfully Dropped  \")</script>";
+                                       echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
+                  }                                  
+}}
+
 
 
 ?>                
@@ -1485,7 +1565,10 @@ if ($conn->query($sql) === TRUE) {
       <div class="row">
         <div class="col-lg-12">
 
-          <div class="card">
+          <div class="card" <?php if ($trikestatus=="dropped") {
+          echo "hidden";
+          # code...
+        } ?>>
             <div class="card-body">
               <h5 class="card-title">Driver List</h5>
               <!-- Extra large modal -->
