@@ -1421,8 +1421,8 @@ if ($conn->query($sql) === TRUE) {
   
 </div>
 <div class="social-links mt-2">
-  <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-lg'>
-  <i class="bi bi-pencil-fill"></i></button></a></i>
+  <button type='button' class='btn btn-warning btn-lg' ype="button" data-toggle="modal"  data-target=".bd-example-modal-xl"><a href="#" data-toggle="modal">
+  <i class="bi bi-pencil-fill"></i>Edit</button></a></i>
 </div>
 <div class="social-links mt-2">
   <a href="#drop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-lg'>
@@ -1431,19 +1431,7 @@ if ($conn->query($sql) === TRUE) {
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-          
-          
-          
+   
               
             </div>
           </div>
@@ -1530,6 +1518,162 @@ if ($conn->query($sql) === TRUE) {
                     </div>
 
 
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+              <h4 class="modal-title">Add Franchise</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+     
+
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Edit Franchise</h5>
+
+              <!-- General Form Elements -->
+         <form method="POST" action="do_upload.php">
+
+
+            
+            
+           
+                  <br><!--divider -->
+                  <div class="row mb-3">
+                     <label for="inputEmail" class="col-sm-12 col-form-label"><font color= "Green"><b>Tricycle Details</b></font></label>
+                    </div>
+  <input type="text" class="form-control"  name="fname" hidden value="<?php echo $fname; ?>">  <input type="text" class="form-control"  name="mname" hidden value="<?php echo $mname; ?>">
+  <input type="text" class="form-control" name="lname" hidden value="<?php echo $lname; ?>">  <input type="text" class="form-control" name="xname" hidden value="<?php echo $extname; ?>">
+   <input type="text" class="form-control" name="operatorid" hidden value="<?php echo $id; ?>">
+              <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Classification</b></label>
+                  <div class="col-sm-3">
+                   
+                   <select class="form-select" aria-label="Default select example" required name="classification">
+                      <option value="<?php echo $classification; ?>" selected><?php echo $classification; ?></option>
+                      <option value="Public">Public Motorized Tricycle for Hire</option>
+                      <option value="Utility">Utility Motorized Tricycle</option>
+                      <option value="Family">Family-Use Motorized Tricycle</option>
+                    </select>
+                  </div>
+                  
+                   <div class="col-sm-3">
+              
+                   <select class="form-select" aria-label="Default select example" required name="toda">
+                      <option value="" disabled selected>SELECT TODA</option>
+                    <?php
+                      $sql = "SELECT `toda` FROM toda";
+                       $result = $conn->query($sql);
+                      if($result->num_rows> 0){
+                         $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
+                           }
+                           foreach ($options as $option) {
+  ?>
+    <option value="<?php echo $option['toda']; ?>"><?php echo $option['toda']; ?> </option>
+    <?php 
+    }
+                    ?>
+                    
+                    </select>
+                  </div>
+                </div>
+                  <br>
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
+                  <div class="col-sm-2">
+                    MV File number
+                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                  </div>
+                  <div class="col-sm-2">
+                    Plate Number
+                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno">
+                  </div>
+                   <div class="col-sm-2">
+                    Engine Number
+                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="engineno">
+                  </div>
+                   <div class="col-sm-2">
+                    Chasis Number
+                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno">
+                  </div>
+                  </div>
+            
+<br>
+
+
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
+                  <div class="col-sm-2">
+                    Maker
+                    <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
+                  </div>
+                    <div class="col-sm-2">
+                    Motor Color
+                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
+                  </div>
+                  <div class="col-sm-2">
+                    Piston Displacement
+                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
+                  </div>
+                   <div class="col-sm-2">
+                    Cert. of Reg.
+                    <input type="text" class="form-control" name="cor" placeholder="Certificate of Registration" name="cor">
+                  </div>
+                   <div class="col-sm-2">
+                    Official Receipt No.
+                    <input type="text" class="form-control" placeholder="OR" name="ornum">
+                  </div>
+                  </div>
+
+
+
+<br>
+
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
+                  <div class="col-sm-4">
+                    Date of Application
+                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate">
+                  </div>
+                  <div class="col-sm-1">
+                    Brgy #
+                    <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{2}" style="color:#888;" required/>
+                  </div>
+                   <div class="col-sm-3">
+                    Body Number
+                    <input class="form-control" type="text" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required/>
+                  </div>
+                  
+                  </div>
+            
+             <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+</div></section>
+
+
+
+
+
+          <div class="modal-footer">
+               <button type="submit" name="saveevent"class="btn btn-success">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+             </form>
+    </div>
+
+  </div>
+</div>
 
                
 <?php 
