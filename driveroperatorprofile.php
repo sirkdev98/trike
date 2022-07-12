@@ -485,7 +485,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
        <div class="modal-header">
-              <h4 class="modal-title">Add DATA</h4>
+              <h4 class="modal-title">EDIT PROFILE</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -516,7 +516,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
               <h5 class="card-title">Driver / Operator</h5>
 
               <!-- General Form Elements -->
-         <form method="POST" action="do_uploadoperators.php">
+         <form method="POST">
               
 
   
@@ -595,32 +595,58 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                 <div class="row mb-2">
                   <label for="inputText" class="col-sm-2 col-form-label">NAME</label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+                    <input type="text" class="form-control" placeholder="First Name" name="fname" required value="<?php echo $fname; ?>">
                   </div>
                    <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Middle Name" name="mname">
+                    <input type="text" class="form-control" placeholder="Middle Name" name="mname" value="<?php echo $mname; ?>">
                   </div>
                    <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required value="<?php echo $lname; ?>">
                   </div>
                    <div class="col-sm-1">
-                    <input type="text" class="form-control" placeholder="Jr./Sr." name="xname">
+                    <input type="text" class="form-control" placeholder="Jr./Sr." name="xname" value="<?php echo $extname; ?>">
                   </div>
                 </div>
 
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" placeholder="Address Line 1" name="address1">
+                    <input type="text" class="form-control" placeholder="Address Line 1" name="address1" value="<?php echo $address1; ?>">
                   </div>
                 
                 
                   <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" name="barangay" required>
-                      <option value="" disabled selected>Barangay</option>
-                      <option value="Apollo">Apollo</option>
-                      <option value="Balut">Balut</option>
-                      <option value="Calero">Calero</option>
+                      <option value="<?php echo $barangay; ?>" selected><?php echo $barangay; ?></option>
+                     <option value="APOLLO">APOLLO</option>
+                  <option value="BALUT">BALUT</option>
+                  <option value="BAYAN">BAYAN</option>
+                  <option value="BAGONG PARAISO">BAGONG PARAISO</option>
+                  <option value="CALERO">CALERO</option>
+                  <option value="CENTRO I">CENTRO I</option>
+                  <option value="CENTRO II">CENTRO II</option>
+                  <option value="DONA">DOÑA</option>
+                  <option value="KABALUTAN">KABALUTAN</option>
+                  <option value="KAPARANGAN">KAPARANGAN</option>
+                  <option value="MARIA FE">MARIA FE</option>
+                  <option value="MASANTOL">MASANTOL</option>
+                  <option value="MULAWIN">MULAWIN</option>
+                  <option value="PACAR">PACAR</option>
+                  <option value="PAGASA">PAGASA</option>
+                  <option value="PALIHAN">PALIHAN</option>
+                  <option value="PANTALAN BAGO">PANTALAN BAGO</option>
+                  <option value="PANTALAN LUMA">PANTALAN LUMA</option>
+                  <option value="PARANG PARANG">PARANG PARANG</option>
+                  <option value="PUKSUAN">PUKSUAN</option>
+                  <option value="SIBUL">SIBUL</option>
+                  <option value="SILAHIS">SILAHIS</option>
+                  <option value="TAGUMPAY">TAGUMPAY</option>
+                  <option value="TALA">TALA</option>
+                  <option value="TALIMUNDOC">TALIMUNDOC</option>
+                  <option value="TAPULAO">TAPULAO</option>
+                  <option value="TENEJERO">TENEJERO</option>
+                  <option value="TUGATOG">TUGATOG</option>
+                  <option value="WAWA">WAWA</option>
                     </select>
                   </div>
                 </div>
@@ -712,7 +738,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
 
 
           <div class="modal-footer">
-               <button type="submit" name="saveevent"class="btn btn-success">Save</button>
+               <button type="submit" name="editprofile"class="btn btn-success">Save</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
              </form>
@@ -720,11 +746,64 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
 
   </div>
 </div>
+<?php 
+ if(isset($_POST['editprofile'])){
+
+  $img = $_POST['image'];
+    $folderPath = "upload/";
+  
+    $fetch_imgParts = explode(";base64,", $img);
+    $image_type_aux = explode("image/", $fetch_imgParts[0]);
+    $image_type = $image_type_aux[1];
+  
+    $image_base64 = base64_decode($fetch_imgParts[1]);
+ $img_name = uniqid() . '.jpeg';
+  
+    $file = $folderPath . $img_name;
+    file_put_contents($file, $image_base64);
+  
+  
+  
+
+$fname = $_POST['fname'];
+$mname = $_POST['mname'];
+$lname = $_POST['lname'];
+$xname = $_POST['xname'];
+$gender = $_POST['gender'];
+$address1 = $_POST['address1'];
+$barangay = $_POST['barangay'];
+$contactnum = $_POST['contactnum'];
+$bday = $_POST['bday'];
+$sfname = $_POST['sfname'];
+$smname = $_POST['smname'];
+$slname = $_POST['slname'];
+$type = $_POST['type'];
+$licensid = $_POST['licensid'];
+$licensetype = $_POST['lictype'];
+$expiration = $_POST['expiration'];
+if ($img =="") {
+$editpic = $picname;
+}else {
+
+  $editpic   = $img_name;
+}
+
+$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnumber', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slaname', `bday` = '$bday', `type` = '$type', `licensenum` = 'licensenum', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic' WHERE `driveroperator`.`pid` =  $doid";
+
+if ($conn->query($sql) === TRUE) {  
+ 
+ $last_id = $conn->insert_id;
+
+ echo "<script type='text/javascript'>alert(\"Successfully Edited\")</script>";
+           echo "<script>window.location.href='driveroperatorprofile.php?id=$doid'</script>"; 
+         }  else{
+             echo "<script type='text/javascript'>alert(\"Data not added please check.  \")</script>";
+
+}
+}
 
 
-
-
-
+?>
 
 
 
