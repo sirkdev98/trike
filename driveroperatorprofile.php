@@ -469,8 +469,264 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
             </div>
           </div>
 
+           <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+             
+
+          <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">EDIT PROFILE</button>
+            </div>
+          </div>
+
 
         </div>
+
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+              <h4 class="modal-title">Add DATA</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Driver / Operator</h5>
+
+              <!-- General Form Elements -->
+         <form method="POST" action="do_uploadoperators.php">
+              
+
+  
+  
+          
+          
+ 
+<!-- simple here configuration part a few settings and attach camera -->
+
+      <div class="row mb-3">
+
+
+          <div class="col-sm-4">
+
+                <div id="web_cam">
+                </div>
+                <br/>
+               
+               
+                <input type="hidden" name="image" class="image-tag">
+              </div>
+
+
+     
+            <div class="col-md-4">
+               <center> <div id="response">..</div></center>
+
+                  </div>
+
+                  <div class="col-md-4">
+               <center> <div id>
+                  Current Picture
+                  <img src="upload/<?php echo $picname; ?>">/
+
+               </div></center>
+
+                  </div>
+
+                 
+                  <div class="col-sm-3">
+   <script language="JavaScript">
+    Webcam.set({
+        width: 300,
+        height: 300,
+        image_format: 'jpeg',
+        jpeg_quality: 600
+    });
+  
+    Webcam.attach( '#web_cam' );
+  
+    function take_snapshot() {
+        Webcam.snap( function(web_cam_data) {
+            $(".image-tag").val(web_cam_data);
+            document.getElementById('response').innerHTML = '<img src="'+web_cam_data+'"/>';
+        } );
+    }
+</script>
+
+                  </div>
+
+
+                </div>
+
+                  <div class="row mb-2">
+                 
+                  <div class="col-sm-3">
+                    <input type=button class="btn-success" value="Take Snapshot" onClick="take_snapshot()">
+                  </div>
+                  
+                
+                </div>
+
+
+
+
+                <div class="row mb-2">
+                  <label for="inputText" class="col-sm-2 col-form-label">NAME</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Middle Name" name="mname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+                  </div>
+                   <div class="col-sm-1">
+                    <input type="text" class="form-control" placeholder="Jr./Sr." name="xname">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Address Line 1" name="address1">
+                  </div>
+                
+                
+                  <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" name="barangay" required>
+                      <option value="" disabled selected>Barangay</option>
+                      <option value="Apollo">Apollo</option>
+                      <option value="Balut">Balut</option>
+                      <option value="Calero">Calero</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
+                  <div class="col-sm-4">
+                    <input type="number" class="form-control" name="contactnum">
+                  </div>
+
+
+                   <div class="col-sm-4">
+                       <select class="form-select" aria-label="Default select example" name="gender" required>
+                      <option value="" disabled selected>SELECT GENDER</option>
+                      <option value="MALE">MALE</option>
+                      <option value="FEMALE">FEMALE</option>
+
+                    </select>
+                  </div>
+                </div>
+
+                  <div class="row mb-2">
+                  <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="First Name" name="sfname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Middle Name" name="smname">
+                  </div>
+                   <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Last Name" name="slname">
+                  </div>
+                 
+                </div>
+
+
+          
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" name="bday">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
+                  <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" required name="type">
+                      <option value="" disabled selected>SELECT TYPE HERE</option>
+                      <option value="OPERATOR">OPERATOR</option>
+                      <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
+                      <option value="DRIVER">DRIVER</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                   <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
+                  <div class="col-sm-4">
+                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
+                  </div>
+                    <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example" required name="lictype">
+                          <option value="" disabled selected>SELECT LICENSE CLASSIFICATION</option>
+                      <option value="PROFESSIONAL">PROFESSIONAL</option>
+                      <option value="NON-PROFESSIONAL">NON-PROFESSIONAL</option>
+                    </select>
+                  </div>
+                  </div>
+
+                   <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
+                  </div>
+                  </div>
+            
+             <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+</div></section>
+
+
+
+          <div class="modal-footer">
+               <button type="submit" name="saveevent"class="btn btn-success">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+             </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
 
         <div class="col-xl-8">
 

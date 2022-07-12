@@ -464,6 +464,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $cor = $row['cor']; 
                             $ornum = $row['ornum']; 
                             $applicationdate = $row['applicationdate']; 
+                            $editapplicationdate = $row['applicationdate']; 
                             $brgycode = $row['brgycode']; 
                             $bodynum = $row['bodynum'];
                             $pid = $row['pid'];  
@@ -1647,7 +1648,8 @@ if ($conn->query($sql) === TRUE) {
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
                   <div class="col-sm-4">
                     Date of Application
-                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate" value="<?php echo $applicationdate; ?>">
+                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate" value="<?php echo $applicationdate; ?>" <?php if ($currentfrachise !="0000-00-00"){} echo "disabled";?>>
+                
                   </div>
                   <div class="col-sm-1">
                     Brgy #
@@ -1700,13 +1702,20 @@ $motorcolor = $_POST['motorcolor'];
 $piston = $_POST['piston'];
 $cor = $_POST['cor'];
 $ornum = $_POST['ornum'];
-$applicationdate = $_POST['applicationdate'];
+
 $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 $classification = $_POST['classification'];
 $toda = $_POST['toda'];
 
+if ($currentfrachise == "0000-00-00") {
 
+   $applicationdate = $_POST['applicationdate'];
+
+}else{
+
+ $applicationdate = $editapplicationdate;
+}
 
   $selectquery = "SELECT `color` from toda where `toda` = '$toda'";
   $result = $conn->query($selectquery);
@@ -1717,7 +1726,7 @@ $toda = $_POST['toda'];
                       }
   $rowprintid= $_POST['pid'];
 
-$sql = "UPDATE `tricycle` SET `mvfileno` = '$fileno', `plateno` = '$plateno', `engineno` = '$engineno', `chasisno` = '$chasisno', `maker` = '$maker', `motorcolor` = '$motorcolor', `pistondisp` = '$piston', `cor` = '$cor', `ornum` = '$ornum', `applicationdate` = '$applicationdate', `brgycode` = '$brgycode', `bodynum` = '$bodynum', `toda` = '$toda', `sidecarcolor` = '$sidecarcolor', `inspectionstat` = 'inspectionstat', `classification` = '$classification' WHERE `tricycle`.`id` = $editid";
+$sql = "UPDATE `tricycle` SET `mvfileno` = '$fileno', `plateno` = '$plateno', `engineno` = '$engineno', `chasisno` = '$chasisno', `maker` = '$maker', `motorcolor` = '$motorcolor', `pistondisp` = '$piston', `cor` = '$cor', `ornum` = '$ornum', `applicationdate` = '$applicationdate', `brgycode` = '$brgycode', `bodynum` = '$bdynumber', `toda` = '$toda', `sidecarcolor` = '$sidecarcolor', `inspectionstat` = 'inspectionstat', `classification` = '$classification' WHERE `tricycle`.`id` = $editid";
 if ($conn->query($sql) === TRUE) {  
 
   $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Edited Franchise Details', 'edited franchise', now(), 'done', '', '$editid')";
