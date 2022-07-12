@@ -421,6 +421,7 @@ if(isset($_SESSION['username'])){
                           $_SESSION['opfname'] =  $fname = $row['fname']; 
                           $_SESSION['opmname'] =  $mname = $row['mname']; 
                           $_SESSION['oplname'] =  $lname = $row['lname']; 
+                           $_SESSION['gender'] =  $gender = $row['gender']; 
                           $_SESSION['extname'] =  $extname = $row['extname']; 
                           $_SESSION['opaddress1'] =  $address1 = $row['address1']; 
                           $_SESSION['opbarangay'] =  $barangay = $row['barangay']; 
@@ -617,7 +618,8 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                 
                   <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" name="barangay" required>
-                      <option value="<?php echo $barangay; ?>" selected><?php echo $barangay; ?></option>
+                      <option value="<?php echo $barangay; ?>" selected><?php echo $barangay; ?>
+                    </option>
                      <option value="APOLLO">APOLLO</option>
                   <option value="BALUT">BALUT</option>
                   <option value="BAYAN">BAYAN</option>
@@ -657,13 +659,13 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" name="contactnum">
+                    <input type="number" class="form-control" name="contactnum" value="<?php echo $contactnumber; ?>">
                   </div>
 
 
                    <div class="col-sm-4">
                        <select class="form-select" aria-label="Default select example" name="gender" required>
-                      <option value="" disabled selected>SELECT GENDER</option>
+                     <option value="<?php echo $gender; ?>" selected><?php echo $gender; ?>
                       <option value="MALE">MALE</option>
                       <option value="FEMALE">FEMALE</option>
 
@@ -674,13 +676,13 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                   <div class="row mb-2">
                   <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="First Name" name="sfname">
+                    <input type="text" class="form-control" placeholder="First Name" name="sfname" value="<?php echo $sfname; ?>">
                   </div>
                    <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Middle Name" name="smname">
+                    <input type="text" class="form-control" placeholder="Middle Name" name="smname" value="<?php echo $smname; ?>">
                   </div>
                    <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="slname">
+                    <input type="text" class="form-control" placeholder="Last Name" name="slname" value="<?php echo $slaname; ?>">
                   </div>
                  
                 </div>
@@ -697,7 +699,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                   <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
                   <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" required name="type">
-                      <option value="" disabled selected>SELECT TYPE HERE</option>
+                      <option value="<?php echo $type; ?>" selected><?php echo $type; ?>
                       <option value="OPERATOR">OPERATOR</option>
                       <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
                       <option value="DRIVER">DRIVER</option>
@@ -709,11 +711,11 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                    <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
                   <div class="col-sm-4">
-                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
+                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid"  value="<?php echo $licensenum; ?>">
                   </div>
                     <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" required name="lictype">
-                          <option value="" disabled selected>SELECT LICENSE CLASSIFICATION</option>
+                      <option value="<?php echo $licensetype; ?>" selected><?php echo $licensetype; ?>
                       <option value="PROFESSIONAL">PROFESSIONAL</option>
                       <option value="NON-PROFESSIONAL">NON-PROFESSIONAL</option>
                     </select>
@@ -723,7 +725,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                    <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
+                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration" value="<?php echo $licensevalid; ?>">
                   </div>
                   </div>
             
@@ -788,7 +790,7 @@ $editpic = $picname;
   $editpic   = $img_name;
 }
 
-$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnumber', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slaname', `bday` = '$bday', `type` = '$type', `licensenum` = 'licensenum', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic' WHERE `driveroperator`.`pid` =  $doid";
+$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slaname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic' WHERE `driveroperator`.`pid` =  $doid";
 
 if ($conn->query($sql) === TRUE) {  
  
