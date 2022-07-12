@@ -410,12 +410,15 @@ if(isset($_SESSION['username'])){
   tricycle.engineno,
   tricycle.chasisno,
   tricycle.maker,
+  tricycle.motorcolor,
   tricycle.pistondisp,
   tricycle.cor,
   tricycle.ornum,
   tricycle.applicationdate,
-  tricycle.brgycode,tricycle.toda, 
-  tricycle.sidecarcolor, 
+  tricycle.brgycode,
+  tricycle.toda, 
+  tricycle.sidecarcolor,
+  tricycle.classification,  
   tricycle.bodynum, 
   tricycle.inspectionstat,
   tricycle.currentfranchise,
@@ -449,6 +452,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     if ($result->num_rows > 0) {
                         // output data of each row
                         while($row = $result->fetch_assoc()) {
+                            $editid = $row['id']; 
                             $id = $row['id'];  
                             $bodynum = $row['bodynum']; 
                             $mvfileno = $row['mvfileno']; 
@@ -485,6 +489,9 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $remarks = $row['remarks'];
                             $currentfrachise = $row['currentfranchise'];
                             $trikestatus = $row['status'];
+                            $trikeclassification = $row['classification'];
+                            $motorcolor = $row['motorcolor'];
+
 
 
 
@@ -1522,7 +1529,7 @@ if ($conn->query($sql) === TRUE) {
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
        <div class="modal-header">
-              <h4 class="modal-title">Add Franchise</h4>
+              <h4 class="modal-title">Edit Franchise</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -1539,7 +1546,7 @@ if ($conn->query($sql) === TRUE) {
               <h5 class="card-title">Edit Franchise</h5>
 
               <!-- General Form Elements -->
-         <form method="POST" action="do_upload.php">
+         <form method="POST">
 
 
             
@@ -1557,7 +1564,7 @@ if ($conn->query($sql) === TRUE) {
                   <div class="col-sm-3">
                    
                    <select class="form-select" aria-label="Default select example" required name="classification">
-                      <option value="<?php echo $classification; ?>" selected><?php echo $classification; ?></option>
+                      <option value="<?php echo $trikeclassification; ?>" selected><?php echo $trikeclassification; ?></option>
                       <option value="Public">Public Motorized Tricycle for Hire</option>
                       <option value="Utility">Utility Motorized Tricycle</option>
                       <option value="Family">Family-Use Motorized Tricycle</option>
@@ -1567,7 +1574,7 @@ if ($conn->query($sql) === TRUE) {
                    <div class="col-sm-3">
               
                    <select class="form-select" aria-label="Default select example" required name="toda">
-                      <option value="" disabled selected>SELECT TODA</option>
+                      <option value="<?php echo $toda; ?>" selected><?php echo $toda; ?></option>
                     <?php
                       $sql = "SELECT `toda` FROM toda";
                        $result = $conn->query($sql);
@@ -1589,19 +1596,19 @@ if ($conn->query($sql) === TRUE) {
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
                   <div class="col-sm-2">
                     MV File number
-                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno" value="<?php echo $mvfileno; ?>">
                   </div>
                   <div class="col-sm-2">
                     Plate Number
-                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno">
+                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno" value="<?php echo $plateno; ?>">
                   </div>
                    <div class="col-sm-2">
                     Engine Number
-                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="engineno">
+                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="engineno" value="<?php echo $engineno; ?>">
                   </div>
                    <div class="col-sm-2">
                     Chasis Number
-                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno">
+                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno" value="<?php echo $chasisno; ?>">
                   </div>
                   </div>
             
@@ -1612,23 +1619,23 @@ if ($conn->query($sql) === TRUE) {
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
                   <div class="col-sm-2">
                     Maker
-                    <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
+                    <input type="text" class="form-control" name="maker" placeholder="Maker" value="<?php echo $maker; ?>">
                   </div>
                     <div class="col-sm-2">
                     Motor Color
-                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
+                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color" value="<?php echo $motorcolor; ?>">
                   </div>
                   <div class="col-sm-2">
                     Piston Displacement
-                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
+                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston" value="<?php echo $pistondisp; ?>">
                   </div>
                    <div class="col-sm-2">
                     Cert. of Reg.
-                    <input type="text" class="form-control" name="cor" placeholder="Certificate of Registration" name="cor">
+                    <input type="text" class="form-control" name="cor" placeholder="Certificate of Registration" name="cor" value="<?php echo $cor; ?>">
                   </div>
                    <div class="col-sm-2">
                     Official Receipt No.
-                    <input type="text" class="form-control" placeholder="OR" name="ornum">
+                    <input type="text" class="form-control" placeholder="OR" name="ornum" value="<?php echo $ornum; ?>">
                   </div>
                   </div>
 
@@ -1640,15 +1647,15 @@ if ($conn->query($sql) === TRUE) {
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
                   <div class="col-sm-4">
                     Date of Application
-                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate">
+                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate" value="<?php echo $applicationdate; ?>">
                   </div>
                   <div class="col-sm-1">
                     Brgy #
-                    <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{2}" style="color:#888;" required/>
+                    <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{2}" style="color:#888;" required value="<?php echo $brgycode; ?>"/>
                   </div>
                    <div class="col-sm-3">
                     Body Number
-                    <input class="form-control" type="text" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required/>
+                    <input class="form-control" type="text" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required value="<?php echo $bodynum; ?>"/>
                   </div>
                   
                   </div>
@@ -1666,17 +1673,77 @@ if ($conn->query($sql) === TRUE) {
 
 
           <div class="modal-footer">
-               <button type="submit" name="saveevent"class="btn btn-success">Save</button>
+               <button type="submit" name="editfranchise"class="btn btn-success">Save</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
              </form>
     </div>
 
   </div>
-</div>
+</div>editid
 
                
 <?php 
+
+ if(isset($_POST['editfranchise'])){
+$fname = $_POST['fname'];
+$mname = $_POST['mname'];
+$lname = $_POST['lname'];
+$xname  = $_POST['xname'];
+
+$fileno = $_POST['fileno'];
+$plateno = $_POST['plateno'];
+$engineno = $_POST['engineno'];
+$chasisno = $_POST['chasisno'];
+$maker = $_POST['maker'];
+$motorcolor = $_POST['motorcolor'];
+$piston = $_POST['piston'];
+$cor = $_POST['cor'];
+$ornum = $_POST['ornum'];
+$applicationdate = $_POST['applicationdate'];
+$brgycode = $_POST['brgycode'];
+$bdynumber = $_POST['bdynumber'];
+$classification = $_POST['classification'];
+$toda = $_POST['toda'];
+
+
+
+  $selectquery = "SELECT `color` from toda where `toda` = '$toda'";
+  $result = $conn->query($selectquery);
+                      if($result->num_rows> 0){
+                        while($row = $result->fetch_assoc()) {
+                            $sidecarcolor = $row['color'];
+                        }
+                      }
+  $rowprintid= $_POST['pid'];
+
+$sql = "UPDATE `tricycle` SET `mvfileno` = '$fileno', `plateno` = '$plateno', `engineno` = '$engineno', `chasisno` = '$chasisno', `maker` = '$maker', `motorcolor` = '$motorcolor', `pistondisp` = '$piston', `cor` = '$cor', `ornum` = '$ornum', `applicationdate` = '$applicationdate', `brgycode` = '$brgycode', `bodynum` = '$bodynum', `toda` = '$toda', `sidecarcolor` = '$sidecarcolor', `inspectionstat` = 'inspectionstat', `classification` = '$classification' WHERE `tricycle`.`id` = $editid";
+if ($conn->query($sql) === TRUE) {  
+
+  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Edited Franchise Details', 'edited franchise', now(), 'done', '', '$editid')";
+if ($conn->query($sql) === TRUE) {  
+
+
+  echo "<script type='text/javascript'>alert(\"Successfully Edited  \")</script>";
+
+   echo '<script>window.location.href="profile.php?id='.$editid.'"</script>';
+                                      
+}}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  if(isset($_POST['printform'])){
 	$rowprintid= $_POST['pid'];
 
