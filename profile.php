@@ -591,8 +591,16 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     <div class="col-lg-9 col-md-8"><?php echo $currentfrachise; ?></div>
                   </div>
 
-                 
+               <div class="row"> 
+<div class="col-lg-3 col-md-4 label"><button disabled type='button' class='btn btn-warning btn-lg'>
+  <i class="bi bi-pencil-square"></i> Change Unit</button></a></i></div>
 
+
+<div class="col-lg-3 col-md-4 label"><button disabled type='button' class='btn btn-warning btn-lg'>
+  <i class="bi bi-arrow-up-right-circle-fill"></i> Transfer Unit</button></a></i></div>
+                    
+            
+ </div> 
                 </div>
 
 
@@ -1682,7 +1690,7 @@ if ($conn->query($sql) === TRUE) {
     </div>
 
   </div>
-</div>editid
+</div>
 
                
 <?php 
@@ -2283,11 +2291,13 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
 
 
 
+<!---change unit--->
 
 
 
 
 
+<!--- end change unit-->
 
             <?php }}
  if(isset($_POST['delete'])){

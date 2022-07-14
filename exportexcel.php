@@ -1,7 +1,16 @@
 <?php  
 //export.php  
 include 'include/connection.php';
-if(isset($_POST["export"]))
+if(isset($_POST["print"])){
+$from = $_POST['startDatePicker'];
+   $to = $_POST['endDatePicker'];
+header ('location:cpcpdfall.php?from='.$from.'&to='.$to.'');
+
+
+}
+
+
+elseif(isset($_POST["export"]))
 {
  
   $from = $_POST['startDatePicker'];

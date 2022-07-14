@@ -512,11 +512,11 @@ $increase = number_format((($mtopcollection - $mtopcollectionlastyear)/$mtopcoll
                       <i class="bi bi-cash-stack"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>&#x20B1;<?php echo $mtopcollection; ?></h6>
+                      <h6><?php echo $mtopcollection; ?></h6>
                          <?php if ($increase <0) {
                          $color ="danger";
                         }else { $color ="success";} ?>
-                      <span class="text-<?php echo $color; ?> small pt-1 fw-bold">&#x20B1;<?php echo $increase; ?></span><span class="text-muted small pt-2 ps-1">
+                      <span class="text-<?php echo $color; ?> small pt-1 fw-bold"><?php echo $increase; ?>%</span><span class="text-muted small pt-2 ps-1">
 
 
                         <?php if ($increase <0) {
