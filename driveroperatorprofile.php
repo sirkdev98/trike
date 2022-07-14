@@ -475,14 +475,14 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
 
              
 
-          <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">EDIT PROFILE</button>
+          <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example2-modal-xl">EDIT PROFILE</button>
             </div>
           </div>
 
 
         </div>
 
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example2-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
        <div class="modal-header">
