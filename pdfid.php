@@ -13,107 +13,44 @@ $from = $_GET['from'];
 $to = $_GET['to'];
 
 
-
+$doid = $_GET['id'];
 
 // Create connection
 
-$pdf = new FPDF ('l','mm','A5');
+$pdf = new FPDF ('l','mm','A6');
 $pdf->AddFont('BebasKai','','BebasKai.php');
 
 
-
-$sql = "SELECT
-  tricycle.id,
-  tricycle.bodynum,
-  tricycle.mvfileno,
-  tricycle.plateno,
-  tricycle.engineno,
-  tricycle.chasisno,
-  tricycle.maker,
-  tricycle.motorcolor,
-  tricycle.pistondisp,
-  tricycle.cor,
-  tricycle.ornum,
-  tricycle.applicationdate,
-  tricycle.brgycode,tricycle.toda, 
-  tricycle.sidecarcolor, 
-  tricycle.bodynum, 
-  tricycle.inspectionstat,
-  driveroperator.pid,
-  driveroperator.fname,
-  driveroperator.mname, 
-  driveroperator.lname, 
-  driveroperator.type,
-  driveroperator.picname,
-  driveroperator.bday,
-  driveroperator.gender,
-  driveroperator.address1,
-  driveroperator.barangay,
-  driveroperator.licensenum,
-  inspection.sidecar_windshield,
-  inspection.funcitioning_horn,
-  inspection.signal_lights,
-  inspection.tail_lights,
-  inspection.topchain_cover,
-  inspection.whitered_headlights,
-  inspection.light_inside,
-  inspection.mufflers,
-  inspection.roof,
-  inspection.side_mirrors,
-  inspection.upholstery,
-  inspection.wheels,
-  inspection.remarks
-FROM tricycle
-JOIN driveroperator
-ON tricycle.operatorid = driveroperator.pid
-JOIN inspection
-ON tricycle.id = inspection.trikeid WHERE tricycle.applicationdate BETWEEN '$from' and '$to'";
+ 
+     $sql = "SELECT * from driveroperator WHERE pid = '$doid'";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
-                                              // output data of each row
-                        while($row = $result->fetch_assoc()) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
 
+                          $_SESSION['opid'] = $id = $row['pid'];  
+                          $_SESSION['opfname'] =  $fname = $row['fname']; 
+                          $_SESSION['opmname'] =  $mname = $row['mname']; 
+                          $_SESSION['oplname'] =  $lname = $row['lname']; 
+                           $_SESSION['gender'] =  $gender = $row['gender']; 
+                          $_SESSION['extname'] =  $extname = $row['extname']; 
+                          $_SESSION['opaddress1'] =  $address1 = $row['address1']; 
+                          $_SESSION['opbarangay'] =  $barangay = $row['barangay']; 
+                          $_SESSION['opcontactnumber'] =  $contactnumber = $row['contactnumber']; 
+                          $_SESSION['opsfname'] =  $sfname = $row['sfname']; 
+                          $_SESSION['opsmname'] =  $smname = $row['smname']; 
+                          $_SESSION['opslaname'] =  $slaname = $row['slaname']; 
+                          $_SESSION['opbday'] =  $bday = $row['bday']; 
+                          $_SESSION['optype'] = $type = $row['type']; 
+                          $_SESSION['oplicensenum'] =  $licensenum = $row['licensenum']; 
+                          $_SESSION['oplicensetype'] = $licensetype = $row['licensetype']; 
+                          $_SESSION['oplicensevalid'] = $licensevalid = $row['licensevalid']; 
+                          $_SESSION['oppicname'] =  $picname = $row['picname']; 
+                          $_SESSION['addcheck'] = "driverexist";
+                     }
+                            
 
-                            $id = $row['id'];  
-                            $bodynum = $row['bodynum']; 
-                            $mvfileno = $row['mvfileno']; 
-                            $plateno = $row['plateno']; 
-                            $chasisno = $row['chasisno']; 
-                            $engineno = $row['engineno']; 
-                            $maker = $row['maker']; 
-                            $motorcolor = $row['motorcolor']; 
-                            $pistondisp = $row['pistondisp']; 
-                            $cor = $row['cor']; 
-                            $ornum = $row['ornum']; 
-                            $applicationdate = $row['applicationdate']; 
-                            $brgycode = $row['brgycode']; 
-                            $bodynum = $row['bodynum'];
-                            $pid = $row['pid'];  
-                            $fname = $row['fname']; 
-                            $mname = $row['mname']; 
-                            $lname = $row['lname']; 
-                            $type = $row['type']; 
-                            $picname = $row['picname']; 
-                            $toda = $row['toda']; 
-                            $sidecarcolor = $row['sidecarcolor']; 
-                            $sidecar_windshield = $row['sidecar_windshield'];
-                            $funcitioning_horn = $row['funcitioning_horn'];
-                            $signal_lights = $row['signal_lights'];
-                            $tail_lights = $row['tail_lights'];
-                            $topchain_cover = $row['topchain_cover'];
-                            $whitered_headlights = $row['whitered_headlights'];
-                            $light_inside = $row['light_inside'];
-                            $mufflers = $row['mufflers'];
-                            $roof = $row['roof'];
-                            $side_mirrors = $row['side_mirrors'];
-                            $upholstery = $row['upholstery'];
-                            $wheels = $row['wheels'];
-                            $remarks = $row['remarks'];
-                            $bday = $row['bday'];
-                            $gender = $row['gender'];
-                            $opaddress1 = $row['address1'];
-                            $opbarangay = $row['barangay'];
-                            $licensenum = $row['licensenum'];
 
 $bday = date("F-d-Y", strtotime($bday));
 
@@ -132,10 +69,7 @@ $pdf->Addpage();
 $pdf->SetFont('BebasKai', '', 12);
 
 //cell width, height, text, border, end line, [align]
-$pdf->Image('orani2.png',160,10,28);
 
-$pdf->Image('orani.png',25,10,28);
-$pdf->Image('Capture.png',8,270,200);
 
 if ($picname=="") {
 
