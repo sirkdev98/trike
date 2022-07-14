@@ -476,8 +476,13 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
              
 
           <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example2-modal-xl">EDIT PROFILE</button>
+
+          <br>
+          <a href="pdfid.php?id=<?php echo $oppid ?>">
+           <button class="btn btn-primary" type="button">Print ID</button></a>
             </div>
           </div>
+
 
 
         </div>
@@ -490,6 +495,8 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
+
+
             </div>
      
 
