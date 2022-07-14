@@ -494,9 +494,35 @@ if(isset($_SESSION['username'])){
                   <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" name="barangay" required>
                       <option value="" disabled selected>Barangay</option>
-                      <option value="Apollo">Apollo</option>
-                      <option value="Balut">Balut</option>
-                      <option value="Calero">Calero</option>
+                      <option value="APOLLO">APOLLO</option>
+                  <option value="BALUT">BALUT</option>
+                  <option value="BAYAN">BAYAN</option>
+                  <option value="BAGONG PARAISO">BAGONG PARAISO</option>
+                  <option value="CALERO">CALERO</option>
+                  <option value="CENTRO I">CENTRO I</option>
+                  <option value="CENTRO II">CENTRO II</option>
+                  <option value="DONA">DOÑA</option>
+                  <option value="KABALUTAN">KABALUTAN</option>
+                  <option value="KAPARANGAN">KAPARANGAN</option>
+                  <option value="MARIA FE">MARIA FE</option>
+                  <option value="MASANTOL">MASANTOL</option>
+                  <option value="MULAWIN">MULAWIN</option>
+                  <option value="PACAR">PACAR</option>
+                  <option value="PAGASA">PAGASA</option>
+                  <option value="PALIHAN">PALIHAN</option>
+                  <option value="PANTALAN BAGO">PANTALAN BAGO</option>
+                  <option value="PANTALAN LUMA">PANTALAN LUMA</option>
+                  <option value="PARANG PARANG">PARANG PARANG</option>
+                  <option value="PUKSUAN">PUKSUAN</option>
+                  <option value="SIBUL">SIBUL</option>
+                  <option value="SILAHIS">SILAHIS</option>
+                  <option value="TAGUMPAY">TAGUMPAY</option>
+                  <option value="TALA">TALA</option>
+                  <option value="TALIMUNDOC">TALIMUNDOC</option>
+                  <option value="TAPULAO">TAPULAO</option>
+                  <option value="TENEJERO">TENEJERO</option>
+                  <option value="TUGATOG">TUGATOG</option>
+                  <option value="WAWA">WAWA</option>
                     </select>
                   </div>
                 </div>
