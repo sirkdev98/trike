@@ -709,7 +709,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                       <option value="<?php echo $type; ?>" selected><?php echo $type; ?>
                       <option value="OPERATOR">OPERATOR</option>
                       <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
-                      <option value="DRIVER">DRIVER</option>
+                      
                     </select>
                   </div>
                 </div>

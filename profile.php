@@ -548,7 +548,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-<?php echo $mtopstat; ?>"<?php if($trikestatus=="dropped"){echo "hidden";}?> >MTOP</button>
                 </li>
                  <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit" hidden>Edit Profile</button>
                 </li>
 
               </ul>
@@ -1426,7 +1426,7 @@ if ($conn->query($sql) === TRUE) {
   
 <div class="social-links mt-2">
 
- <a href="#delete<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
+ <a href="#printform<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
   <i class="bi bi-printer"></i> PRINT FORM</button></a></i>
 
 </div>
@@ -1482,7 +1482,7 @@ if ($conn->query($sql) === TRUE) {
         </div>
     </section>
 
-     <div id="delete<?php echo $tid;?>" class="modal fade" role="dialog">
+     <div id="printform<?php echo $tid;?>" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                         <form method="post"> <!-- Modal content-->
                                 <div class="modal-content">
@@ -1769,7 +1769,7 @@ if ($conn->query($sql) === TRUE) {
 
   echo "<script type='text/javascript'>alert(\"Successfully Generated  \")</script>";
 
-   echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
+   echo '<script>window.location.href="formpdf.php?id='.$rowprintid.'"</script>';
                                       
 }}
 

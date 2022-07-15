@@ -474,7 +474,7 @@ $increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionla
                 
                    <button type="submit" name="export" class="btn btn-warning bi-download btn-lg">DOWNLOAD LIST</button>
 <br><br>
-                    <button type="submit" name="print" class="btn btn-warning bi-download btn-lg">PRINT LIST</button>
+                    <button type="submit" name="print" class="btn btn-warning bi-printer btn-lg">PRINT BATCH CPC</button>
                   </div>
 
                 </div>
@@ -517,18 +517,7 @@ $increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionla
 
           <!-- Recent Activity -->
           <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
+           
 
             <div class="card-body">
               <h5 class="card-title">DOWNLOAD EXCEL <span>| csv format</span></h5>

@@ -70,7 +70,7 @@ $pdf->SetFont('BebasKai', '', 12);
 if ($picname=="") {
 
 }else{
-  $pdf->Image('upload/'.$picname,30,28,45,46);
+  $pdf->Image('upload/'.$picname,26,26,53,47);
 }
 
 
