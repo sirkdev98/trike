@@ -105,8 +105,8 @@ $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(8,29,'',0,1);
 
 
-$pdf->SetFont('BebasKai', '', 16);
-$pdf ->Cell(30,1,'',0,0);
+$pdf->SetFont('BebasKai', '', 14);
+$pdf ->Cell(5,1,'',0,0);
 $pdf ->SetTextColor(0,0,0);
 $pdf ->Cell(5,2,$row['address1'].", ".$row['barangay'],0,1);
 $pdf ->Cell(10,8.5,'',0,1);
@@ -118,7 +118,7 @@ $pdf ->Cell(8,8,'',0,1);
 
 
 $pdf->SetFont('BebasKai', '', 16);
-$pdf ->Cell(30,1,'',0,0);
+$pdf ->Cell(5,1,'',0,0);
 $pdf ->SetTextColor(0,0,0);
 $pdf ->Cell(5,2,$row['licensenum'],0,1);
 $pdf ->Cell(10,8.5,'',0,1);

@@ -91,10 +91,10 @@ $type = $_POST['type'];
 $licensid = $_POST['licensid'];
 $licensetype = $_POST['licensetype'];
 $expiration = $_POST['expiration'];
-$contactnum = $_POST['contactnum'];
+
 
 $sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`,`contactnumber`, `barangay`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
-	(NULL, '$fname', '$mname', '$lname', '$gender', '$xname', '$address1', '$barangay','$contactnum', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
+	(NULL, '$fname', '$mname', '$lname', '$gender', '$xname', '$address1', '$contactnum','$barangay', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
 

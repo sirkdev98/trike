@@ -625,8 +625,8 @@ if(isset($_SESSION['username'])){
                     <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" required name="licensetype">
                           <option value="" disabled selected>SELECT LICENSE TYPE</option>
-                      <option value="OPERATOR">PROFESSIONAL</option>
-                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
+                      <option value="PROFESSIONAL">PROFESSIONAL</option>
+                      <option value="NON-PROFESSIONAL">NON-PROFESSIONAL</option>
                     </select>
                   </div>
                   </div>
