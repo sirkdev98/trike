@@ -56,7 +56,7 @@ $bday = date("F-d-Y", strtotime($bday));
 
 $pdf->Addpage('P');
 
- $pdf->Image('frontid.jpg',0,1,105,148);
+ $pdf->Image('frontid.jpg',0,0,105,148);
 
 
 
@@ -98,7 +98,7 @@ $pdf ->Cell(5,2,$row['type'],0,1);
 
 
 $pdf->Addpage('P');
- $pdf->Image('backid.jpg',0,1,105,148);
+ $pdf->Image('backid.jpg',0,0,105,148);
 
 
 $pdf ->Cell(50,5,'',0,1);
