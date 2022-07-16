@@ -39,6 +39,7 @@ $sql = "SELECT
   tricycle.sidecarcolor, 
   tricycle.bodynum, 
   tricycle.inspectionstat,
+  franchiserecord.franchiseapproval,
   driveroperator.pid,
   driveroperator.fname,
   driveroperator.mname, 
@@ -66,6 +67,8 @@ $sql = "SELECT
 FROM tricycle
 JOIN driveroperator
 ON tricycle.operatorid = driveroperator.pid
+JOIN franchiserecord
+ON tricycle.id = franchiserecord.trikeid
 JOIN inspection
 ON tricycle.id = inspection.trikeid WHERE tricycle.applicationdate BETWEEN '$from' and '$to'";
                     $result = $conn->query($sql);
@@ -75,6 +78,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.applicationdate BETWEEN '$fro
 
 
                             $id = $row['id'];  
+                            $franchiseapproval = $row['franchiseapproval']; 
                             $bodynum = $row['bodynum']; 
                             $mvfileno = $row['mvfileno']; 
                             $plateno = $row['plateno']; 
@@ -137,11 +141,21 @@ $pdf->Image('orani2.png',160,10,28);
 $pdf->Image('orani.png',25,10,28);
 $pdf->Image('Capture.png',8,270,200);
 
-if ($picname=="") {
-
-}else{
-  $pdf->Image('cpc.jpg',0,1,210,148);
+if ($sidecarcolor=="RED") {
+$pdf->Image('Red.jpg',0,1,210,148);
+}elseif ($sidecarcolor=="BLUE"){
+  $pdf->Image('Blue.jpg',0,1,210,148);
 }
+elseif ($sidecarcolor=="GREEN"){
+  $pdf->Image('Green.jpg',0,1,210,148);
+}
+elseif ($sidecarcolor=="YELLOW"){
+  $pdf->Image('Yellow.jpg',0,1,210,148);
+}
+elseif ($sidecarcolor=="WHITE"){
+  $pdf->Image('White.jpg',0,1,210,148);
+}
+
 
 
 
@@ -152,9 +166,8 @@ $pdf ->Cell(10,35,'',0,1);
 
 
 $pdf->SetFont('BebasKai', '', 36);
-$pdf ->Cell(38,1,'',0,0);
 $pdf ->SetTextColor(0,0,0);
-$pdf ->Cell(5,2,$row['fname']."  ".$row['mname']." ".$row['lname'],0,1);
+$pdf ->Cell(0,2,$row['fname']."  ".$row['mname']." ".$row['lname'],0,1,'C');
 $pdf ->Cell(10,8.5,'',0,1);
 $pdf ->SetTextColor(0,0,0);
 
@@ -201,9 +214,18 @@ $pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(30,5,'',0,0);
 $pdf->SetFont('BebasKai', '', 10);
 $pdf ->Cell(35,10,'',0,0);
-$pdf ->Cell(50,5,$type,0,1);
-$pdf ->Cell(10,2,'',0,1);
+$pdf ->Cell(50,5,$maker,0,1);
+$pdf ->Cell(10,15,'',0,1);
 
+
+$pdf->SetFont('BebasKai', '', 10);
+$pdf ->Cell(5,10,'',0,0);
+$pdf ->Cell(30,5,'',0,0);
+$pdf->SetFont('BebasKai', '', 10);
+$pdf ->Cell(72,10,'',0,0);
+$pdf ->Cell(17,5,$bday = date("d", strtotime($franchiseapproval)),0,0);
+$pdf ->Cell(15,5,$bday = date("F", strtotime($franchiseapproval)),0,0);
+$pdf ->Cell(50,5,$bday = date("Y", strtotime($franchiseapproval)),0,0);
 
 
 
