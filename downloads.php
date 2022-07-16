@@ -375,33 +375,6 @@ if(isset($_SESSION['username'])){
 
 
   <main id="main" class="main">
-<?php 
-$lastyear = date("Y",strtotime("-1 year"));
- $sql = "SELECT
-    (SELECT COUNT(*) FROM tricycle WHERE YEAR(`currentmtop`) = YEAR(CURDATE()))AS withmtop,
-    (SELECT COUNT(*) FROM tricycle WHERE `currentfranchise` >= now())AS withfranchise,
-    (SELECT COUNT(*) FROM tricycle )AS trikecount,
-    (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= YEAR(CURDATE())) AS mtopcollection,
-    (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= '$lastyear') AS mtopcollectionlastyear";
-   
-        
-          
- $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                       while( $row = $result->fetch_assoc()){
-                        
-
-                            $withmtop = $row['withmtop'];  
-                            $withfranchise =$row['withfranchise'];
-                            $trikecount = $row['trikecount'];
-                            $mtopcollection = $row['mtopcollection'];
-                             $mtopcollectionlastyear = $row['mtopcollectionlastyear'];
-
-}}
-
-$increase =round((($mtopcollectionlastyear - $mtopcollection )/$mtopcollectionlastyear)*100, 2); 
-
-?>
 
     
 

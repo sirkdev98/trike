@@ -542,11 +542,21 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                 </li>
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-transactions">Transactions</button>
+
                 </li>
+
+
+
 
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-<?php echo $mtopstat; ?>"<?php if($trikestatus=="dropped"){echo "hidden";}?> >MTOP</button>
                 </li>
+
+                <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-units">Units</button>
+                </li>
+
+
                  <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit" hidden>Edit Profile</button>
                 </li>
@@ -788,7 +798,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   	 <h5 class="card-title">Transactions History</h5>
                   	 <?php
                   	 $tid = $_GET['id'];
-                  	 $sql33 = "SELECT * from transactions where trikeid =$tid";
+                  	 $sql33 = "SELECT * from transactions where trikeid =$tid ORDER BY id DESC limit 15";
                     $result = $conn->query($sql33);
                     if ($result->num_rows > 0) {
                         // output data of each row
@@ -808,6 +818,36 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
  ?>
                   </form></div></div>
+
+
+
+
+
+ <div class="tab-pane fade pt-3" id="profile-units">
+                   <div class="col-md-8 col-lg-9">
+
+                  <!-- Settings Form -->
+                  <form>
+                     <h5 class="card-title">Transactions History</h5>
+                     
+                  </form></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <?php 
@@ -1778,7 +1818,7 @@ if ($conn->query($sql) === TRUE) {
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
                   <div class="col-sm-4">
                     Date of Application
-                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate" value="<?php echo $applicationdate; ?>" <?php if ($currentfrachise !="0000-00-00"){} echo "disabled";?>>
+                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate" value="<?php echo $applicationdate; ?>" <?php if ($currentfrachise !="0000-00-00"){ echo "disabled";}?>>
                 
                   </div>
                   <div class="col-sm-1">

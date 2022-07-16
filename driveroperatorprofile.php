@@ -463,7 +463,11 @@ $oppid =$_GET['id'];
 $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     $result = $conn->query($sql);
                     $countfranchise = $result ->num_rows;
-                    echo "<font color='Green'><b>".$countfranchise."</b></font> Franchise Owned";
+                    $countcolor = "green";
+                    if ($countfranchise ==4) {
+                      $countcolor = "red";
+                    }
+                    echo "<font color='$countcolor'><b>".$countfranchise."</b></font> Franchise Owned";
 
                ?>
               </div>
@@ -1262,7 +1266,10 @@ else{
 
 
                 <div class="d-grid gap-2 mt-3">
-                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD NEW FRANCHISE </button>
+                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl" <?php if ($countfranchise == 4) {
+                  echo "disabled";
+                } ?> >
+                ADD NEW FRANCHISE </button>
 
                
               </div>

@@ -857,9 +857,9 @@ if (isset($_POST['issuefranchise'])) {
   $franchisedate =$_POST['franchisedate'];
 
   $franchiseexpiration = date('Y-m-d', strtotime('+3 year', strtotime($franchisedate)));
-$sqlfranchise = "UPDATE `tricycle` SET `currentfranchise` = '$franchiseexpiration' WHERE `applicationdate` BETWEEN '$startDatePicker' AND '$endDatePicker'";
+$sqlfranchise = "UPDATE `tricycle` SET `currentfranchise` = '$franchiseexpiration' WHERE `applicationdate` BETWEEN '$startDatePicker' AND '$endDatePicker' AND `currentfranchise` =''";
  $result = $conn->query($sqlfranchise);
-                      if($conn->query($sqlfranchise) === TRUE) { 
+                    if ($conn->affected_rows > 0) {
 
 $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$franchisedate', `franchiseexpiration` = '$franchiseexpiration' WHERE `franchiseapplication` BETWEEN '$startDatePicker' AND '$endDatePicker'";
  $result = $conn->query($sqlfranchiserecord);
@@ -875,7 +875,8 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
 
 
 }else
-  echo "<script type='text/javascript'>alert(\"No record found $countt  \")</script>";
+  echo "<script type='text/javascript'>alert(\"No application found in the given dates  \")</script>";
+  echo '<script>window.location.href="trikedata.php?filter=all"</script>';
                                      
 
 }
