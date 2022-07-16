@@ -1372,7 +1372,7 @@ if(isset($_POST['addmtop'])){
       $inenvironmentalfee = $_POST['environmentalfee'];
     }else { $inenvironmentalfee ="";}
 $mtopdate = $_POST['mtopdate'];
-$mtopexpiration = date('Y-m-d', strtotime('+1 year', strtotime($mtopdate)) );
+$mtopexpiration = date('Y-12-31', strtotime('+1 year'));
 
 
 $mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee +$inoperatoridfee +$indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee;
@@ -1521,8 +1521,11 @@ if ($conn->query($sql) === TRUE) {
                                         <input type="hidden" name="pid" value="<?php echo $tid; ?>">
                 
 
-                                        <div class="alert alert-danger">Are you sure you want to drop the franchise of <strong>
+                                        <div class="alert alert-danger">Are you sure you want to drop the unit of <strong>
                                                 <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
+
+
+
                                         <div class="modal-footer">
                                            <button type="submit" name="droprecord" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
@@ -1776,15 +1779,20 @@ if ($conn->query($sql) === TRUE) {
 if(isset($_POST['droprecord'])){
   $rowprintid= $_POST['pid'];
 
-$sql = "UPDATE `tricycle` SET `status` = 'dropped' WHERE `tricycle`.`id` = $rowprintid";
+$sql = "INSERT INTO dropped (dmvfileno, dplateno, dengineno, dchasisno, dmaker, dmotorcolor, dpistondisp, dcor, dornum, trikeid, dropdate)
+SELECT `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,'$rowprintid',CURDATE()
+FROM tricycle WHERE id = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'DROPPED FRANCHISE', 'drop franchise', now(), 'done', '', '$rowprintid')";
+  $sql = "UPDATE `tricycle` SET `mvfileno` = 'dropped', `plateno` = 'dropped', `engineno` = 'dropped', `chasisno` = 'dropped', `maker` = 'dropped', `motorcolor` = 'dropped', `pistondisp` = 'dropped', `cor` = 'dropped', `ornum` = 'dropped', `status` = 'no unit' WHERE `tricycle`.`id` = $rowprintid";
+if ($conn->query($sql) === TRUE) {  
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'DROPPED UNIT', 'DROPPED Unit', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sqlt) === TRUE) {  
   echo "<script type='text/javascript'>alert(\"Successfully Dropped  \")</script>";
                                        echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
                   }                                  
-}}
+}}}
 
 
 
@@ -1809,7 +1817,7 @@ if ($conn->query($sqlt) === TRUE) {
 
 
 
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example22-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
        <div class="modal-header">
@@ -2203,7 +2211,7 @@ if ($conn->query($sqlt) === TRUE) {
 
 
                 <div class="d-grid gap-2 mt-3">
-                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD NEW DRIVER </button>
+                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example22-modal-xl">ADD NEW DRIVER </button>
 
                 <button class="btn btn-warning" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl2">ADD EXISTING DRIVER </button>
               </div>
