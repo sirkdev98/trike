@@ -60,14 +60,22 @@ if ($conn->query($sql2) === TRUE) {
 
   $sql3 = "INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchiseapproval`, `franchiseexpiration`, `trikeid`) VALUES (NULL, '$applicationdate', '', '', '$last_idtrike')";
 
+  $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added new unit', 'Added new unit', now(), 'done', '', '$rowprintid')";
+
+
 if ($conn->query($sql3) === TRUE) { 
+
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Created record', 'Created record', now(), 'done', '', '$last_idtrike')";
+if ($conn->query($sqlt) === TRUE) {  
+
  echo "<script type='text/javascript'>alert(\"Successfully added Tricycle \")</script>";
            echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
             echo "<script type='text/javascript'>alert(\"Data not inserted\")</script>";
 
 }}}
-
+}
 
 
 
@@ -140,6 +148,11 @@ if ($conn->query($sql2) === TRUE) {
 $sql3 = "INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchiseapproval`, `franchiseexpiration`, `trikeid`) VALUES (NULL, '$applicationdate', '', '', '$last_idtrike')";
 
 if ($conn->query($sql3) === TRUE) { 
+
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added tricycle', 'Added tricycle', now(), 'done', '', '$last_idtrike')";
+if ($conn->query($sqlt) === TRUE) {  
+
  echo "<script type='text/javascript'>alert(\"Successfully added Tricycle \")</script>";
            echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
@@ -149,7 +162,7 @@ if ($conn->query($sql3) === TRUE) {
 
 }}
 
-
+}
 
 }}
 

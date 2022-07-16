@@ -592,8 +592,10 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   </div>
 
                <div class="row"> 
-<div class="col-lg-3 col-md-4 label"><button disabled type='button' class='btn btn-warning btn-lg'>
-  <i class="bi bi-pencil-square"></i> Change Unit</button></a></i></div>
+<div class="col-lg-3 col-md-4 label"><button type='button' class='btn btn-warning btn-lg' data-toggle="modal"  data-target=".bd-addnewunit-modal-xl" <?php if ($trikestatus != "no unit") {
+  echo "hidden";
+} ?>>
+  <i class="bi bi-pencil-square"></i> Add New Unit</button></a></i></div>
 
 
 <div class="col-lg-3 col-md-4 label"><button disabled type='button' class='btn btn-warning btn-lg'>
@@ -1437,12 +1439,15 @@ if ($conn->query($sql) === TRUE) {
   
 </div>
 <div class="social-links mt-2">
-  <button type='button' class='btn btn-warning btn-lg' ype="button" data-toggle="modal"  data-target=".bd-example-modal-xl"><a href="#" data-toggle="modal">
+  <button type='button' class='btn btn-warning btn-lg' type="button" data-toggle="modal"  data-target=".bd-example-modal-xl"><a href="#" data-toggle="modal">
   <i class="bi bi-pencil-fill"></i>Edit</button></a></i>
 </div>
 <div class="social-links mt-2">
-  <a href="#drop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-lg'>
-  <i class="bi bi-trash-fill"></i> DROP</button> </a></i>
+  <a href="#drop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-lg' <?php if ($trikestatus=="no unit") {
+          echo "hidden";
+          # code...
+        } ?> >
+  <i class="bi bi-trash-fill"></i> DROP UNIT</button> </a></i>
 
 
 </div>
@@ -1536,6 +1541,120 @@ if ($conn->query($sql) === TRUE) {
                         </div>
                     </div>
 
+<!-- ADD NEW UNIT -->
+
+<div class="modal fade bd-addnewunit-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+              <h4 class="modal-title">Add new unit</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+     
+
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">NEW UNIT INFO</h5>
+
+              <!-- General Form Elements -->
+         <form method="POST">
+
+
+            
+            
+       
+              
+   <input type="text" class="form-control" name="pid" hidden value="<?php echo $id; ?>">
+           
+                  <br>
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
+                  <div class="col-sm-2">
+                    MV File number
+                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                  </div>
+                  <div class="col-sm-2">
+                    Plate Number
+                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno">
+                  </div>
+                   <div class="col-sm-2">
+                    Engine Number
+                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="engineno">
+                  </div>
+                   <div class="col-sm-2">
+                    Chasis Number
+                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno">
+                  </div>
+            
+<br>
+<br>            
+<br>
+<br>            
+
+
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
+                  <div class="col-sm-2">
+                    Maker
+                    <input type="text" class="form-control" name="maker" placeholder="Maker">
+                  </div>
+                    <div class="col-sm-2">
+                    Motor Color
+                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
+                  </div>
+                  <div class="col-sm-2">
+                    Piston Displacement
+                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
+                  </div>
+                   <div class="col-sm-2">
+                    Cert. of Reg.
+                    <input type="text" class="form-control" name="cor" placeholder="Certificate of Registration" name="cor">
+                  </div>
+                   <div class="col-sm-2">
+                    Official Receipt No.
+                    <input type="text" class="form-control" placeholder="OR" name="ornum">
+                  </div>
+
+
+
+<br>
+            
+             <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+</div></section>
+
+
+
+
+
+          <div class="modal-footer">
+               <button type="submit" name="addnewunit"class="btn btn-success">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+             </form>
+    </div>
+
+  </div>
+</div>
+
+           
+
+
+
+
+
+<!-- End Add new unit -->
 
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
@@ -1751,6 +1870,30 @@ if ($conn->query($sql) === TRUE) {
 }}}
 
 
+if(isset($_POST['addnewunit'])){
+
+  $rowprintid= $_GET['id'];
+
+$fileno = $_POST['fileno'];
+$plateno = $_POST['plateno'];
+$engineno = $_POST['engineno'];
+$chasisno = $_POST['chasisno'];
+$maker = $_POST['maker'];
+$motorcolor = $_POST['motorcolor'];
+$piston = $_POST['piston'];
+$cor = $_POST['cor'];
+$ornum = $_POST['ornum'];
+
+
+  $sql = "UPDATE `tricycle` SET `mvfileno` = '$fileno', `plateno` = '$plateno', `engineno` = '$engineno', `chasisno` = '$chasisno', `maker` = '$maker', `motorcolor` = '$motorcolor', `pistondisp` = '$piston', `cor` = '$cor', `ornum` = '$ornum', `status` = 'with unit' WHERE `tricycle`.`id` = $rowprintid";
+if ($conn->query($sql) === TRUE) {  
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added new unit', 'Added new unit', now(), 'done', '', '$rowprintid')";
+if ($conn->query($sqlt) === TRUE) {  
+  echo "<script type='text/javascript'>alert(\"Successfully Added new unit  \")</script>";
+                                       echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
+                  }                                  
+}}
 
 
 
