@@ -41,7 +41,7 @@ if(isset($_SESSION['username'])){
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <title>ORANI - OTRO</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -350,6 +350,12 @@ if(isset($_SESSION['username'])){
               <i class="bi bi-circle"></i><span>Private Tricycle</span>
             </a>
           </li>
+          <li>
+            <a href="droppedunits.php?filter=private">
+              <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
+            </a>
+          </li>
+
        </ul>
 
      <?php $filter  = $_GET['filter']; ?>

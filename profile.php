@@ -828,7 +828,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
                   <!-- Settings Form -->
                   <form>
-                     <h5 class="card-title">Transactions History</h5>
+                     <h5 class="card-title">Unit History</h5>
                      
                   </form></div></div>
 
