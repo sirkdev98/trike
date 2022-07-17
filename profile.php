@@ -349,6 +349,11 @@ if(isset($_SESSION['username'])){
               <i class="bi bi-circle"></i><span>Private Tricycle</span>
             </a>
           </li>
+          <li>
+            <a href="droppedunits.php?filter=">
+              <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
+            </a>
+          </li>
        </ul>
 
         <li class="nav-item">
@@ -569,7 +574,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   <h5 class="card-title">Tricycle Details</h5>
                   <p class="small fst-italic">Below are the details for the selected tricycle</p>
 
-                  <h5 class="card-title"><?php echo $toda; ?> - <?php echo $bodynum; ?></h5>
+                  <h5 class="card-title"><?php echo $toda; ?> | <?php echo $brgycode."-".$bodynum; ?></h5>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">MV File No.</div>
@@ -608,8 +613,11 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
   <i class="bi bi-pencil-square"></i> Add New Unit</button></a></i></div>
 
 
-<div class="col-lg-3 col-md-4 label"><button disabled type='button' class='btn btn-warning btn-lg'>
-  <i class="bi bi-arrow-up-right-circle-fill"></i> Transfer Unit</button></a></i></div>
+<div class="col-lg-3 col-md-4 label"><a href="#adddropunit" data-toggle="modal"><button type='button' class='btn btn-success btn-lg' <?php if ($trikestatus!="no unit") {
+          echo "hidden";
+          # code...
+        } ?> >
+  <i class="bi bi-plus-circle-fill"></i> ADD DROPPED UNIT</button> </a></i></div>
                     
             
  </div> 
@@ -824,12 +832,92 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
 
  <div class="tab-pane fade pt-3" id="profile-units">
-                   <div class="col-md-8 col-lg-9">
+                   <div class="col-md-8 col-lg-12">
 
                   <!-- Settings Form -->
                   <form>
                      <h5 class="card-title">Unit History</h5>
                      
+
+                      <table id="tblPeople2" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>File No.</th>
+                <th>Plate No.</th>
+                <th>Engine No.</th>
+                <th>Chasis No.</th>
+                <th>Maker</th>
+                <th>Motor Color</th>
+                <th>Piston Dip</th>
+                <th>Drop Date</th>
+                <th>Dropped By</th>
+                <th>Printables</th>
+            </tr>
+        </thead>
+        <tbody><?php
+$getprofileid = $_GET['id'];
+       
+          $sql = "SELECT * from dropped where trikeid = $getprofileid";
+      
+    
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
+
+                            $dropid = $row['dropid'];  
+                            $dmvfileno = $row['dmvfileno']; 
+                            $dplateno = $row['dplateno']; 
+                            $dengineno = $row['dengineno']; 
+                            $dchasisno = $row['dchasisno']; 
+                            $dmaker = $row['dmaker']; 
+                            $dmotorcolor = $row['dmotorcolor']; 
+                            $dpistondisp = $row['dpistondisp']; 
+                            $dcor = $row['dcor']; 
+                            $dropdate = $row['dropdate']; 
+                            $trikeid = $row['trikeid']; 
+                          
+                    ?> 
+      
+            <tr>
+                <td><?php echo $dropid; ?></td>
+                <td><?php echo $dmvfileno; ?></td>
+                <td><?php echo $dplateno; ?></td>
+                <td><?php echo $dengineno; ?></td>
+                <td><?php echo $dchasisno;?></td>
+                <td><?php echo $dmaker;?></td>
+                <td><?php echo $dpistondisp;?></td>
+                <td><?php echo $dcor;?></td>
+                <td><?php echo $dropdate;?></td>
+                <td><?php echo $fname;?></td>
+                   <td>
+
+                    <?php echo $fname;?>
+                     
+
+                   </td>
+
+            </tr>
+            <?php }}?>
+        </tbody>
+        <tfoot>
+            <tr>
+               <th>ID</th>
+                <th>File No.</th>
+                <th>Plate No.</th>
+                <th>Engine No.</th>
+                <th>Chasis No.</th>
+                <th>Maker</th>
+                <th>Motor Color</th>
+                <th>Piston Dip</th>
+                <th>Drop Date</th>
+                <th>Dropped By</th>
+                <th>Printables</th>
+            </tr>
+        </tfoot>
+    </table>
                   </form></div></div>
 
 
@@ -1488,6 +1576,7 @@ if ($conn->query($sql) === TRUE) {
           # code...
         } ?> >
   <i class="bi bi-trash-fill"></i> DROP UNIT</button> </a></i>
+  
 
 
 </div>
@@ -1978,6 +2067,53 @@ if ($conn->query($sqlt) === TRUE) {
 }}}
 
 
+if(isset($_POST['adddropped'])){
+  $trike= $_GET['id'];
+  $dropdid = $_POST['droppedid'];
+
+
+$sql = "SELECT * from dropped where dropid = $dropdid";
+      
+    
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
+
+                            $reropid = $row['dropid'];  
+                            $remvfileno = $row['dmvfileno']; 
+                            $replateno = $row['dplateno']; 
+                            $reengineno = $row['dengineno']; 
+                            $rechasisno = $row['dchasisno']; 
+                            $remaker = $row['dmaker']; 
+                            $remotorcolor = $row['dmotorcolor']; 
+                            $repistondisp = $row['dpistondisp']; 
+                            $recor = $row['dcor']; 
+                            $reornum =$row['dornum'];
+                            $reropdate = $row['dropdate']; 
+                            $trikeid = $row['trikeid']; 
+                          
+                  }}
+  $sql = "UPDATE `tricycle` SET `mvfileno` = '$remvfileno', `plateno` = '$replateno', `engineno` = '$reengineno', `chasisno` = '$rechasisno', `maker` = '$remaker', `motorcolor` = '$remotorcolor', `pistondisp` = '$repistondisp', `cor` = '$recor', `ornum` = '$reornum', `status` = 'with unit' WHERE `tricycle`.`id` = $trike";
+if ($conn->query($sql) === TRUE) {  
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Get Dropped Unit', ' Get DROPPED Unit', now(), 'done', '', '$trike')";
+
+
+if ($conn->query($sqlt) === TRUE) { 
+
+  $sqldel = "DELETE FROM DROPPED WHERE dropid = $dropdid";
+
+
+if ($conn->query($sqldel) === TRUE) { 
+
+  echo "<script type='text/javascript'>alert(\"Successfully Added Dropped Unit  \")</script>";
+                                       echo '<script>window.location.href="profile.php?id='.$trike.'"</script>';
+                  }                                  
+}}
+}
+
 
 ?>                
       <section class="section">
@@ -2229,10 +2365,12 @@ if ($conn->query($sqlt) === TRUE) {
     </div>
 
   </div>
+
+
 </div>
 
-
   <!-- End ADD NEW MODAL -->
+<!-- ADD UNIT MODAL -- >
 
 
 
@@ -2246,8 +2384,7 @@ if ($conn->query($sqlt) === TRUE) {
 
 
 
-
-
+<!--END ADD UNIT MODAL -->
 
 
 
@@ -2465,7 +2602,7 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
                 <td><?php echo $dbarangay; ?></td>
                 
                 <td>
-  <a href="driveroperatorprofile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
+  <a href="driveroperatorprofile.php?id=<?php echo  $id; ?>&bdynum=<?php echo  $brgycode.'-'.$bodynum; ?>"><button type='button' class='btn btn-primary btn-sm'>
   <i class="bi bi-card-text"></i></button></a></i>
 
  
@@ -2567,6 +2704,153 @@ $conn->query($sqlt);
     </section>
 
 
+
+
+
+<!-- Extra large modal EXISTING -->
+
+
+<div class="modal fade bd-example-modal-xl2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="adddropunit">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+              <h4 class="modal-title">Add Dropped Unit</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+     
+
+  <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Driver</h5>
+
+              <!-- General Form Elements -->
+         <form method="POST">
+        
+
+      
+
+                <div class="row mb-2">
+                  <label for="inputText" class="col-sm-2 col-form-label">UNIT ID</label>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" placeholder="Unit ID" name="droppedid" required  oninvalid="this.setCustomValidity('ENTER THE ID # OF THE SELECTED UNIT')"> 
+                  
+
+                  </div>
+
+
+                   
+               
+             <div class="col-sm-3">   <button type="submit" name="adddropped" class="btn btn-success">Add</button></div>
+
+             <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+
+</div></section>
+
+             <table id="tbladddropped" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>File No.</th>
+                <th>Plate No.</th>
+                <th>Engine No.</th>
+                <th>Chasis No.</th>
+                <th>Maker</th>
+                <th>Motor Color</th>
+                <th>Piston Dip</th>
+                <th>Drop Date</th>
+                <th>Dropped By</th>
+            </tr>
+        </thead>
+        <tbody><?php
+        include 'include/connection.php';
+       
+          $sql = "SELECT * from dropped";
+      
+    
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
+
+                            $dropid = $row['dropid'];  
+                            $dmvfileno = $row['dmvfileno']; 
+                            $dplateno = $row['dplateno']; 
+                            $dengineno = $row['dengineno']; 
+                            $dchasisno = $row['dchasisno']; 
+                            $dmaker = $row['dmaker']; 
+                            $dmotorcolor = $row['dmotorcolor']; 
+                            $dpistondisp = $row['dpistondisp']; 
+                            $dcor = $row['dcor']; 
+                            $dropdate = $row['dropdate']; 
+                            $trikeid = $row['trikeid']; 
+                          
+                    ?> 
+      
+            <tr>
+                <td><?php echo $dropid; ?></td>
+                <td><?php echo $dmvfileno; ?></td>
+                <td><?php echo $dplateno; ?></td>
+                <td><?php echo $dengineno; ?></td>
+                <td><?php echo $dchasisno;?></td>
+                <td><?php echo $dmaker;?></td>
+                <td><?php echo $dpistondisp;?></td>
+                <td><?php echo $dcor;?></td>
+                <td><?php echo $dropdate;?></td>
+                <td>
+                             
+                      <?php echo $trikeid;?></td>
+                  </a>
+</td>
+            </tr>
+            <?php }}?>
+        </tbody>
+        <tfoot>
+            <tr>
+               <th>ID</th>
+                <th>File No.</th>
+                <th>Plate No.</th>
+                <th>Engine No.</th>
+                <th>Chasis No.</th>
+                <th>Maker</th>
+                <th>Motor Color</th>
+                <th>Piston Dip</th>
+                <th>Drop Date</th>
+                <th>Dropped By</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+          <div class="modal-footer">
+             
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+             </form>
+    </div>
+
+  </div>
+</div>
+             <table id="tbldriver" class="display" style="width:100%">
+        <thead>
+            <tr>
+
+
+</div>
+            
 
 
 
@@ -2693,6 +2977,17 @@ if ($conn->query($sqlt) === TRUE) {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+<script>
+jQuery(document).ready(function($) {
+    $('#tblPeople2').DataTable();
+} );
+</script>
+
+<script>
+jQuery(document).ready(function($) {
+    $('#tbladddropped').DataTable();
+} );
+</script>
 <script>
 jQuery(document).ready(function($) {
     $('#tblPeople').DataTable();

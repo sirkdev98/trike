@@ -26,6 +26,18 @@ $mname = $_POST['mname'];
 $lname = $_POST['lname'];
 $xname  = $_POST['xname'];
 
+$nounit  = $_POST['nounit'];
+if ($nounit== "no unit") {
+  $fileno = 'No unit';
+$plateno = 'No unit';
+$engineno = 'No unit';
+$chasisno = 'No unit';
+$maker = 'No unit';
+$motorcolor = 'No unit';
+$piston = 'No unit';
+$cor = 'No unit';
+$ornum = 'No unit';
+}else{
 $fileno = $_POST['fileno'];
 $plateno = $_POST['plateno'];
 $engineno = $_POST['engineno'];
@@ -35,6 +47,7 @@ $motorcolor = $_POST['motorcolor'];
 $piston = $_POST['piston'];
 $cor = $_POST['cor'];
 $ornum = $_POST['ornum'];
+}
 $applicationdate = $_POST['applicationdate'];
 $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
@@ -49,7 +62,7 @@ $toda = $_POST['toda'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification')";
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification','$nounit')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
@@ -70,7 +83,7 @@ $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`,
 if ($conn->query($sqlt) === TRUE) {  
 
  echo "<script type='text/javascript'>alert(\"Successfully added Tricycle \")</script>";
-           echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
+           echo "<script>window.location.href='profile.php?id=$last_idtrike hehe $nounit'</script>"; 
          }  else{
             echo "<script type='text/javascript'>alert(\"Data not inserted\")</script>";
 
@@ -114,6 +127,18 @@ $fname = $_POST['fname'];
 $fname = $_POST['mname'];
 $lname = $_POST['lname'];
 $xname = $_POST['xname'];
+$nounit  = $_POST['nounit'];
+if ($nounit== "no unit") {
+  $fileno = 'No unit';
+$plateno = 'No unit';
+$engineno = 'No unit';
+$chasisno = 'No unit';
+$maker = 'No unit';
+$motorcolor = 'No unit';
+$piston = 'No unit';
+$cor = 'No unit';
+$ornum = 'No unit';
+}else{
 $fileno = $_POST['fileno'];
 $plateno = $_POST['plateno'];
 $engineno = $_POST['engineno'];
@@ -123,6 +148,7 @@ $motorcolor = $_POST['motorcolor'];
 $piston = $_POST['piston'];
 $cor = $_POST['cor'];
 $ornum = $_POST['ornum'];
+}
 $applicationdate = $_POST['applicationdate'];
 $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
@@ -137,7 +163,7 @@ $toda = $_POST['toda'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`) VALUES (NULL, '$fname', '$mname', '$lname', '$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$motorcolor', '$piston', '$cor', '$ornum', '$applicationdate', '$brgycode', '$bdynumber', '$last_id', '$toda ', '$sidecarcolor', '', '$classification')";
+$sql = "INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`,`status`) VALUES (NULL, '$fname', '$mname', '$lname', '$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$motorcolor', '$piston', '$cor', '$ornum', '$applicationdate', '$brgycode', '$bdynumber', '$last_id', '$toda ', '$sidecarcolor', '', '$classification','$nounit')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;

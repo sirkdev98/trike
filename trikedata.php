@@ -351,7 +351,7 @@ if(isset($_SESSION['username'])){
             </a>
           </li>
           <li>
-            <a href="droppedunits.php?filter=private">
+            <a href="droppedunits.php?filter=">
               <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
             </a>
           </li>
@@ -683,6 +683,18 @@ if(isset($_SESSION['username'])){
                   </div>
                   </div>
                   <br>
+ <div class="row mb-6">
+
+ </div>
+
+        <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b> UNIT INFO:</b></label>
+                  <div class="col-sm-2">
+                   <input class="form-check-input" type="checkbox" id="nounit" name="nounit" value="no unit"><- Check for no unit
+                  </div>
+                </div>
+                <br>
+
                      <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
                   <div class="col-sm-2">

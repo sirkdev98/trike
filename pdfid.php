@@ -12,12 +12,13 @@ require('fpdf181/fpdf.php');
 
 
 $doid = $_GET['id'];
+$bodynum = $_GET['bdynum'];
+
 
 // Create connection
 
 $pdf = new FPDF ('l','mm',array(148,105));
 $pdf->AddFont('BebasKai','','BebasKai.php');
-
 
  
      $sql = "SELECT * from driveroperator WHERE pid = '$doid'";
@@ -81,18 +82,17 @@ $pdf ->Cell(8,70,'',0,1);
 
 
 $pdf->SetFont('BebasKai', '', 26);
-$pdf ->Cell(1,1,'',0,0);
+
 $pdf ->SetTextColor(255,255,255);
-$pdf ->Cell(5,2,$row['fname']."  ".$row['mname']." ".$row['lname'],0,1);
+$pdf ->Cell(0,1,$row['fname']."  ".$row['mname']." ".$row['lname'],0,1,'C');
 $pdf ->Cell(10,8.5,'',0,1);
 $pdf ->SetTextColor(0,0,0);
-
-
-$pdf ->Cell(8,20,'',0,1);
-$pdf->SetFont('BebasKai', '', 32);
-$pdf ->Cell(24,1,'',0,0);
 $pdf ->SetTextColor(255,255,255);
-$pdf ->Cell(5,2,$row['type'],0,1);
+
+$pdf ->Cell(0,26,$bodynum,0,1,'C');
+$pdf->SetFont('BebasKai', '', 32);
+$pdf ->SetTextColor(255,255,255);
+$pdf ->Cell(0,2,$row['type'],0,1,'C');
 
 
 
@@ -118,9 +118,9 @@ $pdf ->Cell(8,8,'',0,1);
 
 
 $pdf->SetFont('BebasKai', '', 16);
-$pdf ->Cell(5,1,'',0,0);
+
 $pdf ->SetTextColor(0,0,0);
-$pdf ->Cell(5,2,$row['licensenum'],0,1);
+$pdf ->Cell(0,2,$row['licensenum'],0,1,'C');
 $pdf ->Cell(10,8.5,'',0,1);
 $pdf ->SetTextColor(0,0,0);
 

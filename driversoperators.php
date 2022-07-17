@@ -310,6 +310,12 @@ if(isset($_SESSION['username'])){
               <i class="bi bi-circle"></i><span>Private Tricycle</span>
             </a>
           </li>
+          <li>
+            <a href="droppedunits.php?filter=">
+              <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
+            </a>
+          </li>
+
        </ul>
 <?php $filter  = $_GET['filter']; ?>
         <li class="nav-item">

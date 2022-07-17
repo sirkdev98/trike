@@ -33,8 +33,6 @@ if(isset($_SESSION['username'])){
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +40,7 @@ if(isset($_SESSION['username'])){
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Downloads</title>
+  <title>Tricyclye Management</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -62,6 +60,20 @@ if(isset($_SESSION['username'])){
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    <style type="text/css">
+        #response { padding:15px; border:1px solid; background:#87CEEB; }
+    </style>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -74,16 +86,12 @@ if(isset($_SESSION['username'])){
   ======================================================== -->
 </head>
 
-
-
 <body>
-
-
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Tricycle Management</span>
       </a>
@@ -110,12 +118,12 @@ if(isset($_SESSION['username'])){
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number"><!-- notification count --></span>
+            <span class="badge bg-primary badge-number"></span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 0 new notifications
+              You have 0 notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
@@ -185,57 +193,19 @@ if(isset($_SESSION['username'])){
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number"><!-- Messages Icon count--></span>
+            <span class="badge bg-success badge-number"></span>
           </a><!-- End Messages Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
-              You have 0 new messages
+              You have 0 messages
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
+            
               <hr class="dropdown-divider">
             </li>
 
@@ -251,13 +221,13 @@ if(isset($_SESSION['username'])){
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $userfname; ?></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Vicente</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php echo $userfname; ?></h6>
-              <span><?php echo $userrole; ?></span>
+              <h6>Khristian Vicente</h6>
+              <span>Web Developer</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -314,14 +284,14 @@ if(isset($_SESSION['username'])){
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+    <li class="nav-item">
+        <a class="nav-link" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Tricycle</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
@@ -340,25 +310,25 @@ if(isset($_SESSION['username'])){
               <i class="bi bi-circle"></i><span>Private Tricycle</span>
             </a>
           </li>
-          <li>
-            <a href="droppedunits.php?filter=">
+            <li> 
+          <a href="droppedunits.php?filter=private" class='active'>
               <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
             </a>
           </li>
        </ul>
-
+<?php $filter  = $_GET['filter']; ?>
         <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables2-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Drivers And Operators</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables2-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <ul id="tables2-nav" class="nav-content collapse"  data-bs-parent="#sidebar-nav">
           <li>
-            <a href="driversoperators.php?filter=allops">
+            <a href="driversoperators.php?filter=allops" <?php if($filter == "allops"){ echo "class='active'";} ?>>
               <i class="bi bi-circle"></i><span>Drivers And Operators</span>
             </a>
           </li>
           <li>
-            <a href="driversoperators.php?filter=operators">
+            <a href="driversoperators.php?filter=operators"<?php if($filter == "operators"){ echo "class='active'";} ?>>
               <i class="bi bi-circle"></i><span>Operators</span>
             </a>
           </li>
@@ -367,182 +337,145 @@ if(isset($_SESSION['username'])){
           </li>
 
 
+
        </ul>
         <li class="nav-item">
-        <a class="nav-link" href="downloads.php">
+        <a class="nav-link collapsed" href="downloads.php">
           <i class="bi bi-download"></i>
           <span>Downloadables</span>
         </a>
       </li>
 
    
+   
   </aside><!-- End Sidebar-->
-
 
   <main id="main" class="main">
 
-    
-
     <div class="pagetitle">
-      <h1>DOWNLOADS </h1>
+      <h1>DROPPED UNITS</h1>
       <nav>
         <ol class="breadcrumb">
-          
-          <li class="breadcrumb-item active">Excel/Csv</li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item">Tricycle</li>
+          <li class="breadcrumb-item active">DROPPED UNITS</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
+
+    <section class="section">
       <div class="row">
+        <div class="col-lg-12">
 
-        <!-- Left side columns -->
-        <div class="col-lg-8">
-          <div class="row">
-
-
-
-
-            
-          
-
-
-
-            <!-- End Sales Card -->
-
-            <!-- Revenue Card -->
-            
-
-            <!-- Customers Card -->
-           <!-- End Customers Card -->
-
-            <!-- Reports -->
-            <div class="col-12">
-              <div class="card">
-
-                <div class="filter">
-                  
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-  <form method="post" action="exportexcel.php">
-                <div class="card-body">
-                  <h5 class="card-title">Download Franchise application batch <span>|By date</span></h5>
-<div class="row mb-12">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>FROM:</b></label>
-                  <div class="col-sm-4">
-                
-                    <input type="date" class="form-control" name="startDatePicker"  id="startDatePicker" required>
-                  </div>
-
-  <label for="inputEmail" class="col-sm-2 col-form-label"><b>TO:</b></label>
-                  <div class="col-sm-4">
-                
-                    <input type="date" class="form-control" name="endDatePicker"  id="endDatePicker" required>
-                  </div>
-<br><br><br>
-<div class="col-sm-4">
-                
-                   <button type="submit" name="export" class="btn btn-warning bi-download btn-lg">DOWNLOAD LIST</button>
-<br><br>
-                    <button type="submit" name="print" class="btn btn-warning bi-printer btn-lg">PRINT BATCH CPC</button>
-                  </div>
-
-                </div>
-
-                </div>
-</form>
-
-              </div>
-            </div><!-- End Reports -->
-
-            <!-- Recent Sales -->
-            
-
-            <!-- Top Selling -->
-            <div class="col-12">
-              <div class="card top-selling">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                
-              </div>
-            </div><!-- End Top Selling -->
-
-          </div>
-        </div><!-- End Left side columns -->
-
-        <!-- Right side columns -->
-        <div class="col-lg-4">
-
-          <!-- Recent Activity -->
           <div class="card">
-           
-
             <div class="card-body">
-              <h5 class="card-title">DOWNLOAD EXCEL <span>| csv format</span></h5>
+              <h5 class="card-title">DROPPED UNITS TABLE</h5>
+              <!-- Extra large modal -->
 
-              <div class="activity">
 
-                <div class="activity-item d-flex">
-                 <button class='btn btn-primary btn-lg'>DOWNLOAD TRICYCLE MASTERLIST</button>
-                </div><!-- End activity item-->
-<br>
-                <div class="activity-item d-flex">
-                 <button class='btn btn-primary btn-lg'>DOWNLOAD OPERATOR & OPERATOR/DRIVERS LIST</button>
-                </div><!-- End activity item-->
-<br>
-                 <div class="activity-item d-flex">
-                  <button class='btn btn-primary btn-lg'><i class="bi bi-download"></i>&nbsp;DOWNLOAD LIST OF DRIVERS</button>
-                </div><!-- End activity item-->
+              <br></br>
 
-             
+             <table id="tblPeople" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>File No.</th>
+                <th>Plate No.</th>
+                <th>Engine No.</th>
+                <th>Chasis No.</th>
+                <th>Maker</th>
+                <th>Motor Color</th>
+                <th>Piston Dip</th>
+                <th>Drop Date</th>
+                <th>Dropped By</th>
+            </tr>
+        </thead>
+        <tbody><?php
+        include 'include/connection.php';
+       
+          $sql = "SELECT * from dropped";
+      
+    
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
 
-              </div>
+                            $dropid = $row['dropid'];  
+                            $dmvfileno = $row['dmvfileno']; 
+                            $dplateno = $row['dplateno']; 
+                            $dengineno = $row['dengineno']; 
+                            $dchasisno = $row['dchasisno']; 
+                            $dmaker = $row['dmaker']; 
+                            $dmotorcolor = $row['dmotorcolor']; 
+                            $dpistondisp = $row['dpistondisp']; 
+                            $dcor = $row['dcor']; 
+                            $dropdate = $row['dropdate']; 
+                            $trikeid = $row['trikeid']; 
+                          
+                    ?> 
+      
+            <tr>
+                <td><?php echo $dropid; ?></td>
+                <td><?php echo $dmvfileno; ?></td>
+                <td><?php echo $dplateno; ?></td>
+                <td><?php echo $dengineno; ?></td>
+                <td><?php echo $dchasisno;?></td>
+                <td><?php echo $dmaker;?></td>
+                <td><?php echo $dpistondisp;?></td>
+                <td><?php echo $dcor;?></td>
+                <td><?php echo $dropdate;?></td>
+                <td>
+                  <a href="profile.php?id=<?php echo  $trikeid; ?>">
+                    
+                      <?php echo $trikeid;?></td>
+                  </a>
+</td>
+            </tr>
+            <?php }}?>
+        </tbody>
+        <tfoot>
+            <tr>
+               <th>ID</th>
+                <th>File No.</th>
+                <th>Plate No.</th>
+                <th>Engine No.</th>
+                <th>Chasis No.</th>
+                <th>Maker</th>
+                <th>Motor Color</th>
+                <th>Piston Dip</th>
+                <th>Drop Date</th>
+                <th>Dropped By</th>
+            </tr>
+        </tfoot>
+    </table>
+              <!-- End Table with stripped rows -->
 
             </div>
-          </div><!-- End Recent Activity -->
+          </div>
 
-          <!-- Budget Report -->
-        
-
-          <!-- Website Traffic -->
-        
-
-          <!-- News & Updates Traffic -->
-        
-
+        </div>
       </div>
     </section>
 
+
+ 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
-    
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -553,12 +486,27 @@ if(isset($_SESSION['username'])){
   <script src="assets/vendor/chart.js/chart.min.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+<script>
+jQuery(document).ready(function($) {
+    $('#tblPeople').DataTable();
+} );
+</script>
+
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
 

@@ -459,6 +459,7 @@ if(isset($_SESSION['username'])){
 
 
 $oppid =$_GET['id'];
+$bodynum =$_GET['bdynum'];
 
 $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     $result = $conn->query($sql);
@@ -482,7 +483,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
           <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example2-modal-xl">EDIT PROFILE</button>
 
           <br>
-          <a href="pdfid.php?id=<?php echo $oppid ?>">
+          <a href="pdfid.php?id=<?php echo $oppid ?>&bdynum=<?php echo  $bodynum;?>">
            <button class="btn btn-primary" type="button">Print ID</button></a>
             </div>
           </div>
