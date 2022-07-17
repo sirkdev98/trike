@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2022 at 10:07 AM
+-- Generation Time: Jul 17, 2022 at 04:26 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -52,7 +52,7 @@ CREATE TABLE `driveroperator` (
 --
 
 INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
-(90, 'KHRISTIAN HAROLD', 'PEREZ', 'VICENTE', 'MALE', 'JR.', 'BLK1 LOT 11 LEONA SUBD', '09275109013', '09275109013', 'JEEMAY', 'ANGELES', 'LABRADOR', '2022-07-13', 'OPERATOR', 'COA20192WS553', 'NON-PROFESSIONAL', '2022-07-15', '62d0e16bacdc2.jpeg');
+(98, 'Testing fname', 'Middle', 'Last', 'MALE', 'ext', 'SUBOK@gnau.com', 'PANTALAN BAGO', '123', 'Testing fname', 'Testing fname', 'qwe', '2022-07-18', 'OPERATOR', '22112', 'PROFESSIONAL', '2022-07-18', '62d3bad7294da.jpeg');
 
 -- --------------------------------------------------------
 
@@ -94,9 +94,8 @@ CREATE TABLE `dropped` (
 --
 
 INSERT INTO `dropped` (`dropid`, `dmvfileno`, `dplateno`, `dengineno`, `dchasisno`, `dmaker`, `dmotorcolor`, `dpistondisp`, `dcor`, `dornum`, `trikeid`, `remarks`, `dropdate`) VALUES
-(1, '09331XYZ', 'CAF 1548', '1998XKS123', '2132KASDJH', 'KAWASAKI', 'RED', 'PISTON22019', '1233OAES0', '0021', '3106', '', '2022-07-16'),
-(2, '09331XYZ', 'CAF 1548', '1998XKS123', '2132KASDJH', 'KAWASAKI', 'RED', 'PISTON22019', '1233OAES0', '0021', '3106', '', '2022-07-16'),
-(3, 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', '3106', '', '2022-07-16');
+(7, '22', 'SUBOK', '052389', '221', 'asd', 'blue', 'asd', 'SUBOK', 'asdq', '3116', '', '2022-07-17'),
+(8, '22', 'SUBOK', '052389', '221', 'asd', 'blue', 'asd', 'SUBOK', 'asdq', '3116', '', '2022-07-17');
 
 -- --------------------------------------------------------
 
@@ -117,7 +116,7 @@ CREATE TABLE `franchiserecord` (
 --
 
 INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchiseapproval`, `franchiseexpiration`, `trikeid`) VALUES
-(9, '2022-07-15', '0000-00-00', '0000-00-00', '3106');
+(19, '2022-07-17', '0000-00-00', '0000-00-00', '3116');
 
 -- --------------------------------------------------------
 
@@ -148,7 +147,7 @@ CREATE TABLE `inspection` (
 --
 
 INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES
-(59, '', '', '', '', '', '', '', '', '', '', '', '', '', '3106');
+(69, '', '', '', '', '', '', '', '', '', '', '', '', '', '3116');
 
 -- --------------------------------------------------------
 
@@ -176,13 +175,6 @@ CREATE TABLE `mtop` (
   `mtopexpiration` varchar(55) NOT NULL,
   `trikeid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mtop`
---
-
-INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`) VALUES
-(17, '200', '150', '250', '', '25', '35', '60', '', '100', '', '', '300', '', '1420', '2022-07-16', '2023-12-31', '3106');
 
 -- --------------------------------------------------------
 
@@ -336,13 +328,16 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES
-(46, 'Printed Form', 'generate or print form', '2022-07-15', 'done', '', 3106),
-(47, 'Printed Form', 'generate or print form', '2022-07-15', 'done', '', 3106),
-(48, 'Printed Form', 'generate or print form', '2022-07-15', 'done', '', 3106),
-(49, 'DROPPED FRANCHISE', 'drop franchise', '2022-07-16', 'done', '', 3106),
-(50, 'Edited Franchise Details', 'edited franchise', '2022-07-16', 'done', '', 3106),
-(51, 'DROPPED UNIT', 'DROPPED Unit', '2022-07-16', 'done', '', 3106),
-(52, 'Updated MTOP', 'updated mtop', '2022-07-16', 'done', '', 3106);
+(71, 'Added tricycle', 'Added tricycle', '2022-07-17', 'done', '', 3116),
+(72, 'Added new unit', 'Added new unit', '2022-07-17', 'done', '', 3116),
+(73, 'DROPPED UNIT', 'DROPPED Unit', '2022-07-17', 'done', '', 3116),
+(74, 'Get Dropped Unit', ' Get DROPPED Unit', '2022-07-17', 'done', '', 3116),
+(75, 'DROPPED UNIT', 'DROPPED Unit', '2022-07-17', 'done', '', 3116),
+(76, 'Get Dropped Unit', ' Get DROPPED Unit', '2022-07-17', 'done', '', 3116),
+(77, 'DROPPED UNIT', 'DROPPED Unit', '2022-07-17', 'done', '', 3116),
+(78, 'Added new unit', 'Added new unit', '2022-07-17', 'done', '', 3116),
+(79, 'DROPPED UNIT', 'DROPPED Unit', '2022-07-17', 'done', '', 3116),
+(80, 'Get Dropped Unit', ' Get DROPPED Unit', '2022-07-17', 'done', '', 3116);
 
 -- --------------------------------------------------------
 
@@ -383,7 +378,7 @@ CREATE TABLE `tricycle` (
 --
 
 INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`, `currentmtop`, `currentfranchise`, `status`) VALUES
-(3106, 'PEREZ', 'PEREZ', 'VICENTE', 'JR.', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', '', '02', '1998', '90', 'BALTODA 2 ', 'RED', 'inspectionstat', 'Public', '2022-07-06', '0000-00-00', 'no unit');
+(3116, 'Middle', 'Middle', 'Last', 'ext', 'asdasd', 'SUBOK', '052389', 'SUBOK', 'asd', 'blue', 'asd', 'SUBOK', 'asdq', '2022-07-17', '11', '1234', '98', 'BACMATODA ', 'GREEN', '', 'Public', '0000-00-00', '0000-00-00', 'with unit');
 
 --
 -- Indexes for dumped tables
@@ -464,27 +459,27 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
 ALTER TABLE `drivers`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `dropped`
 --
 ALTER TABLE `dropped`
-  MODIFY `dropid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `dropid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `franchiserecord`
 --
 ALTER TABLE `franchiserecord`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `inspection`
 --
 ALTER TABLE `inspection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT for table `mtop`
 --
@@ -509,12 +504,12 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3107;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3117;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
