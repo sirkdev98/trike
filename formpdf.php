@@ -7,13 +7,26 @@ include 'include/connection.php';
               
 
 
-require('fpdf181/fpdf.php');
+require_once('fpdf181/fpdf.php');
 $id = $_GET['id'];
 
 
 
 // Create connection
 
+require_once('fpdi/src/autoload.php');
+$pdf = new \setasign\Fpdi\Fpdi();
+// initiate FPDI
+
+// add a page
+$pdf->setSourceFile('form.pdf');
+$tplIdx = $pdf->importPage(1);
+$pdf->AddPage('P', array(215.9,330.2)); 
+// set the source file
+
+
+// import page 1
+// use the imported page and place it at position 10,10 with a width of 100 mm
 
 
 
@@ -30,14 +43,19 @@ $sql = "SELECT
   tricycle.cor,
   tricycle.ornum,
   tricycle.applicationdate,
-  tricycle.brgycode,tricycle.toda, 
+  tricycle.brgycode,
+  tricycle.toda, 
   tricycle.sidecarcolor, 
   tricycle.bodynum, 
   tricycle.inspectionstat,
   driveroperator.pid,
   driveroperator.fname,
   driveroperator.mname, 
-  driveroperator.lname, 
+  driveroperator.lname,
+  driveroperator.sfname,
+  driveroperator.smname, 
+  driveroperator.slaname,
+  driveroperator.extname,  
   driveroperator.type,
   driveroperator.picname,
   driveroperator.bday,
@@ -45,6 +63,9 @@ $sql = "SELECT
   driveroperator.address1,
   driveroperator.barangay,
   driveroperator.licensenum,
+  driveroperator.contactnumber,
+  franchiserecord.franchiseapproval,
+  franchiserecord.franchiseexpiration,
   inspection.sidecar_windshield,
   inspection.funcitioning_horn,
   inspection.signal_lights,
@@ -61,6 +82,8 @@ $sql = "SELECT
 FROM tricycle
 JOIN driveroperator
 ON tricycle.operatorid = driveroperator.pid
+JOIN franchiserecord 
+ON tricycle.id = franchiserecord.trikeid  
 JOIN inspection
 ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
                     $result = $conn->query($sql);
@@ -85,6 +108,10 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
                             $fname = $row['fname']; 
                             $mname = $row['mname']; 
                             $lname = $row['lname']; 
+                            $sfname = $row['sfname']; 
+                            $smname = $row['smname']; 
+                            $slname = $row['slaname'];
+                            $extname  =$row['extname'];
                             $type = $row['type']; 
                             $picname = $row['picname']; 
                             $toda = $row['toda']; 
@@ -107,6 +134,10 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
                             $opaddress1 = $row['address1'];
                             $opbarangay = $row['barangay'];
                             $licensenum = $row['licensenum'];
+                            $contactnumber = $row['contactnumber'];
+
+                               $franchiseapproval = $row['franchiseapproval'];
+                            $franchiseexpiration = $row['franchiseexpiration'];
 
 $bday = date("F-d-Y", strtotime($bday));
 
@@ -115,6 +146,153 @@ $bday = date("F-d-Y", strtotime($bday));
 
 }}
 
+$pdf->useTemplate($tplIdx);
+// now write some text above the imported page
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(56, 101);
+$pdf->Write(0, $fname);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(105, 101);
+$pdf->Write(0, $fname);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(160, 101);
+$pdf->Write(0, $lname);
+
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(190, 101);
+$pdf->Write(0, $extname);
+
+
+$pdf->SetFont('Arial','',9);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(40, 110);
+$pdf->Write(0, $opaddress1.", ".$opbarangay);
+
+
+$pdf->SetFont('Arial','',9);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(160, 107);
+$pdf->Write(0, $contactnumber);
+
+
+if ($gender=="FEMALE") {
+$pdf->SetFont('Arial','B',9);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(156.55, 112);
+$pdf->Write(0, 'x');
+}elseif ($gender=="MALE" ) {
+$pdf->SetFont('Arial','B',9);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(131.5, 112);
+$pdf->Write(0, 'x');  
+}
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(56, 122);
+$pdf->Write(0, $sfname);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(105, 122);
+$pdf->Write(0, $smname);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(160, 122);
+$pdf->Write(0, $slname);
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(12, 132);
+$pdf->Write(0, $mvfileno);
+
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(60, 132);
+$pdf->Write(0, $plateno);
+
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(110, 132);
+$pdf->Write(0, $engineno);
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(160, 132);
+$pdf->Write(0, $chasisno);
+//2nd line unit info
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(12, 142);
+$pdf->Write(0, $maker);
+
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(60, 142);
+$pdf->Write(0, $pistondisp);
+
+
+$pdf->SetFont('Arial','',9);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(110, 142);
+$pdf->Write(0, $cor);
+
+$pdf->SetFont('Arial','',9);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(150, 142);
+$pdf->Write(0, $ornum);
+
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(190, 142);
+$pdf->Write(0, '2--');
+
+//franchise dates
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(60, 149);
+$pdf->Write(0, $franchiseapproval );
+
+
+$pdf->SetFont('Arial','',12);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(60, 156);
+$pdf->Write(0, $franchiseexpiration );
+
+
+
+$pdf->SetFont('Arial','',14);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(135, 153);
+$pdf->Write(0, $brgycode);
+
+
+
+$pdf->SetFont('Arial','',14);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(155, 153);
+$pdf->Write(0, $bodynum);
+
+
+$pdf->SetFont('Arial','',6);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(187, 153);
+$pdf->Write(0, $toda);
+
+$pdf->Output('I', 'generated.pdf');
 
 
 
@@ -124,245 +302,7 @@ $bday = date("F-d-Y", strtotime($bday));
 
 
 //
-$pdf = new FPDF ('p','mm','a4');
 
-$pdf->AddPage();
-
-//set font
-$pdf->SetFont('Arial', '', 12);
-
-//cell width, height, text, border, end line, [align]
-$pdf->Image('orani2.png',160,10,28);
-
-$pdf->Image('orani.png',25,10,28);
-$pdf->Image('Capture.png',8,270,200);
-
-if ($picname=="") {
-
-}else{
-  $pdf->Image('upload/'.$picname,135,45,51,51);
-}
-
-$pdf ->Cell(72,10,'',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,5,'Republic of the Philippines',0,1);
-$pdf ->Cell(79,10,'',0,0);
-$pdf ->Cell(9,5,'Province of Bataan',0,1);
-
-$pdf ->Cell(55,5,'',0,0);
-$pdf->SetFont('Arial', 'B', 12);
-$pdf ->Cell(9,5,'MUNICIPAL GOVERNMENT OF ORANI',0,1);
-
-$pdf ->Cell(52,6,'',0,0);
-$pdf->SetFont('Arial', 'B', 12);
-$pdf ->Cell(9,6,'ORANI TRICYCLE REGULATORY OFFICE',0,1);
-
-$pdf->SetFont('Arial', '', 12);
-
-
-
-$pdf ->Cell(155,15,'',0,0);
-$pdf ->Cell(50,15,'',0,1);
-
-
-
-
-
-$pdf->SetFont('Arial', 'B', 12);
-$pdf ->Cell(5,1,'',0,0);
-$pdf ->SetTextColor(0,0,255);
-$pdf ->Cell(55,2,'OPERATORS INFORMATION',0,1);
-$pdf ->Cell(10,5,'',0,1);
-$pdf ->SetTextColor(0,0,0);
-
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'NAME',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$fname." ".$mname." ".$lname,0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'DATE OF BIRTH',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$bday,0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'GENDER',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$gender,0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'ADDRESS',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$opbarangay.", ".$opbarangay,0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'LICENSE NUMBER',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$licensenum,0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'CTC NUMBER',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'TODA',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$toda,0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-
-$pdf ->Cell(155,15,'',0,0);
-$pdf ->Cell(50,15,'',0,1);
-
-
-$pdf->SetFont('Arial', 'B', 12);
-$pdf ->Cell(5,1,'',0,0);
-$pdf ->SetTextColor(0,0,255);
-$pdf ->Cell(55,2,'UNIT INFORMATION',0,1);
-$pdf ->Cell(10,5,'',0,1);
-$pdf ->SetTextColor(0,0,0);
-
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'APPLICATION DATE',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$applicationdate,0,0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(45,5,'MTOP NUMBER',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'--',0,0);
-$pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'BODY NUMBER',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$bodynum,0,0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(45,5,'MTOP VALIDITY',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'--',0,0);
-$pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'PLATE NUMBER',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$plateno,0,0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(45,5,'FRANCHISE VALIDITY',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'--',0,0);
-$pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'MOTOR COLOR',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$motorcolor,0,0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'',0,0);
-$pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'SIDECAR COLOR',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$sidecarcolor,0,0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'',0,0);//TEXT TITLE
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'',0,0);//TEXT 2ND COLUMNT
-$pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'ENGINE NUMBER',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$engineno,0,0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'',0,0);
-$pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'CHASIS NUMBER',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(10,10,'',0,0);
-$pdf ->Cell(50,5,$chasisno,0,0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf ->Cell(5,10,'',0,0);
-$pdf ->Cell(30,5,'',0,0);
-$pdf->SetFont('Arial', '', 10);
-$pdf ->Cell(50,5,'',0,0);
-$pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(10,2,'',0,1);
-
-
-
-
-$pdf ->Cell(10,5,'',0,1);
-$pdf ->Cell(10,5,'',0,1);
-$pdf ->Cell(10,5,'',0,1);
-$pdf ->Cell(10,5,'',0,1);
-
-$pdf ->Cell(10,5,'',0,1);
-$pdf ->Cell(10,5,'',0,1);
-
-$pdf ->Cell(10,5,'',0,1);
-$pdf ->Cell(10,5,'',0,1);
-
-
-
-
-$pdf->Output();
 
 
 
