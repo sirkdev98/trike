@@ -459,7 +459,7 @@ if(isset($_SESSION['username'])){
 
 
 $oppid =$_GET['id'];
-$bodynum =$_GET['bdynum'];
+
 
 $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     $result = $conn->query($sql);

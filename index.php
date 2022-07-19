@@ -804,7 +804,7 @@ $whitepercent =($whitecount / $trikecount)*100;
                         <?php 
                         $today = date("Y-m-d");
                         if ($currentfranchise=='0000-00-00') {
-                          echo "<td><span class='badge bg-warning'>No mtop record</span></td>";
+                          echo "<td><span class='badge bg-warning'>No Franchise record</span></td>";
                         }
                         elseif ($currentfranchise > $today){
 

@@ -15,6 +15,7 @@ $to = $_GET['to'];
 
 
 
+ $today = date("Y-m-d");
 // Create connection
 
 $pdf = new FPDF ('l','mm','A5');
@@ -39,6 +40,7 @@ $sql = "SELECT
   tricycle.sidecarcolor, 
   tricycle.bodynum, 
   tricycle.inspectionstat,
+  tricycle.currentfranchise,
   franchiserecord.franchiseapproval,
   driveroperator.pid,
   driveroperator.fname,
@@ -70,7 +72,7 @@ ON tricycle.operatorid = driveroperator.pid
 JOIN franchiserecord
 ON tricycle.id = franchiserecord.trikeid
 JOIN inspection
-ON tricycle.id = inspection.trikeid WHERE tricycle.applicationdate BETWEEN '$from' and '$to'";
+ON tricycle.id = inspection.trikeid WHERE tricycle.currentfranchise > '$today' AND tricycle.applicationdate BETWEEN '$from' and '$to'";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                                               // output data of each row

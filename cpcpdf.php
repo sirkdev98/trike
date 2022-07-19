@@ -11,7 +11,6 @@ require('fpdf181/fpdf.php');
 $id = $_GET['id'];
 
 
-
 // Create connection
 
 $sql = "SELECT
