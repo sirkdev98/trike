@@ -8,7 +8,7 @@ include 'include/connection.php';
 
 
 require_once('fpdf181/fpdf.php');
-$id = $_GET['id'];
+$tid = $_GET['id'];
 
 
 
@@ -85,7 +85,7 @@ ON tricycle.operatorid = driveroperator.pid
 JOIN franchiserecord 
 ON tricycle.id = franchiserecord.trikeid  
 JOIN inspection
-ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
+ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
@@ -274,23 +274,111 @@ $pdf->Write(0, $franchiseexpiration );
 
 
 
-$pdf->SetFont('Arial','',14);
+$pdf->SetFont('Arial','',12);
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(135, 153);
+$pdf->SetXY(132, 153);
 $pdf->Write(0, $brgycode);
 
 
 
-$pdf->SetFont('Arial','',14);
+$pdf->SetFont('Arial','',12);
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(155, 153);
+$pdf->SetXY(140, 153);
 $pdf->Write(0, $bodynum);
 
 
-$pdf->SetFont('Arial','',6);
+$pdf->SetFont('Arial','',10);
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(187, 153);
-$pdf->Write(0, $toda);
+$pdf->SetXY(160, 153);
+$pdf->Write(0, 'GUECO-PARAISOTODA
+');
+
+
+
+$sql = "SELECT
+  driveroperator.pid,
+  driveroperator.fname,
+  driveroperator.mname,
+  driveroperator.lname,
+  driveroperator.licensenum,
+  driveroperator.licensevalid,
+  driveroperator.barangay,
+  driveroperator.address1,
+  driveroperator.gender,
+  driveroperator.bday,
+  tricycle.bodynum,
+  drivers.id
+FROM driveroperator
+JOIN drivers
+ON driveroperator.pid = drivers.driverid
+JOIN tricycle
+ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $did = $row['pid'];  
+                            $dfname = $row['fname']; 
+                            $dmname = $row['mname']; 
+                            $dlname = $row['lname']; 
+                            $dlicensenum = $row['licensenum']; 
+                            $dbarangay = $row['barangay']; 
+                            $dbday = $row['bday']; 
+                            $tbldriversid = $row['id'];
+                            $daddress1 = $row['address1'];
+                            $dlicensevalid = $row['licensevalid'];
+                            $dgender = $row['gender'];
+  
+
+
+$pdf->SetFont('Arial', '', 14);
+$pdf ->Cell(5,12,'',0,1);
+$pdf ->Cell(50,1,'',0,0);
+$pdf ->SetTextColor(0,0,0);
+$pdf ->Cell(40,2,$dfname,0,0);
+$pdf ->Cell(55,2,$dmname,0,0);
+$pdf ->Cell(10,2,$dlname,0,0);
+$pdf ->Cell(10,8,'',0,1);
+$pdf ->Cell(45,1,'',0,0);
+$pdf ->Cell(35,0,$daddress1.", ".$dbarangay,0,1);
+
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,4,'',0,1);
+$pdf ->Cell(30,1,'',0,0);
+$pdf ->Cell(120,2,$dlicensenum,0,0);
+$pdf->SetFont('Arial', '', 12);
+$pdf ->Cell(5,2,'O+',0,1);
+$pdf ->Cell(100,1,'',0,0);
+$pdf->SetFont('Arial', '', 13);
+$pdf ->Cell(30,0,date("m-d-Y", strtotime($dlicensevalid)),0,1);
+
+if ($dgender=="MALE") {
+	$pdf->SetFont('Arial', '', 10);
+	$pdf ->Cell(151.5,1,'',0,0);
+$pdf ->Cell(30,5,'x',0,0);
+}elseif ($dgender=="FEMALE" ) {
+	$pdf->SetFont('Arial', '', 10);
+	$pdf ->Cell(170.5,1,'',0,0);
+$pdf ->Cell(30,2,'x',0,0);
+}
+$pdf ->Cell(10,1,'',0,1);
+        
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 $pdf->Output('I', 'generated.pdf');
 

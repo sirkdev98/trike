@@ -385,10 +385,16 @@ $lastyear = date("Y",strtotime("-1 year"));
  $sql = "SELECT
     (SELECT COUNT(*) FROM tricycle WHERE YEAR(`currentmtop`) = YEAR(CURDATE()))AS withmtop,
     (SELECT COUNT(*) FROM tricycle WHERE `currentfranchise` >= now())AS withfranchise,
+    (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Red') AS redcount,
+    (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Blue') AS bluecount,
+    (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Yellow') AS yellowcount,
+    (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='White') AS whitecount,
+     (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Green') AS greencount,
     (SELECT COUNT(*) FROM tricycle )AS trikecount,
     (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= YEAR(CURDATE())) AS mtopcollection,
     (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= '$lastyear') AS mtopcollectionlastyear,
     (SELECT COUNT(*) FROM driveroperator WHERE type = 'OPERATOR') AS operatorcount,
+    (SELECT COUNT(*) FROM driveroperator WHERE type = 'DRIVER') AS drivercount,
     (SELECT COUNT(*) FROM driveroperator WHERE type = 'OPERATOR/DRIVER') AS opdrivecount";
    
         
@@ -405,6 +411,12 @@ $lastyear = date("Y",strtotime("-1 year"));
                             $mtopcollectionlastyear = $row['mtopcollectionlastyear'];
                             $operatorcount = $row['operatorcount'];
                             $opdrivecount = $row['opdrivecount'];
+                            $drivercount = $row['drivercount'];
+                            $redcount = $row['redcount'];
+                            $bluecount = $row['bluecount'];
+                            $yellowcount = $row['yellowcount'];
+                            $whitecount = $row['whitecount'];
+                            $greencount = $row['greencount'];
 }}
 if ($mtopcollectionlastyear != 0) {
  $increase = number_format((($mtopcollection - $mtopcollectionlastyear)/$mtopcollectionlastyear)*100,2);
@@ -412,6 +424,15 @@ if ($mtopcollectionlastyear != 0) {
 
   $increase = 0.00;
 }
+
+$redpercent =($redcount / $trikecount)*100;
+$yellowpercent =($yellowcount / $trikecount)*100;
+$bluepercent =($bluecount / $trikecount)*100;
+$greenpercent =($greencount / $trikecount)*100;
+$whitepercent =($whitecount / $trikecount)*100;
+
+
+
 
 
 ?>
@@ -596,6 +617,33 @@ if ($mtopcollectionlastyear != 0) {
 
 
 
+  <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+
+              
+
+                <div class="card-body">
+                  <h5 class="card-title">Driver<span> | total</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="successbi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6><?php echo $drivercount;?></h6>
+                     
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+
+
 
 
 
@@ -693,68 +741,84 @@ if ($mtopcollectionlastyear != 0) {
             <div class="col-12">
               <div class="card recent-sales">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
+              
                 <div class="card-body">
-                  <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                  <h5 class="card-title">Records <span>|Recently added</span></h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Record #</th>
+                        <th scope="col">Owner/Operator</th>
+                        <th scope="col">Body Number</th>
+                        <th scope="col">MTOP</th>
+                        <th scope="col">Franchise Status</th>
                       </tr>
                     </thead>
                     <tbody>
+<?php
+    $sql = "SELECT * FROM `tricycle` ORDER BY id DESC limit 5";
+  $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $rid = $row['id'];
+                            $fname =$row['fname'];
+                            $mname =$row['mname'];
+                            $lname =$row['lname'];
+                            $brgycode= $row['brgycode'];
+                            $bodynum= $row['bodynum'];
+                            $operatorid = $row['operatorid'];
+                            $applicationdate = $row['applicationdate'];
+                            $currentfranchise = $row['currentfranchise'];
+                            $currentmtop = $row['currentmtop'];
+                            $classifications = $row['classification'];
+
+
+
+
+
+
+
+?>
+
                       <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td>$64</td>
-                        <td><span class="badge bg-success">Approved</span></td>
+                        <th><a href="profile.php?id=<?php echo $rid; ?>"><?php echo $rid ?></a></th>
+                        <td><?php echo $fname." ".$mname." ".$lname; ?></td>
+                        <td><a href="profile.php?id=<?php echo $rid; ?>" class="text-primary"><?php echo $brgycode."-".$bodynum; ?></a></td>
+                       <?php 
+                        $today = date("Y-m-d");
+                        if ($currentmtop=='0000-00-00') {
+                          echo "<td><span class='badge bg-warning'>No mtop record</span></td>";
+                        }
+                        elseif ($currentmtop > $today){
+
+                           echo "<td><span class='badge bg-success'>$currentmtop - Registered</span></td>";
+                        }
+                        else{
+
+                           echo "<td><span class='badge bg-danger'>$currentmtop - Expired</span></td>";
+                        }
+
+                        ?>
+                        <?php 
+                        $today = date("Y-m-d");
+                        if ($currentfranchise=='0000-00-00') {
+                          echo "<td><span class='badge bg-warning'>No mtop record</span></td>";
+                        }
+                        elseif ($currentfranchise > $today){
+
+                           echo "<td><span class='badge bg-success'>$currentfranchise - Registered</span></td>";
+                        }
+                        else{
+
+                           echo "<td><span class='badge bg-danger'>$currentfranchise - Expired</span></td>";
+                        }
+
+                        ?>
+                       
                       </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td>$47</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td>$147</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td>$67</td>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td>$165</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
+                <?php }}?>      
                     </tbody>
                   </table>
 
@@ -784,34 +848,34 @@ if ($mtopcollectionlastyear != 0) {
                   <h5 class="card-title">Tricycle Population <span>| This year</span></h5>
 
                    <div class="card-body">
-                                   <h4 class="small font-weight-bold">Red <span
-                                            class="float-right">40%</span></h4>
+                                   <h4 class="small font-weight-bold">Red | <?php echo $redcount; ?><span
+                                            class="float-right"><?php echo $redpercent; ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: <?php echo $redpercent;?>%"
                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Yellow <span
-                                            class="float-right">40%</span></h4>
+                                    <h4 class="small font-weight-bold">Yellow | <?php echo $yellowcount; ?><span
+                                            class="float-right"><?php echo $yellowpercent; ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $yellowpercent; ?>%"
                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Blue <span
-                                            class="float-right">60%</span></h4>
+                                    <h4 class="small font-weight-bold">Blue | <?php echo $bluecount; ?><span
+                                            class="float-right"><?php echo $bluepercent; ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo $bluepercent; ?>%"
                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
+                                    <h4 class="small font-weight-bold">White | <?php echo $whitecount; ?> <span
+                                            class="float-right"><?php echo $whitepercent; ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo $whitepercent; ?>%; background-color: #eeebd9;"
                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
+                                    <h4 class="small font-weight-bold">Green | <?php echo $greencount; ?><span
+                                            class="float-right"><?php echo $greenpercent; ?>%</span></h4>
                                     <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $greenpercent; ?>%"
                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
