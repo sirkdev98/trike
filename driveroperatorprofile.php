@@ -460,7 +460,7 @@ if(isset($_SESSION['username'])){
 
 $oppid =$_GET['id'];
 
-
+$bodynum  =$_GET['bdynum'];
 $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     $result = $conn->query($sql);
                     $countfranchise = $result ->num_rows;
@@ -809,7 +809,7 @@ if ($conn->query($sql) === TRUE) {
  $last_id = $conn->insert_id;
 
  echo "<script type='text/javascript'>alert(\"Successfully Edited\")</script>";
-           echo "<script>window.location.href='driveroperatorprofile.php?id=$doid'</script>"; 
+           echo "<script>window.location.href='driveroperatorprofile.php?id=$doid&bdynum=$bodynum'</script>"; 
          }  else{
              echo "<script type='text/javascript'>alert(\"Data not added please check.  \")</script>";
 
