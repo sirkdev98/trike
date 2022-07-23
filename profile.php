@@ -632,55 +632,123 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   <h5 class="card-title"><?php echo $toda; ?> - <?php echo $bodynum; ?></h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">sidecar_windshield</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $sidecar_windshield; ?></div>
+                    <div class="col-lg-3 col-md-4 label ">Sidecar Windshield</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="sidecar_windshield" value="OK" <?php if ($sidecar_windshield == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
+
+                  </div>
+
+                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Functioning Horn</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="funcitioning_horn" value="OK" <?php if ($funcitioning_horn   == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
+
+                  </div>
+                 <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Signal Lights</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="signal_lights" value="OK" <?php if ($signal_lights   == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
+
+                  </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Tail Lights</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="tail_lights" value="OK" <?php if ($tail_lights  == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
+
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">funcitioning_horn</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $funcitioning_horn; ?></div>
+                    <div class="col-lg-3 col-md-4 label ">Topchain Cover</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="topchain_cover" value="OK" <?php if ($topchain_cover  == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
+                  </div>
+
+                 <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Withered Headlights</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="whitered_headlights" value="OK" <?php if ($whitered_headlights  == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">signal_lights</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $signal_lights; ?></div>
-                  </div>
+                    <div class="col-lg-3 col-md-4 label ">Lights Inside</div>
+                    <div class="col-lg-9 col-md-8">
 
+                       <input class="form-check-input" type="checkbox" id="chck1" name="light_inside" value="OK" <?php if ($light_inside  == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
+                  </div>
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Mufflers</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="mufflers" value="OK" <?php if ($mufflers  == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
+                  </div>
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">tail_lights</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $tail_lights; ?></div>
+                    <div class="col-lg-3 col-md-4 label ">Side Mirrors</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="side_mirrors" value="OK" <?php if ($side_mirrors  == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
                   </div>
-                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">topchain_cover</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $topchain_cover; ?></div>
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Upholstery</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="upholstery" value="OK" <?php if ($upholstery == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
                   </div>
-                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">whitered_headlights</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $whitered_headlights; ?></div>
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Wheels</div>
+                    <div class="col-lg-9 col-md-8">
+
+                       <input class="form-check-input" type="checkbox" id="chck1" name="wheels" value="OK" <?php if ($wheels   == "OK"): ?>
+                          <?php echo  "checked" ?>
+                       <?php endif ?>>
+                      </div>
                   </div>
-                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">light_inside</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $light_inside; ?></div>
-                  </div>
-                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">mufflers</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $mufflers; ?></div>
-                  </div>
-                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label">side_mirrors</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $side_mirrors; ?></div>
-                  </div>
-                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label">upholstery</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $upholstery; ?></div>
-                  </div>
-                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label">wheels</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $wheels; ?></div>
-                  </div>
-                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label">remarks</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $remarks; ?></div>
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Remarks</div>
+                    <div class="col-lg-5 col-md-5">
+
+                      <textarea id="w3review" name="remarks" rows="4" cols="50" class="form-control" value="<?php echo $remarks; ?>" maxlength="100">
+                        <?php if($remarks != "") {
+                         echo $remarks;
+                        } ?>
+                    </textarea>
+                      </div>
                   </div>
 
                   
