@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2022 at 08:17 AM
+-- Generation Time: Jul 25, 2022 at 10:42 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -152,7 +152,7 @@ CREATE TABLE `inspection` (
   `side_mirrors` varchar(55) NOT NULL,
   `upholstery` varchar(55) NOT NULL,
   `wheels` varchar(55) NOT NULL,
-  `remarks` varchar(55) NOT NULL,
+  `remarks` varchar(105) NOT NULL,
   `trikeid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -161,8 +161,8 @@ CREATE TABLE `inspection` (
 --
 
 INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES
-(69, '', '', '', '', '', '', '', '', '', '', '', '', '', '3116'),
-(70, '', '', '', '', '', '', '', '', '', '', '', '', '', '3117'),
+(69, 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', '', 'OK', 'OK', 'OK', 'OK ALL', '3116'),
+(70, 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'The quick brown fox jumps over the lazy dogs', '3117'),
 (71, '', '', '', '', '', '', '', '', '', '', '', '', '', '3118');
 
 -- --------------------------------------------------------
@@ -233,6 +233,28 @@ INSERT INTO `mtopamount` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_payments`
+--
+
+CREATE TABLE `tbl_payments` (
+  `paymentid` int(55) NOT NULL,
+  `payable` varchar(55) NOT NULL,
+  `amount` varchar(55) NOT NULL,
+  `ornumber` varchar(55) NOT NULL,
+  `trikeid` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_payments`
+--
+
+INSERT INTO `tbl_payments` (`paymentid`, `payable`, `amount`, `ornumber`, `trikeid`) VALUES
+(1, 'Confirmation', '100', '12345', ''),
+(2, 'Confirmation', '60', '5555', '3116');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_user`
 --
 
@@ -258,7 +280,8 @@ INSERT INTO `tbl_user` (`id`, `username`, `password`, `first_name`, `last_name`,
 (3, 'otro1', 'otro1', 'Anicia', 'Macauba', 'Amor', 'admin', 'otro', '', '0000-00-00 00:00:00'),
 (4, 'otro2', 'otro2', 'Teresita', 'Bianzon', '', 'admin', 'OIC-OTRO', '', '0000-00-00 00:00:00'),
 (5, 'otro3', 'otro3', 'John Nori', 'Pili', 'Amor', 'admin', 'Otro Staff', '', '0000-00-00 00:00:00'),
-(6, 'otro4', 'otro4', 'Vergz', 'Sulangi', '', 'admin', 'Otro Staff', '', '0000-00-00 00:00:00');
+(6, 'otro4', 'otro4', 'Vergz', 'Sulangi', '', 'admin', 'Otro Staff', '', '0000-00-00 00:00:00'),
+(7, 'mayor', 'mayor1', 'EFREN', 'PASCUAL, JR.', 'E.', 'admin', 'MUNICIPAL MAYOR', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -373,7 +396,26 @@ INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`
 (89, 'Updated MTOP', 'updated mtop', '2022-07-20', 'done', '', 3118),
 (90, 'Added Existing Driver', 'added driver to tricycle', '2022-07-20', 'done', '', 0),
 (91, 'Printed Form', 'generate or print form', '2022-07-20', 'done', '', 3116),
-(92, 'DROPPED UNIT', 'DROPPED Unit', '2022-07-21', 'done', '', 3117);
+(92, 'DROPPED UNIT', 'DROPPED Unit', '2022-07-21', 'done', '', 3117),
+(93, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(94, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(95, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(96, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(97, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(98, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(99, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(100, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(101, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(102, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(103, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(104, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(105, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(106, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(107, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(108, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(109, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
+(110, 'Printed Form', 'generate or print form', '2022-07-25', 'done', '', 3116),
+(111, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-25', 'done', '', 3116);
 
 -- --------------------------------------------------------
 
@@ -465,6 +507,12 @@ ALTER TABLE `mtopamount`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_payments`
+--
+ALTER TABLE `tbl_payments`
+  ADD PRIMARY KEY (`paymentid`);
+
+--
 -- Indexes for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
@@ -529,10 +577,15 @@ ALTER TABLE `mtop`
 ALTER TABLE `mtopamount`
   MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `tbl_payments`
+--
+ALTER TABLE `tbl_payments`
+  MODIFY `paymentid` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `toda`
 --
@@ -542,7 +595,7 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
