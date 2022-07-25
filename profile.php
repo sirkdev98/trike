@@ -605,6 +605,10 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     <div class="col-lg-3 col-md-4 label">Franchise Date</div>
                     <div class="col-lg-9 col-md-8"><?php echo $currentfrachise; ?></div>
                   </div>
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 label">MTOP Date</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $mtopexpiration; ?></div>
+                  </div>
 
                <div class="row"> 
 <div class="col-lg-3 col-md-4 label"><button type='button' class='btn btn-warning btn-lg' data-toggle="modal"  data-target=".bd-addnewunit-modal-xl" <?php if ($trikestatus != "no unit") {
@@ -628,7 +632,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   <div class="tab-pane fade profile-overview" id="profile-inspection">
                   <h5 class="card-title">Tricycle Details</h5>
                   <p class="small fst-italic">Below are the details for the selected tricycle</p>
-
+                  <form method="post">
                   <h5 class="card-title"><?php echo $toda; ?> - <?php echo $bodynum; ?></h5>
 
                   <div class="row">
@@ -743,20 +747,68 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     <div class="col-lg-3 col-md-4 label ">Remarks</div>
                     <div class="col-lg-5 col-md-5">
 
-                      <textarea id="w3review" name="remarks" rows="4" cols="50" class="form-control" value="<?php echo $remarks; ?>" maxlength="100">
-                        <?php if($remarks != "") {
+                      <textarea name="remarks" rows="4" cols="50" class="form-control" value="<?php echo $remarks; ?>" maxlength="100"><?php if($remarks != "") {
                          echo $remarks;
-                        } ?>
-                    </textarea>
+                        } ?></textarea>
+                     
+                    
                       </div>
                   </div>
 
+                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">
+                    <button class="btn btn-primary" name="updateinspection" type="submit">Update Inspection</button>
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                      </div>
+                  </div>
+                    </form>
                   
 
 
                  
 
                 </div>
+                <?php
+                 $editidinspection = $_GET['id'];
+                if(isset($_POST['updateinspection'])){
+
+
+
+                            $sidecar_windshield = $_POST['sidecar_windshield'];
+                            $funcitioning_horn = $_POST['funcitioning_horn'];
+                            $signal_lights = $_POST['signal_lights'];
+                            $tail_lights = $_POST['tail_lights'];
+                            $topchain_cover = $_POST['topchain_cover'];
+                            $whitered_headlights = $_POST['whitered_headlights'];
+                            $light_inside = $_POST['light_inside'];
+                            $mufflers = $_POST['mufflers'];
+                            $roof = $_POST['roof'];
+                            $side_mirrors = $_POST['side_mirrors'];
+                            $upholstery = $_POST['upholstery'];
+                            $wheels = $_POST['wheels'];
+                            $remarks = $_POST['remarks'];
+
+                            $sql = "UPDATE `inspection` SET `sidecar_windshield` = '$sidecar_windshield', `funcitioning_horn` = '$funcitioning_horn', `signal_lights` = '$signal_lights', `tail_lights` = '$tail_lights', `topchain_cover` = '$topchain_cover', `whitered_headlights` = '$whitered_headlights', `light_inside` = '$light_inside', `mufflers` = '$mufflers', `roof` = '$roof', `side_mirrors` = '$side_mirrors', `upholstery` = '$upholstery', `wheels` = '$wheels', `remarks` = '$remarks' WHERE `inspection`.`trikeid` = $editidinspection";
+
+
+                            if ($conn->query($sql) === TRUE) {  
+
+  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Updated Inspection Details', 'Updated Inspection Details', now(), 'done', '', '$editidinspection')";
+if ($conn->query($sql) === TRUE) {  
+
+
+  echo "<script type='text/javascript'>alert(\"Successfully Edited $editidinspection \")</script>";
+
+   echo '<script>window.location.href="profile.php?id='.$editidinspection.'"</script>';
+                                      
+}}}
+  
+
+
+
+
+                ?>
 
 
 
