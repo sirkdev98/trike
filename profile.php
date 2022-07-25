@@ -611,7 +611,14 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   </div> 
                     <div class="row">
                     <div class="col-lg-3 col-md-4 label"><a href="#printconfirmation<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
-  <i class="bi bi-printer"></i> PRINT CONFIRMATION</button></a></i></div>
+                      <i class="bi bi-printer"></i> PRINT CONFIRMATION</button></a></i></div>
+                  
+                  </div> 
+                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label"><a href="#printnorecord<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-warning btn-lg' <?php if ($trikestatus != "no unit") {
+  echo "hidden";
+} ?>>
+                      <i class="bi bi-printer"></i> PRINT NO RECORD</button></a></i></div>
                   
                   </div> 
 
