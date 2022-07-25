@@ -2,8 +2,20 @@
 
 
 <?php
+
+
 include 'include/controller.php';
 include 'include/connection.php';
+if(isset($_SESSION['username'])){
+    
+      $cidd = $_SESSION['id'];
+      $userrole= $_SESSION['role'];
+      $userfname= $_SESSION['fname'];
+      $userlname= $_SESSION['lname'];
+      $usermname= $_SESSION['mname'];
+}
+
+
               
 
 
@@ -229,6 +241,10 @@ $pdf->SetXY(129, 210);
 $pdf->Write(0, $mayorfirst_name." ".$mayormiddle_name." ".$mayorlast_name);
 
 
+$pdf->SetFont('Arial','B');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(15, 235);
+$pdf->Write(0, $userfname." ".$usermname." ".$userlname);
 
 
 
