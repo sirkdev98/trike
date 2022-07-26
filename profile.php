@@ -1028,7 +1028,7 @@ $getprofileid = $_GET['id'];
                    <td>
 
                     <a href="#printnorecord<?php echo $dropid;?>" data-toggle="modal">
-<button type='button' class='btn btn-warning btn-sm' <?php if ($trikestatus != "no unit") {echo "hidden";} ?>> <i class="bi bi-printer"></i>NO RECORD</button></a>
+<button type='button' class='btn btn-warning btn-sm'><i class="bi bi-printer"></i>NO RECORD</button></a>
                      
 
                    </td>
