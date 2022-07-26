@@ -610,15 +610,15 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                     <div class="col-lg-9 col-md-8"><?php echo $mtopexpiration; ?></div>
                   </div> 
                     <div class="row">
-                    <div class="col-lg-3 col-md-4 label"><a href="#printconfirmation<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
+                    <div class="col-lg-3 col-md-4 label" <?php if ($trikestatus == "no unit") {
+  echo "hidden";
+} ?>><a href="#printconfirmation<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
                       <i class="bi bi-printer"></i> PRINT CONFIRMATION</button></a></i></div>
                   
                   </div> 
                    <div class="row">
-                    <div class="col-lg-3 col-md-4 label"><a href="#printnorecord<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-warning btn-lg' <?php if ($trikestatus != "no unit") {
-  echo "hidden";
-} ?>>
-                      <i class="bi bi-printer"></i> PRINT NO RECORD</button></a></i></div>
+                    <div class="col-lg-3 col-md-4 label">
+                    </div>
                   
                   </div> 
 
@@ -1027,13 +1027,53 @@ $getprofileid = $_GET['id'];
                 <td><?php echo $fname;?></td>
                    <td>
 
-                    <?php echo $fname;?>
+                    <a href="#printnorecord<?php echo $dropid;?>" data-toggle="modal">
+<button type='button' class='btn btn-warning btn-sm' <?php if ($trikestatus != "no unit") {echo "hidden";} ?>> <i class="bi bi-printer"></i>NO RECORD</button></a>
                      
 
                    </td>
 
             </tr>
-            <?php }}?>
+
+</form>
+
+<div id="printnorecord<?php echo $dropid;?>" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                        <form method="post"> <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                       
+                                        <h4 class="modal-title">Generate No record Cert.</h4>
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="dropid" value="<?php echo $dropid; ?>">
+                
+
+                                        <div class="alert alert-warning">Please Input OR number for<strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?></div>
+
+                                        <input type="text" name="norecordcert" class="form-control" placeholder="OR NUMBER" required>
+                                        <div class="modal-footer">
+                                           <button type="submit" name="printnorecord" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
+            <?php 
+
+
+
+
+
+          }}?>
         </tbody>
         <tfoot>
             <tr>
@@ -1051,7 +1091,7 @@ $getprofileid = $_GET['id'];
             </tr>
         </tfoot>
     </table>
-                  </form></div></div>
+                  </div></div>
 
 
 
@@ -1750,7 +1790,7 @@ if ($conn->query($sql) === TRUE) {
     </section>
 
 
-
+     
 
 
 
@@ -2110,6 +2150,45 @@ if ($conn->query($sql) === TRUE) {
 
                
 <?php 
+if(isset($_POST['printnorecord'])){
+$dropid = $_POST['dropid'];
+$trikeeid = $_GET['id'];
+$norecordornum = $_POST['norecordcert'];
+$selectquery = "SELECT * FROM `tbl_payments` WHERE ornumber = $certornum";
+$result = $conn->query($selectquery);
+                      if($result->num_rows> 0){
+
+ echo "<script type='text/javascript'>alert(\"Or number already exist, will show you the record now..\")</script>";
+
+   echo '<script>window.location.href="norecordpdf.php?id='.$trikeeid.'&ornum='.$norecordornum.'&dropid='.$dropid.'"</script>';
+
+    }else{
+
+ $sql = "INSERT INTO `tbl_payments` (`paymentid`, `payable`, `amount`, `ornumber`, `trikeid`) VALUES (NULL, 'No record', '60', '$norecordornum', '$trikeeid')";
+if ($conn->query($sql) === TRUE) {  
+ 
+  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Paid and Printer Cert of Confirmation', 'edited franchise', now(), 'done', '', '$editid')";
+
+if ($conn->query($sql) === TRUE) {  
+
+    echo "<script type='text/javascript'>alert(\"Added payment record, Showing the certificate now..\")</script>";
+
+   echo '<script>window.location.href="norecordpdf.php?id='.$trikeeid.'&ornum='.$certornum.'&dropid='.$dropid.'"</script>';
+
+    }
+}
+ }
+}
+
+
+
+
+
+
+
+
+
+
  if(isset($_POST['printconfirmation'])){
 $trikeeid = $_GET['id'];
 $certornum = $_POST['confirmationor'];

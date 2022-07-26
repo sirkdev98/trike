@@ -25,9 +25,28 @@ $pdf->AddPage('P', array(215.9,330.2));
 // set the source file
 
 
-// import page 1
-// use the imported page and place it at position 10,10 with a width of 100 mm
+   $sql = "SELECT * from dropped where trikeid = $tid ORDER BY dropid Desc limit 1";
+      
+    
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
 
+                            $dropid = $row['dropid'];  
+                            $dmvfileno = $row['dmvfileno']; 
+                            $dplateno = $row['dplateno']; 
+                            $dengineno = $row['dengineno']; 
+                            $dchasisno = $row['dchasisno']; 
+                            $dmaker = $row['dmaker']; 
+                            $dmotorcolor = $row['dmotorcolor']; 
+                            $dpistondisp = $row['dpistondisp']; 
+                            $dcor = $row['dcor']; 
+                            $dropdate = $row['dropdate']; 
+                            $trikeid = $row['trikeid']; 
+
+                          }}
 
 
 $sql = "SELECT
@@ -152,147 +171,6 @@ $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(56, 101);
 $pdf->Write(0, $fname);
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(105, 101);
-$pdf->Write(0, $fname);
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(160, 101);
-$pdf->Write(0, $lname);
-
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(190, 101);
-$pdf->Write(0, $extname);
-
-
-$pdf->SetFont('Arial','',9);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(40, 110);
-$pdf->Write(0, $opaddress1.", ".$opbarangay);
-
-
-$pdf->SetFont('Arial','',9);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(160, 107);
-$pdf->Write(0, $contactnumber);
-
-
-if ($gender=="FEMALE") {
-$pdf->SetFont('Arial','B',9);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(156.55, 112);
-$pdf->Write(0, 'x');
-}elseif ($gender=="MALE" ) {
-$pdf->SetFont('Arial','B',9);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(131.5, 112);
-$pdf->Write(0, 'x');  
-}
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(56, 122);
-$pdf->Write(0, $sfname);
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(105, 122);
-$pdf->Write(0, $smname);
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(160, 122);
-$pdf->Write(0, $slname);
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(12, 132);
-$pdf->Write(0, $mvfileno);
-
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(60, 132);
-$pdf->Write(0, $plateno);
-
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(110, 132);
-$pdf->Write(0, $engineno);
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(160, 132);
-$pdf->Write(0, $chasisno);
-//2nd line unit info
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(12, 142);
-$pdf->Write(0, $maker);
-
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(60, 142);
-$pdf->Write(0, $pistondisp);
-
-
-$pdf->SetFont('Arial','',9);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(110, 142);
-$pdf->Write(0, $cor);
-
-$pdf->SetFont('Arial','',9);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(150, 142);
-$pdf->Write(0, $ornum);
-
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(190, 142);
-$pdf->Write(0, '2--');
-
-//franchise dates
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(60, 149);
-$pdf->Write(0, $franchiseapproval );
-
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(60, 156);
-$pdf->Write(0, $franchiseexpiration );
-
-
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(132, 153);
-$pdf->Write(0, $brgycode);
-
-
-
-$pdf->SetFont('Arial','',12);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(140, 153);
-$pdf->Write(0, $bodynum);
-
-
-$pdf->SetFont('Arial','',10);
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(160, 153);
-$pdf->Write(0, 'GUECO-PARAISOTODA
-');
-
 
 
 $sql = "SELECT

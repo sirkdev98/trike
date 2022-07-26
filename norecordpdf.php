@@ -22,8 +22,7 @@ if(isset($_SESSION['username'])){
 require_once('fpdf181/fpdf.php');
 $tid = $_GET['id'];
 $ornumcert =$_GET['ornum'];
-
-
+$dropid  = $_GET['dropid'];
 
 // Create connection
 
@@ -32,10 +31,46 @@ $pdf = new \setasign\Fpdi\Fpdi();
 // initiate FPDI
 
 // add a page
-$pdf->setSourceFile('confirmation.pdf');
+$pdf->setSourceFile('norecord.pdf');
 $tplIdx = $pdf->importPage(1);
 $pdf->AddPage('P', 'A4'); 
 // set the source file
+
+
+
+
+
+
+
+          $sql = "SELECT * from dropped where dropid = $dropid";
+      
+    
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                     while( $row = $result->fetch_assoc()){
+                        
+
+                            $dropid = $row['dropid'];  
+                            $dmvfileno = $row['dmvfileno']; 
+                            $dplateno = $row['dplateno']; 
+                            $dengineno = $row['dengineno']; 
+                            $dchasisno = $row['dchasisno']; 
+                            $dmaker = $row['dmaker']; 
+                            $dmotorcolor = $row['dmotorcolor']; 
+                            $dpistondisp = $row['dpistondisp']; 
+                            $dcor = $row['dcor']; 
+                            $dropdate = $row['dropdate']; 
+                            $trikeid = $row['trikeid']; 
+
+}}
+
+
+
+
+
+
+
 $sqlmayor = "SELECT * FROM `tbl_user` WHERE position ='Municipal Mayor' ORDER BY id DESC limit 1;";
 $resultss = $conn->query($sqlmayor);
  if ($resultss->num_rows > 0) {
@@ -177,73 +212,40 @@ $pdf->useTemplate($tplIdx);
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(88, 96);
-$pdf->Write(0, $fname." ".$mname." ".$lname);
+$pdf->Write(0, $dmaker);
 
 
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(88, 102);
-$pdf->Write(0, $opaddress1.",".$opbarangay);
+$pdf->Write(0, '');
 
         
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(88, 108);
-$pdf->Write(0, $brgycode."-".$bodynum);
+$pdf->Write(0, $dengineno);
 
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(88, 114);
-$pdf->Write(0, $fomatmtopexpiration);
+$pdf->Write(0, $dchasisno);
 
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(88, 120);
-$pdf->Write(0, 'One(1)');
+$pdf->Write(0, '');
 
 
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 126);
-$pdf->Write(0, $fomatmtopdate);
 
 
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 132);
-$pdf->Write(0, $ornumcert);
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 153);
-$pdf->Write(0, $maker);
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 159);
-$pdf->Write(0, $engineno);
 
 
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 165);
-$pdf->Write(0, $chasisno);
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 171);
-$pdf->Write(0, $plateno);
 
 
 $pdf->SetFont('Arial','B');
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(129, 210);
-$pdf->Write(0, $mayorfirst_name." ".$mayormiddle_name." ".$mayorlast_name);
-
-
-$pdf->SetFont('Arial','B');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(15, 235);
+$pdf->SetXY(37.5, 190);
 $pdf->Write(0, $userfname." ".$usermname." ".$userlname);
 
 
