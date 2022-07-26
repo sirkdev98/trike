@@ -209,32 +209,49 @@ $bday = date("F-d-Y", strtotime($bday));
 
 $pdf->useTemplate($tplIdx);
 // now write some text above the imported page
+
 $pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 96);
+$pdf->SetTextColor(0,0,0);
+$pdf->Cell( 200, 67,'',0,1);
+$pdf->Cell( 12, 67,'',0,0);
+$pdf->MultiCell(160, 7,'This is to certify that '.$fname.' '.$mname.' '.$lname.' of '.$opaddress1.' Orani,Bataan has "NO RECORDS" on File Line here in this Municipality, described as follows:');
+
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0,0,0);
+$pdf->SetXY(88, 107);
 $pdf->Write(0, $dmaker);
 
 
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 102);
-$pdf->Write(0, '');
+$pdf->SetXY(88, 113);
+$pdf->Write(0, $dengineno);
 
         
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 108);
-$pdf->Write(0, $dengineno);
+$pdf->SetXY(88, 119);
+$pdf->Write(0, $chasisno);
 
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 114);
-$pdf->Write(0, $dchasisno);
-
-$pdf->SetFont('Arial');
-$pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(88, 120);
+$pdf->SetXY(88, 125);
 $pdf->Write(0, '');
+
+$day = date('d');
+$month = date('F');
+$year = date('Y');
+
+$pdf->SetFont('Arial','B');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(30, 147.5);
+$pdf->Write(0, $day);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(50, 147.5);
+$pdf->Write(0, $month.',  '.$year.'  at Orani Bataan with O.R. No.'.$ornumcert.'');
 
 
 
@@ -245,7 +262,7 @@ $pdf->Write(0, '');
 
 $pdf->SetFont('Arial','B');
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(37.5, 190);
+$pdf->SetXY(23, 190);
 $pdf->Write(0, $userfname." ".$usermname." ".$userlname);
 
 

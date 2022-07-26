@@ -2173,7 +2173,7 @@ if ($conn->query($sql) === TRUE) {
 
     echo "<script type='text/javascript'>alert(\"Added payment record, Showing the certificate now..\")</script>";
 
-   echo '<script>window.location.href="norecordpdf.php?id='.$trikeeid.'&ornum='.$certornum.'&dropid='.$dropid.'"</script>';
+   echo '<script>window.location.href="norecordpdf.php?id='.$trikeeid.'&ornum='.$norecordornum.'&dropid='.$dropid.'"</script>';
 
     }
 }
