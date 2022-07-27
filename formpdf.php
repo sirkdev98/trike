@@ -173,6 +173,72 @@ $pdf->SetXY(56, 101);
 $pdf->Write(0, $fname);
 
 
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(115, 101);
+$pdf->Write(0, $mname);
+
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(155, 101);
+$pdf->Write(0, $lname);
+
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(40, 110);
+$pdf->Write(0, $opaddress1.', '.$opbarangay);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 107);
+$pdf->Write(0, $contactnumber);
+
+if ($gender =='FEMALE') {
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(156.5, 112);
+$pdf->Write(0, 'x');
+
+}elseif($gender =='MALE'){
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(131.5, 112);
+$pdf->Write(0, 'x');
+
+
+}
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(56, 122);
+$pdf->Write(0, $sfname);
+
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(115, 122);
+$pdf->Write(0, $smname);
+
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(155, 122);
+$pdf->Write(0, $slname);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(15, 132);
+$pdf->Write(0, $mvfileno);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(60, 132);
+$pdf->Write(0, $plateno);
+
+
+
 $sql = "SELECT
   driveroperator.pid,
   driveroperator.fname,
@@ -213,7 +279,7 @@ $pdf->SetFont('Arial', '', 14);
 $pdf ->Cell(5,12,'',0,1);
 $pdf ->Cell(50,1,'',0,0);
 $pdf ->SetTextColor(0,0,0);
-$pdf ->Cell(40,2,$dfname,0,0);
+$pdf ->Cell(40,2,'asdasd',0,0);
 $pdf ->Cell(55,2,$dmname,0,0);
 $pdf ->Cell(10,2,$dlname,0,0);
 $pdf ->Cell(10,8,'',0,1);
