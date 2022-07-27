@@ -1,3 +1,4 @@
+
 <?php 
 
 include 'include/controller.php';
@@ -558,7 +559,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                 </li>
 
                 <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-units">Units</button>
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-units">Dropped Units</button>
                 </li>
 
 
@@ -976,13 +977,10 @@ if ($conn->query($sql) === TRUE) {
         <thead>
             <tr>
                 <th>ID</th>
-                <th>File No.</th>
                 <th>Plate No.</th>
                 <th>Engine No.</th>
                 <th>Chasis No.</th>
                 <th>Maker</th>
-                <th>Motor Color</th>
-                <th>Piston Dip</th>
                 <th>Drop Date</th>
                 <th>Dropped By</th>
                 <th>Printables</th>
@@ -1016,13 +1014,10 @@ $getprofileid = $_GET['id'];
       
             <tr>
                 <td><?php echo $dropid; ?></td>
-                <td><?php echo $dmvfileno; ?></td>
                 <td><?php echo $dplateno; ?></td>
                 <td><?php echo $dengineno; ?></td>
                 <td><?php echo $dchasisno;?></td>
                 <td><?php echo $dmaker;?></td>
-                <td><?php echo $dpistondisp;?></td>
-                <td><?php echo $dcor;?></td>
                 <td><?php echo $dropdate;?></td>
                 <td><?php echo $fname;?></td>
                    <td>
@@ -1680,21 +1675,18 @@ $mtopexpiration = date('Y-12-31', strtotime('+1 year'));
 
 $mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee +$inoperatoridfee +$indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee;
 
-$sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`) 
-VALUES ('NULL', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee', '$mtoptotal', '$mtopdate', '$mtopexpiration', '$tid')";
+$sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`,`status`) 
+VALUES ('NULL', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee', '$mtoptotal', '$mtopdate', '$mtopexpiration', '$tid','pending')";
 
 if ($conn->query($sql) === TRUE) { 
 
-  $sql = "UPDATE `tricycle` SET `currentmtop` = '2022-07-06' WHERE `tricycle`.`id` = $tid";
-  if ($conn->query($sql) === TRUE) { 
 
-
-$sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Updated MTOP', 'updated mtop', now(), 'done', '', '$tid')";
+$sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added MTOP for payment', 'for payment mtop', now(), 'done', '', '$tid')";
 if ($conn->query($sql) === TRUE) {  
 
  
 
-  echo "<script type='text/javascript'>alert(\"Successfully Updated MTOP RECORD  \")</script>";
+  echo "<script type='text/javascript'>alert(\"Successfully Added MTOP for Payment  \")</script>";
                                       echo '<script>window.location.href="profile.php?id='.$tid.'"</script>';
 }
 }}}
@@ -2154,7 +2146,7 @@ if(isset($_POST['printnorecord'])){
 $dropid = $_POST['dropid'];
 $trikeeid = $_GET['id'];
 $norecordornum = $_POST['norecordcert'];
-$selectquery = "SELECT * FROM `tbl_payments` WHERE ornumber = $certornum";
+$selectquery = "SELECT * FROM `tbl_payments` WHERE ornumber = $norecordornum";
 $result = $conn->query($selectquery);
                       if($result->num_rows> 0){
 
