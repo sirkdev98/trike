@@ -511,7 +511,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
       
      <?php
                      $tid = $_GET['id'];
-                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now()";
+                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='paid'";
                     $results = $conn->query($sqlmtop);
                     if ($results->num_rows > 0) {
                         // output data of each row
@@ -520,7 +520,25 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
                           $mtopexpiration = $row['mtopexpiration'];
                      }}else{
-                         $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' ORDER BY id DESC limit 1;";
+
+                    $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='pending'";
+                    $results = $conn->query($sqlmtop);
+                    if ($results->num_rows > 0) {
+                        // output data of each row
+                      $mtopstat = 'mtopunpaid';
+                        while($row = $results->fetch_assoc()) {
+
+                          $unpaidmtop = $row['id'];
+                          $mtopexpiration ='';
+
+                       }}else{
+
+
+
+
+
+
+  $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' ORDER BY id DESC limit 1;";
                         $resultss = $conn->query($sqlmtop);
                           if ($resultss->num_rows > 0) {
                         // output data of each row
@@ -531,7 +549,15 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                         $mtopexpiration = '';
                       $mtopstat = 'mtopexpired';
                       
-                     }}
+                     }}}
+
+
+
+
+
+
+
+
                           ?>
         <div class="col-xl-8">
 
@@ -1114,13 +1140,107 @@ if ($mtopexpiration =='') {
 
   $mtopexpformatted = date('F-d-Y', strtotime($mtopexpiration));
 }
- ?>
+/*
+  $sql33 = "SELECT * from mtop where id = '1'";
+                    $result = $conn->query($sql33);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
 
+                          $mtopfee = $row['mtopfee'];*/
+
+
+ ?>
+</form>
 
                    <div class="tab-pane fade pt-3" id="profile-mtopvalid">
                       <h5 class="card-title">MTOP IS UP TO DATE UNTIL: <font color="green"><?php echo $mtopexpformatted; ?></font></h5>
 
                    </div>
+
+                  <div class="tab-pane fade pt-3" id="profile-mtopunpaid">
+                    <?php
+
+
+                    $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='pending'";
+                    $results = $conn->query($sqlmtop);
+                    if ($results->num_rows > 0) {
+                        // output data of each row
+                      $mtopstat = 'mtopunpaid';
+                        while($row = $results->fetch_assoc()) {
+
+                          $unpaidid = $row['id'];
+                          $unpaidtotal = $row['mtoptotal'];
+                          $unpaidmtopdate = $row['mtopdate'];
+                          
+
+                       }}
+
+
+
+                    ?>
+<h5 class="card-title">Pending Payment for MTOP: <font color="orange"><?php echo $unpaidtotal; ?></font></h5>
+  <a href="#paymtop" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
+  <i class="bi bi-credit-card"></i>PAY MTOP</button></a></i>
+
+                   </div>
+                    <form method="post">  
+                   <div id="paymtop" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                       <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    
+                                        <h4 class="modal-title">ADD MTOP PAYMENT</h4>
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="unpaidid" value="<?php echo $unpaidid; ?>">
+                                        <input type="hidden" name="unpaidmtopdate" value="<?php echo $unpaidmtopdate; ?>">
+                
+
+                                        <div class="alert alert-info">Are you sure you want to add <strong><?php echo $unpaidtotal; ?></strong> MTOP payment to the franchise of <strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
+                                        <div class="modal-footer">
+                                           <button type="submit" name="paymtop" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                        </div>
+                    </div></form>
+
+
+<?php 
+
+if(isset($_POST['paymtop'])){
+$rowprintid = $_GET['id'];
+
+  $unpaidid= $_POST['unpaidid'];
+
+
+$unpaidmtopdate = $_POST['unpaidmtopdate'];
+$paymentmtopexpiration = date('Y-12-31', strtotime('+1 year'));
+
+  $sql = "UPDATE `mtop` SET `mtopexpiration` = '$paymentmtopexpiration', `status` = 'paid' WHERE `mtop`.`id` = $unpaidid";
+if ($conn->query($sql) === TRUE) {  
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added payment for mtop', 'Added payment', now(), 'done', '', '$rowprintid')";
+if ($conn->query($sqlt) === TRUE) {  
+  echo "<script type='text/javascript'>alert(\"Successfully Added payment record  \")</script>";
+                                       echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
+                  }                                  
+}}
+
+?>
+
+
+
+
+
+
+
 
 
 
@@ -1348,13 +1468,13 @@ if ($mtopexpiration =='') {
 
                 </div>
 
-                    
+                   
   <div id="mtop<?php echo $tid;?>" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                        <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                       
+                                    
                                         <h4 class="modal-title">ADD MTOP</h4>
                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
@@ -1374,11 +1494,11 @@ if ($mtopexpiration =='') {
                         </div>
                     </div>
 
+ </form>
 
 
 
-
-                  </form><!-- End Change Password Form -->
+                  <!-- End Change Password Form -->
 
           <script type="text/javascript">
 var total = document.getElementById("total");
@@ -1605,7 +1725,10 @@ function funcdriveridfee() {
 
 </script>
 <?php
+$tid = $_GET['id'];
 if(isset($_POST['addmtop'])){
+
+header('locatio:indexx.php');
 
  if (isset($_POST['mtopfee'])) {
       $inmtopfee = $_POST['mtopfee'];
@@ -1669,6 +1792,7 @@ if(isset($_POST['addmtop'])){
  if (isset($_POST['environmentalfee'])) {
       $inenvironmentalfee = $_POST['environmentalfee'];
     }else { $inenvironmentalfee ="";}
+
 $mtopdate = $_POST['mtopdate'];
 $mtopexpiration = date('Y-12-31', strtotime('+1 year'));
 
@@ -1676,7 +1800,7 @@ $mtopexpiration = date('Y-12-31', strtotime('+1 year'));
 $mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee +$inoperatoridfee +$indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee;
 
 $sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`,`status`) 
-VALUES ('NULL', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee', '$mtoptotal', '$mtopdate', '$mtopexpiration', '$tid','pending')";
+VALUES ('NULL', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee', '$mtoptotal', '$mtopdate', 'pending', '$tid','pending')";
 
 if ($conn->query($sql) === TRUE) { 
 
@@ -1689,7 +1813,10 @@ if ($conn->query($sql) === TRUE) {
   echo "<script type='text/javascript'>alert(\"Successfully Added MTOP for Payment  \")</script>";
                                       echo '<script>window.location.href="profile.php?id='.$tid.'"</script>';
 }
-}}}
+}
+
+
+}
   ?>
 
               </div><!-- End Bordered Tabs -->
