@@ -237,6 +237,36 @@ $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(60, 132);
 $pdf->Write(0, $plateno);
 
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(110, 132);
+$pdf->Write(0, $engineno);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(158, 132);
+$pdf->Write(0, $chasisno);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(15, 142);
+$pdf->Write(0, $maker);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(60, 142);
+$pdf->Write(0, $pistondisp);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(110, 142);
+$pdf->Write(0, $cor);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(148, 142);
+$pdf->Write(0, $ornum);
+
 
 
 $sql = "SELECT
