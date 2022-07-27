@@ -24,6 +24,25 @@ $tplIdx = $pdf->importPage(1);
 $pdf->AddPage('P', array(215.9,330.2)); 
 // set the source file
 
+  $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='pending'";
+                    $results = $conn->query($sqlmtop);
+                    if ($results->num_rows > 0) {
+                        // output data of each row
+                      $mtopstat = 'mtopunpaid';
+                        while($row = $results->fetch_assoc()) {
+
+                          $unpaidmtopid = $row['id'];
+                          $unpaidtotal = $row['mtoptotal'];
+                          $mtopexpiration ='';
+
+}}else{
+$unpaidtotal = 'no unpaid mtop';
+
+}
+
+
+
+
 
    $sql = "SELECT * from dropped where trikeid = $tid ORDER BY dropid Desc limit 1";
       
@@ -269,6 +288,35 @@ $pdf->Write(0, $ornum);
 
 
 
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(60, 150);
+$pdf->Write(0, $franchiseapproval);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(60, 156);
+$pdf->Write(0, $franchiseexpiration);
+
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(130, 154);
+$pdf->Write(0, $brgycode);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(142, 154);
+$pdf->Write(0, $bodynum);
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 154);
+$pdf->Write(0, $toda);
+
+
+
+
 $sql = "SELECT
   driveroperator.pid,
   driveroperator.fname,
@@ -344,6 +392,10 @@ $pdf ->Cell(10,1,'',0,1);
 
 
 
+$pdf->SetFont('Arial','B',16);
+$pdf->SetTextColor(135,206,235);
+$pdf->SetXY(162, 273);
+$pdf->Write(0, $unpaidtotal);
 
 
 
