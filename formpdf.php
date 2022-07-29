@@ -21,6 +21,7 @@ $pdf = new \setasign\Fpdi\Fpdi();
 // add a page
 $pdf->setSourceFile('form.pdf');
 $tplIdx = $pdf->importPage(1);
+
 $pdf->AddPage('P', array(215.9,330.2)); 
 // set the source file
 
@@ -204,7 +205,7 @@ $pdf->SetXY(155, 101);
 $pdf->Write(0, $lname);
 
 
-$pdf->SetFont('Arial');
+$pdf->SetFont('Arial','',9);
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(40, 110);
 $pdf->Write(0, $opaddress1.', '.$opbarangay);
@@ -394,7 +395,7 @@ $pdf ->Cell(10,1,'',0,1);
 
 $pdf->SetFont('Arial','B',16);
 $pdf->SetTextColor(135,206,235);
-$pdf->SetXY(162, 273);
+$pdf->SetXY(152, 273);
 $pdf->Write(0, $unpaidtotal);
 
 
@@ -406,13 +407,15 @@ $pdf->Write(0, $unpaidtotal);
 
 
 
-$pdf->Output('I', 'generated.pdf');
 
+// add a page
 
-
+$tplIdx3 = $pdf->importPage(2);
+$pdf->AddPage('P', array(215.9,330.2)); 
+$pdf->useImportedPage($tplIdx3);
  
 
-
+$pdf->Output('I', 'generated.pdf');
 
 
 //
