@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2022 at 10:42 AM
+-- Generation Time: Jul 29, 2022 at 08:29 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -107,7 +107,8 @@ CREATE TABLE `dropped` (
 INSERT INTO `dropped` (`dropid`, `dmvfileno`, `dplateno`, `dengineno`, `dchasisno`, `dmaker`, `dmotorcolor`, `dpistondisp`, `dcor`, `dornum`, `trikeid`, `remarks`, `dropdate`) VALUES
 (7, '22', 'SUBOK', '052389', '221', 'asd', 'blue', 'asd', 'SUBOK', 'asdq', '3116', '', '2022-07-17'),
 (8, '22', 'SUBOK', '052389', '221', 'asd', 'blue', 'asd', 'SUBOK', 'asdq', '3116', '', '2022-07-17'),
-(9, '2314', '123123', '123123222', '1231231', '2314', 'red', '12312', '123qwe', 'qwe123', '3117', '', '2022-07-21');
+(9, '2314', '123123', '123123222', '1231231', '2314', 'red', '12312', '123qwe', 'qwe123', '3117', '', '2022-07-21'),
+(10, 'asdasd', 'SUBOK', '052389', 'SUBOK', 'asd', 'blue', 'asd', 'SUBOK', 'asdq', '3116', '', '2022-07-26');
 
 -- --------------------------------------------------------
 
@@ -189,16 +190,18 @@ CREATE TABLE `mtop` (
   `mtoptotal` varchar(55) NOT NULL,
   `mtopdate` varchar(55) NOT NULL,
   `mtopexpiration` varchar(55) NOT NULL,
-  `trikeid` varchar(55) NOT NULL
+  `trikeid` varchar(55) NOT NULL,
+  `status` varchar(213) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mtop`
 --
 
-INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`) VALUES
-(1, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-07-20', '2023-12-31', '3116'),
-(2, '200', '150', '250', '25', '25', '', '', '100', '100', '', '', '', '', '850', '2022-07-27', '2023-12-31', '3118');
+INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`, `status`) VALUES
+(1, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-07-20', '2023-12-31', '3116', ''),
+(2, '200', '150', '250', '25', '25', '', '', '100', '100', '', '', '', '', '850', '2022-07-27', '2023-12-31', '3118', ''),
+(3, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-07-27', '2023-12-31', '3117', 'pending');
 
 -- --------------------------------------------------------
 
@@ -250,7 +253,14 @@ CREATE TABLE `tbl_payments` (
 
 INSERT INTO `tbl_payments` (`paymentid`, `payable`, `amount`, `ornumber`, `trikeid`) VALUES
 (1, 'Confirmation', '100', '12345', ''),
-(2, 'Confirmation', '60', '5555', '3116');
+(2, 'Confirmation', '60', '5555', '3116'),
+(3, 'Confirmation', '60', '', '3117'),
+(4, 'No record', '60', '12345', '3116'),
+(5, 'No record', '60', '342222', '3116'),
+(6, 'No record', '60', '3422223', '3116'),
+(7, 'No record', '60', '123', '3116'),
+(8, 'No record', '60', '123', '3116'),
+(9, 'No record', '60', '324', '3117');
 
 -- --------------------------------------------------------
 
@@ -415,7 +425,19 @@ INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`
 (108, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
 (109, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-25', 'done', '', 3116),
 (110, 'Printed Form', 'generate or print form', '2022-07-25', 'done', '', 3116),
-(111, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-25', 'done', '', 3116);
+(111, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-25', 'done', '', 3116),
+(112, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-26', 'done', '', 3117),
+(113, 'DROPPED UNIT', 'DROPPED Unit', '2022-07-26', 'done', '', 3116),
+(114, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-26', 'done', '', 3116),
+(115, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-26', 'done', '', 3116),
+(116, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-26', 'done', '', 3116),
+(117, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-27', 'done', '', 3116),
+(118, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-27', 'done', '', 3116),
+(119, 'Printed Form', 'generate or print form', '2022-07-27', 'done', '', 3118),
+(120, 'Printed Form', 'generate or print form', '2022-07-27', 'done', '', 3117),
+(121, 'Updated MTOP', 'updated mtop', '2022-07-27', 'done', '', 3117),
+(122, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-28', 'done', '', 3117),
+(123, 'Printed Form', 'generate or print form', '2022-07-28', 'done', '', 3117);
 
 -- --------------------------------------------------------
 
@@ -456,8 +478,8 @@ CREATE TABLE `tricycle` (
 --
 
 INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`, `currentmtop`, `currentfranchise`, `status`) VALUES
-(3116, 'Middle', 'Middle', 'Last', 'ext', 'asdasd', 'SUBOK', '052389', 'SUBOK', 'asd', 'blue', 'asd', 'SUBOK', 'asdq', '2022-07-17', '11', '1234', '98', 'BACMATODA ', 'GREEN', '', 'Public', '2022-07-06', '2023-07-19', 'with unit'),
-(3117, 'Testing fname', 'Middle', 'Last', 'ext', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', '2022-07-19', '25', '5522', '98', 'BACMATODA', 'GREEN', '', 'Public', '0000-00-00', '2025-07-19', 'no unit'),
+(3116, 'Middle', 'Middle', 'Last', 'ext', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', '2022-07-17', '11', '1234', '98', 'BACMATODA ', 'GREEN', '', 'Public', '2022-07-06', '2023-07-19', 'no unit'),
+(3117, 'Testing fname', 'Middle', 'Last', 'ext', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', '2022-07-19', '25', '5522', '98', 'BACMATODA', 'GREEN', '', 'Public', '2022-07-06', '2025-07-19', 'no unit'),
 (3118, 'Testing fname', 'Middle', 'Last', 'ext', '123123', '123213', '123123', '123', '123', '123', '123', '13', '123', '2022-08-01', '99', '9999', '98', 'ZAMTODA', 'YELLOW', '', 'Public', '2022-07-06', '0000-00-00', '');
 
 --
@@ -555,7 +577,7 @@ ALTER TABLE `drivers`
 -- AUTO_INCREMENT for table `dropped`
 --
 ALTER TABLE `dropped`
-  MODIFY `dropid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `dropid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `franchiserecord`
 --
@@ -570,7 +592,7 @@ ALTER TABLE `inspection`
 -- AUTO_INCREMENT for table `mtop`
 --
 ALTER TABLE `mtop`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `mtopamount`
 --
@@ -580,7 +602,7 @@ ALTER TABLE `mtopamount`
 -- AUTO_INCREMENT for table `tbl_payments`
 --
 ALTER TABLE `tbl_payments`
-  MODIFY `paymentid` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `paymentid` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
@@ -595,7 +617,7 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
