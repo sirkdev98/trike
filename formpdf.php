@@ -21,6 +21,7 @@ $pdf = new \setasign\Fpdi\Fpdi();
 // add a page
 $pdf->setSourceFile('form.pdf');
 $tplIdx = $pdf->importPage(1);
+
 $pdf->AddPage('P', array(215.9,330.2)); 
 // set the source file
 
@@ -406,13 +407,15 @@ $pdf->Write(0, $unpaidtotal);
 
 
 
-$pdf->Output('I', 'generated.pdf');
 
+// add a page
 
-
+$tplIdx3 = $pdf->importPage(2);
+$pdf->AddPage('P', array(215.9,330.2)); 
+$pdf->useImportedPage($tplIdx3);
  
 
-
+$pdf->Output('I', 'generated.pdf');
 
 
 //
