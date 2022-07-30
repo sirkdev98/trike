@@ -13,8 +13,24 @@ $tid = $_GET['id'];
 
 
 // Create connection
+if(isset($_SESSION['username'])){
+    
+      $cidd = $_SESSION['id'];
+      $userrole= $_SESSION['role'];
+      $userfname= $_SESSION['fname'];
+      $userlname= $_SESSION['lname'];
 
+ 
+
+//testing github for me
+
+}else{
+    header("location:logout.php");
+
+  }
 require_once('fpdi/src/autoload.php');
+
+
 $pdf = new \setasign\Fpdi\Fpdi();
 // initiate FPDI
 
@@ -35,6 +51,21 @@ $pdf->AddPage('P', array(215.9,330.2));
                           $unpaidmtopid = $row['id'];
                           $unpaidtotal = $row['mtoptotal'];
                           $mtopexpiration ='';
+                          $mtopfee = $row['mtopfee'];
+                          $annualstickerfee = $row['annualstickerfee'];
+                          $mtopplatefee = $row['mtopplatefee'];
+                          $operatoridfee = $row['operatoridfee'];
+                          $driveridfee = $row['driveridfee'];
+                          $parkingfee = $row['parkingfee'];
+                          $droppingfee = $row['droppingfee'];
+                          $confirmationfee = $row['confirmationfee'];
+                          $certificationofnorecordfee = $row['certificationofnorecordfee'];
+                          $transferfee = $row['transferfee'];
+                          $farematrix = $row['farematrix'];
+                          $bodynumberstickerfee = $row['bodynumberstickerfee'];
+                          $environmentalfee = $row['environmentalfee'];
+                          $penalty = $row['penalty'];
+
 
 }}else{
 $unpaidtotal = 'no unpaid mtop';
@@ -399,12 +430,34 @@ $pdf->SetXY(152, 273);
 $pdf->Write(0, $unpaidtotal);
 
 
+$pdf->SetFont('Arial','',14);
+$pdf->SetTextColor(0,0,0);
+$pdf->SetXY(152, 285);
+$pdf->Write(0, $userfname." ".$userlname);
 
 
 
 
 
 
+
+
+                          /*$unpaidmtopid = $row['id'];
+                          $unpaidtotal = $row['mtoptotal'];
+                          $mtopexpiration ='';
+                          $mtopfee = $row['mtopfee'];
+                          $annualstickerfee = $row['annualstickerfee'];
+                          $mtopplatefee = $row['mtopplatefee'];
+                          $operatoridfee = $row['operatoridfee'];
+                          $driveridfee = $row['driveridfee'];
+                          $parkingfee = $row['parkingfee'];
+                          $droppingfee = $row['droppingfee'];
+                          $confirmationfee = $row['confirmationfee'];
+                          $certificationofnorecordfee = $row['certificationofnorecordfee'];
+                          $transferfee = $row['transferfee'];
+                          $farematrix = $row['farematrix'];
+                          $bodynumberstickerfee = $row['bodynumberstickerfee'];
+                          $environmentalfee = $row['environmentalfee'];*/
 
 
 
@@ -414,6 +467,97 @@ $tplIdx3 = $pdf->importPage(2);
 $pdf->AddPage('P', array(215.9,330.2)); 
 $pdf->useImportedPage($tplIdx3);
  
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 147);
+$pdf->Write(0, $annualstickerfee);
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 152);
+$pdf->Write(0, $operatoridfee);
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 157);
+$pdf->Write(0, $mtopplatefee);
+
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 162);
+$pdf->Write(0, $driveridfee);
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 167);
+$pdf->Write(0, $parkingfee);
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 173);
+$pdf->Write(0, $droppingfee);
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 178);
+$pdf->Write(0, $confirmationfee);
+
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 183);
+$pdf->Write(0, $certificationofnorecordfee);
+
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 188);
+$pdf->Write(0, $transferfee);
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 194);
+$pdf->Write(0, $farematrix);
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 199);
+$pdf->Write(0, $bodynumberstickerfee);
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 204);
+$pdf->Write(0, $environmentalfee);
+
+
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 209);
+$pdf->Write(0, $penalty);
+
+
+
+$pdf->SetFont('Arial','B',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 216);
+$pdf->Write(0, $unpaidtotal);
+
+
 
 $pdf->Output('I', 'generated.pdf');
 

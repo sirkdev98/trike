@@ -1275,6 +1275,7 @@ if ($conn->query($sqlt) === TRUE) {
                           $farematrix = $row['farematrix'];
                           $bodynumberstickerfee = $row['bodynumberstickerfee'];
                           $environmentalfee = $row['environmentalfee'];
+                          $penaltyfee = $row['penalty'];
 
 
                    }}
@@ -1429,6 +1430,17 @@ if ($conn->query($sqlt) === TRUE) {
                     </div>
 
 
+                       <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>">
+                      <label class="form-check-label" for="gridCheck2" >
+                       Penalty Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
+                     
+                      </label>
+                    </div>
+
+
                       
                     <div class="form-row">
                         
@@ -1520,6 +1532,7 @@ var php_transferfee =<?php echo $transferfee; ?>;
 var php_farematrix =<?php echo $farematrix; ?>;
 var php_bodynumberstickerfee =<?php echo $bodynumberstickerfee; ?>;
 var php_environmentalfee =<?php echo $environmentalfee; ?>;
+var php_penaltyfee =<?php echo $penaltyfee; ?>;
 
   function annualsticker() {
     var sticekerfee = document.getElementById("sticekerfee");
@@ -1723,6 +1736,23 @@ function funcdriveridfee() {
 
 
 
+function funcpenalty() {   
+    var penaltyfee = document.getElementById("penaltyfee");
+    var penaltyamount = document.getElementById("penaltyamount");
+      if (penaltyfee.checked == true) {
+        document.getElementById("penaltyamount").innerHTML = php_penaltyfee;
+        totalamount = totalamount + php_penaltyfee
+         document.getElementById("total").innerHTML = totalamount
+    } 
+    else {
+       document.getElementById("penaltyamount").innerHTML = ""
+          totalamount = totalamount -php_penaltyfee;
+           document.getElementById("total").innerHTML = totalamount
+    }
+}
+
+
+
 </script>
 <?php
 $tid = $_GET['id'];
@@ -1793,14 +1823,19 @@ header('locatio:indexx.php');
       $inenvironmentalfee = $_POST['environmentalfee'];
     }else { $inenvironmentalfee ="";}
 
+    if (isset($_POST['penaltyfee'])) {
+      $inpenaltyfee = $_POST['penaltyfee'];
+    }else { $inpenaltyfee ="";}
+
+
 $mtopdate = $_POST['mtopdate'];
 $mtopexpiration = date('Y-12-31', strtotime('+1 year'));
 
 
-$mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee +$inoperatoridfee +$indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee;
+$mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee +$inoperatoridfee +$indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee+$inpenaltyfee;
 
-$sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`,`status`) 
-VALUES ('NULL', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee', '$mtoptotal', '$mtopdate', 'pending', '$tid','pending')";
+$sql = "INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`,`penalty`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`,`status`) 
+VALUES ('NULL', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoperatoridfee', '$indriveridfee', '$inparkingfee', '$indroppingfee', '$inconfirmationfee', '$incertificationofnorecordfee', '$intransferfee', '$infarematrix', '$inbodynumberstickerfee', '$inenvironmentalfee','$inpenaltyfee', '$mtoptotal', '$mtopdate', 'pending', '$tid','pending')";
 
 if ($conn->query($sql) === TRUE) { 
 
