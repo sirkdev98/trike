@@ -521,7 +521,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                           $mtopexpiration = $row['mtopexpiration'];
                      }}else{
 
-                    $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='pending'";
+                    $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` ='pending' and status ='pending'";
                     $results = $conn->query($sqlmtop);
                     if ($results->num_rows > 0) {
                         // output data of each row
@@ -1162,7 +1162,7 @@ if ($mtopexpiration =='') {
                     <?php
 
 
-                    $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='pending'";
+                    $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` ='pending' and status ='pending'";
                     $results = $conn->query($sqlmtop);
                     if ($results->num_rows > 0) {
                         // output data of each row

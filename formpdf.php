@@ -25,7 +25,7 @@ $tplIdx = $pdf->importPage(1);
 $pdf->AddPage('P', array(215.9,330.2)); 
 // set the source file
 
-  $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='pending'";
+  $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` ='pending' and status ='pending'";
                     $results = $conn->query($sqlmtop);
                     if ($results->num_rows > 0) {
                         // output data of each row

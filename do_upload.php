@@ -3,6 +3,15 @@
 
                          
 include 'include/controller.php';
+
+if(isset($_SESSION['username'])){
+    
+      $cidd = $_SESSION['id'];
+      $userrole= $_SESSION['role'];
+      $userfname= $_SESSION['fname'];
+      $userlname= $_SESSION['lname'];
+
+ 
     $img = $_POST['image'];
     $folderPath = "upload/";
   
@@ -83,7 +92,7 @@ $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`,
 if ($conn->query($sqlt) === TRUE) {  
 
  echo "<script type='text/javascript'>alert(\"Successfully added Tricycle \")</script>";
-           echo "<script>window.location.href='profile.php?id=$last_idtrike hehe $nounit'</script>"; 
+           echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
             echo "<script type='text/javascript'>alert(\"Data not inserted\")</script>";
 
