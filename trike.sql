@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2022 at 08:29 AM
+-- Generation Time: Jul 30, 2022 at 07:12 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -54,7 +54,9 @@ CREATE TABLE `driveroperator` (
 INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
 (98, 'Testing fname', 'Middle', 'Last', 'MALE', 'ext', 'SUBOK@gnau.com', 'PANTALAN BAGO', '123', 'Testing fname', 'Testing fname', 'qwe', '2022-07-18', 'OPERATOR', '22112', 'PROFESSIONAL', '2022-07-18', '62d3bad7294da.jpeg'),
 (99, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', '', 'TALA', 'CALERO', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-07-14', 'DRIVER', '123asd', 'OPERATOR', '2022-07-27', '62d61719e4043.png'),
-(100, 'OLIVER2', 'MATAWARAN2', 'LALUNA', 'FEMALE', '', 'TALA', 'PACAR', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '0000-00-00', 'DRIVER', '123', 'OPERATOR', '2022-07-14', '62d76200bdb26.jpeg');
+(100, 'OLIVER2', 'MATAWARAN2', 'LALUNA', 'FEMALE', '', 'TALA', 'PACAR', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '0000-00-00', 'DRIVER', '123', 'OPERATOR', '2022-07-14', '62d76200bdb26.jpeg'),
+(101, 'qweqwe', 'qweqwe', 'qwe', 'MALE', 'asd', 'asd', 'APOLLO', '123123', '', '', '', '2022-07-29', 'OPERATOR', 'liccc', 'PROFESSIONAL', '2022-07-29', '62e39007ca905.jpeg'),
+(102, 'George', 'Arlong', 'Bush', 'MALE', '', 'orani', 'BALUT', '09275109013', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-07-30', 'OPERATOR/DRIVER', 'liccc', 'PROFESSIONAL', '2022-07-30', '62e49f08d4bf4.jpeg');
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,11 @@ CREATE TABLE `franchiserecord` (
 INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchiseapproval`, `franchiseexpiration`, `trikeid`) VALUES
 (19, '2022-07-17', '2022-07-19', '2025-07-19', '3116'),
 (20, '2022-07-19', '2022-07-19', '2025-07-19', '3117'),
-(21, '2022-08-01', '0000-00-00', '0000-00-00', '3118');
+(21, '2022-08-01', '0000-00-00', '0000-00-00', '3118'),
+(22, '2022-07-30', '0000-00-00', '0000-00-00', '3119'),
+(23, '2022-07-29', '0000-00-00', '0000-00-00', '3120'),
+(24, '2022-07-30', '0000-00-00', '0000-00-00', '3121'),
+(25, '2022-07-30', '0000-00-00', '0000-00-00', '3122');
 
 -- --------------------------------------------------------
 
@@ -164,7 +170,11 @@ CREATE TABLE `inspection` (
 INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES
 (69, 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', '', 'OK', 'OK', 'OK', 'OK ALL', '3116'),
 (70, 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'The quick brown fox jumps over the lazy dogs', '3117'),
-(71, '', '', '', '', '', '', '', '', '', '', '', '', '', '3118');
+(71, '', '', '', '', '', '', '', '', '', '', '', '', '', '3118'),
+(72, 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', '', '', '', '', '', '', 'OKOK', '3119'),
+(73, '', '', '', '', '', '', '', '', '', '', '', '', '', '3120'),
+(74, '', '', '', '', '', '', '', '', '', '', '', '', '', '3121'),
+(75, '', '', '', '', '', '', '', '', '', '', '', '', '', '3122');
 
 -- --------------------------------------------------------
 
@@ -190,6 +200,7 @@ CREATE TABLE `mtop` (
   `mtoptotal` varchar(55) NOT NULL,
   `mtopdate` varchar(55) NOT NULL,
   `mtopexpiration` varchar(55) NOT NULL,
+  `penalty` varchar(55) NOT NULL,
   `trikeid` varchar(55) NOT NULL,
   `status` varchar(213) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -198,10 +209,18 @@ CREATE TABLE `mtop` (
 -- Dumping data for table `mtop`
 --
 
-INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `trikeid`, `status`) VALUES
-(1, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-07-20', '2023-12-31', '3116', ''),
-(2, '200', '150', '250', '25', '25', '', '', '100', '100', '', '', '', '', '850', '2022-07-27', '2023-12-31', '3118', ''),
-(3, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-07-27', '2023-12-31', '3117', 'pending');
+INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `penalty`, `trikeid`, `status`) VALUES
+(1, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-07-20', '2023-12-31', '', '3116', ''),
+(2, '200', '150', '250', '25', '25', '', '', '100', '100', '', '', '', '', '850', '2022-07-27', '2023-12-31', '', '3118', ''),
+(3, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-07-27', '2023-12-31', '', '3117', 'pending'),
+(4, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-07-29', 'pending', '', '3119', 'pending'),
+(5, '200', '', '', '', '', '35', '60', '', '', '', '', '', '', '295', '2022-07-28', 'pending', '', '3119', 'pending'),
+(6, '200', '150', '250', '25', '', '', '', '', '', '', '', '', '', '625', '2022-07-29', 'pending', '', '3119', 'pending'),
+(7, '200', '', '', '', '0', '35', '', '100', '', '', '', '', '', '335', '2022-07-29', 'pending', '', '3120', 'pending'),
+(8, '200', '', '250', '25', '', '', '60', '', '', '', '', '', '', '535', '2022-07-29', 'pending', '', '3116', 'pending'),
+(9, '200', '', '250', '25', '', '', '', '', '', '', '', '', '', '475', '2022-07-29', '2023-12-31', '', '3119', 'paid'),
+(10, '200', '', '250', '25', '', '', '', '', '', '', '', '', '', '475', '2022-07-30', 'pending', '', '3121', 'pending'),
+(12, '200', '150', '250', '25', '25', '35', '60', '100', '100', '1000', '50', '300', '75', '2720', '2022-07-30', 'pending', '50', '3122', 'pending');
 
 -- --------------------------------------------------------
 
@@ -223,15 +242,16 @@ CREATE TABLE `mtopamount` (
   `transferfee` varchar(55) NOT NULL,
   `farematrix` varchar(55) NOT NULL,
   `bodynumberstickerfee` varchar(55) NOT NULL,
-  `environmentalfee` varchar(55) NOT NULL
+  `environmentalfee` varchar(55) NOT NULL,
+  `penalty` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mtopamount`
 --
 
-INSERT INTO `mtopamount` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`) VALUES
-(1, '200', '150', '250', '25', '25', '35', '60', '100', '100', '1000', '50', '300', '75');
+INSERT INTO `mtopamount` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `penalty`) VALUES
+(1, '200', '150', '250', '25', '25', '35', '60', '100', '100', '1000', '50', '300', '75', '50');
 
 -- --------------------------------------------------------
 
@@ -437,7 +457,28 @@ INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`
 (120, 'Printed Form', 'generate or print form', '2022-07-27', 'done', '', 3117),
 (121, 'Updated MTOP', 'updated mtop', '2022-07-27', 'done', '', 3117),
 (122, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-07-28', 'done', '', 3117),
-(123, 'Printed Form', 'generate or print form', '2022-07-28', 'done', '', 3117);
+(123, 'Printed Form', 'generate or print form', '2022-07-28', 'done', '', 3117),
+(124, 'Printed Form', 'generate or print form', '2022-07-29', 'done', '', 3118),
+(125, 'Printed Form', 'generate or print form', '2022-07-29', 'done', '', 3116),
+(126, 'Added tricycle', 'Added tricycle', '2022-07-29', 'done', '', 3119),
+(127, 'Added MTOP for payment', 'for payment mtop', '2022-07-29', 'done', '', 3119),
+(128, 'Added MTOP for payment', 'for payment mtop', '2022-07-29', 'done', '', 3119),
+(129, 'Added MTOP for payment', 'for payment mtop', '2022-07-29', 'done', '', 3119),
+(130, 'Added MTOP for payment', 'for payment mtop', '2022-07-29', 'done', '', 3119),
+(131, 'Added MTOP for payment', 'for payment mtop', '2022-07-29', 'done', '', 3116),
+(132, 'Added MTOP for payment', 'for payment mtop', '2022-07-29', 'done', '', 3119),
+(133, 'Added payment for mtop', 'Added payment', '2022-07-29', 'done', '', 3119),
+(134, 'Created record', 'Created record', '2022-07-29', 'done', '', 3120),
+(135, 'Printed Form', 'generate or print form', '2022-07-29', 'done', '', 3116),
+(136, 'Updated Inspection Details', 'Updated Inspection Details', '2022-07-29', 'done', '', 3119),
+(137, 'Created record', 'Created record', '2022-07-30', 'done', '', 3121),
+(138, 'Added MTOP for payment', 'for payment mtop', '2022-07-30', 'done', '', 3121),
+(139, 'Printed Form', 'generate or print form', '2022-07-30', 'done', '', 3121),
+(140, 'Added tricycle', 'Added tricycle', '2022-07-30', 'done', '', 3122),
+(141, 'Added MTOP for payment', 'for payment mtop', '2022-07-30', 'done', '', 3122),
+(142, 'Printed Form', 'generate or print form', '2022-07-30', 'done', '', 3122),
+(143, 'Added MTOP for payment', 'for payment mtop', '2022-07-30', 'done', '', 3122),
+(144, 'Printed Form', 'generate or print form', '2022-07-30', 'done', '', 3122);
 
 -- --------------------------------------------------------
 
@@ -480,7 +521,11 @@ CREATE TABLE `tricycle` (
 INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`, `currentmtop`, `currentfranchise`, `status`) VALUES
 (3116, 'Middle', 'Middle', 'Last', 'ext', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', '2022-07-17', '11', '1234', '98', 'BACMATODA ', 'GREEN', '', 'Public', '2022-07-06', '2023-07-19', 'no unit'),
 (3117, 'Testing fname', 'Middle', 'Last', 'ext', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', 'dropped', '2022-07-19', '25', '5522', '98', 'BACMATODA', 'GREEN', '', 'Public', '2022-07-06', '2025-07-19', 'no unit'),
-(3118, 'Testing fname', 'Middle', 'Last', 'ext', '123123', '123213', '123123', '123', '123', '123', '123', '13', '123', '2022-08-01', '99', '9999', '98', 'ZAMTODA', 'YELLOW', '', 'Public', '2022-07-06', '0000-00-00', '');
+(3118, 'Testing fname', 'Middle', 'Last', 'ext', '123123', '123213', '123123', '123', '123', '123', '123', '13', '123', '2022-08-01', '99', '9999', '98', 'ZAMTODA', 'YELLOW', '', 'Public', '2022-07-06', '0000-00-00', ''),
+(3119, 'qweqwe', 'qweqwe', 'qwe', 'asd', 'qweqwewqe', 'qweqwe', 'qqww', 'weqasd', 'qqwee', 'ewqe', 'wqeqw', 'qweqw', 'qwe', '2022-07-30', '12', '5789', '101', 'MARIAFETODA ', 'GREEN', '', 'Public', '0000-00-00', '0000-00-00', ''),
+(3120, 'qweqwe', 'qweqwe', 'qwe', 'asd', 'qqqww', 'qwe', 'tassf', 'qwe', 'qweqwe', 'q', 'ewq', 'qweqw', 'qwe', '2022-07-29', '33', '4213', '101', 'METODA', 'GREEN', '', 'Public', '0000-00-00', '0000-00-00', ''),
+(3121, 'Testing fname', 'Middle', 'Last', 'ext', '123123', '123', '123', '23', '222', '33', '212', '123', '123', '2022-07-30', '22', '2222', '98', 'BALTODA 2', 'RED', '', 'Public', '0000-00-00', '0000-00-00', ''),
+(3122, 'Arlong', 'Arlong', 'Bush', '', '231', '123123', '333', '123123', 'KAWASAKI', '123', 'qwe', '131', 'or112', '2022-07-30', '01', '3456', '102', 'KAMADO ', 'GREEN', '', 'Public', '0000-00-00', '0000-00-00', '');
 
 --
 -- Indexes for dumped tables
@@ -567,7 +612,7 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
@@ -582,17 +627,17 @@ ALTER TABLE `dropped`
 -- AUTO_INCREMENT for table `franchiserecord`
 --
 ALTER TABLE `franchiserecord`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `inspection`
 --
 ALTER TABLE `inspection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 --
 -- AUTO_INCREMENT for table `mtop`
 --
 ALTER TABLE `mtop`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `mtopamount`
 --
@@ -617,12 +662,12 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3119;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3123;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
