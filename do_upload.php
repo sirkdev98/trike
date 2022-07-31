@@ -133,7 +133,7 @@ if ($conn->query($sql) === TRUE) {
  $last_id = $conn->insert_id;
 
 $fname = $_POST['fname'];
-$fname = $_POST['mname'];
+$mname = $_POST['mname'];
 $lname = $_POST['lname'];
 $xname = $_POST['xname'];
 $nounit  = $_POST['nounit'];

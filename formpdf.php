@@ -68,6 +68,25 @@ $pdf->AddPage('P', array(215.9,330.2));
 
 
 }}else{
+
+                        $unpaidmtopid = '';
+                          $unpaidtotal = '';
+                          $mtopexpiration ='';
+                          $mtopfee = '';
+                          $annualstickerfee = '';
+                          $mtopplatefee ='';
+                          $operatoridfee = '';
+                          $driveridfee ='';
+                          $parkingfee = '';
+                          $droppingfee = '';
+                          $confirmationfee = '';
+                          $certificationofnorecordfee = '';
+                          $transferfee ='';
+                          $farematrix ='';
+                          $bodynumberstickerfee = '';
+                          $environmentalfee = '';
+                          $penalty = '';
+
 $unpaidtotal = 'no unpaid mtop';
 
 }
