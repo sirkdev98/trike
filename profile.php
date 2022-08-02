@@ -1870,7 +1870,7 @@ if ($conn->query($sql) === TRUE) {
               <h5><B><?php echo $fname." ".$lname ; ?></B></h5>
               <h3><?php echo $type; ?></h3>
               <div class="social-links mt-2">
-             <a href="driveroperatorprofile.php?id=<?php echo $pid; ?>">   <button class="btn btn-success" > Show Profile </button></a>
+             <a href="driveroperatorprofile.php?id=<?php echo $pid; ?>&bdynum=<?php echo$bodynum?>">   <button class="btn btn-success" > Show Profile </button></a>
               </div>
             </div>
           </div>

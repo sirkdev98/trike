@@ -945,6 +945,7 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
                             $fname =$row['fname'];
                             $mname =$row['mname'];
                             $lname =$row['lname'];
+                            $brgycode= $row['brgycode'];
                             $bodynum= $row['bodynum'];
                             $operatorid = $row['operatorid'];
                             $applicationdate = $row['applicationdate'];
@@ -957,7 +958,7 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
             <tr>
                 <td><?php echo  $id; ?></td>
                 <td><?php echo  $lname.", ".$fname." ".$mname; ?></td>
-                <td><?php echo  $bodynum; ?></td>
+                <td><?php echo  $brgycode."-".$bodynum; ?></td>
                 <td><?php echo  $applicationdate; ?></td>
                 <td><?php 
                 if ($currentfranchise=='0000-00-00') {
