@@ -519,6 +519,8 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                         while($row = $results->fetch_assoc()) {
 
                           $mtopexpiration = $row['mtopexpiration'];
+
+
                      }}else{
 
                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` ='pending' and status ='pending'";
@@ -1219,19 +1221,30 @@ $rowprintid = $_GET['id'];
 
   $unpaidid= $_POST['unpaidid'];
 
-
+if ($endplateno =="") {
+  # code...
+}
 $unpaidmtopdate = $_POST['unpaidmtopdate'];
 $paymentmtopexpiration = date('Y-12-31', strtotime('+1 year'));
 
+
+
   $sql = "UPDATE `mtop` SET `mtopexpiration` = '$paymentmtopexpiration', `status` = 'paid' WHERE `mtop`.`id` = $unpaidid";
 if ($conn->query($sql) === TRUE) {  
+
+
+
+  $sql = " UPDATE `tricycle` SET `currentmtop` = '$paymentmtopexpiration' WHERE `tricycle`.`id` = $rowprintid";
+  if ($conn->query($sql) === TRUE) {  
+
+
 
 $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added payment for mtop', 'Added payment', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sqlt) === TRUE) {  
   echo "<script type='text/javascript'>alert(\"Successfully Added payment record  \")</script>";
                                        echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
                   }                                  
-}}
+}}}
 
 ?>
 
@@ -1829,7 +1842,10 @@ header('locatio:indexx.php');
 
 
 $mtopdate = $_POST['mtopdate'];
-$mtopexpiration = date('Y-12-31', strtotime('+1 year'));
+$getmtop=strtotime($mtopdate);
+$getmtopmonth=date("F",$getmtop);
+$getmtopyear=date("Y",$mtopdate);
+$mtopexpiration = date('$getmtopyear-$getmtopmonth-31', strtotime('+1 year'));
 
 
 $mtoptotal = $inmtopfee + $inannualstickerfee + $inmtopplatefee +$inoperatoridfee +$indriveridfee + $inparkingfee  + $indroppingfee +$inconfirmationfee+$incertificationofnorecordfee+$intransferfee+$infarematrix+$inbodynumberstickerfee+$inbodynumberstickerfee+$inenvironmentalfee+$inpenaltyfee;

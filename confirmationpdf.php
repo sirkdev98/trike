@@ -172,8 +172,13 @@ $bday = date("F-d-Y", strtotime($bday));
 }}
 
 
+
 $pdf->useTemplate($tplIdx);
 // now write some text above the imported page
+
+$pdf->Image('esig.png',128,193,50);
+
+
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(88, 96);

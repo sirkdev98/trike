@@ -487,6 +487,10 @@ $pdf->AddPage('P', array(215.9,330.2));
 $pdf->useImportedPage($tplIdx3);
  
 
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(162, 136);
+$pdf->Write(0, $mtopfee);
 
 $pdf->SetFont('Arial','',11);
 $pdf->SetTextColor(0, 0, 0);
