@@ -1280,7 +1280,7 @@ $paymentmtopexpiration = date('Y-10-30');
 
 
 $unpaidmtopdate = $_POST['unpaidmtopdate'];
-$paymentmtopexpiration = date('Y-12-31', strtotime('+1 year'));
+$paymentmtopexpiration = date($paymentmtopexpiration, strtotime('+1 year'));
 
 
 
