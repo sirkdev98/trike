@@ -1214,16 +1214,71 @@ if ($mtopexpiration =='') {
                     </div></form>
 
 
-<?php 
+<?php
 
 if(isset($_POST['paymtop'])){
 $rowprintid = $_GET['id'];
-
   $unpaidid= $_POST['unpaidid'];
 
-if ($endplateno =="") {
-  # code...
+
+$ending = str_split($plateno);
+
+$plateending =  end($ending); 
+
+if ($plateending =="1") {
+$paymentmtopexpiration = date('Y-01-30'); 
 }
+
+
+elseif 
+  ($plateending =="2") {
+$paymentmtopexpiration = date('Y-02-30'); 
+}
+elseif 
+  ($plateending =="3") {
+$paymentmtopexpiration = date('Y-03-30'); 
+}
+
+elseif 
+  ($plateending =="4") {
+$paymentmtopexpiration = date('Y-04-30'); 
+}
+
+elseif 
+  ($plateending =="5") {
+$paymentmtopexpiration = date('Y-05-30'); 
+}
+
+elseif 
+  ($plateending =="6") {
+$paymentmtopexpiration = date('Y-06-30'); 
+}
+
+elseif 
+  ($plateending =="7") {
+$paymentmtopexpiration = date('Y-07-30'); 
+}
+
+elseif 
+  ($plateending =="8") {
+$paymentmtopexpiration = date('Y-08-30'); 
+}
+
+
+
+elseif 
+  ($plateending =="9") {
+$paymentmtopexpiration = date('Y-09-30'); 
+
+}
+
+elseif 
+  ($plateending =="0") {
+$paymentmtopexpiration = date('Y-10-30'); 
+
+}
+
+
 $unpaidmtopdate = $_POST['unpaidmtopdate'];
 $paymentmtopexpiration = date('Y-12-31', strtotime('+1 year'));
 
