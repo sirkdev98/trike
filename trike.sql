@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2022 at 10:00 AM
+-- Generation Time: Aug 08, 2022 at 08:34 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -46,14 +46,6 @@ CREATE TABLE `driveroperator` (
   `licensevalid` varchar(50) NOT NULL,
   `picname` varchar(52) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `driveroperator`
---
-
-INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES
-(104, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', '', 'TALA', 'BALUT', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-08-24', 'OPERATOR', '1233321', 'PROFESSIONAL', '2022-08-03', '62e9c759b16d4.jpeg'),
-(105, 'OLIVER', 'MATAWARAN', 'LALUNA', 'MALE', '', 'TALA', 'PACAR', '09082646040', 'OLIVER', 'MATAWARAN', 'LALUNA', '2022-08-23', 'OPERATOR', 'liccc', 'PROFESSIONAL', '2022-08-03', '62e9caae46e10.jpeg');
 
 -- --------------------------------------------------------
 
@@ -104,17 +96,6 @@ CREATE TABLE `franchiserecord` (
   `trikeid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `franchiserecord`
---
-
-INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchiseapproval`, `franchiseexpiration`, `trikeid`) VALUES
-(27, '2022-08-03', '2022-08-08', '2025-08-08', '3124'),
-(28, '2022-09-02', '0000-00-00', '0000-00-00', '3125'),
-(29, '2022-09-08', '0000-00-00', '0000-00-00', '3126'),
-(30, '2022-08-03', '0000-00-00', '0000-00-00', '3127'),
-(31, '2022-08-03', '0000-00-00', '0000-00-00', '3128');
-
 -- --------------------------------------------------------
 
 --
@@ -138,17 +119,6 @@ CREATE TABLE `inspection` (
   `remarks` varchar(105) NOT NULL,
   `trikeid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `inspection`
---
-
-INSERT INTO `inspection` (`id`, `sidecar_windshield`, `funcitioning_horn`, `signal_lights`, `tail_lights`, `topchain_cover`, `whitered_headlights`, `light_inside`, `mufflers`, `roof`, `side_mirrors`, `upholstery`, `wheels`, `remarks`, `trikeid`) VALUES
-(77, 'OK', 'OK', 'OK', 'OK', '', '', '', '', '', '', '', '', '', '3124'),
-(78, '', '', '', '', '', '', '', '', '', '', '', '', '', '3125'),
-(79, '', '', '', '', '', '', '', '', '', '', '', '', '', '3126'),
-(80, '', '', '', '', '', '', '', '', '', '', '', '', '', '3127'),
-(81, '', '', '', '', '', '', '', '', '', '', '', '', '', '3128');
 
 -- --------------------------------------------------------
 
@@ -179,17 +149,6 @@ CREATE TABLE `mtop` (
   `trikeid` varchar(55) NOT NULL,
   `status` varchar(213) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mtop`
---
-
-INSERT INTO `mtop` (`id`, `mtopfee`, `annualstickerfee`, `mtopplatefee`, `operatoridfee`, `driveridfee`, `parkingfee`, `droppingfee`, `confirmationfee`, `certificationofnorecordfee`, `transferfee`, `farematrix`, `bodynumberstickerfee`, `environmentalfee`, `mtoptotal`, `mtopdate`, `mtopexpiration`, `renewaldate`, `penalty`, `trikeid`, `status`) VALUES
-(14, '200', '', '', '', '', '', '', '', '', '', '', '', '', '200', '2022-08-03', '2023-12-31', '', '', '3124', 'paid'),
-(15, '200', '150', '250', '', '', '', '', '', '', '', '', '', '', '600', '2022-08-03', '2023-12-31', '', '', '3125', 'paid'),
-(16, '200', '', '', '', '', '', '', '', '', '', '', '', '', '200', '2022-08-03', 'pending', '', '', '3126', 'pending'),
-(17, '200', '', '', '', '', '', '', '', '', '', '', '', '', '200', '2022-08-03', '2023-12-31', '', '', '3127', 'paid'),
-(18, '200', '', '', '', '', '', '', '', '', '', '', '', '', '200', '2022-08-03', '$11Asia/Manila3108312023p23Asia/ManilaamThu, 03 Aug 202', '', '', '3128', 'paid');
 
 -- --------------------------------------------------------
 
@@ -235,13 +194,6 @@ CREATE TABLE `tbl_payments` (
   `ornumber` varchar(55) NOT NULL,
   `trikeid` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_payments`
---
-
-INSERT INTO `tbl_payments` (`paymentid`, `payable`, `amount`, `ornumber`, `trikeid`) VALUES
-(10, 'Confirmation', '60', '2222', '3124');
 
 -- --------------------------------------------------------
 
@@ -361,31 +313,6 @@ CREATE TABLE `transactions` (
   `trikeid` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `transactions`
---
-
-INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES
-(150, 'Added tricycle', 'Added tricycle', '2022-08-03', 'done', '', 3124),
-(151, 'Added MTOP for payment', 'for payment mtop', '2022-08-03', 'done', '', 3124),
-(152, 'Added payment for mtop', 'Added payment', '2022-08-03', 'done', '', 3124),
-(153, 'Added tricycle', 'Added tricycle', '2022-08-03', 'done', '', 3125),
-(154, 'Added MTOP for payment', 'for payment mtop', '2022-08-03', 'done', '', 3125),
-(155, 'Added payment for mtop', 'Added payment', '2022-08-03', 'done', '', 3125),
-(156, 'Printed Form', 'generate or print form', '2022-08-03', 'done', '', 3124),
-(157, 'Updated Inspection Details', 'Updated Inspection Details', '2022-08-03', 'done', '', 3124),
-(158, 'Printed Form', 'generate or print form', '2022-08-03', 'done', '', 3124),
-(159, 'Created record', 'Created record', '2022-08-03', 'done', '', 3126),
-(160, 'Added MTOP for payment', 'for payment mtop', '2022-08-03', 'done', '', 3126),
-(161, 'Printed Form', 'generate or print form', '2022-08-03', 'done', '', 3126),
-(162, 'Paid and Printer Cert of Confirmation', 'edited franchise', '2022-08-03', 'done', '', 3124),
-(163, 'Created record', 'Created record', '2022-08-03', 'done', '', 3127),
-(164, 'Added MTOP for payment', 'for payment mtop', '2022-08-03', 'done', '', 3127),
-(165, 'Added payment for mtop', 'Added payment', '2022-08-03', 'done', '', 3127),
-(166, 'Created record', 'Created record', '2022-08-03', 'done', '', 3128),
-(167, 'Added MTOP for payment', 'for payment mtop', '2022-08-03', 'done', '', 3128),
-(168, 'Added payment for mtop', 'Added payment', '2022-08-03', 'done', '', 3128);
-
 -- --------------------------------------------------------
 
 --
@@ -419,17 +346,6 @@ CREATE TABLE `tricycle` (
   `currentfranchise` date NOT NULL,
   `status` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tricycle`
---
-
-INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`, `currentmtop`, `currentfranchise`, `status`) VALUES
-(3124, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '123123', '123', '1231', 'qwe', 'toyota', 'BLACK', 'yea', '', '', '2022-08-03', '55', '5555', '104', 'MTTODA ', 'GREEN', '', 'Public', '0000-00-00', '2025-08-08', ''),
-(3125, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '123123', '123', '123123', '123123', '13123', 'red', '123123', 'adasd', '12313', '2022-09-02', '22', '1213', '105', 'KAMADO ', 'GREEN', '', 'Public', '2022-08-31', '0000-00-00', ''),
-(3126, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '231', '123', '123123', '1312', '13123', 'BLACK', 'ppp', '555', '12313', '2022-09-08', '15', '1212', '104', 'BALTODA 2', 'RED', '', 'Public', '0000-00-00', '0000-00-00', ''),
-(3127, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '231', '123', '333', '1312', 'asdad', 'red', '123123', 'adasd', '90221', '2022-08-03', '33', '1512', '104', 'APOTODA', 'GREEN', '', 'Public', '2023-12-31', '0000-00-00', ''),
-(3128, 'OLIVER', 'MATAWARAN', 'LALUNA', '', '231', '123', '123123', '123123', 'asdad', 'red', '123123', '555', '90221', '2022-08-03', '23', '4121', '104', 'BACMATODA', 'GREEN', '', 'Public', '0000-00-00', '0000-00-00', '');
 
 --
 -- Indexes for dumped tables
@@ -516,7 +432,7 @@ ALTER TABLE `tricycle`
 -- AUTO_INCREMENT for table `driveroperator`
 --
 ALTER TABLE `driveroperator`
-  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `pid` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 --
 -- AUTO_INCREMENT for table `drivers`
 --
@@ -531,17 +447,17 @@ ALTER TABLE `dropped`
 -- AUTO_INCREMENT for table `franchiserecord`
 --
 ALTER TABLE `franchiserecord`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `inspection`
 --
 ALTER TABLE `inspection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 --
 -- AUTO_INCREMENT for table `mtop`
 --
 ALTER TABLE `mtop`
-  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(55) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `mtopamount`
 --
@@ -566,12 +482,12 @@ ALTER TABLE `toda`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 --
 -- AUTO_INCREMENT for table `tricycle`
 --
 ALTER TABLE `tricycle`
-  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3129;
+  MODIFY `id` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3132;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
