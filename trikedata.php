@@ -623,24 +623,34 @@ if(isset($_SESSION['username'])){
                 </div>
 
 
-                   <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
+                 <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">ID #</label>
                   <div class="col-sm-4">
-                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
+                     <input type="text" class="form-control" placeholder="ID NUMBER" name="licensid">
                   </div>
                     <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example" required name="licensetype">
-                          <option value="" disabled selected>SELECT LICENSE TYPE</option>
-                      <option value="PROFESSIONAL">PROFESSIONAL</option>
-                      <option value="NON-PROFESSIONAL">NON-PROFESSIONAL</option>
+                    <select class="form-select" aria-label="Default select example" required name="lictype">
+                          <option value="" disabled selected>SELECT ID TYPE</option>
+                      <option value="OPERATOR">PROFESSIONAL</option>
+                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
+                     
+                      <option value="PASSPORT">PASSPORT</option>
+                      <option value="SSS">SSS</option>
+                      <option value="GSIS">GSIS</option>
+                      <option value="UMID">UMID</option>
+                      <option value="PRC">PRC</option>
+                      <option value="PNPPNP">PNP</option>
+                      <option value="Philippine Postal ID">Philippine Postal ID</option>
+                      <option value="National ID">National ID</option>
+                      <option value="VOTERS ID">VOTERS ID</option>
                     </select>
                   </div>
                   </div>
 
                    <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
+                  <label for="inputEmail" class="col-sm-2 col-form-label">ID Validity</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
+                    <input type="date" class="form-control"  placeholder="EXPIRATION" name="expiration">
                   </div>
                   </div>
 
