@@ -19,6 +19,8 @@ $bodynum = $_GET['bdynum'];
 
 $pdf = new FPDF ('l','mm',array(148,105));
 $pdf->AddFont('BebasKai','','BebasKai.php');
+$pdf->AddFont('MontseratBold','','MontseratBold.php');
+$pdf->AddFont('Montserat','','Montserat.php');
 
  
      $sql = "SELECT * from driveroperator WHERE pid = '$doid'";
@@ -65,7 +67,7 @@ $pdf->Addpage('P');
 //
 
 //set font
-$pdf->SetFont('BebasKai', '', 12);
+$pdf->SetFont('MontseratBold', '', 12);
 
 //cell width, height, text, border, end line, [align]
 if ($picname=="") {
@@ -81,7 +83,7 @@ $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(8,70,'',0,1);
 
 
-$pdf->SetFont('BebasKai', '', 26);
+$pdf->SetFont('Montserat', '', 16);
 
 $pdf ->SetTextColor(255,255,255);
 $pdf ->Cell(0,1,$row['fname']."  ".$row['mname']." ".$row['lname'],0,1,'C');
