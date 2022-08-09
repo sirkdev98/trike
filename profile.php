@@ -511,7 +511,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
       
      <?php
                      $tid = $_GET['id'];
-                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='paid'";
+                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` < now() and status ='paid'";
                     $results = $conn->query($sqlmtop);
                     if ($results->num_rows > 0) {
                         // output data of each row
@@ -2651,7 +2651,7 @@ if ($conn->query($sqldel) === TRUE) {
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Driver / Operator</h5>
+              <h5 class="card-title">Add New Driver</h5>
 
               <!-- General Form Elements -->
          <form method="POST" role="form">
@@ -2737,8 +2737,8 @@ if ($conn->query($sqldel) === TRUE) {
                 
                   <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" name="barangay" required>
-                      <option value="" disabled selected>Barangay</option>
-                      <option value="APOLLO">APOLLO</option>
+                  <option value="" disabled selected>Barangay</option>
+                  <option value="APOLLO">APOLLO</option>
                   <option value="BALUT">BALUT</option>
                   <option value="BAYAN">BAYAN</option>
                   <option value="BAGONG PARAISO">BAGONG PARAISO</option>
@@ -2777,15 +2777,16 @@ if ($conn->query($sqldel) === TRUE) {
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" name="contactnum">
+                    <input type="number" class="form-control" name="drivercontactnum">
                   </div>
 
 
-                   <div class="col-sm-4">
-                       <select class="form-select" aria-label="Default select example" name="gender" required>
+               <div class="col-sm-4">
+                      <select class="form-select" aria-label="Default select example" name="drivergender" required>
                       <option value="" disabled selected>SELECT GENDER</option>
                       <option value="MALE">MALE</option>
                       <option value="FEMALE">FEMALE</option>
+
 
                     </select>
                   </div>
@@ -3411,7 +3412,7 @@ $lname = $_POST['lname'];
 $xname = $_POST['xname'];
 $address1 = $_POST['address1'];
 $barangay = $_POST['barangay'];
-$contactnum = $_POST['contactnum'];
+$drivercontactnum = $_POST['drivercontactnum'];
 $bday = $_POST['bday'];
 $sfname = $_POST['sfname'];
 $smname = $_POST['smname'];
@@ -3421,10 +3422,11 @@ $licensid = $_POST['licensid'];
 $licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
 $tranid = $_GET['id'];
+$drivergender = $_GET['drivergender'];
 
 
-$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `extname`, `address1`, `barangay`,`contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
-  (NULL, '$fname', '$mname', '$lname', '$xname', '$address1', '$barangay','$contactnum', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
+$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`,`barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
+  (NULL, '$fname', '$mname', '$lname','$gender','$xname', '$address1', '$barangay','$contactnum', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
 
@@ -3436,7 +3438,7 @@ if ($conn->query($sql) === TRUE) {
 
 $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added New Driver', 'added driver to tricycle', now(), 'done', '', '$tranid')";
 if ($conn->query($sqlt) === TRUE) {  
- echo "<script type='text/javascript'>alert(\"Successfully added  \")</script>";
+ echo "<script type='text/javascript'>alert(\"Successfully added new driver\")</script>";
            echo "<script>window.location.href='profile.php?id=$tid'</script>"; 
 
 }

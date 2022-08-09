@@ -677,7 +677,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
 
                    <div class="col-sm-4">
                        <select class="form-select" aria-label="Default select example" name="gender" required>
-                     <option value="<?php echo $gender; ?>" selected><?php echo $gender; ?>
+                     <option value="<?php echo $gender; ?>" selected><?php echo $gender; ?></option>
                       <option value="MALE">MALE</option>
                       <option value="FEMALE">FEMALE</option>
 

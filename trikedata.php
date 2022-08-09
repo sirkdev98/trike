@@ -274,7 +274,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -284,7 +284,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -424,19 +424,6 @@ if(isset($_SESSION['username'])){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   <section class="section">
       <div class="row">
         <div class="col-lg-12">
@@ -531,8 +518,8 @@ if(isset($_SESSION['username'])){
                 
                   <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" name="barangay" required>
-                      <option value="" disabled selected>Barangay</option>
-                     <option value="APOLLO">APOLLO</option>
+                  <option value="" disabled selected>Barangay</option>
+                  <option value="APOLLO">APOLLO</option>
                   <option value="BALUT">BALUT</option>
                   <option value="BAYAN">BAYAN</option>
                   <option value="BAGONG PARAISO">BAGONG PARAISO</option>
