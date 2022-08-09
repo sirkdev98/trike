@@ -14,9 +14,7 @@ if(isset($_SESSION['username'])){
       $userfname= $_SESSION['fname'];
       $userlname= $_SESSION['lname'];
 
- 
 
-//testing github for me
 
 }else{
     header("location:logout.php");
@@ -2782,7 +2780,7 @@ if ($conn->query($sqldel) === TRUE) {
 
 
                <div class="col-sm-4">
-                      <select class="form-select" aria-label="Default select example" name="drivergender" required>
+                      <select class="form-select" name="drivergender" required>
                       <option value="" disabled selected>SELECT GENDER</option>
                       <option value="MALE">MALE</option>
                       <option value="FEMALE">FEMALE</option>
@@ -3422,11 +3420,10 @@ $licensid = $_POST['licensid'];
 $licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
 $tranid = $_GET['id'];
-$drivergender = $_GET['drivergender'];
-
+$drivergender = $_POST['drivergender'];
 
 $sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`,`barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
-  (NULL, '$fname', '$mname', '$lname','$gender','$xname', '$address1', '$barangay','$contactnum', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
+  (NULL, '$fname', '$mname', '$lname', '$gender', '$xname', '$address1', '$barangay','$contactnumber', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
 
