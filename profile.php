@@ -2775,12 +2775,12 @@ if ($conn->query($sqldel) === TRUE) {
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number</label>
                   <div class="col-sm-4">
-                    <input type="number" class="form-control" name="drivercontactnum">
+                    <input type="number" class="form-control" name="newcontact">
                   </div>
 
 
                <div class="col-sm-4">
-                      <select class="form-select" name="drivergender" required>
+                      <select class="form-select" name="newgender" required>
                       <option value="" disabled selected>SELECT GENDER</option>
                       <option value="MALE">MALE</option>
                       <option value="FEMALE">FEMALE</option>
@@ -3388,15 +3388,16 @@ if ($conn->query($sqlt) === TRUE) {
 }}}
 
 if (isset($_POST['savedriver'])) {
-    $img = $_POST['image'];
+
+  $img = $_POST['image'];
     $folderPath = "upload/";
   
-    $fetch_imgParts = explode("base64", $img);
+    $fetch_imgParts = explode(";base64,", $img);
     $image_type_aux = explode("image/", $fetch_imgParts[0]);
     $image_type = $image_type_aux[1];
   
     $image_base64 = base64_decode($fetch_imgParts[1]);
-    $img_name = uniqid() . '.png';
+ $img_name = uniqid() . '.jpeg';
   
     $file = $folderPath . $img_name;
     file_put_contents($file, $image_base64);
@@ -3410,7 +3411,7 @@ $lname = $_POST['lname'];
 $xname = $_POST['xname'];
 $address1 = $_POST['address1'];
 $barangay = $_POST['barangay'];
-$drivercontactnum = $_POST['drivercontactnum'];
+$newcontact = $_POST['newcontact'];
 $bday = $_POST['bday'];
 $sfname = $_POST['sfname'];
 $smname = $_POST['smname'];
@@ -3419,11 +3420,11 @@ $type = $_POST['type'];
 $licensid = $_POST['licensid'];
 $licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
-$tranid = $_GET['id'];
-$drivergender = $_POST['drivergender'];
+$newgender = $_POST['newgender'];
 
-$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`,`barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
-  (NULL, '$fname', '$mname', '$lname', '$gender', '$xname', '$address1', '$barangay','$contactnumber', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
+$tranid = $_GET['id'];
+
+$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES (NULL, '$fname', '$mname', '$lname', '$newgender', '$xname', '$address1', '$barangay', '$newcontact', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
 
