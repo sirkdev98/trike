@@ -1180,10 +1180,48 @@ if ($mtopexpiration =='') {
 
                     ?>
 <h5 class="card-title">Pending Payment for MTOP: <font color="orange"><?php echo $unpaidtotal; ?></font></h5>
+
+
+  <a href="#editmtop" data-toggle="modal"><button type='button' class='btn btn-warning btn-lg'>
+  <i class="bi bi-pencil"></i>EDIT MTOP</button></a></i>
+
   <a href="#paymtop" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
   <i class="bi bi-credit-card"></i>PAY MTOP</button></a></i>
 
                    </div>
+                   <form method="post">  
+                   <div id="editmtop" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                       <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    
+                                        <h4 class="modal-title">EDIT MTOP PAYMENT</h4>
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="unpaidid" value="<?php echo $unpaidid; ?>">
+                                        <input type="hidden" name="unpaidmtopdate" value="<?php echo $unpaidmtopdate; ?>">
+                
+
+                                       <div class="alert alert-warning">Are you sure you want to revise MTOP?<strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?></div></strong>
+
+                                       
+                                        
+                                        <div class="modal-footer">
+                                           <button type="submit" name="editpayment" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                        </div>
+                    </div></form>
+
+
+
+
                     <form method="post">  
                    <div id="paymtop" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -1216,7 +1254,17 @@ if ($mtopexpiration =='') {
 
 
 <?php
+if(isset($_POST['editpayment'])){
+$rowprintid = $_GET['id'];
+$editpayment= $_POST['unpaidid'];
 
+
+ $sql = "DELETE FROM `mtop` WHERE id = '$editpayment'";
+if ($conn->query($sql) === TRUE) {  
+ echo "<script type='text/javascript'>alert(\"Successfully removed for payment record, you can now add the edited record  \")</script>";
+                                       echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
+
+}}
 if(isset($_POST['paymtop'])){
 $rowprintid = $_GET['id'];
   $unpaidid= $_POST['unpaidid'];
@@ -1233,64 +1281,65 @@ $paymentmtopexpiration = date('Y-01-30');
 
 elseif 
   ($plateending =="2") {
-$paymentmtopexpiration = date('Y-02-30'); 
+$paymentmtopexpiration1 = date('Y-02-28'); 
 }
 elseif 
   ($plateending =="3") {
-$paymentmtopexpiration = date('Y-03-30'); 
+$paymentmtopexpiration1 = date('Y-03-30'); 
 }
 
 elseif 
   ($plateending =="4") {
-$paymentmtopexpiration = date('Y-04-30'); 
+$paymentmtopexpiration1 = date('Y-04-30'); 
 }
 
 elseif 
   ($plateending =="5") {
-$paymentmtopexpiration = date('Y-05-30'); 
+$paymentmtopexpiration1 = date('Y-05-30'); 
 }
 
 elseif 
   ($plateending =="6") {
-$paymentmtopexpiration = date('Y-06-30'); 
+$paymentmtopexpiration1 = date('Y-06-30'); 
 }
 
 elseif 
   ($plateending =="7") {
-$paymentmtopexpiration = date('Y-07-30'); 
+$paymentmtopexpiration1 = date('Y-07-30'); 
 }
 
 elseif 
   ($plateending =="8") {
-$paymentmtopexpiration = date('Y-08-30'); 
+$paymentmtopexpiration1 = date('Y-08-30'); 
 }
 
 
 
 elseif 
   ($plateending =="9") {
-$paymentmtopexpiration = date('Y-09-30'); 
+$paymentmtopexpiration1 = date('Y-09-30'); 
 
 }
 
 elseif 
   ($plateending =="0") {
-$paymentmtopexpiration = date('Y-10-30'); 
+$paymentmtopexpiration1 = date('Y-10-30'); 
 
 }
 
 
 $unpaidmtopdate = $_POST['unpaidmtopdate'];
-$paymentmtopexpiration = date($paymentmtopexpiration, strtotime('+1 year'));
+//$paymentmtopexpirationplus = date($paymentmtopexpiration1, strtotime('+1 year'));
+$paymentmtopexpirationplus = date("Y-m-d", strtotime(date("Y-m-d", strtotime($paymentmtopexpiration1)) . " + 365 day"));
 
 
 
-  $sql = "UPDATE `mtop` SET `mtopexpiration` = '$paymentmtopexpiration', `status` = 'paid', `mtopor` = $mtopor WHERE `mtop`.`id` = $unpaidid";
+  $sql = "UPDATE `mtop` SET `mtopexpiration` = '$paymentmtopexpirationplus', `status` = 'paid', `mtopor` = $mtopor WHERE `mtop`.`id` = $unpaidid";
 if ($conn->query($sql) === TRUE) {  
 
 
 
-  $sql = " UPDATE `tricycle` SET `currentmtop` = '$paymentmtopexpiration' WHERE `tricycle`.`id` = $rowprintid";
+  $sql = " UPDATE `tricycle` SET `currentmtop` = '$paymentmtopexpirationplus' WHERE `tricycle`.`id` = $rowprintid";
   if ($conn->query($sql) === TRUE) {  
 
 
