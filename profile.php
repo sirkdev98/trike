@@ -509,7 +509,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
       
      <?php
                      $tid = $_GET['id'];
-                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` < now() and status ='paid'";
+                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='paid'";
                     $results = $conn->query($sqlmtop);
                     if ($results->num_rows > 0) {
                         // output data of each row
@@ -834,7 +834,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
                             if ($conn->query($sql) === TRUE) {  
 
-  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Updated Inspection Details', 'Updated Inspection Details', now(), 'done', '', '$editidinspection')";
+  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Updated Inspection Details', 'Updated Inspection Details', now(), 'done', '', '$editidinspection')";
 if ($conn->query($sql) === TRUE) {  
 
 
@@ -1199,8 +1199,11 @@ if ($mtopexpiration =='') {
                                         <input type="hidden" name="unpaidmtopdate" value="<?php echo $unpaidmtopdate; ?>">
                 
 
-                                        <div class="alert alert-info">Are you sure you want to add <strong><?php echo $unpaidtotal; ?></strong> MTOP payment to the franchise of <strong>
-                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
+                                       <div class="alert alert-success">Please Input MTOP Payment OR number for<strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?></div></strong>
+
+                                        <input type="text" name="mtopor" class="form-control" placeholder="OR NUMBER" required>
+                                        
                                         <div class="modal-footer">
                                            <button type="submit" name="paymtop" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
@@ -1217,7 +1220,7 @@ if ($mtopexpiration =='') {
 if(isset($_POST['paymtop'])){
 $rowprintid = $_GET['id'];
   $unpaidid= $_POST['unpaidid'];
-
+ $mtopor= $_POST['mtopor'];
 
 $ending = str_split($plateno);
 
@@ -1282,7 +1285,7 @@ $paymentmtopexpiration = date($paymentmtopexpiration, strtotime('+1 year'));
 
 
 
-  $sql = "UPDATE `mtop` SET `mtopexpiration` = '$paymentmtopexpiration', `status` = 'paid' WHERE `mtop`.`id` = $unpaidid";
+  $sql = "UPDATE `mtop` SET `mtopexpiration` = '$paymentmtopexpiration', `status` = 'paid', `mtopor` = $mtopor WHERE `mtop`.`id` = $unpaidid";
 if ($conn->query($sql) === TRUE) {  
 
 
@@ -1292,7 +1295,7 @@ if ($conn->query($sql) === TRUE) {
 
 
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added payment for mtop', 'Added payment', now(), 'done', '', '$rowprintid')";
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Added payment for mtop', 'Added payment', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sqlt) === TRUE) {  
   echo "<script type='text/javascript'>alert(\"Successfully Added payment record  \")</script>";
                                        echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
@@ -1909,7 +1912,7 @@ VALUES ('NULL', '$inmtopfee', '$inannualstickerfee', '$inmtopplatefee', '$inoper
 if ($conn->query($sql) === TRUE) { 
 
 
-$sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added MTOP for payment', 'for payment mtop', now(), 'done', '', '$tid')";
+$sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Added MTOP for payment', 'for payment mtop', now(), 'done', '', '$tid')";
 if ($conn->query($sql) === TRUE) {  
 
  
@@ -2390,7 +2393,7 @@ $result = $conn->query($selectquery);
  $sql = "INSERT INTO `tbl_payments` (`paymentid`, `payable`, `amount`, `ornumber`, `trikeid`) VALUES (NULL, 'No record', '60', '$norecordornum', '$trikeeid')";
 if ($conn->query($sql) === TRUE) {  
  
-  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Paid and Printer Cert of Confirmation', 'edited franchise', now(), 'done', '', '$editid')";
+  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Paid and Printer Cert of Confirmation', 'edited franchise', now(), 'done', '', '$editid')";
 
 if ($conn->query($sql) === TRUE) {  
 
@@ -2428,7 +2431,7 @@ $result = $conn->query($selectquery);
  $sql = "INSERT INTO `tbl_payments` (`paymentid`, `payable`, `amount`, `ornumber`, `trikeid`) VALUES (NULL, 'Confirmation', '60', '$certornum', '$trikeeid')";
 if ($conn->query($sql) === TRUE) {  
  
-  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Paid and Printer Cert of Confirmation', 'edited franchise', now(), 'done', '', '$editid')";
+  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Paid and Printer Cert of Confirmation', 'edited franchise', now(), 'done', '', '$editid')";
 
 if ($conn->query($sql) === TRUE) {  
 
@@ -2484,7 +2487,7 @@ if ($currentfrachise == "0000-00-00") {
 $sql = "UPDATE `tricycle` SET `mvfileno` = '$fileno', `plateno` = '$plateno', `engineno` = '$engineno', `chasisno` = '$chasisno', `maker` = '$maker', `motorcolor` = '$motorcolor', `pistondisp` = '$piston', `cor` = '$cor', `ornum` = '$ornum', `applicationdate` = '$applicationdate', `brgycode` = '$brgycode', `bodynum` = '$bdynumber', `toda` = '$toda', `sidecarcolor` = '$sidecarcolor', `inspectionstat` = 'inspectionstat', `classification` = '$classification' WHERE `tricycle`.`id` = $editid";
 if ($conn->query($sql) === TRUE) {  
 
-  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Edited Franchise Details', 'edited franchise', now(), 'done', '', '$editid')";
+  $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Edited Franchise Details', 'edited franchise', now(), 'done', '', '$editid')";
 if ($conn->query($sql) === TRUE) {  
 
 
@@ -2513,7 +2516,7 @@ $ornum = $_POST['ornum'];
   $sql = "UPDATE `tricycle` SET `mvfileno` = '$fileno', `plateno` = '$plateno', `engineno` = '$engineno', `chasisno` = '$chasisno', `maker` = '$maker', `motorcolor` = '$motorcolor', `pistondisp` = '$piston', `cor` = '$cor', `ornum` = '$ornum', `status` = 'with unit' WHERE `tricycle`.`id` = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added new unit', 'Added new unit', now(), 'done', '', '$rowprintid')";
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Added new unit', 'Added new unit', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sqlt) === TRUE) {  
   echo "<script type='text/javascript'>alert(\"Successfully Added new unit  \")</script>";
                                        echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
@@ -2535,7 +2538,7 @@ if ($conn->query($sqlt) === TRUE) {
  if(isset($_POST['printform'])){
 	$rowprintid= $_POST['pid'];
 
-$sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Printed Form', 'generate or print form', now(), 'done', '', '$rowprintid')";
+$sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Printed Form', 'generate or print form', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sql) === TRUE) {  
 
   echo "<script type='text/javascript'>alert(\"Successfully Generated  \")</script>";
@@ -2555,7 +2558,7 @@ if ($conn->query($sql) === TRUE) {
   $sql = "UPDATE `tricycle` SET `mvfileno` = 'dropped', `plateno` = 'dropped', `engineno` = 'dropped', `chasisno` = 'dropped', `maker` = 'dropped', `motorcolor` = 'dropped', `pistondisp` = 'dropped', `cor` = 'dropped', `ornum` = 'dropped', `status` = 'no unit' WHERE `tricycle`.`id` = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'DROPPED UNIT', 'DROPPED Unit', now(), 'done', '', '$rowprintid')";
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname DROPPED UNIT', 'DROPPED Unit', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sqlt) === TRUE) {  
   echo "<script type='text/javascript'>alert(\"Successfully Dropped  \")</script>";
                                        echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
@@ -2594,7 +2597,7 @@ $sql = "SELECT * from dropped where dropid = $dropdid";
   $sql = "UPDATE `tricycle` SET `mvfileno` = '$remvfileno', `plateno` = '$replateno', `engineno` = '$reengineno', `chasisno` = '$rechasisno', `maker` = '$remaker', `motorcolor` = '$remotorcolor', `pistondisp` = '$repistondisp', `cor` = '$recor', `ornum` = '$reornum', `status` = 'with unit' WHERE `tricycle`.`id` = $trike";
 if ($conn->query($sql) === TRUE) {  
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Get Dropped Unit', ' Get DROPPED Unit', now(), 'done', '', '$trike')";
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Get Dropped Unit', ' Get DROPPED Unit', now(), 'done', '', '$trike')";
 
 
 if ($conn->query($sqlt) === TRUE) { 
@@ -3163,7 +3166,7 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
                                     $sql = "DELETE FROM drivers WHERE id='$delete_id' ";
                                    
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Removed Driver $delete_id', 'removed driver from tricycle', now(), 'done', '', '$rowprintid')";
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Removed Driver $delete_id', 'removed driver from tricycle', now(), 'done', '', '$rowprintid')";
 $conn->query($sqlt);
                                     echo "<script type='text/javascript'>alert(\"Successfully Removed  \")</script>";
                                       echo '<script>window.location.href="profile.php?id='.$profileid.'"</script>';
@@ -3378,7 +3381,7 @@ if ($result->num_rows > 0)  {
 $sql = "INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES (NULL, '$bodynum', '$tid', '$driverid')";
 
 if ($conn->query($sql) === TRUE) {  
-  $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added Existing Driver', 'added driver to tricycle', now(), 'done', '', '$tranid')";
+  $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Added Existing Driver', 'added driver to tricycle', now(), 'done', '', '$tranid')";
 if ($conn->query($sqlt) === TRUE) {  
 
  echo "<script type='text/javascript'>alert(\"Successfully added driver \")</script>";
@@ -3434,7 +3437,7 @@ $sql = "INSERT INTO `drivers` (`id`, `bdynumber`, `trikeid`, `driverid`) VALUES 
 if ($conn->query($sql) === TRUE) {  
 
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added New Driver', 'added driver to tricycle', now(), 'done', '', '$tranid')";
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Added New Driver', 'added driver to tricycle', now(), 'done', '', '$tranid')";
 if ($conn->query($sqlt) === TRUE) {  
  echo "<script type='text/javascript'>alert(\"Successfully added new driver\")</script>";
            echo "<script>window.location.href='profile.php?id=$tid'</script>"; 
