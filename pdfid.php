@@ -21,6 +21,7 @@ $pdf = new FPDF ('l','mm',array(148,105));
 $pdf->AddFont('BebasKai','','BebasKai.php');
 $pdf->AddFont('MontseratBold','','MontseratBold.php');
 $pdf->AddFont('Montserat','','Montserat.php');
+$pdf->AddFont('montsemibold','','montsemibold.php');
 
  
      $sql = "SELECT * from driveroperator WHERE pid = '$doid'";
@@ -80,19 +81,20 @@ if ($picname=="") {
 
 
 $pdf ->Cell(50,5,'',0,1);
-$pdf ->Cell(8,70,'',0,1);
+$pdf ->Cell(6,64,'',0,1);
 
 
-$pdf->SetFont('Montserat', '', 16);
+$pdf->SetFont('montsemibold', '', 16);
 
 $pdf ->SetTextColor(255,255,255);
-$pdf ->Cell(0,1,$row['fname']."  ".$row['mname']." ".$row['lname'],0,1,'C');
+$pdf ->MultiCell(85,6,$row['fname']."  ".$row['mname']." ".$row['lname'],'C');
 $pdf ->Cell(10,8.5,'',0,1);
 $pdf ->SetTextColor(0,0,0);
 $pdf ->SetTextColor(255,255,255);
 
-$pdf ->Cell(0,26,$bodynum,0,1,'C');
-$pdf->SetFont('BebasKai', '', 32);
+$pdf->SetFont('montsemibold', '', 36);
+$pdf ->Cell(0,26,'14-0251',0,1,'C');
+$pdf->SetFont('montsemibold', '', 20);
 $pdf ->SetTextColor(255,255,255);
 $pdf ->Cell(0,2,$row['type'],0,1,'C');
 
@@ -107,7 +109,7 @@ $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(8,29,'',0,1);
 
 
-$pdf->SetFont('BebasKai', '', 14);
+$pdf->SetFont('montsemibold', '', 12);
 $pdf ->Cell(5,1,'',0,0);
 $pdf ->SetTextColor(0,0,0);
 $pdf ->Cell(5,2,$row['address1'].", ".$row['barangay'],0,1);
