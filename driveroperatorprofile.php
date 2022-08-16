@@ -460,7 +460,14 @@ if(isset($_SESSION['username'])){
 
 $oppid =$_GET['id'];
 
-$bodynum  =$_GET['bdynum'];
+
+;
+if (empty($_GET['bdynum'])) {
+   echo "";
+}else {
+  $_GET['bdynum'];
+}
+
 $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     $result = $conn->query($sql);
                     $countfranchise = $result ->num_rows;
@@ -468,7 +475,16 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     if ($countfranchise ==4) {
                       $countcolor = "red";
                     }
-                    echo "<font color='$countcolor'><b>".$countfranchise."</b></font> Franchise Owned";
+
+ if ($type =="DRIVER"){
+      echo "<center><font color='$countcolor'><b>"."</b></font></center>";
+    }else {
+
+      echo "<font color='$countcolor'><b>".$countfranchise."</b></font> Franchise Owned";
+
+    }
+
+                    
 
                ?>
               </div>
@@ -1423,12 +1439,103 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
     </section>
 
 
+ <?php if ($type !="DRIVER"){
+      echo "<section class='section' hidden>";
+    }else {
+
+      echo "<section class='section'>";
+
+
+    }
+
+    ?>
+
+
+   <div class="row">
+    <div class="card">
+        <div class="col-lg-12">
+ <h5 class="card-title">List of Driven Tricycle</h5>
+            
+             <table id="tbldriver" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                
+                <th>BODY #</th>
+                <th>OPERATOR</th>
+        
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+<?php
 
 
 
+$driverid =$_GET['id'];
 
+$sql = "SELECT 
+tricycle.brgycode, 
+tricycle.bodynum, 
+tricycle.fname, 
+tricycle.mname,
+tricycle.lname,
+tricycle.id 
+FROM drivers JOIN tricycle ON drivers.trikeid = tricycle.id WHERE drivers.driverid = $driverid";
+                    $result = $conn->query($sql);
+                    $count  = $result->num_rows;
+                    if ($result->num_rows > 0) {
+                  
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $trikeid = $row['id'];
+                            $bdynumber = $row['bodynum']; 
+                            $brgycode = $row['brgycode'];
+                            $operatorfname=$row['fname'];
+                            $operatormname = $row['mname'];
+                            $operatorlname = $row['lname'];
 
+                           $fullbodynumber = $brgycode."-".$bdynumber;
+?>
+            <tr>
+                <td><?php echo $trikeid; ?></td>
+                <td><?php echo $brgycode."-".$bdynumber ; ?></td>
+                <td><?php echo $operatorfname." ".$operatormname." ".$operatorlname ; ?></td>
+              
+                <td>
+  <a href="profile.php?id=<?php echo  $trikeid; ?>"><button type='button' class='btn btn-primary btn-sm'>
+  <i class="bi bi-card-text"></i></button></a></i>
+<a href="pdfid.php?id=<?php echo $driverid ?>&bdynum=<?php echo  $fullbodynumber;?>"><button type='button' class='btn btn-warning btn-sm'>
+  <i class="bi bi-printer"></i></button></a></i>
+ 
+                </td>
+            </tr>
 
+<?php }} ?>
+
+    </tbody>
+        <tfoot>
+            <tr>
+             
+           <th>ID</th>
+                
+                <th>BODY #</th>
+                <th>OPERATOR</th>
+        
+                <th>Action</th>
+            </tr>
+        </tfoot>
+    </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div></div></div>
+    </section>
 
 
 
@@ -1531,6 +1638,11 @@ jQuery(document).ready(function($) {
 } );
 </script>
 
+<script>
+jQuery(document).ready(function($) {
+    $('#tbldriver').DataTable();
+} );
+</script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 

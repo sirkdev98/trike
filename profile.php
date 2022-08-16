@@ -1261,9 +1261,12 @@ $editpayment= $_POST['unpaidid'];
 
  $sql = "DELETE FROM `mtop` WHERE id = '$editpayment'";
 if ($conn->query($sql) === TRUE) {  
+
+  $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Edit MTOP', 'Edit MTOP', now(), 'done', '', '$rowprintid')";
+if ($conn->query($sqlt) === TRUE) {  
  echo "<script type='text/javascript'>alert(\"Successfully removed for payment record, you can now add the edited record  \")</script>";
                                        echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
-
+}
 }}
 if(isset($_POST['paymtop'])){
 $rowprintid = $_GET['id'];

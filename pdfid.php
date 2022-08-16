@@ -93,7 +93,7 @@ $pdf ->SetTextColor(0,0,0);
 $pdf ->SetTextColor(255,255,255);
 
 $pdf->SetFont('montsemibold', '', 36);
-$pdf ->Cell(0,26,'14-0251',0,1,'C');
+$pdf ->Cell(0,26,$bodynum,0,1,'C');
 $pdf->SetFont('montsemibold', '', 20);
 $pdf ->SetTextColor(255,255,255);
 $pdf ->Cell(0,2,$row['type'],0,1,'C');
