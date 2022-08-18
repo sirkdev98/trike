@@ -434,7 +434,10 @@ if(isset($_SESSION['username'])){
                           $_SESSION['oplicensenum'] =  $licensenum = $row['licensenum']; 
                           $_SESSION['oplicensetype'] = $licensetype = $row['licensetype']; 
                           $_SESSION['oplicensevalid'] = $licensevalid = $row['licensevalid']; 
-                          $_SESSION['oppicname'] =  $picname = $row['picname']; 
+                          $_SESSION['oppicname'] =  $picname = $row['picname'];
+                          $_SESSION['cedulanumber'] =  $cedulanumber = $row['cedulanumber']; 
+                          $_SESSION['cedulalocation'] =  $cedulalocation = $row['cedulalocation'];  
+                          $_SESSION['ceduladate'] =  $ceduladate = $row['ceduladate']; 
                           $_SESSION['addcheck'] = "driverexist";
                      }
                             
@@ -756,6 +759,23 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration" value="<?php echo $licensevalid; ?>">
                   </div>
                   </div>
+
+                   <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>CEDULA</b></label>
+                  
+                  <div class="col-sm-3">
+                   Cedula #
+                    <input class="form-control" type="text" name="cedulanumber" placeholder="Cedula #" value="<?php echo $cedulanumber; ?>"/>
+                  </div>
+                   <div class="col-sm-3">
+                    Issuance location
+                    <input class="form-control" type="text" name="cedulalocation" placeholder="Issuance location" value="<?php echo $cedulalocation; ?>"/>
+                  </div>
+                  <div class="col-sm-3">
+                    Cedula date
+                    <input type="date" class="form-control" placeholder="dateofissue" name="ceduladate" value="<?php echo $ceduladate; ?>">
+                  </div>
+                  </div>
             
              <!-- End General Form Elements -->
 
@@ -811,6 +831,9 @@ $type = $_POST['type'];
 $licensid = $_POST['licensid'];
 $licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
+$cedulanumber = $_POST['cedulanumber'];
+$cedulalocation = $_POST['cedulalocation'];
+$ceduladate = $_POST['ceduladate'];
 if ($img =="") {
 $editpic = $picname;
 }else {
@@ -818,7 +841,7 @@ $editpic = $picname;
   $editpic   = $img_name;
 }
 
-$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slaname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic' WHERE `driveroperator`.`pid` =  $doid";
+$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slaname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic',`cedulanumber` = '$cedulanumber', `cedulalocation` = '$cedulalocation', `ceduladate` = '$ceduladate' WHERE `driveroperator`.`pid` =  $doid";
 
 if ($conn->query($sql) === TRUE) {  
  

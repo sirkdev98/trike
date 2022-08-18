@@ -2898,6 +2898,22 @@ if ($conn->query($sqldel) === TRUE) {
                     <input type="date" class="form-control"  placeholder="EXPIRATION" name="expiration">
                   </div>
                   </div>
+                   <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>CEDULA</b></label>
+                  
+                  <div class="col-sm-3">
+                   Cedula #
+                    <input class="form-control" type="text" name="cedulanumber" placeholder="Cedula #"/>
+                  </div>
+                   <div class="col-sm-3">
+                    Issuance location
+                    <input class="form-control" type="text" name="cedulalocation" placeholder="Issuance location"/>
+                  </div>
+                  <div class="col-sm-3">
+                    Cedula date
+                    <input type="date" class="form-control" placeholder="dateofissue" name="ceduladate">
+                  </div>
+                  </div>
             
              <!-- End General Form Elements -->
 
@@ -3476,10 +3492,15 @@ $licensid = $_POST['licensid'];
 $licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
 $newgender = $_POST['newgender'];
+$cedulanumber = $_POST['cedulanumber'];
+$cedulalocation = $_POST['cedulalocation'];
+$ceduladate = $_POST['ceduladate'];
+
 
 $tranid = $_GET['id'];
 
-$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `picname`) VALUES (NULL, '$fname', '$mname', '$lname', '$newgender', '$xname', '$address1', '$barangay', '$newcontact', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
+
+$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `cedulanumber`, `cedulalocation`, `ceduladate`, `picname`) VALUES (NULL, '$fname', '$mname', '$lname', '$newgender', '$xname', '$address1', '$barangay', '$newcontact', '$sfname', '$mname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$cedulanumber', '$cedulalocation', '$ceduladate', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
 

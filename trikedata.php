@@ -641,6 +641,23 @@ if(isset($_SESSION['username'])){
                   </div>
                   </div>
 
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>CEDULA</b></label>
+                  
+                  <div class="col-sm-3">
+                   Cedula #
+                    <input class="form-control" type="text" name="cedulanumber" placeholder="Cedula #"/>
+                  </div>
+                   <div class="col-sm-3">
+                    Issuance location
+                    <input class="form-control" type="text" name="cedulalocation"  placeholder="Issuance location"/>
+                  </div>
+                  <div class="col-sm-3">
+                    Cedula date
+                    <input type="date" class="form-control" placeholder="dateofissue" name="ceduladate">
+                  </div>
+                  </div>
+
 
                   <br><!--divider -->
                   <div class="row mb-3">
