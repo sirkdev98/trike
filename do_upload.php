@@ -63,6 +63,16 @@ $bdynumber = $_POST['bdynumber'];
 $classification = $_POST['classification'];
 $toda = $_POST['toda'];
 
+$hasparking = $_POST['hasparking'];
+if ($hasparking=="") {
+  $parking="No";
+}else{
+
+  $parking="Yes";
+}
+$acquisitiondate = $_POST['acquisitiondate'];
+$yearmodel = $_POST['yearmodel'];
+
  $selectquery = "SELECT `color` from toda where `toda` = '$toda'";
   $result = $conn->query($selectquery);
                       if($result->num_rows> 0){
@@ -71,7 +81,7 @@ $toda = $_POST['toda'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification','$nounit')";
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`parking`, `parkinglocation`, `acquisitiondate`, `yearmodel`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum','$parking','$hasparking','$acquisitiondate','$yearmodel', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification','$nounit')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
@@ -167,6 +177,16 @@ $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 $classification = $_POST['classification'];
 $toda = $_POST['toda'];
+$hasparking = $_POST['hasparking'];
+if ($hasparking=="") {
+  $parking="No";
+}else{
+
+  $parking="Yes";
+}
+$acquisitiondate = $_POST['acquisitiondate'];
+$yearmodel = $_POST['yearmodel'];
+
 
  $selectquery = "SELECT `color` from toda where `toda` = '$toda'";
   $result = $conn->query($selectquery);
@@ -176,7 +196,7 @@ $toda = $_POST['toda'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`, `fname`, `mname`, `lname`, `extname`, `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`, `toda`, `sidecarcolor`, `inspectionstat`, `classification`,`status`) VALUES (NULL, '$fname', '$mname', '$lname', '$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker', '$motorcolor', '$piston', '$cor', '$ornum', '$applicationdate', '$brgycode', '$bdynumber', '$last_id', '$toda ', '$sidecarcolor', '', '$classification','$nounit')";
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`parking`, `parkinglocation`, `acquisitiondate`, `yearmodel`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum','$parking','$hasparking','$acquisitiondate','$yearmodel', '$applicationdate', '$brgycode', '$bdynumber', '$last_id','$toda','$sidecarcolor','$classification','$nounit')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
@@ -192,7 +212,7 @@ if ($conn->query($sql3) === TRUE) {
 $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added tricycle', 'Added tricycle', now(), 'done', '', '$last_idtrike')";
 if ($conn->query($sqlt) === TRUE) {  
 
- echo "<script type='text/javascript'>alert(\"Successfully added Tricycle \")</script>";
+ echo "<script type='text/javascript'>alert(\"Successfully added Operator and Tricycle \")</script>";
            echo "<script>window.location.href='profile.php?id=$last_idtrike'</script>"; 
          }  else{
             echo "<script type='text/javascript'>alert(\"Data not inserted\")</script>";

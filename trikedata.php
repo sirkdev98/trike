@@ -771,7 +771,7 @@ if(isset($_SESSION['username'])){
                   </div>
                   <div class="col-sm-3">
                     Year Model
-                    <input type="text" class="form-control" placeholder="Year model" name="yearmodel" maxlength="4"  min="0" max="9999" step="1"pattern="[0-9]{2}">
+                    <input type="text" class="form-control" placeholder="____" name="yearmodel" maxlength="4"  min="0" max="9999" step="1"pattern="[0-9]{4}">
                   </div>
                  
                   </div>

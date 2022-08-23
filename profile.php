@@ -426,6 +426,10 @@ if(isset($_SESSION['username'])){
   tricycle.bodynum, 
   tricycle.inspectionstat,
   tricycle.currentfranchise,
+  tricycle.parking,
+  tricycle.parkinglocation,
+  tricycle.acquisitiondate,
+  tricycle.yearmodel,
   tricycle.status,
   driveroperator.pid,
   driveroperator.fname,
@@ -496,6 +500,11 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $trikestatus = $row['status'];
                             $trikeclassification = $row['classification'];
                             $motorcolor = $row['motorcolor'];
+                            $parking = $row['parking'];
+                            $parkinglocation = $row['parkinglocation'];
+                            $acquisitiondate =$row['acquisitiondate'];
+                            $yearmodel = $row['yearmodel'];
+
 
 
 
@@ -626,6 +635,16 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Sidecar Color</div>
                     <div class="col-lg-9 col-md-8"><font color="<?php echo $sidecarcolor; ?>"><?php echo $sidecarcolor; ?></font></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Acquisition Date</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $acquisitiondate; ?></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Year Model</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $yearmodel; ?></div>
                   </div>
 
                   <div class="row">
@@ -2385,6 +2404,25 @@ if ($conn->query($sql) === TRUE) {
 
 
 <br>
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
+                  <div class="col-sm-3">
+                    Parking
+                    <input type="text" class="form-control" name="hasparking" placeholder="Parking location"  value="<?php echo $parkinglocation; ?>">
+                  </div>
+                  <div class="col-sm-3">
+                    Acquisition date
+                    <input type="date" class="form-control" name="acquisitiondate" placeholder="Date"  value="<?php echo $acquisitiondate;?>">
+                  </div>
+                  <div class="col-sm-3">
+                    Year Model
+                    <input type="text" class="form-control" placeholder="____" name="yearmodel" maxlength="4"  min="0" max="9999" step="1"pattern="[0-9]{4}"  value="<?php echo $yearmodel; ?>">
+                  </div>
+                 
+                  </div>
+
+
+<br>
 
                      <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
@@ -2517,6 +2555,16 @@ $brgycode = $_POST['brgycode'];
 $bdynumber = $_POST['bdynumber'];
 $classification = $_POST['classification'];
 $toda = $_POST['toda'];
+$hasparking = $_POST['hasparking'];
+if ($hasparking=="") {
+  $parking="No";
+}else{
+
+  $parking="Yes";
+}
+$acquisitiondate = $_POST['acquisitiondate'];
+$yearmodel = $_POST['yearmodel'];
+
 
 if ($currentfrachise == "0000-00-00") {
 
@@ -2536,7 +2584,7 @@ if ($currentfrachise == "0000-00-00") {
                       }
   $rowprintid= $_POST['pid'];
 
-$sql = "UPDATE `tricycle` SET `mvfileno` = '$fileno', `plateno` = '$plateno', `engineno` = '$engineno', `chasisno` = '$chasisno', `maker` = '$maker', `motorcolor` = '$motorcolor', `pistondisp` = '$piston', `cor` = '$cor', `ornum` = '$ornum', `applicationdate` = '$applicationdate', `brgycode` = '$brgycode', `bodynum` = '$bdynumber', `toda` = '$toda', `sidecarcolor` = '$sidecarcolor', `inspectionstat` = 'inspectionstat', `classification` = '$classification' WHERE `tricycle`.`id` = $editid";
+$sql = "UPDATE `tricycle` SET `mvfileno` = '$fileno', `plateno` = '$plateno', `engineno` = '$engineno', `chasisno` = '$chasisno', `maker` = '$maker', `motorcolor` = '$motorcolor', `pistondisp` = '$piston', `cor` = '$cor', `ornum` = '$ornum', `applicationdate` = '$applicationdate', `brgycode` = '$brgycode', `bodynum` = '$bdynumber', `toda` = '$toda', `sidecarcolor` = '$sidecarcolor', `inspectionstat` = 'inspectionstat', `classification` = '$classification',`parking` = '$hasparking', `parkinglocation` = '$hasparking', `acquisitiondate` = '$acquisitiondate', `yearmodel` = '$yearmodel' WHERE `tricycle`.`id` = $editid";
 if ($conn->query($sql) === TRUE) {  
 
   $sql = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Edited Franchise Details', 'edited franchise', now(), 'done', '', '$editid')";

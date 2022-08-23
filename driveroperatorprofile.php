@@ -1257,6 +1257,25 @@ else{
                   </div>
 
 
+<br>
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
+                  <div class="col-sm-3">
+                    Parking
+                    <input type="text" class="form-control" name="hasparking" placeholder="Parking location" >
+                  </div>
+                  <div class="col-sm-3">
+                    Acquisition date
+                    <input type="date" class="form-control" name="acquisitiondate" placeholder="Date">
+                  </div>
+                  <div class="col-sm-3">
+                    Year Model
+                    <input type="text" class="form-control" placeholder="____" name="yearmodel" maxlength="4"  min="0" max="9999" step="1"pattern="[0-9]{4}">
+                  </div>
+                 
+                  </div>
+
+
 
 <br>
 
