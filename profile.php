@@ -1662,9 +1662,14 @@ if ($mtopstat =="mtopexpired") {
                   <!-- End Change Password Form -->
 
           <script type="text/javascript">
-let totalamount = 200;
+var totalamount = 200;
 var total = document.getElementById("total");
-var phpmtopstat = <?php echo $mtopstat; ?>;
+var phpmtopstat = "<?php echo $mtopstat ?>"
+if (phpmtopstat =="mtopexpired") {
+totalamount = 250;
+}else{
+ totalamount =200;
+}
 
 document.getElementById("total").innerHTML = totalamount
 
