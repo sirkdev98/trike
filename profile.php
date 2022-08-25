@@ -1572,21 +1572,19 @@ if ($conn->query($sqlt) === TRUE) {
 <?php 
 if ($mtopstat =="mtopexpired") {
 ?>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="chck1" name="penaltyfee" checked onclick="return false;" value="<?php echo $penaltyfee; ?>">
-                      <label class="form-check-label" for="gridCheck1" id="text">
-                      Penalty fee 
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <label class="form-check-label" for="gridCheck1" id="text">
-                      <?php echo $penaltyfee; ?>
+                   <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="return false;" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
+                      <label class="form-check-label" for="gridCheck2">
+                       Penalty Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
+                     50
                       </label>
                     </div>
 <?php                    
 }else
 {
 
-  echo"HAHA";
 }
 ?>
                      
@@ -1664,8 +1662,10 @@ if ($mtopstat =="mtopexpired") {
                   <!-- End Change Password Form -->
 
           <script type="text/javascript">
-var total = document.getElementById("total");
 let totalamount = 200;
+var total = document.getElementById("total");
+var phpmtopstat = <?php echo $mtopstat; ?>;
+
 document.getElementById("total").innerHTML = totalamount
 
 var php_varstikcerfee = <?php echo $annualstickerfee; ?>;
@@ -1976,7 +1976,16 @@ header('locatio:indexx.php');
 
     if (isset($_POST['penaltyfee'])) {
       $inpenaltyfee = $_POST['penaltyfee'];
-    }else { $inpenaltyfee ="";}
+    }else { 
+
+if ($mtopstat=='mtopexpired') {
+    $inpenaltyfee ="50";
+}else{
+$inpenaltyfee =""; }
+      
+
+
+  $inpenaltyfee ="";  }
 
 
 $mtopdate = $_POST['mtopdate'];
