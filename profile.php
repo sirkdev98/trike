@@ -1569,16 +1569,27 @@ if ($conn->query($sqlt) === TRUE) {
                       </label>
                     </div>
 
-
-                       <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>">
-                      <label class="form-check-label" for="gridCheck2" >
-                       Penalty Fee
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
-                     
+<?php 
+if ($mtopstat =="mtopexpired") {
+?>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="chck1" name="penaltyfee" checked onclick="return false;" value="<?php echo $penaltyfee; ?>">
+                      <label class="form-check-label" for="gridCheck1" id="text">
+                      Penalty fee 
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="form-check-label" for="gridCheck1" id="text">
+                      <?php echo $penaltyfee; ?>
                       </label>
                     </div>
+<?php                    
+}else
+{
+
+  echo"HAHA";
+}
+?>
+                     
 
 
                       
