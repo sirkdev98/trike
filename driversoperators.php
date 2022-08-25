@@ -221,13 +221,13 @@ if(isset($_SESSION['username'])){
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Vicente</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $userfname; ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Khristian Vicente</h6>
-              <span>Web Developer</span>
+              <h6><?php echo $userfname; ?></h6>
+              <span><?php echo $userrole; ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -474,6 +474,9 @@ if(isset($_SESSION['username'])){
 
 
 
+                <input type="text" class="form-control" placeholder="First Name" name="operatorid" hidden>
+
+
                 <div class="row mb-2">
                   <label for="inputText" class="col-sm-2 col-form-label">NAME</label>
                   <div class="col-sm-3">
@@ -499,8 +502,8 @@ if(isset($_SESSION['username'])){
                 
                   <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" name="barangay" required>
-                      <option value="" disabled selected>Barangay</option>
-                      <option value="APOLLO">APOLLO</option>
+                  <option value="" disabled selected>Barangay</option>
+                  <option value="APOLLO">APOLLO</option>
                   <option value="BALUT">BALUT</option>
                   <option value="BAYAN">BAYAN</option>
                   <option value="BAGONG PARAISO">BAGONG PARAISO</option>
@@ -542,8 +545,7 @@ if(isset($_SESSION['username'])){
                     <input type="number" class="form-control" name="contactnum">
                   </div>
 
-
-                   <div class="col-sm-4">
+                     <div class="col-sm-4">
                        <select class="form-select" aria-label="Default select example" name="gender" required>
                       <option value="" disabled selected>SELECT GENDER</option>
                       <option value="MALE">MALE</option>
@@ -551,9 +553,38 @@ if(isset($_SESSION['username'])){
 
                     </select>
                   </div>
+
                 </div>
 
-                  <div class="row mb-2">
+             
+
+
+          
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control" name="bday">
+                  </div>
+
+                   <div class="col-sm-4">
+                       <select class="form-select" aria-label="Default select example" name="bloodtype">
+                      <option value="" selected>SELECT BLOOD TYPE</option>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                    </select>
+                  </div>
+
+
+                </div>
+
+
+                     <div class="row mb-2">
                   <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>
                   <div class="col-sm-3">
                     <input type="text" class="form-control" placeholder="First Name" name="sfname">
@@ -567,14 +598,6 @@ if(isset($_SESSION['username'])){
                  
                 </div>
 
-
-          
-                <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">Birth Date</label>
-                  <div class="col-sm-4">
-                    <input type="date" class="form-control" name="bday">
-                  </div>
-                </div>
                 <div class="row mb-3">
                   <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
                   <div class="col-sm-4">
@@ -582,32 +605,60 @@ if(isset($_SESSION['username'])){
                       <option value="" disabled selected>SELECT TYPE HERE</option>
                       <option value="OPERATOR">OPERATOR</option>
                       <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
-                      <option value="DRIVER">DRIVER</option>
+                     <option value="DRIVER">DRIVER</option>
                     </select>
                   </div>
                 </div>
 
 
-                   <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License</label>
+                 <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">ID #</label>
                   <div class="col-sm-4">
-                     <input type="text" class="form-control" placeholder="LICENSE NUMBER" name="licensid">
+                     <input type="text" class="form-control" placeholder="ID NUMBER" name="licensid">
                   </div>
                     <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" required name="lictype">
-                          <option value="" disabled selected>SELECT LICENSE CLASSIFICATION</option>
-                      <option value="PROFESSIONAL">PROFESSIONAL</option>
-                      <option value="NON-PROFESSIONAL">NON-PROFESSIONAL</option>
+                          <option value="" disabled selected>SELECT ID TYPE</option>
+                      <option value="OPERATOR">PROFESSIONAL</option>
+                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
+                     
+                      <option value="PASSPORT">PASSPORT</option>
+                      <option value="SSS">SSS</option>
+                      <option value="GSIS">GSIS</option>
+                      <option value="UMID">UMID</option>
+                      <option value="PRC">PRC</option>
+                      <option value="PNPPNP">PNP</option>
+                      <option value="Philippine Postal ID">Philippine Postal ID</option>
+                      <option value="National ID">National ID</option>
+                      <option value="VOTERS ID">VOTERS ID</option>
                     </select>
                   </div>
                   </div>
 
                    <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Driver's License Validity</label>
+                  <label for="inputEmail" class="col-sm-2 col-form-label">ID Validity</label>
                   <div class="col-sm-4">
-                    <input type="date" class="form-control" placeholder="EXPIRATION" name="expiration">
+                    <input type="date" class="form-control"  placeholder="EXPIRATION" name="expiration">
                   </div>
                   </div>
+
+                     <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>CEDULA</b></label>
+                  
+                  <div class="col-sm-3">
+                   Cedula #
+                    <input class="form-control" type="text" name="cedulanumber" placeholder="Cedula #"/>
+                  </div>
+                   <div class="col-sm-3">
+                    Issuance location
+                    <input class="form-control" type="text" name="cedulalocation"  placeholder="Issuance location"/>
+                  </div>
+                  <div class="col-sm-3">
+                    Cedula date
+                    <input type="date" class="form-control" placeholder="dateofissue" name="ceduladate">
+                  </div>
+                  </div>
+
             
              <!-- End General Form Elements -->
 

@@ -490,7 +490,7 @@ if(isset($_SESSION['username'])){
                 </div>
 
 
-                    <input type="text" class="form-control" placeholder="First Name" name="operatorid" hidden>
+                <input type="text" class="form-control" placeholder="First Name" name="operatorid" hidden>
 
 
                 <div class="row mb-2">
@@ -581,7 +581,24 @@ if(isset($_SESSION['username'])){
                   <div class="col-sm-4">
                     <input type="date" class="form-control" name="bday">
                   </div>
+
+                   <div class="col-sm-4">
+                       <select class="form-select" aria-label="Default select example" name="bloodtype">
+                      <option value="" selected>SELECT BLOOD TYPE</option>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                    </select>
+                  </div>
+
+
                 </div>
+
 
                      <div class="row mb-2">
                   <label for="inputText" class="col-sm-2 col-form-label">Name Of Spouse</label>

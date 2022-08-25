@@ -33,10 +33,18 @@ $type = $_POST['type'];
 $licensid = $_POST['licensid'];
 $licensetype = $_POST['lictype'];
 $expiration = $_POST['expiration'];
+$cedulanumber = $_POST['cedulanumber'];
+$cedulalocation = $_POST['cedulalocation'];
+$ceduladate = $_POST['ceduladate'];
+$bloodtype = $_POST['bloodtype'];
 
 
-$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`,`gender`, `extname`, `address1`,`contactnumber`, `barangay`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`,`picname`) VALUES 
-	(NULL, '$fname', '$mname', '$lname', '$gender', '$xname', '$address1', '$contactnum','$barangay', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$img_name')";
+
+
+
+
+$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`,`contactnumber`, `barangay`, `sfname`, `smname`, `slaname`, `bday`,`bloodtype`, `type`, `licensenum`, `licensetype`, `licensevalid`, `cedulanumber`, `cedulalocation`, `ceduladate`, `picname`) VALUES 
+    (NULL, '$fname', '$mname', '$lname', '$gender', '$xname', '$address1', '$contactnum','$barangay', '$sfname', '$smname', '$slname', '$bday','$bloodtype', '$type', '$licensid', '$licensetype', '$expiration','$cedulanumber','$cedulalocation','$ceduladate', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
  
