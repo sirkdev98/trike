@@ -438,6 +438,7 @@ if(isset($_SESSION['username'])){
                           $_SESSION['cedulanumber'] =  $cedulanumber = $row['cedulanumber']; 
                           $_SESSION['cedulalocation'] =  $cedulalocation = $row['cedulalocation'];  
                           $_SESSION['ceduladate'] =  $ceduladate = $row['ceduladate']; 
+                          $_SESSION['bloodtype'] =  $bloodtype = $row['bloodtype']; 
                           $_SESSION['addcheck'] = "driverexist";
                      }
                             
@@ -725,7 +726,22 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                   <div class="col-sm-4">
                     <input type="date" class="form-control" name="bday"  value="<?php echo $bday; ?>">
                   </div>
+
+                   <div class="col-sm-4">
+                       <select class="form-select" aria-label="Default select example" name="bloodtype">
+                       <option value="<?php echo $bloodtype; ?>" selected><?php echo $bloodtype; ?>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                    </select>
+                  </div>
                 </div>
+
                 <div class="row mb-3">
                   <label for="inputTime" class="col-sm-2 col-form-label">TYPE</label>
                   <div class="col-sm-4">
@@ -834,6 +850,7 @@ $expiration = $_POST['expiration'];
 $cedulanumber = $_POST['cedulanumber'];
 $cedulalocation = $_POST['cedulalocation'];
 $ceduladate = $_POST['ceduladate'];
+$bloodtype = $_POST['bloodtype'];
 if ($img =="") {
 $editpic = $picname;
 }else {
@@ -841,7 +858,7 @@ $editpic = $picname;
   $editpic   = $img_name;
 }
 
-$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slaname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic',`cedulanumber` = '$cedulanumber', `cedulalocation` = '$cedulalocation', `ceduladate` = '$ceduladate' WHERE `driveroperator`.`pid` =  $doid";
+$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slaname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic',`cedulanumber` = '$cedulanumber', `cedulalocation` = '$cedulalocation', `ceduladate` = '$ceduladate', `bloodtype` = '$bloodtype' WHERE `driveroperator`.`pid` =  $doid";
 
 if ($conn->query($sql) === TRUE) {  
  

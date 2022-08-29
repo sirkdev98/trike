@@ -909,22 +909,49 @@ $whitepercent =($whitecount / $trikecount)*100;
               <h5 class="card-title">Recent Activity <span>| Today</span></h5>
 
               <div class="activity">
+<?php
+                     $sql33 = "SELECT * from transactions ORDER BY id DESC limit 5";
+                    $result = $conn->query($sql33);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $id = $row['id'];  
+                            $transaction = $row['transaction']; 
+                            $transactdate = $row['date']; 
+                            $status = $row['status'];
+                            $rectrikeid = $row['trikeid'];
+                      
+
+  ?>
 
                 <div class="activity-item d-flex">
-                  <div class="activite-label">32 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  <div class="activite-label"> <?php
+                    $now = time();
+                    $your_date = strtotime($transactdate);
+                    $datediff = $now - $your_date;
+                    if (round($datediff / (60 * 60 * 24))==0) {
+                     echo "Today";
+                    }else{
+                   echo round($datediff / (60 * 60 * 24))." Days";
+                    }
+                    ?>
+</div>            
+
+                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'>
+                   
+                  </i>
                   <div class="activity-content">
-                    Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                    <?php echo $transaction; ?> <a href="profile.php?id=<?php echo  $rectrikeid; ?>" class="fw-bold text-dark">View</a>
                   </div>
                 </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
+<?php }}  ?>
+               <!-- <div class="activity-item d-flex">
                   <div class="activite-label">56 min</div>
                   <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
                   <div class="activity-content">
                     Voluptatem blanditiis blanditiis eveniet
                   </div>
-                </div><!-- End activity item-->
+                </div> End activity item
 
                 <div class="activity-item d-flex">
                   <div class="activite-label">2 hrs</div>
@@ -932,15 +959,14 @@ $whitepercent =($whitecount / $trikecount)*100;
                   <div class="activity-content">
                     Voluptates corrupti molestias voluptatem
                   </div>
-                </div><!-- End activity item-->
-
+                </div><!-- End activity item
                 <div class="activity-item d-flex">
                   <div class="activite-label">1 day</div>
                   <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
                   <div class="activity-content">
                     Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
                   </div>
-                </div><!-- End activity item-->
+                </div><!-- End activity item
 
                 <div class="activity-item d-flex">
                   <div class="activite-label">2 days</div>
@@ -948,8 +974,7 @@ $whitepercent =($whitecount / $trikecount)*100;
                   <div class="activity-content">
                     Est sit eum reiciendis exercitationem
                   </div>
-                </div><!-- End activity item-->
-
+                </div><!-- End activity item
                 <div class="activity-item d-flex">
                   <div class="activite-label">4 weeks</div>
                   <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
