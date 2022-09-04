@@ -85,7 +85,7 @@ $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(6,64,'',0,1);
 
 
-$pdf->SetFont('montsemibold', '', 20);
+$pdf->SetFont('montsemibold', '', 24);
 
 $pdf ->SetTextColor(255,255,255);
 /*$pdf ->MultiCell(80,6,$row['fname']."  ".$mini.".",'C');*/
