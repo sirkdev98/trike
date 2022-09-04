@@ -1570,6 +1570,19 @@ if ($conn->query($sqlt) === TRUE) {
                     </div>
 
 <?php 
+if ($mtopexpformatted =="No Record") {
+?>
+  <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
+                      <label class="form-check-label" for="gridCheck2">
+                       Penalty Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
+                     
+                      </label>
+                    </div>
+<?php
+
 if ($mtopstat =="mtopexpired") {
 ?>
                    <div class="form-check">
@@ -1583,9 +1596,18 @@ if ($mtopstat =="mtopexpired") {
                     </div>
 <?php                    
 }else
-{
-
-}
+{ ?>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
+                      <label class="form-check-label" for="gridCheck2">
+                       Penalty Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
+                     
+                      </label>
+                    </div>
+<?php
+}}
 ?>
                      
 
@@ -1664,12 +1686,16 @@ if ($mtopstat =="mtopexpired") {
           <script type="text/javascript">
 var totalamount = 200;
 var total = document.getElementById("total");
-var phpmtopstat = "<?php echo $mtopstat ?>"
+var phpmtopstat = "<?php echo $mtopstat ?>";
+var mtopexpformatted = "<?php echo $mtopexpformatted ?>";
+if (mtopexpformatted =="No record") {
+   totalamount =200;
+ }else{
 if (phpmtopstat =="mtopexpired") {
 totalamount = 250;
 }else{
  totalamount =200;
-}
+}}
 
 document.getElementById("total").innerHTML = totalamount
 
