@@ -503,7 +503,10 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
           <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example2-modal-xl">EDIT PROFILE</button>
 
           <br>
-          <a href="pdfid.php?id=<?php echo $oppid ?>&bdynum=<?php echo  $bodynum;?>">
+          <?php 
+            $bdynum = $_GET['bdynum']
+          ?>
+          <a href="pdfid.php?id=<?php echo $oppid ?>&bdynum=<?php echo  $bdynum;?>">
            <button class="btn btn-primary" type="button">Print ID</button></a>
             </div>
           </div>

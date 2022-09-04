@@ -37,6 +37,7 @@ $pdf->AddFont('montsemibold','','montsemibold.php');
                           $_SESSION['oplname'] =  $lname = $row['lname']; 
                            $_SESSION['gender'] =  $gender = $row['gender']; 
                           $_SESSION['extname'] =  $extname = $row['extname']; 
+                          $_SESSION['bloodtype'] =  $bloodtype = $row['bloodtype']; 
                           $_SESSION['opaddress1'] =  $address1 = $row['address1']; 
                           $_SESSION['opbarangay'] =  $barangay = $row['barangay']; 
                           $_SESSION['opcontactnumber'] =  $contactnumber = $row['contactnumber']; 
@@ -78,17 +79,19 @@ if ($picname=="") {
 }
 
 
-
+$mini = mb_substr($row['mname'], 0, 1);
 
 $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(6,64,'',0,1);
 
 
-$pdf->SetFont('montsemibold', '', 16);
+$pdf->SetFont('montsemibold', '', 20);
 
 $pdf ->SetTextColor(255,255,255);
-$pdf ->MultiCell(85,6,$row['fname']."  ".$row['mname']." ".$row['lname'],'C');
-$pdf ->Cell(10,8.5,'',0,1);
+/*$pdf ->MultiCell(80,6,$row['fname']."  ".$mini.".",'C');*/
+$pdf ->Cell(0,10,$row['fname']."  ".$mini.".",0,1,'C');
+$pdf ->Cell(0,10,$lname,0,1,'C');
+
 $pdf ->SetTextColor(0,0,0);
 $pdf ->SetTextColor(255,255,255);
 
@@ -139,6 +142,18 @@ $pdf ->SetTextColor(0,0,0);
 $pdf ->Cell(5,2,$row['bday'],0,1);
 $pdf ->Cell(10,8.5,'',0,1);
 $pdf ->SetTextColor(0,0,0);
+
+
+$pdf ->Cell(50,5,'',0,1);
+$pdf ->Cell(8,7,'',0,1);
+
+$pdf->SetFont('BebasKai', '', 28);
+$pdf ->Cell(38,1,'',0,0);
+$pdf ->SetTextColor(0,0,0);
+$pdf ->Cell(5,2,$row['bloodtype'],0,1);
+$pdf ->Cell(55,8.5,'',0,1);
+$pdf ->SetTextColor(0,0,0);
+
 
 
 $pdf->Output();
