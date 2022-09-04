@@ -254,6 +254,12 @@ $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(155, 101);
 $pdf->Write(0, $lname);
 
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(195, 101);
+$pdf->Write(0, $extname);
+
+
 
 $pdf->SetFont('Arial','',9);
 $pdf->SetTextColor(0, 0, 0);
@@ -385,7 +391,7 @@ FROM driveroperator
 JOIN drivers
 ON driveroperator.pid = drivers.driverid
 JOIN tricycle
-ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
+ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid' limit 2 ";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
@@ -406,9 +412,9 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
 
 $pdf->SetFont('Arial', '', 14);
 $pdf ->Cell(5,12,'',0,1);
-$pdf ->Cell(50,1,'',0,0);
+$pdf ->Cell(40,1,'',0,0);
 $pdf ->SetTextColor(0,0,0);
-$pdf ->Cell(40,2,$dfname,0,0);
+$pdf ->Cell(55,2,$dfname,0,0);
 $pdf ->Cell(55,2,$dmname,0,0);
 $pdf ->Cell(10,2,$dlname,0,0);
 $pdf ->Cell(10,8,'',0,1);
@@ -420,7 +426,7 @@ $pdf ->Cell(10,4,'',0,1);
 $pdf ->Cell(30,1,'',0,0);
 $pdf ->Cell(120,2,$dlicensenum,0,0);
 $pdf->SetFont('Arial', '', 12);
-$pdf ->Cell(5,2,'',0,1);
+$pdf ->Cell(5,1,'',0,1);
 $pdf ->Cell(100,1,'',0,0);
 $pdf->SetFont('Arial', '', 13);
 $pdf ->Cell(30,0,date("m-d-Y", strtotime($dlicensevalid)),0,1);
