@@ -734,7 +734,7 @@ if(isset($_SESSION['username'])){
                   </div>
                   <div class="col-sm-2">
                     Plate Number
-                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno">
+                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno" required>
                   </div>
                    <div class="col-sm-2">
                     Engine Number
