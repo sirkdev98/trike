@@ -1263,7 +1263,7 @@ if ($mtopexpiration =='') {
                                                 <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?></div></strong>
 
                                         <input type="text" name="mtopor" class="form-control" placeholder="OR NUMBER" required>
-                                    <input type="text" name="mtopnumber" class="form-control" placeholder="MTOP NUMBER" required>
+                                    <!-- <input type="text" name="mtopnumber" class="form-control" placeholder="MTOP NUMBER" required> -->
                                         
                                         <div class="modal-footer">
                                            <button type="submit" name="paymtop" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
@@ -1292,10 +1292,27 @@ if ($conn->query($sqlt) === TRUE) {
 }
 }}
 if(isset($_POST['paymtop'])){
+
+
+$sqlmtop2 = "SELECT * FROM `mtop` ORDER BY mtopnumber desc limit 1";
+                    $results = $conn->query($sqlmtop2);
+                    if ($results->num_rows > 0) {
+                        // output data of each row
+                     
+                        while($row = $results->fetch_assoc()) {
+
+                          $mtopnumberlast = $row['mtopnumber'];
+}}
+
 $rowprintid = $_GET['id'];
   $unpaidid= $_POST['unpaidid'];
  $mtopor= $_POST['mtopor'];
- $mtopnumber= $_POST['mtopnumber'];
+ if ($mtopnumberlast=="") {
+$mtopnumber= 1301;
+ }else{
+ $mtopnumber= $mtopnumberlast +1;
+
+}
 
 $ending = str_split($plateno);
 
