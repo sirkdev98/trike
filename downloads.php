@@ -501,14 +501,16 @@ if(isset($_SESSION['username'])){
               <h5 class="card-title">DOWNLOAD EXCEL <span>| csv format</span></h5>
 
               <div class="activity">
-
+  <form method="post" action="exportmaster.php">
                 <div class="activity-item d-flex">
-                 <button class='btn btn-primary btn-lg'>DOWNLOAD TRICYCLE MASTERLIST</button>
-                </div><!-- End activity item-->
+                  <button type="submit" name="exportmaster" class='btn btn-primary btn-lg'>DOWNLOAD TRICYCLE MASTERLIST</button>
+                </div><!-- End activity item--></form>
 <br>
+ <form method="post" action="exportmasteroperator.php">
                 <div class="activity-item d-flex">
-                 <button class='btn btn-primary btn-lg'>DOWNLOAD OPERATOR & OPERATOR/DRIVERS LIST</button>
+                  <button type="submit" name="exportmasteroperator"  class='btn btn-primary btn-lg'>DOWNLOAD OPERATOR & OPERATOR/DRIVERS LIST</button>
                 </div><!-- End activity item-->
+            </form>
 <br>
                  <div class="activity-item d-flex">
                   <button class='btn btn-primary btn-lg'><i class="bi bi-download"></i>&nbsp;DOWNLOAD LIST OF DRIVERS</button>
