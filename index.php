@@ -487,7 +487,7 @@ $whitepercent =($whitecount / $trikecount)*100;
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                     <i class="fas fa-file-signature"></i>
+                     <i class="bi-check-circle-fill"></i>
                     </div>
                     <div class="ps-3">
                       <h6><?php echo $withfranchise; ?></h6>
@@ -574,7 +574,7 @@ $whitepercent =($whitecount / $trikecount)*100;
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
+                      <i class="bi bi-person"></i>
                     </div>
                     <div class="ps-3">
                       <h6><?php echo $operatorcount;?></h6>
@@ -628,7 +628,7 @@ $whitepercent =($whitecount / $trikecount)*100;
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="successbi bi-people"></i>
+                      <i class="bi bi-file-earmark-person-fill"></i>
                     </div>
                     <div class="ps-3">
                       <h6><?php echo $drivercount;?></h6>

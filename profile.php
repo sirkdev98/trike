@@ -526,6 +526,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                         while($row = $results->fetch_assoc()) {
 
                           $mtopexpiration = $row['mtopexpiration'];
+                          $mtopnumber = $row['mtopnumber'];
 
 
                      }}else{
@@ -1175,6 +1176,8 @@ if ($mtopexpiration =='') {
                    <div class="tab-pane fade pt-3" id="profile-mtopvalid">
                       <h5 class="card-title">MTOP IS UP TO DATE UNTIL: <font color="green"><?php echo $mtopexpformatted; ?></font></h5>
 
+                      <h5 class="card-title">MTOP NUMBER: <font color="green"><?php echo $mtopnumber; ?></font></h5>
+
                    </div>
 
                   <div class="tab-pane fade pt-3" id="profile-mtopunpaid">
@@ -1260,6 +1263,7 @@ if ($mtopexpiration =='') {
                                                 <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?></div></strong>
 
                                         <input type="text" name="mtopor" class="form-control" placeholder="OR NUMBER" required>
+                                    <input type="text" name="mtopnumber" class="form-control" placeholder="MTOP NUMBER" required>
                                         
                                         <div class="modal-footer">
                                            <button type="submit" name="paymtop" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
@@ -1291,6 +1295,7 @@ if(isset($_POST['paymtop'])){
 $rowprintid = $_GET['id'];
   $unpaidid= $_POST['unpaidid'];
  $mtopor= $_POST['mtopor'];
+ $mtopnumber= $_POST['mtopnumber'];
 
 $ending = str_split($plateno);
 
@@ -1356,7 +1361,7 @@ $paymentmtopexpirationplus = date("Y-m-d", strtotime(date("Y-m-d", strtotime($pa
 
 
 
-  $sql = "UPDATE `mtop` SET `mtopexpiration` = '$paymentmtopexpirationplus', `status` = 'paid', `mtopor` = $mtopor WHERE `mtop`.`id` = $unpaidid";
+  $sql = "UPDATE `mtop` SET `mtopexpiration` = '$paymentmtopexpirationplus', `status` = 'paid', `mtopor` = $mtopor, `mtopnumber` = $mtopnumber WHERE `mtop`.`id` = $unpaidid";
 if ($conn->query($sql) === TRUE) {  
 
 
