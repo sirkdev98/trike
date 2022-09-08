@@ -1315,8 +1315,10 @@ $mtopnumber= 1301;
 }
 
 $ending = str_split($plateno);
+$mvending = str_split($mvfileno);
 
 $plateending =  end($ending); 
+$mvending = end($mvending);
 
 if ($plateending =="1") {
 $paymentmtopexpiration = date('Y-01-30'); 
@@ -1369,7 +1371,59 @@ elseif
   ($plateending =="0") {
 $paymentmtopexpiration1 = date('Y-10-30'); 
 
+}else {
+
+if ($mvending =="1") {
+  $paymentmtopexpiration = date('Y-01-30'); 
 }
+elseif 
+  ($mvending =="2") {
+$paymentmtopexpiration1 = date('Y-02-28'); 
+}
+elseif 
+  ($mvending =="3") {
+$paymentmtopexpiration1 = date('Y-03-30'); 
+}
+
+elseif 
+  ($mvending =="4") {
+$paymentmtopexpiration1 = date('Y-04-30'); 
+}
+
+elseif 
+  ($mvending =="5") {
+$paymentmtopexpiration1 = date('Y-05-30'); 
+}
+
+elseif 
+  ($mvending =="6") {
+$paymentmtopexpiration1 = date('Y-06-30'); 
+}
+
+elseif 
+  ($mvending =="7") {
+$paymentmtopexpiration1 = date('Y-07-30'); 
+}
+
+elseif 
+  ($mvending =="8") {
+$paymentmtopexpiration1 = date('Y-08-30'); 
+}
+
+
+
+elseif 
+  ($mvending =="9") {
+$paymentmtopexpiration1 = date('Y-09-30'); 
+
+}
+
+elseif 
+  ($mvending =="0") {
+$paymentmtopexpiration1 = date('Y-10-30'); 
+
+
+}}
 
 
 $unpaidmtopdate = $_POST['unpaidmtopdate'];
@@ -1629,7 +1683,19 @@ if ($mtopstat =="mtopexpired") {
                       </label>
                     </div>
 <?php
-}}
+}}else{
+?>
+ <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>">
+                      <label class="form-check-label" for="gridCheck2">
+                       Penalty Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
+                     
+                      </label>
+                    </div>
+<?php
+}
 ?>
                      
 

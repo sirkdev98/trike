@@ -635,6 +635,7 @@ if(isset($_SESSION['username'])){
                     <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" required name="lictype">
                           <option value="" disabled selected>SELECT ID TYPE</option>
+                       <option value="COMPANY ID">COMPANY ID</option>
                       <option value="OPERATOR">PROFESSIONAL</option>
                       <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
                      
@@ -647,6 +648,8 @@ if(isset($_SESSION['username'])){
                       <option value="Philippine Postal ID">Philippine Postal ID</option>
                       <option value="National ID">National ID</option>
                       <option value="VOTERS ID">VOTERS ID</option>
+                      <option value="SENIOR ID">SENIOR ID</option>
+                      <option value="Philhealth ID">Philhealth ID</option>
                     </select>
                   </div>
                   </div>
