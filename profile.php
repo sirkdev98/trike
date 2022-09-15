@@ -1317,11 +1317,11 @@ $mtopnumber= 1301;
 $ending = str_split($plateno);
 $mvending = str_split($mvfileno);
 
-$plateending =  end($ending); 
-$mvending = end($mvending);
+$plateending =  substr($plateno, -1);
+$mvending = substr($mvfileno, -1);
 
 if ($plateending =="1") {
-$paymentmtopexpiration = date('Y-01-30'); 
+$paymentmtopexpiration1 = date('Y-01-30'); 
 }
 
 
@@ -1374,7 +1374,7 @@ $paymentmtopexpiration1 = date('Y-10-30');
 }else {
 
 if ($mvending =="1") {
-  $paymentmtopexpiration = date('Y-01-30'); 
+  $paymentmtopexpiration1 = date('Y-01-30'); 
 }
 elseif 
   ($mvending =="2") {
@@ -1444,7 +1444,7 @@ if ($conn->query($sql) === TRUE) {
 
 $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Added payment for mtop', 'Added payment', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sqlt) === TRUE) {  
-  echo "<script type='text/javascript'>alert(\"Successfully Added payment record  \")</script>";
+  echo "<script type='text/javascript'>alert(\"Successfully Added payment record $plateending \")</script>";
                                        echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
                   }                                  
 }}}

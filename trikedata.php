@@ -733,7 +733,7 @@ if(isset($_SESSION['username'])){
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
                   <div class="col-sm-2">
                     MV File number
-                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno">
+                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno" required>
                   </div>
                   <div class="col-sm-2">
                     Plate Number

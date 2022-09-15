@@ -261,6 +261,11 @@ $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(195, 101);
 $pdf->Write(0, $extname);
 
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(160, 90);
+$pdf->Write(0, $type);
+
 
 
 $pdf->SetFont('Arial','',9);
@@ -374,6 +379,7 @@ $pdf->SetXY(162, 154);
 $pdf->Write(0, $toda);
 
 
+
 if ($type != "OPERATOR/DRIVER") {
 
 
@@ -452,6 +458,7 @@ $pdf ->Cell(10,1,'',0,1);
 
 }
 }else{
+
        
 $sql = "SELECT
   driveroperator.pid,
@@ -558,6 +565,41 @@ $pdf ->Cell(30,2,'x',0,0);
 $pdf ->Cell(10,1,'',0,1);
         
 
+
+}else{//pag wala driver
+
+$pdf->SetFont('Arial', '', 14);
+$pdf ->Cell(5,12,'',0,1);
+$pdf ->Cell(40,1,'',0,0);
+$pdf ->SetTextColor(0,0,0);
+$pdf ->Cell(55,2,$fname,0,0);
+$pdf ->Cell(55,2,$mname,0,0);
+$pdf ->Cell(10,2,$lname,0,0);
+$pdf ->Cell(10,8,'',0,1);
+$pdf ->Cell(45,1,'',0,0);
+$pdf ->Cell(35,0,$opaddress1.", ".$opbarangay,0,1);
+
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,4,'',0,1);
+$pdf ->Cell(30,1,'',0,0);
+$pdf ->Cell(120,2,$licensenum,0,0);
+$pdf->SetFont('Arial', '', 12);
+$pdf ->Cell(5,1,'',0,1);
+$pdf ->Cell(100,1,'',0,0);
+$pdf->SetFont('Arial', '', 13);
+$pdf ->Cell(30,0,date("m-d-Y", strtotime($oplicensevalid)),0,1);
+
+if ($gender=="MALE") {
+  $pdf->SetFont('Arial', '', 10);
+  $pdf ->Cell(151.5,1,'',0,0);
+$pdf ->Cell(30,5,'x',0,0);
+}elseif ($gender=="FEMALE" ) {
+  $pdf->SetFont('Arial', '', 10);
+  $pdf ->Cell(170.5,1,'',0,0);
+$pdf ->Cell(30,2,'x',0,0);
+}
+$pdf ->Cell(10,1,'',0,1);
+        
 
 }
 }
