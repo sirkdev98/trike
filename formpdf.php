@@ -153,6 +153,7 @@ $sql = "SELECT
   driveroperator.barangay,
   driveroperator.licensenum,
   driveroperator.contactnumber,
+  driveroperator.licensevalid,
   franchiserecord.franchiseapproval,
   franchiserecord.franchiseexpiration,
   inspection.sidecar_windshield,
@@ -223,9 +224,10 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $opaddress1 = $row['address1'];
                             $opbarangay = $row['barangay'];
                             $licensenum = $row['licensenum'];
+                            $oplicensevalid = $row['licensevalid'];
                             $contactnumber = $row['contactnumber'];
 
-                               $franchiseapproval = $row['franchiseapproval'];
+                            $franchiseapproval = $row['franchiseapproval'];
                             $franchiseexpiration = $row['franchiseexpiration'];
 
 $bday = date("F-d-Y", strtotime($bday));
@@ -372,6 +374,8 @@ $pdf->SetXY(162, 154);
 $pdf->Write(0, $toda);
 
 
+if ($type != "OPERATOR/DRIVER") {
+
 
 
 $sql = "SELECT
@@ -410,6 +414,7 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid' limit 2 ";
   
 
 
+
 $pdf->SetFont('Arial', '', 14);
 $pdf ->Cell(5,12,'',0,1);
 $pdf ->Cell(40,1,'',0,0);
@@ -446,7 +451,116 @@ $pdf ->Cell(10,1,'',0,1);
 }
 
 }
+}else{
+       
+$sql = "SELECT
+  driveroperator.pid,
+  driveroperator.fname,
+  driveroperator.mname,
+  driveroperator.lname,
+  driveroperator.licensenum,
+  driveroperator.licensevalid,
+  driveroperator.barangay,
+  driveroperator.address1,
+  driveroperator.gender,
+  driveroperator.bday,
+  tricycle.bodynum,
+  drivers.id
+FROM driveroperator
+JOIN drivers
+ON driveroperator.pid = drivers.driverid
+JOIN tricycle
+ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid' limit 1 ";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            $did = $row['pid'];  
+                            $dfname = $row['fname']; 
+                            $dmname = $row['mname']; 
+                            $dlname = $row['lname']; 
+                            $dlicensenum = $row['licensenum']; 
+                            $dbarangay = $row['barangay']; 
+                            $dbday = $row['bday']; 
+                            $tbldriversid = $row['id'];
+                            $daddress1 = $row['address1'];
+                            $dlicensevalid = $row['licensevalid'];
+                            $dgender = $row['gender'];
+  
+}
 
+
+$pdf->SetFont('Arial', '', 14);
+$pdf ->Cell(5,12,'',0,1);
+$pdf ->Cell(40,1,'',0,0);
+$pdf ->SetTextColor(0,0,0);
+$pdf ->Cell(55,2,$fname,0,0);
+$pdf ->Cell(55,2,$mname,0,0);
+$pdf ->Cell(10,2,$lname,0,0);
+$pdf ->Cell(10,8,'',0,1);
+$pdf ->Cell(45,1,'',0,0);
+$pdf ->Cell(35,0,$opaddress1.", ".$opbarangay,0,1);
+
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,4,'',0,1);
+$pdf ->Cell(30,1,'',0,0);
+$pdf ->Cell(120,2,$licensenum,0,0);
+$pdf->SetFont('Arial', '', 12);
+$pdf ->Cell(5,1,'',0,1);
+$pdf ->Cell(100,1,'',0,0);
+$pdf->SetFont('Arial', '', 13);
+$pdf ->Cell(30,0,date("m-d-Y", strtotime($oplicensevalid)),0,1);
+
+if ($gender=="MALE") {
+  $pdf->SetFont('Arial', '', 10);
+  $pdf ->Cell(151.5,1,'',0,0);
+$pdf ->Cell(30,5,'x',0,0);
+}elseif ($gender=="FEMALE" ) {
+  $pdf->SetFont('Arial', '', 10);
+  $pdf ->Cell(170.5,1,'',0,0);
+$pdf ->Cell(30,2,'x',0,0);
+}
+$pdf ->Cell(10,1,'',0,1);
+        
+
+
+
+$pdf->SetFont('Arial', '', 14);
+$pdf ->Cell(5,12,'',0,1);
+$pdf ->Cell(40,1,'',0,0);
+$pdf ->SetTextColor(0,0,0);
+$pdf ->Cell(55,2,$dfname,0,0);
+$pdf ->Cell(55,2,$dmname,0,0);
+$pdf ->Cell(10,2,$dlname,0,0);
+$pdf ->Cell(10,8,'',0,1);
+$pdf ->Cell(45,1,'',0,0);
+$pdf ->Cell(35,0,$daddress1.", ".$dbarangay,0,1);
+
+$pdf ->Cell(10,5,'',0,1);
+$pdf ->Cell(10,4,'',0,1);
+$pdf ->Cell(30,1,'',0,0);
+$pdf ->Cell(120,2,$dlicensenum,0,0);
+$pdf->SetFont('Arial', '', 12);
+$pdf ->Cell(5,1,'',0,1);
+$pdf ->Cell(100,1,'',0,0);
+$pdf->SetFont('Arial', '', 13);
+$pdf ->Cell(30,0,date("m-d-Y", strtotime($dlicensevalid)),0,1);
+
+if ($gender=="MALE") {
+  $pdf->SetFont('Arial', '', 10);
+  $pdf ->Cell(151.5,1,'',0,0);
+$pdf ->Cell(30,5,'x',0,0);
+}elseif ($gender=="FEMALE" ) {
+  $pdf->SetFont('Arial', '', 10);
+  $pdf ->Cell(170.5,1,'',0,0);
+$pdf ->Cell(30,2,'x',0,0);
+}
+$pdf ->Cell(10,1,'',0,1);
+        
+
+
+}
+}
 
 
 $pdf->SetFont('Arial','B',16);
