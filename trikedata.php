@@ -649,6 +649,7 @@ if(isset($_SESSION['username'])){
                       <option value="National ID">National ID</option>
                       <option value="VOTERS ID">VOTERS ID</option>
                       <option value="SENIOR ID">SENIOR ID</option>
+                      <option value="BIR ID">BIR ID</option>
                       <option value="Philhealth ID">Philhealth ID</option>
                     </select>
                   </div>
