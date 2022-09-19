@@ -34,15 +34,13 @@ if(isset($_SESSION['username'])){
 
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>ORANI - OTRO</title>
+  <title>Tricyclye Management</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -62,16 +60,13 @@ if(isset($_SESSION['username'])){
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <style type="text/css">
-        #response { padding:20px; border:1px solid; background:#ccc; }
+        #response { padding:15px; border:1px solid; background:#87CEEB; }
     </style>
 
 
@@ -92,7 +87,6 @@ if(isset($_SESSION['username'])){
 </head>
 
 <body>
- 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -124,12 +118,12 @@ if(isset($_SESSION['username'])){
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number"><!-- notification count --></span>
+            <span class="badge bg-primary badge-number"></span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 0 new notifications
+              You have 0 notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
@@ -199,57 +193,19 @@ if(isset($_SESSION['username'])){
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number"><!-- Messages Icon count--></span>
+            <span class="badge bg-success badge-number"></span>
           </a><!-- End Messages Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
-              You have 0 new messages
+              You have 0 messages
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
+            
               <hr class="dropdown-divider">
             </li>
 
@@ -298,7 +254,7 @@ if(isset($_SESSION['username'])){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -333,24 +289,24 @@ if(isset($_SESSION['username'])){
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-<?php $filter = $_GET['filter']?>
-     <li class="nav-item">
-        <a class="nav-link" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Tricycle</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-       <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="trikedata.php?filter=all" <?php if($filter == "all"){ echo "class='active'";} ?>>
+            <a href="trikedata.php?filter=all">
               <i class="bi bi-circle"></i><span>All Tricycle Data</span>
             </a>
           </li>
           <li>
-            <a href="trikedata.php?filter=public" <?php if($filter == "public"){ echo "class='active'";}?>>
+            <a href="trikedata.php?filter=public">
               <i class="bi bi-circle"></i><span>Public Tricycle</span>
             </a>
           </li>
            <li>
-            <a href="trikedata.php?filter=private"<?php if($filter == "private"){ echo "class='active'";}?>>
+            <a href="trikedata.php?filter=private">
               <i class="bi bi-circle"></i><span>Private Tricycle</span>
             </a>
           </li>
@@ -361,13 +317,12 @@ if(isset($_SESSION['username'])){
           </li>
 
        </ul>
-
-     <?php $filter  = $_GET['filter']; ?>
+<?php $filter  = $_GET['filter']; ?>
         <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables2-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link" data-bs-target="#tables2-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Drivers And Operators</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables2-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <ul id="tables2-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
             <a href="driversoperators.php?filter=allops" <?php if($filter == "allops"){ echo "class='active'";} ?>>
               <i class="bi bi-circle"></i><span>Drivers And Operators</span>
@@ -383,24 +338,28 @@ if(isset($_SESSION['username'])){
           </li>
 
 
+
        </ul>
-          <li class="nav-item">
+        <li class="nav-item">
         <a class="nav-link collapsed" href="downloads.php">
           <i class="bi bi-download"></i>
           <span>Downloadables</span>
         </a>
       </li>
+
+   
+   
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>TRICYCLE DATA</h1>
+      <h1>Drivers & Operators</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Trike Data</li>
+          <li class="breadcrumb-item active">Driver / Operator Data</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -412,7 +371,7 @@ if(isset($_SESSION['username'])){
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">TRICYCLE Data Table</h5>
+              <h5 class="card-title">Driver and Operators Table</h5>
               <!-- Extra large modal -->
 
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -428,20 +387,39 @@ if(isset($_SESSION['username'])){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   <section class="section">
       <div class="row">
         <div class="col-lg-12">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Operator Details</h5>
+              <h5 class="card-title">Driver / Operator</h5>
 
               <!-- General Form Elements -->
-         <form method="POST" action="do_upload.php">
+         <form method="POST" action="do_uploadoperators.php">
               
 
   
-     <div class="row mb-3">
+  
+          
+          
+ 
+<!-- simple here configuration part a few settings and attach camera -->
+
+      <div class="row mb-3">
 
 
           <div class="col-sm-4">
@@ -492,6 +470,8 @@ if(isset($_SESSION['username'])){
                   
                 
                 </div>
+
+
 
 
                 <input type="text" class="form-control" placeholder="First Name" name="operatorid" hidden>
@@ -625,7 +605,7 @@ if(isset($_SESSION['username'])){
                       <option value="" disabled selected>SELECT TYPE HERE</option>
                       <option value="OPERATOR">OPERATOR</option>
                       <option value="OPERATOR/DRIVER">OPERATOR/DRIVER</option>
-                     
+                     <option value="DRIVER">DRIVER</option>
                     </select>
                   </div>
                 </div>
@@ -639,7 +619,6 @@ if(isset($_SESSION['username'])){
                     <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" required name="lictype">
                           <option value="" disabled selected>SELECT ID TYPE</option>
-                       <option value="COMPANY ID">COMPANY ID</option>
                       <option value="OPERATOR">PROFESSIONAL</option>
                       <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
                      
@@ -652,9 +631,6 @@ if(isset($_SESSION['username'])){
                       <option value="Philippine Postal ID">Philippine Postal ID</option>
                       <option value="National ID">National ID</option>
                       <option value="VOTERS ID">VOTERS ID</option>
-                      <option value="SENIOR ID">SENIOR ID</option>
-                      <option value="BIR ID">BIR ID</option>
-                      <option value="Philhealth ID">Philhealth ID</option>
                     </select>
                   </div>
                   </div>
@@ -683,181 +659,6 @@ if(isset($_SESSION['username'])){
                   </div>
                   </div>
 
-
-                  <br><!--divider -->
-                  <div class="row mb-3">
-                     <label for="inputEmail" class="col-sm-12 col-form-label"><font color= "Green"><b>Tricycle Details</b></font></label>
-                    </div>
-
-              <div class="row mb-6">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Classification</b></label>
-                  <div class="col-sm-3">
-                   
-                   <select class="form-select" aria-label="Default select example" required name="classification">
-                      <option value="" disabled selected>SELECT CLASSIFICATION</option>
-                      <option value="Public">Public Motorized Tricycle for Hire</option>
-                      <option value="Utility">Utility Motorized Tricycle</option>
-                      <option value="Family">Family-Use Motorized Tricycle</option>
-                    </select>
-                  </div>
-               
-                    <div class="col-sm-3">
-              
-                   <select class="form-select" aria-label="Default select example" required name="toda">
-                      <option value="" disabled selected>SELECT TODA</option>
-                    <?php
-                      $sql = "SELECT `toda` FROM toda";
-                       $result = $conn->query($sql);
-                      if($result->num_rows> 0){
-                         $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
-                           }
-                           foreach ($options as $option) {
-  ?>
-    <option value="<?php echo $option['toda']; ?>"><?php echo $option['toda']; ?> </option>
-    <?php 
-    }
-                    ?>
-                    
-                    </select>
-                  </div>
-                  </div>
-                  <br>
- <div class="row mb-6">
-
- </div>
-
-        <div class="row mb-6">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b> UNIT INFO:</b></label>
-                  <div class="col-sm-2">
-                   <input class="form-check-input" type="checkbox" id="nounit" name="nounit" value="no unit"><- Check for no unit
-                  </div>
-                </div>
-                <br>
-
-                     <div class="row mb-6">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
-                  <div class="col-sm-2">
-                    MV File number
-                    <input type="text" class="form-control" name="fileno" placeholder="MV FILE NO." name="fileno" required>
-                  </div>
-                  <div class="col-sm-2">
-                    Plate Number
-                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno" required>
-                  </div>
-                   <div class="col-sm-2">
-                    Engine Number
-                    <input type="text" class="form-control" name="engineno" placeholder="Engine Number" name="engineno">
-                  </div>
-                   <div class="col-sm-2">
-                    Chasis Number
-                    <input type="text" class="form-control" name="chasisno" placeholder="Chasis Number" name="chasisno">
-                  </div>
-                  </div>
-            
-<br>
-
-
-                     <div class="row mb-6">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
-                  <div class="col-sm-2">
-                    Maker
-                    <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
-                  </div>
-                  <div class="col-sm-2">
-                    Motor Color
-                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
-                  </div>
-                  <div class="col-sm-2">
-                    Piston Displacement
-                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
-                  </div>
-                   <div class="col-sm-2">
-                    Cert. of Reg.
-                    <input type="text" class="form-control" placeholder="Certificate of Registration" name="cor">
-                  </div>
-                   <div class="col-sm-2">
-                    Official Receipt No.
-                    <input type="text" class="form-control" placeholder="OR" name="ornum">
-                  </div>
-                  </div>
-
-
-
-<br>
-                     <div class="row mb-6">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
-                  <div class="col-sm-3">
-                    Parking
-                    <input type="text" class="form-control" name="hasparking" placeholder="Parking location" >
-                  </div>
-                  <div class="col-sm-3">
-                    Acquisition date
-                    <input type="date" class="form-control" name="acquisitiondate" placeholder="Date">
-                  </div>
-                  <div class="col-sm-3">
-                    Year Model
-                    <input type="text" class="form-control" placeholder="____" name="yearmodel" maxlength="4"  min="0" max="9999" step="1"pattern="[0-9]{4}">
-                  </div>
-                 
-                  </div>
-
-
-
-
-<br>
-
-                     <div class="row mb-6">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
-                  <div class="col-sm-4">
-                    Date of Application
-                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate">
-                  </div>
-                  <div class="col-sm-1">
-                    Brgy #
-                    <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{2}" style="color:#888;" required/>
-                  </div>
-
-
-                   <div class="col-sm-3">
-
-                    <script>
-            $(document).ready(function(){
-
-                $("#bdynumber").keyup(function(){
-
-                    var username = $(this).val().trim();
-            
-                    if(username != ''){
-            
-                       
-            
-                        $.ajax({
-                            url: 'ajaxfile.php',
-                            type: 'post',
-                            data: {username: username},
-                            success: function(response){
-                
-                                $('#uname_response').html(response);
-                
-                             }
-                        });
-                    }else{
-                        $("#uname_response").html("");
-                    }
-            
-                });
-
-            });
-        </script>
-
-                    Body Number
-                    <input class="form-control" type="text" id="bdynumber" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required/>
-                      <div id="uname_response"></div>
-                  </div>
-                  
-                
-                  </div>
-                  
             
              <!-- End General Form Elements -->
 
@@ -882,128 +683,13 @@ if(isset($_SESSION['username'])){
 
 
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-       <div class="modal-header">
-              <h4 class="modal-title">ISSUE FRANCHISE</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-    <h5 class="card-title">Grant Franchise, Please insert Application date period:</h5>
-<font color="skyblue"> <strong></strong></font>
-              <form method="POST" method="POST">
-              
-<div class="row mb-12">
-                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>FROM:</b></label>
-                  <div class="col-sm-4">
-                
-                    <input type="date" class="form-control" name="startDatePicker"  id="startDatePicker" required>
-                  </div>
 
-  <label for="inputEmail" class="col-sm-2 col-form-label"><b>TO:</b></label>
-                  <div class="col-sm-4">
-                
-                    <input type="date" class="form-control" name="endDatePicker"  id="endDatePicker" required>
-                  </div>
-
-
-                </div>
-
-<Br>
-
-<div class="row mb-6">
-                  <label for="startDatePicker" class="col-sm-2 col-form-label"><font color="orange"><b>DATE OF FRANCHISE ISSUANCE:</b></label></font>
-                  <div class="col-sm-4">
-                <Br>
-                    <input type="date" class="form-control" name="franchisedate"  id="franchisedate" required>
-                  </div>
-
-</div>
-
-</div>
-
-
-
-               <div class="modal-footer">
-               <button type="submit" name="issuefranchise" class="btn btn-success">Save</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-             </form>
-    </div>
-
-  </div></div>
-<script>
-  
-$("#startDatePicker").datepicker({ 
-    dateFormat: 'dd-mm-yyyy',
-    changeMonth: true,
-    minDate: new Date(),
-    maxDate: '+2y',
-    onSelect: function(date){
-
-        var selectedDate = new Date(date);
-        var msecsInADay = 86400000;
-        var endDate = new Date(selectedDate.getTime() + msecsInADay);
-
-       //Set Minimum Date of EndDatePicker After Selected Date of StartDatePicker
-        $("#endDatePicker").datepicker( "option", "minDate", endDate );
-        $("#endDatePicker").datepicker( "option", "maxDate", '+2y' );
-
-    }
-});
-
-$("#endDatePicker").datepicker({ 
-    dateFormat: 'dd-mm-yyyy',
-    changeMonth: true
-});
-</script>
-
-<?php 
-
-
-if (isset($_POST['issuefranchise'])) {
-
-  $startDatePicker =$_POST['startDatePicker'];
-  $endDatePicker =$_POST['endDatePicker'];
-  $franchisedate =$_POST['franchisedate'];
-
-  $franchiseexpiration = date('Y-m-d', strtotime('+3 year', strtotime($franchisedate)));
-$sqlfranchise = "UPDATE `tricycle` SET `currentfranchise` = '$franchiseexpiration' WHERE `applicationdate` BETWEEN '$startDatePicker' AND '$endDatePicker' AND `currentfranchise` =''";
- $result = $conn->query($sqlfranchise);
-                    if ($conn->affected_rows > 0) {
-
-$sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$franchisedate', `franchiseexpiration` = '$franchiseexpiration' WHERE `franchiseapplication` BETWEEN '$startDatePicker' AND '$endDatePicker'";
- $result = $conn->query($sqlfranchiserecord);
-                       if ($conn->affected_rows > 0) {
-
-                        $countt = $conn->affected_rows;
-                         echo "<script type='text/javascript'>alert(\"Successfully Updated Franchise Record of $countt  \")</script>";
-                                      echo '<script>window.location.href="trikedata.php?filter=all"</script>';
-
-
-}
-
-
-
-}else
-  echo "<script type='text/javascript'>alert(\"No application found in the given dates  \")</script>";
-  echo '<script>window.location.href="trikedata.php?filter=all"</script>';
-                                     
-
-}
-
-?>
 
 
 
 
                 <div class="d-grid gap-2 mt-3">
-                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD TRICYCLE DATA </button>
-
-                   <button class="btn btn-warning" type="button" data-toggle="modal"  data-target=".bd-example-modal-lg">ISSUE FRANCHISE</button>
+                <button class="btn btn-primary" type="button" data-toggle="modal"  data-target=".bd-example-modal-xl">ADD DATA OPERATOR / DRIVER </button>
               </div>
               <br></br>
 
@@ -1011,82 +697,68 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Owner</th>
-                <th>Body Number</th>
-                <th>Application Date</th>
-                <th>Franchise Date</th>
-             
+                <th>Name</th>
+                <th>Type</th>
+                <th>Birthday</th>
+                
+                <th>Barangay</th>
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-
-          <?php
-  if ($filter =="all") {
-        $sql = "SELECT * FROM `tricycle`";
-      } 
-  elseif ($filter =="public") {
-       $sql = "SELECT * FROM `tricycle` WHERE classification ='public'";
-      }
-  elseif ($filter =="private") {
-       $sql = "SELECT * FROM `tricycle` WHERE classification ='utility' OR classification ='family'";
-      }            
-
-    
+        <tbody><?php
+        include 'include/connection.php';
+        if ($filter == "operators") {
+         $sql = "SELECT * from driveroperator WHERE type ='Operator' OR type ='OPERATOR/DRIVER';";
+        }else{
+          $sql = "SELECT * from driveroperator";
+        }
+          
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
-                        while($row = $result->fetch_assoc()) {
-                            $id = $row['id'];
-                            $fname =$row['fname'];
-                            $mname =$row['mname'];
-                            $lname =$row['lname'];
-                            $brgycode= $row['brgycode'];
-                            $bodynum= $row['bodynum'];
-                            $operatorid = $row['operatorid'];
-                            $applicationdate = $row['applicationdate'];
-                            $currentfranchise = $row['currentfranchise'];
+                     while( $row = $result->fetch_assoc()){
+                        
 
-
-
-
- ?>
+                            $id = $row['pid'];  
+                            $fname = $row['fname']; 
+                            $mname = $row['mname']; 
+                            $lname = $row['lname']; 
+                            $address1 = $row['address1']; 
+                            $barangay = $row['barangay']; 
+                            $contactnumber = $row['contactnumber']; 
+                            $sfname = $row['sfname']; 
+                            $smname = $row['smname']; 
+                            $slaname = $row['slaname']; 
+                            $bday = $row['bday']; 
+                            $type = $row['type']; 
+                            $licensenum = $row['licensenum']; 
+                            $licensetype = $row['licensetype']; 
+                            $licensevalid = $row['licensevalid']; 
+                            $picname = $row['picname']; 
+                    ?> 
+      
             <tr>
-                <td><?php echo  $id; ?></td>
-                <td><?php echo  $lname.", ".$fname." ".$mname; ?></td>
-                <td><?php echo  $brgycode."-".$bodynum; ?></td>
-                <td><?php echo  $applicationdate; ?></td>
-                <td><?php 
-                if ($currentfranchise=='0000-00-00') {
-                echo  "Franchise pending";
-                }else {
-                echo  "<font color='skyblue'>".$currentfranchise."</font>";
-                } ?>
-                  
-                </td>
-     
+                <td><?php echo $id; ?></td>
+                <td><?php echo $fname." ".$mname." ".$lname; ?></td>
+                <td><?php echo $type; ?></td>
+                <td><?php echo $bday;?></td>
+               
+                <td><?php echo $barangay;?></td>
                 <td>
-  <a href="profile.php?id=<?php echo  $id; ?>" target="_blank"><button type='button' class='btn btn-primary btn-sm' >
+                  <a href="driveroperatorprofile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm'>
   <i class="bi bi-card-text"></i></button></a></i>
-
-<!--   <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-sm'>
-  <i class="bi bi-pencil-fill"></i></button></a></i>
-
-  <a href="#" data-toggle="modal"><button type='button' class='btn btn-danger  btn-sm'>
-  <i class="bi bi-trash-fill"></i></button></a></i>
- -->
-                </td>
+</td>
             </tr>
-            <?php }} ?>
+            <?php }}?>
         </tbody>
         <tfoot>
             <tr>
-              <th>ID</th>
-                <th>Owner</th>
-                <th>Body Number</th>
-                <th>Application Date</th>
-                <th>Franchise Date</th>
-             
+               <th>ID</th>
+              <th>Name</th>
+                <th>Type</th>
+                <th>Birthday</th>
+                
+                <th>Barangay</th>
                 <th>Action</th>
             </tr>
         </tfoot>
@@ -1147,8 +819,7 @@ jQuery(document).ready(function($) {
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </body>
 
 </html>
