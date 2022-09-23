@@ -868,7 +868,7 @@ if ($conn->query($sql) === TRUE) {
  $last_id = $conn->insert_id;
 
  echo "<script type='text/javascript'>alert(\"Successfully Edited\")</script>";
-           echo "<script>window.location.href='driveroperatorprofile.php?id=$doid&bdynum=$bodynum'</script>"; 
+           echo "<script>window.location.href='driveroperatorprofile.php?id=$doid&bdynum=$bdynum'</script>"; 
          }  else{
              echo "<script type='text/javascript'>alert(\"Data not added please check.  \")</script>";
 
@@ -1311,10 +1311,42 @@ else{
                     <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{2}" style="color:#888;" required/>
                   </div>
                    <div class="col-sm-3">
+                     <script>
+            $(document).ready(function(){
+
+                $("#bdynumber").keyup(function(){
+
+                    var username = $(this).val().trim();
+            
+                    if(username != ''){
+            
+                       
+            
+                        $.ajax({
+                            url: 'ajaxfile.php',
+                            type: 'post',
+                            data: {username: username},
+                            success: function(response){
+                
+                                $('#uname_response').html(response);
+                
+                             }
+                        });
+                    }else{
+                        $("#uname_response").html("");
+                    }
+            
+                });
+
+            });
+        </script>
+
                     Body Number
-                    <input class="form-control" type="text" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required/>
+                    <input class="form-control" type="text" id="bdynumber" name="bdynumber" maxlength="4"  min="0" max="9999" step="1" placeholder="_ _ _ _" pattern="[0-9]{4}" style="color:#888;" required/>
+                      <div id="uname_response"></div>
                   </div>
                   
+                
                   </div>
             
              <!-- End General Form Elements -->
@@ -1714,7 +1746,7 @@ jQuery(document).ready(function($) {
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </body>
 

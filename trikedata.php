@@ -1015,6 +1015,7 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
                 <th>Body Number</th>
                 <th>Application Date</th>
                 <th>Franchise Date</th>
+                <th>MTOP Date</th>
              
                 <th>Action</th>
             </tr>
@@ -1023,13 +1024,128 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
 
           <?php
   if ($filter =="all") {
-        $sql = "SELECT * FROM `tricycle`";
+        $sql = "SELECT
+  tricycle.id,
+  tricycle.bodynum,
+  tricycle.mvfileno,
+  tricycle.plateno,
+  tricycle.engineno,
+  tricycle.chasisno,
+  tricycle.maker,
+  tricycle.motorcolor,
+  tricycle.pistondisp,
+  tricycle.cor,
+  tricycle.ornum,
+  tricycle.applicationdate,
+  tricycle.brgycode,
+  tricycle.toda, 
+  tricycle.sidecarcolor,
+  tricycle.classification,  
+  tricycle.bodynum, 
+  tricycle.inspectionstat,
+  tricycle.operatorid,
+  tricycle.currentmtop,
+  tricycle.currentfranchise,
+  tricycle.parking,
+  tricycle.parkinglocation,
+  tricycle.acquisitiondate,
+  tricycle.yearmodel,
+  tricycle.applicationdate,
+  tricycle.status,
+  driveroperator.pid,
+  driveroperator.fname,
+  driveroperator.mname, 
+  driveroperator.lname, 
+  driveroperator.type,
+  driveroperator.picname,
+  driveroperator.extname
+
+FROM tricycle
+JOIN driveroperator
+ON tricycle.operatorid = driveroperator.pid";
       } 
   elseif ($filter =="public") {
-       $sql = "SELECT * FROM `tricycle` WHERE classification ='public'";
+       $sql = "SELECT
+  tricycle.id,
+  tricycle.bodynum,
+  tricycle.mvfileno,
+  tricycle.plateno,
+  tricycle.engineno,
+  tricycle.chasisno,
+  tricycle.maker,
+  tricycle.motorcolor,
+  tricycle.pistondisp,
+  tricycle.cor,
+  tricycle.ornum,
+  tricycle.applicationdate,
+  tricycle.brgycode,
+  tricycle.toda, 
+  tricycle.sidecarcolor,
+  tricycle.classification,  
+  tricycle.bodynum, 
+  tricycle.inspectionstat,
+  tricycle.operatorid,
+  tricycle.currentmtop,
+  tricycle.currentfranchise,
+  tricycle.parking,
+  tricycle.parkinglocation,
+  tricycle.acquisitiondate,
+  tricycle.yearmodel,
+  tricycle.applicationdate,
+  tricycle.status,
+  driveroperator.pid,
+  driveroperator.fname,
+  driveroperator.mname, 
+  driveroperator.lname, 
+  driveroperator.type,
+  driveroperator.picname,
+  driveroperator.extname
+
+FROM tricycle
+JOIN driveroperator
+ON tricycle.operatorid = driveroperator.pid WHERE classification ='public'";
       }
   elseif ($filter =="private") {
-       $sql = "SELECT * FROM `tricycle` WHERE classification ='utility' OR classification ='family'";
+       $sql = "SELECT
+  tricycle.id,
+  tricycle.bodynum,
+  tricycle.mvfileno,
+  tricycle.plateno,
+  tricycle.engineno,
+  tricycle.chasisno,
+  tricycle.maker,
+  tricycle.motorcolor,
+  tricycle.pistondisp,
+  tricycle.cor,
+  tricycle.ornum,
+  tricycle.applicationdate,
+  tricycle.brgycode,
+  tricycle.toda, 
+  tricycle.sidecarcolor,
+  tricycle.classification,  
+  tricycle.bodynum, 
+  tricycle.inspectionstat,
+  tricycle.operatorid,
+  tricycle.currentmtop,
+  tricycle.currentfranchise,
+  tricycle.parking,
+  tricycle.parkinglocation,
+  tricycle.acquisitiondate,
+  tricycle.yearmodel,
+  tricycle.applicationdate,
+  tricycle.status,
+  driveroperator.pid,
+  driveroperator.fname,
+  driveroperator.mname, 
+  driveroperator.lname, 
+  driveroperator.lname, 
+  driveroperator.type,
+  driveroperator.picname,
+  driveroperator.extname
+
+FROM tricycle
+JOIN driveroperator
+ON tricycle.operatorid = driveroperator.pid WHERE classification ='utility' OR classification ='family'";
       }            
 
     
@@ -1041,11 +1157,13 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
                             $fname =$row['fname'];
                             $mname =$row['mname'];
                             $lname =$row['lname'];
+                            $extname =$row['extname'];
                             $brgycode= $row['brgycode'];
                             $bodynum= $row['bodynum'];
                             $operatorid = $row['operatorid'];
                             $applicationdate = $row['applicationdate'];
                             $currentfranchise = $row['currentfranchise'];
+                            $currentmtop =$row['currentmtop'];
 
 
 
@@ -1053,17 +1171,34 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
  ?>
             <tr>
                 <td><?php echo  $id; ?></td>
-                <td><?php echo  $lname.", ".$fname." ".$mname; ?></td>
+                <td><?php echo  $lname.", ".$fname." ".$mname." ".$extname; ?></td>
                 <td><?php echo  $brgycode."-".$bodynum; ?></td>
                 <td><?php echo  $applicationdate; ?></td>
-                <td><?php 
+                <td>
+                  <?php 
                 if ($currentfranchise=='0000-00-00') {
                 echo  "Franchise pending";
                 }else {
                 echo  "<font color='skyblue'>".$currentfranchise."</font>";
-                } ?>
-                  
+                }
+                  ?>
                 </td>
+               <?php
+ $today = date("Y-m-d");
+                        if ($currentmtop=='0000-00-00') {
+                          echo "<td><span class='badge bg-warning'>No mtop record</span></td>";
+                        }
+                        elseif ($currentmtop > $today){
+
+                           echo "<td><span class='badge bg-success'>$currentmtop - Registered</span></td>";
+                        }
+                        else{
+
+                           echo "<td><span class='badge bg-danger'>$currentmtop - Expired</span></td>";
+                        }
+
+
+               ?>
      
                 <td>
   <a href="profile.php?id=<?php echo  $id; ?>" target="_blank"><button type='button' class='btn btn-primary btn-sm' >
@@ -1086,6 +1221,7 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
                 <th>Body Number</th>
                 <th>Application Date</th>
                 <th>Franchise Date</th>
+                <th>MTOP Date</th>
              
                 <th>Action</th>
             </tr>

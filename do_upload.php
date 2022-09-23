@@ -81,7 +81,10 @@ $yearmodel = $_POST['yearmodel'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`parking`, `parkinglocation`, `acquisitiondate`, `yearmodel`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum','$parking','$hasparking','$acquisitiondate','$yearmodel', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification','$nounit')";
+
+
+
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`parking`, `parkinglocation`, `acquisitiondate`, `yearmodel`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`,`encoder`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum','$parking','$hasparking','$acquisitiondate','$yearmodel', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification','$nounit',`cidd`)";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
@@ -92,13 +95,13 @@ if ($conn->query($sql2) === TRUE) {
 
   $sql3 = "INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchiseapproval`, `franchiseexpiration`, `trikeid`) VALUES (NULL, '$applicationdate', '', '', '$last_idtrike')";
 
-  $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added new unit', 'Added new unit', now(), 'done', '', '$rowprintid')";
+  $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Added new unit', 'Added new unit', now(), 'done', '', '$rowprintid')";
 
 
 if ($conn->query($sql3) === TRUE) { 
 
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Created record', 'Created record', now(), 'done', '', '$last_idtrike')";
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Created record', 'Created record', now(), 'done', '', '$last_idtrike')";
 if ($conn->query($sqlt) === TRUE) {  
 
  echo "<script type='text/javascript'>alert(\"Successfully added Tricycle \")</script>";
@@ -197,7 +200,7 @@ $yearmodel = $_POST['yearmodel'];
                         }
                       }
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`parking`, `parkinglocation`, `acquisitiondate`, `yearmodel`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum','$parking','$hasparking','$acquisitiondate','$yearmodel', '$applicationdate', '$brgycode', '$bdynumber', '$last_id','$toda','$sidecarcolor','$classification','$nounit')";
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`parking`, `parkinglocation`, `acquisitiondate`, `yearmodel`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`,`encoder`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum','$parking','$hasparking','$acquisitiondate','$yearmodel', '$applicationdate', '$brgycode', '$bdynumber', '$last_id','$toda','$sidecarcolor','$classification','$nounit','$cidd')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;
@@ -210,7 +213,7 @@ $sql3 = "INSERT INTO `franchiserecord` (`id`, `franchiseapplication`, `franchise
 if ($conn->query($sql3) === TRUE) { 
 
 
-$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, 'Added tricycle', 'Added tricycle', now(), 'done', '', '$last_idtrike')";
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Added tricycle', 'Added tricycle', now(), 'done', '', '$last_idtrike')";
 if ($conn->query($sqlt) === TRUE) {  
 
  echo "<script type='text/javascript'>alert(\"Successfully added Operator and Tricycle \")</script>";
@@ -224,7 +227,6 @@ if ($conn->query($sqlt) === TRUE) {
 
 }
 
-}}
 
 
 
@@ -233,7 +235,7 @@ if ($conn->query($sqlt) === TRUE) {
 
 
 
-}
+}}}
 
 
 

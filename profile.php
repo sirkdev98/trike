@@ -435,6 +435,7 @@ if(isset($_SESSION['username'])){
   driveroperator.fname,
   driveroperator.mname, 
   driveroperator.lname, 
+  driveroperator.extname, 
   driveroperator.type,
   driveroperator.picname,
   inspection.sidecar_windshield,
@@ -479,6 +480,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                             $fname = $row['fname']; 
                             $mname = $row['mname']; 
                             $lname = $row['lname']; 
+                            $extname = $row['extname'];
                             $type = $row['type']; 
                             $picname = $row['picname']; 
                             $toda = $row['toda']; 
@@ -635,7 +637,8 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Sidecar Color</div>
-                    <div class="col-lg-9 col-md-8"><font color="<?php echo $sidecarcolor; ?>"><?php echo $sidecarcolor; ?></font></div>
+                    <div class="col-lg-9 col-md-8">
+                      <font color="<?php  if($sidecarcolor =='WHITE'){echo '#FFFDD0';} else{echo $sidecarcolor;} ?>"><?php echo $sidecarcolor; ?></font></div>
                   </div>
 
                   <div class="row">
@@ -1646,6 +1649,19 @@ if ($conn->query($sqlt) === TRUE) {
                     </div>
 
 <?php 
+if ($mtopstat =="mtopexpired") {
+?>
+                   <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="return false;" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
+                      <label class="form-check-label" for="gridCheck2">
+                       Penalty Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
+                     50
+                      </label>
+                    </div>
+<?php                    
+}else{
 if ($mtopexpformatted =="No Record") {
 ?>
   <div class="form-check">
@@ -1695,7 +1711,7 @@ if ($mtopstat =="mtopexpired") {
                       </label>
                     </div>
 <?php
-}
+}}
 ?>
                      
 
@@ -2149,7 +2165,7 @@ if ($conn->query($sql) === TRUE) {
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
           <img src="upload/<?php echo $picname; ?>" alt="Profile" class="rounded-circle">
-              <h5><B><?php echo $fname." ".$lname ; ?></B></h5>
+              <h5><B><?php echo $fname." ".$lname." ".$extname; ?></B></h5>
               <h3><?php echo $type; ?></h3>
               <div class="social-links mt-2">
              <a href="driveroperatorprofile.php?id=<?php echo $pid; ?>&bdynum=<?php echo $brgycode."-".$bodynum?>">   <button class="btn btn-success" > Show Profile </button></a>

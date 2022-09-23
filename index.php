@@ -383,13 +383,13 @@ if(isset($_SESSION['username'])){
 <?php 
 $lastyear = date("Y",strtotime("-1 year"));
  $sql = "SELECT
-    (SELECT COUNT(*) FROM tricycle WHERE YEAR(`currentmtop`) = YEAR(CURDATE()))AS withmtop,
+    (SELECT COUNT(*) FROM tricycle WHERE YEAR(`currentmtop`) >= YEAR(CURDATE()))AS withmtop,
     (SELECT COUNT(*) FROM tricycle WHERE `currentfranchise` >= now())AS withfranchise,
     (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Red') AS redcount,
     (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Blue') AS bluecount,
     (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Yellow') AS yellowcount,
     (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='White') AS whitecount,
-     (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Green') AS greencount,
+    (SELECT COUNT(*) FROM tricycle WHERE `sidecarcolor` ='Green') AS greencount,
     (SELECT COUNT(*) FROM tricycle )AS trikecount,
     (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= YEAR(CURDATE())) AS mtopcollection,
     (SELECT SUM(mtoptotal)FROM mtop WHERE YEAR(`mtopdate`)= '$lastyear') AS mtopcollectionlastyear,
