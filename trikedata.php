@@ -8,10 +8,10 @@ include 'include/controller.php';
 //$cidd = $_SESSION['myVariable'];
 if(isset($_SESSION['username'])){
     
-      $cidd = $_SESSION['id'];
-      $userrole= $_SESSION['role'];
-      $userfname= $_SESSION['fname'];
-      $userlname= $_SESSION['lname'];
+$cidd = $_SESSION['id'];
+$userrole= $_SESSION['role'];
+$userfname= $_SESSION['fname'];
+$userlname= $_SESSION['lname'];
 
  
 
@@ -759,23 +759,23 @@ if(isset($_SESSION['username'])){
 <br>
 
 
-                     <div class="row mb-6">
+                  <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
                   <div class="col-sm-2">
                     Maker
-                    <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
+                  <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
                   </div>
                   <div class="col-sm-2">
                     Motor Color
-                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
+                  <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
                   </div>
                   <div class="col-sm-2">
                     Piston Displacement
-                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
+                  <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
                   </div>
-                   <div class="col-sm-2">
+                  <div class="col-sm-2">
                     Cert. of Reg.
-                    <input type="text" class="form-control" placeholder="Certificate of Registration" name="cor">
+                  <input type="text" class="form-control" placeholder="Certificate of Registration" name="cor">
                   </div>
                    <div class="col-sm-2">
                     Official Receipt No.
@@ -863,11 +863,11 @@ if(isset($_SESSION['username'])){
             
              <!-- End General Form Elements -->
 
-            </div>
+          </div>
           </div>
 
-        </div>
-</div></section>
+          </div>
+          </div></section>
 
 
 
