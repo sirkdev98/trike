@@ -1649,57 +1649,9 @@ if ($conn->query($sqlt) === TRUE) {
                     </div>
 
 <?php 
-if ($mtopstat =="mtopexpired") {
-?>
-                   <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="return false;" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
-                      <label class="form-check-label" for="gridCheck2">
-                       Penalty Fee
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
-                     50
-                      </label>
-                    </div>
-<?php                    
-}else{
-if ($mtopexpformatted =="No Record") {
-?>
-  <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
-                      <label class="form-check-label" for="gridCheck2">
-                       Penalty Fee
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
-                     
-                      </label>
-                    </div>
-<?php
 
-if ($mtopstat =="mtopexpired") {
-?>
-                   <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="return false;" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
-                      <label class="form-check-label" for="gridCheck2">
-                       Penalty Fee
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
-                     50
-                      </label>
-                    </div>
-<?php                    
-}else
-{ ?>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
-                      <label class="form-check-label" for="gridCheck2">
-                       Penalty Fee
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
-                     
-                      </label>
-                    </div>
-<?php
-}}else{
+
+if ($mtopexpformatted =="No record") {
 ?>
  <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>">
@@ -1710,9 +1662,21 @@ if ($mtopstat =="mtopexpired") {
                      
                       </label>
                     </div>
-<?php
-}}
+<?php                    
+}else{
+  if ($mtopstat =="mtopexpired") {
 ?>
+                   <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="return false;" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
+                      <label class="form-check-label" for="gridCheck2">
+                       Penalty Fee
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label class="form-check-label" for="gridCheck2" id="penaltyamount">
+                     50
+                      </label>
+                    </div>
+<?php
+}} ?>
                      
 
 

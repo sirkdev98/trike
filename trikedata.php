@@ -867,7 +867,8 @@ $userlname= $_SESSION['lname'];
           </div>
 
           </div>
-          </div></section>
+          </div>
+        </section>
 
 
 
