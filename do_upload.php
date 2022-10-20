@@ -34,7 +34,6 @@ $fname = $_POST['fname'];
 $mname = $_POST['mname'];
 $lname = $_POST['lname'];
 $xname  = $_POST['xname'];
-
 $nounit  = $_POST['nounit'];
 if ($nounit== "no unit") {
   $fileno = 'No unit';
@@ -84,7 +83,7 @@ $yearmodel = $_POST['yearmodel'];
 
 
 
-$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`parking`, `parkinglocation`, `acquisitiondate`, `yearmodel`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`,`encoder`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum','$parking','$hasparking','$acquisitiondate','$yearmodel', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification','$nounit',`cidd`)";
+$sql = "INSERT INTO `tricycle` (`id`,`fname`, `mname`, `lname`,`extname`,`mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`parking`, `parkinglocation`, `acquisitiondate`, `yearmodel`, `applicationdate`, `brgycode`, `bodynum`, `operatorid`,`toda`,`sidecarcolor`,`classification`,`status`,`encoder`) VALUES (NULL,'$fname', '$mname', '$lname','$xname', '$fileno', '$plateno', '$engineno', '$chasisno', '$maker','$motorcolor', '$piston', '$cor', '$ornum','$parking','$hasparking','$acquisitiondate','$yearmodel', '$applicationdate', '$brgycode', '$bdynumber', '$opid','$toda','$sidecarcolor','$classification','$nounit','$cidd')";
 
 if ($conn->query($sql) === TRUE) { 
  $last_idtrike = $conn->insert_id;

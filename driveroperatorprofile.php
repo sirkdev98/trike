@@ -1202,15 +1202,15 @@ else{
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>Classification</b></label>
                   <div class="col-sm-3">
                    
-                   <select class="form-select" aria-label="Default select example" required name="classification">
+                  <select class="form-select" aria-label="Default select example" required name="classification">
                       <option value="" disabled selected>SELECT CLASSIFICATION</option>
                       <option value="Public">Public Motorized Tricycle for Hire</option>
                       <option value="Utility">Utility Motorized Tricycle</option>
                       <option value="Family">Family-Use Motorized Tricycle</option>
                     </select>
                   </div>
-                  
-                   <div class="col-sm-3">
+               
+                    <div class="col-sm-3">
               
                    <select class="form-select" aria-label="Default select example" required name="toda">
                       <option value="" disabled selected>SELECT TODA</option>
@@ -1229,8 +1229,20 @@ else{
                     
                     </select>
                   </div>
-                </div>
+                  </div>
                   <br>
+ <div class="row mb-6">
+
+ </div>
+
+        <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b> UNIT INFO:</b></label>
+                  <div class="col-sm-2">
+                   <input class="form-check-input" type="checkbox" id="nounit" name="nounit" value="no unit"><- Check for no unit
+                  </div>
+                </div>
+                <br>
+
                      <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>SERIAL NUMBERS:</b></label>
                   <div class="col-sm-2">
@@ -1239,8 +1251,7 @@ else{
                   </div>
                   <div class="col-sm-2">
                     Plate Number
-                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno"
-                    required>
+                    <input type="text" class="form-control" name="plateno" placeholder="Plate Number" name="plateno" required>
                   </div>
                    <div class="col-sm-2">
                     Engine Number
@@ -1255,29 +1266,30 @@ else{
 <br>
 
 
-                     <div class="row mb-6">
+                  <div class="row mb-6">
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>Other Details</b></label>
                   <div class="col-sm-2">
                     Maker
-                    <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
+                  <input type="text" class="form-control" name="maker" placeholder="Maker" name="maker">
                   </div>
-                    <div class="col-sm-2">
+                  <div class="col-sm-2">
                     Motor Color
-                    <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
+                  <input type="text" class="form-control" name="motorcolor" placeholder="Motor Color">
                   </div>
                   <div class="col-sm-2">
                     Piston Displacement
-                    <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
+                  <input type="text" class="form-control" placeholder="Piston Displacement" name="piston">
                   </div>
-                   <div class="col-sm-2">
+                  <div class="col-sm-2">
                     Cert. of Reg.
-                    <input type="text" class="form-control" name="cor" placeholder="Certificate of Registration" name="cor">
+                  <input type="text" class="form-control" placeholder="Certificate of Registration" name="cor">
                   </div>
                    <div class="col-sm-2">
                     Official Receipt No.
                     <input type="text" class="form-control" placeholder="OR" name="ornum">
                   </div>
                   </div>
+
 
 
 <br>
@@ -1300,6 +1312,7 @@ else{
 
 
 
+
 <br>
 
                      <div class="row mb-6">
@@ -1312,8 +1325,11 @@ else{
                     Brgy #
                     <input class="form-control" type="text" name="brgycode" maxlength="2"  min="0" max="9999" step="1" placeholder="_ _" pattern="[0-9]{2}" style="color:#888;" required/>
                   </div>
+
+
                    <div class="col-sm-3">
-                     <script>
+
+                    <script>
             $(document).ready(function(){
 
                 $("#bdynumber").keyup(function(){
@@ -1350,6 +1366,7 @@ else{
                   
                 
                   </div>
+                  
             
              <!-- End General Form Elements -->
 
