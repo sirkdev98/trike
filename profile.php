@@ -2987,6 +2987,9 @@ if ($conn->query($sqldel) === TRUE) {
                   <option value="TENEJERO">TENEJERO</option>
                   <option value="TUGATOG">TUGATOG</option>
                   <option value="WAWA">WAWA</option>
+                  <option value="Abucay">Abucay</option>
+                  <option value="Hermosa">Hermosa</option>
+                  <option value="Samal">Samal</option>
                     </select>
                   </div>
                 </div>

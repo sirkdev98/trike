@@ -768,8 +768,23 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     <div class="col-sm-4">
                     <select class="form-select" aria-label="Default select example" required name="lictype">
                       <option value="<?php echo $licensetype; ?>" selected><?php echo $licensetype; ?>
-                      <option value="PROFESSIONAL">PROFESSIONAL</option>
-                      <option value="NON-PROFESSIONAL">NON-PROFESSIONAL</option>
+                      
+                      <option value="COMPANY ID">COMPANY ID</option>
+                      <option value="OPERATOR">PROFESSIONAL</option>
+                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
+                     
+                      <option value="PASSPORT">PASSPORT</option>
+                      <option value="SSS">SSS</option>
+                      <option value="GSIS">GSIS</option>
+                      <option value="UMID">UMID</option>
+                      <option value="PRC">PRC</option>
+                      <option value="PNPPNP">PNP</option>
+                      <option value="Philippine Postal ID">Philippine Postal ID</option>
+                      <option value="National ID">National ID</option>
+                      <option value="VOTERS ID">VOTERS ID</option>
+                      <option value="SENIOR ID">SENIOR ID</option>
+                      <option value="BIR ID">BIR ID</option>
+                      <option value="Philhealth ID">Philhealth ID</option>
                     </select>
                   </div>
                   </div>
