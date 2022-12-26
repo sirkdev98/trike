@@ -525,28 +525,34 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
       
      <?php
                      $tid = $_GET['id'];
-                     $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='paid'";
+                    
+                 $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` ='pending' and status ='pending'";
+                    $results = $conn->query($sqlmtop);
+                    if ($results->num_rows > 0) {
+                        // output data of each row
+                      $mtopstat = 'mtopunpaid';
+                      $mtopstatnav = 'mtopunpaid';
+                        while($row = $results->fetch_assoc()) {
+
+                          $unpaidmtop = $row['id'];
+                          $mtopexpiration ='';
+
+                     }}else{
+
+
+                       $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` > now() and status ='paid'";
                     $results = $conn->query($sqlmtop);
                     if ($results->num_rows > 0) {
                         // output data of each row
                       $mtopstat = 'mtopvalid';
+                      $mtopstatnav = 'mtopvalidorexpired';
                         while($row = $results->fetch_assoc()) {
 
                           $mtopexpiration = $row['mtopexpiration'];
                           $mtopnumber = $row['mtopnumber'];
 
 
-                     }}else{
-
-                    $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' and `mtopexpiration` ='pending' and status ='pending'";
-                    $results = $conn->query($sqlmtop);
-                    if ($results->num_rows > 0) {
-                        // output data of each row
-                      $mtopstat = 'mtopunpaid';
-                        while($row = $results->fetch_assoc()) {
-
-                          $unpaidmtop = $row['id'];
-                          $mtopexpiration ='';
+                   
 
                        }}else{
 
@@ -560,6 +566,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                           if ($resultss->num_rows > 0) {
                         // output data of each row
                       $mtopstat = 'mtopexpired';
+                      $mtopstatnav = 'mtopvalidorexpired';
                         while($row = $resultss->fetch_assoc()) {
                              $mtopexpiration = $row['mtopexpiration'];
                      }}else{
@@ -598,7 +605,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-<?php echo $mtopstat; ?>"<?php if($trikestatus=="dropped"){echo "hidden";}?> >MTOP</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-<?php echo $mtopstatnav; ?>"<?php if($trikestatus=="dropped"){echo "hidden";}?> >MTOP</button>
                 </li>
 
                 <li class="nav-item">
@@ -1302,7 +1309,7 @@ if ($conn->query($sqlt) === TRUE) {
 if(isset($_POST['paymtop'])){
 
 
-$sqlmtop2 = "SELECT * FROM `mtop` ORDER BY mtopnumber where YEAR(mtopdate) = YEAR(CURDATE()) desc limit 1";
+$sqlmtop2 = "SELECT * FROM `mtop` where YEAR(mtopdate) = YEAR(CURDATE()) ORDER BY mtopnumber desc limit 1";
                     $results = $conn->query($sqlmtop2);
                     if ($results->num_rows > 0) {
                         // output data of each row
@@ -1467,13 +1474,23 @@ if ($conn->query($sqlt) === TRUE) {
 
 
 
+ 
 
 
+                <div class="tab-pane fade pt-3" id="profile-mtopvalidorexpired">
+                     <?php 
+                     $curdate = date("Y-m-d");
+                     if($mtopexpformatted=="No record" || $mtopexpformatted> $curdate){
 
-
-                <div class="tab-pane fade pt-3" id="profile-mtopexpired">
+                   ?>
                     <h5 class="card-title">MTOP LAST Registration:  <font color="red"><?php echo $mtopexpformatted;  ?></font> </h5>
-                  <!-- Change Password Form -->
+                  <!-- Change Password Form --><?php }else{ ?>
+                      <h5 class="card-title">MTOP IS UP TO DATE UNTIL: <font color="green"><?php echo $mtopexpformatted; ?></font></h5>
+
+                      <h5 class="card-title">MTOP NUMBER: <font color="green"><?php echo $mtopnumber; ?></font></h5>
+
+
+<?php } ?>
                   <form method="POST">
 
                    <div class="row mb-3">
@@ -1720,7 +1737,16 @@ if ($mtopexpformatted =="No record") {
 
 
 <br><br>
- <a href="#mtop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg'>
+<?php //check if mtop is valid until next year
+$nextyear = date("Y")+1; 
+$yearnow =date("Y", strtotime($mtopexpiration));
+
+
+?>
+
+ <a href="#mtop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-primary btn-lg' <?php if ($nextyear == $yearnow) {
+echo "Hidden";
+ } ?>>
   <i class="bi bi-printer"></i>ADD MTOP</button></a></i>
                   </div>
 
