@@ -353,6 +353,11 @@ if(isset($_SESSION['username'])){
               <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
             </a>
           </li>
+          <li> 
+          <a href="mtop.php">
+              <i class="bi bi-circle"></i><span>MTOP</span>
+            </a>
+          </li>
        </ul>
 
         <li class="nav-item">
@@ -1297,7 +1302,7 @@ if ($conn->query($sqlt) === TRUE) {
 if(isset($_POST['paymtop'])){
 
 
-$sqlmtop2 = "SELECT * FROM `mtop` ORDER BY mtopnumber desc limit 1";
+$sqlmtop2 = "SELECT * FROM `mtop` ORDER BY mtopnumber where YEAR(mtopdate) = YEAR(CURDATE()) desc limit 1";
                     $results = $conn->query($sqlmtop2);
                     if ($results->num_rows > 0) {
                         // output data of each row
@@ -1305,13 +1310,15 @@ $sqlmtop2 = "SELECT * FROM `mtop` ORDER BY mtopnumber desc limit 1";
                         while($row = $results->fetch_assoc()) {
 
                           $mtopnumberlast = $row['mtopnumber'];
-}}
+}}else{
+  $mtopnumberlast = 0;
+}
 
 $rowprintid = $_GET['id'];
   $unpaidid= $_POST['unpaidid'];
  $mtopor= $_POST['mtopor'];
  if ($mtopnumberlast=="") {
-$mtopnumber= 1301;
+$mtopnumber= 0;
  }else{
  $mtopnumber= $mtopnumberlast +1;
 
