@@ -558,9 +558,6 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
 
 
-
-
-
   $sqlmtop = "SELECT * FROM `mtop` WHERE trikeid ='$tid' ORDER BY id DESC limit 1;";
                         $resultss = $conn->query($sqlmtop);
                           if ($resultss->num_rows > 0) {
@@ -1318,7 +1315,7 @@ $sqlmtop2 = "SELECT * FROM `mtop` where YEAR(mtopdate) = YEAR(CURDATE()) ORDER B
 
                           $mtopnumberlast = $row['mtopnumber'];
 }}else{
-  $mtopnumberlast = 0;
+  $mtopnumberlast = 1;
 }
 
 $rowprintid = $_GET['id'];
@@ -1478,19 +1475,29 @@ if ($conn->query($sqlt) === TRUE) {
 
 
                 <div class="tab-pane fade pt-3" id="profile-mtopvalidorexpired">
-                     <?php 
-                     $curdate = date("Y-m-d");
-                     if($mtopexpformatted=="No record" || $mtopexpformatted> $curdate){
+                    <?php
+                      $nextyear = date("Y")+1; 
+                      $yearnow =date("Y", strtotime($mtopexpiration));
 
-                   ?>
-                    <h5 class="card-title">MTOP LAST Registration:  <font color="red"><?php echo $mtopexpformatted;  ?></font> </h5>
-                  <!-- Change Password Form --><?php }else{ ?>
-                      <h5 class="card-title">MTOP IS UP TO DATE UNTIL: <font color="green"><?php echo $mtopexpformatted; ?></font></h5>
+                     ?>
+                    <h5 class="card-title" <?php if ($nextyear == $yearnow ) {
+                          echo "hidden";
+                      }
+                     ?>>MTOP LAST Registration: <font color="red"><?php echo $mtopexpformatted;  
+                      
+                    ?></font> </h5>
+                
+                      <h5 class="card-title" <?php if ($nextyear != $yearnow ) {
+                          echo "hidden";
+                      }
+                     ?>>MTOP IS UP TO DATE UNTIL: <font color="green"><?php echo $mtopexpformatted; ?></font></h5>
 
-                      <h5 class="card-title">MTOP NUMBER: <font color="green"><?php echo $mtopnumber; ?></font></h5>
+                      <h5 class="card-title" <?php if ($nextyear != $yearnow ) {
+                          echo "hidden";
+                      }
+                     ?>>MTOP NUMBER: <font color="green"><?php echo $mtopnumber; ?></font></h5>
 
 
-<?php } ?>
                   <form method="POST">
 
                    <div class="row mb-3">
@@ -2193,10 +2200,7 @@ if ($conn->query($sql) === TRUE) {
   <i class="bi bi-pencil-fill"></i>Edit</button></a></i>
 </div>
 <div class="social-links mt-2">
-  <a href="#drop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-lg' <?php if ($trikestatus=="no unit") {
-          echo "hidden";
-          # code...
-        } ?> >
+  <a href="#drop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-lg' 
   <i class="bi bi-trash-fill"></i> DROP UNIT</button> </a></i>
   
 
@@ -2802,8 +2806,8 @@ if ($conn->query($sql) === TRUE) {
 if(isset($_POST['droprecord'])){
   $rowprintid= $_POST['pid'];
 
-$sql = "INSERT INTO dropped (dmvfileno, dplateno, dengineno, dchasisno, dmaker, dmotorcolor, dpistondisp, dcor, dornum, trikeid, dropdate)
-SELECT `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,'$rowprintid',CURDATE()
+$sql = "INSERT INTO dropped (dmvfileno, dplateno, dengineno, dchasisno, dmaker, dmotorcolor, dpistondisp, dcor, dornum,dyearmodel, trikeid, dropdate)
+SELECT `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`yearmodel`,'$rowprintid',CURDATE()
 FROM tricycle WHERE id = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
 

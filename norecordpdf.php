@@ -56,7 +56,8 @@ $pdf->AddPage('P', 'A4');
                             $dplateno = $row['dplateno']; 
                             $dengineno = $row['dengineno']; 
                             $dchasisno = $row['dchasisno']; 
-                            $dmaker = $row['dmaker']; 
+                            $dmaker = $row['dmaker'];
+                            $dyearmodel = $row['dyearmodel'];  
                             $dmotorcolor = $row['dmotorcolor']; 
                             $dpistondisp = $row['dpistondisp']; 
                             $dcor = $row['dcor']; 
@@ -232,12 +233,12 @@ $pdf->Write(0, $dengineno);
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(88, 119);
-$pdf->Write(0, $chasisno);
+$pdf->Write(0, $dchasisno);
 
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(88, 125);
-$pdf->Write(0, '');
+$pdf->Write(0, $dyearmodel);
 
 $day = date('d');
 $month = date('F');

@@ -436,7 +436,7 @@ FROM tricycle
 JOIN driveroperator
 ON tricycle.operatorid = driveroperator.pid
 JOIN mtop
-ON tricycle.id = mtop.trikeid WHERE YEAR(mtopdate) = YEAR(CURDATE())";
+ON tricycle.id = mtop.trikeid WHERE YEAR(mtopdate) = YEAR(CURDATE()) And mtop.status = 'paid'";
                     $results = $conn->query($sqlmtop2);
                     if ($results->num_rows > 0) {
                         // output data of each row

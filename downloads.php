@@ -456,6 +456,7 @@ if(isset($_SESSION['username'])){
 <div class="col-sm-4">
                 
                    <button type="submit" name="export" class="btn btn-warning bi-download btn-lg">DOWNLOAD LIST</button>
+                   <br><br>
                    <button type="submit" name="mtopdata" class="btn btn-warning bi-download btn-lg">DOWNLOAD MTOP DATA</button>
 <br><br>
                     <button type="submit" name="print" class="btn btn-warning bi-printer btn-lg">PRINT BATCH CPC</button>
