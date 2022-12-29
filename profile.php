@@ -567,8 +567,9 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
                         while($row = $resultss->fetch_assoc()) {
                              $mtopexpiration = $row['mtopexpiration'];
                      }}else{
+                      $mtopstat = 'mtopnorecord';
                         $mtopexpiration = '';
-                      $mtopstat = 'mtopexpired';
+                      $mtopstatnav = 'mtopvalidorexpired';
                       
                      }}}
 
@@ -1478,12 +1479,13 @@ if ($conn->query($sqlt) === TRUE) {
                     <?php
                       $nextyear = date("Y")+1; 
                       $yearnow =date("Y", strtotime($mtopexpiration));
+                      
 
                      ?>
                     <h5 class="card-title" <?php if ($nextyear == $yearnow ) {
                           echo "hidden";
-                      }
-                     ?>>MTOP LAST Registration: <font color="red"><?php echo $mtopexpformatted;  
+                      }?>>
+                     MTOP LAST Registration: <font color="red"><?php echo $mtopexpformatted;  
                       
                     ?></font> </h5>
                 
