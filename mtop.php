@@ -391,6 +391,7 @@ if(isset($_SESSION['username'])){
                 <th>Body number</th>
                 <th>Toda</th>
                 <th>MTOP date</th>
+                <th>MTOP OR</th>
                 <th>Trike ID</th>
                 
             </tr>
@@ -430,6 +431,7 @@ if(isset($_SESSION['username'])){
   driveroperator.type,
   driveroperator.picname,
   mtop.mtopdate,
+  mtop.mtopor,
   mtop.mtopnumber
 
 FROM tricycle
@@ -465,7 +467,7 @@ ON tricycle.id = mtop.trikeid WHERE YEAR(mtopdate) = YEAR(CURDATE()) And mtop.st
                             $picname = $row['picname']; 
                             $toda = $row['toda']; 
                             $mtopnumber = $row['mtopnumber'];
-
+$mtopor = $row['mtopor'];
                             $mtopdate = $row['mtopdate'];
                     ?> 
       
@@ -477,6 +479,7 @@ ON tricycle.id = mtop.trikeid WHERE YEAR(mtopdate) = YEAR(CURDATE()) And mtop.st
                 <td><?php echo $bodynum;?></td>
                 <td><?php echo $toda;?></td>
                 <td><?php echo $mtopdate;?></td>
+                <td><?php echo $mtopor;?></td>
               
                 <td>
                   <a href="profile.php?id=<?php echo  $trikeid; ?>">
@@ -496,6 +499,7 @@ ON tricycle.id = mtop.trikeid WHERE YEAR(mtopdate) = YEAR(CURDATE()) And mtop.st
                 <th>Body number</th>
                 <th>Toda</th>
                 <th>MTOP date</th>
+                <th>MTOP OR</th>
                 <th>Trike ID</th>
             </tr>
         </tfoot>

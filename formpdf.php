@@ -263,6 +263,12 @@ $pdf->Write(0, $extname);
 
 $pdf->SetFont('Arial');
 $pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(160, 60);
+$pdf->Write(0, $date);
+
+
+$pdf->SetFont('Arial');
+$pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(160, 90);
 $pdf->Write(0, $type);
 
