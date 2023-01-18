@@ -1325,7 +1325,7 @@ $rowprintid = $_GET['id'];
   $unpaidid= $_POST['unpaidid'];
  $mtopor= $_POST['mtopor'];
  if ($mtopnumberlast=="") {
-$mtopnumber= 0;
+$mtopnumber= 1;
  }else{
  $mtopnumber= $mtopnumberlast +1;
 
