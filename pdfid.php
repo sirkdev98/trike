@@ -113,15 +113,16 @@ $pdf ->Cell(50,4,'',0,1);
 $pdf ->Cell(8,24,'',0,1);
 
 
-$pdf->SetFont('montsemibold', '', 12);
+$pdf->SetFont('montsemibold', '', 9);
 $pdf ->Cell(5,1,'',0,0);
 $pdf ->SetTextColor(0,0,0);
-$pdf ->Cell(4,5,$row['address1'],0,1);
+$pdf ->MultiCell(65, 5,$row['address1'], 0, 1, 0);
+
 $pdf ->Cell(5,3,'',0,0);
-$pdf ->Cell(4,3,$row['barangay'],0,1);
+$pdf ->Cell(4,3,' ',0,1);//dito ang barangay dati
 $pdf ->Cell(10,2,'',0,1);
 $pdf ->SetTextColor(0,0,0);
-
+$pdf->SetFont('montsemibold', '', 12);
 
 $pdf ->Cell(50,5,'',0,1);
 $pdf ->Cell(8,8,'',0,1);

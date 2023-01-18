@@ -550,7 +550,8 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$tid'";
 
                           $mtopexpiration = $row['mtopexpiration'];
                           $mtopnumber = $row['mtopnumber'];
-
+                          $mtoptotal = $row['mtoptotal'];
+                            $mtopor = $row['mtopor'];
 
                    
 
@@ -1191,6 +1192,7 @@ if ($mtopexpiration =='') {
 
                       <h5 class="card-title">MTOP NUMBER: <font color="green"><?php echo $mtopnumber; ?></font></h5>
 
+
                    </div>
 
                   <div class="tab-pane fade pt-3" id="profile-mtopunpaid">
@@ -1307,7 +1309,7 @@ if ($conn->query($sqlt) === TRUE) {
 if(isset($_POST['paymtop'])){
 
 
-$sqlmtop2 = "SELECT * FROM `mtop` where YEAR(mtopdate) = YEAR(CURDATE()) ORDER BY mtopnumber desc limit 1";
+$sqlmtop2 = "SELECT * FROM `mtop` where YEAR(mtopdate) = YEAR(CURDATE()) and status = 'paid' ORDER BY id desc limit 1";
                     $results = $conn->query($sqlmtop2);
                     if ($results->num_rows > 0) {
                         // output data of each row
@@ -1498,6 +1500,7 @@ if ($conn->query($sqlt) === TRUE) {
                           echo "hidden";
                       }
                      ?>>MTOP NUMBER: <font color="green"><?php echo $mtopnumber; ?></font></h5>
+                     <h5 class="card-title">MTOP TOTAL: <font color="green"><?php echo $mtoptotal; ?></font>&nbsp;&nbsp;  OR#: <font color="green"><?php echo $mtopor; ?></font></h5>
 
 
                   <form method="POST">

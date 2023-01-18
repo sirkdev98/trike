@@ -428,7 +428,7 @@ if(isset($_SESSION['username'])){
                           $_SESSION['opcontactnumber'] =  $contactnumber = $row['contactnumber']; 
                           $_SESSION['opsfname'] =  $sfname = $row['sfname']; 
                           $_SESSION['opsmname'] =  $smname = $row['smname']; 
-                          $_SESSION['opslaname'] =  $slaname = $row['slaname']; 
+                          $_SESSION['opslname'] =  $slname = $row['slaname']; 
                           $_SESSION['opbday'] =  $bday = $row['bday']; 
                           $_SESSION['optype'] = $type = $row['type']; 
                           $_SESSION['oplicensenum'] =  $licensenum = $row['licensenum']; 
@@ -719,7 +719,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     <input type="text" class="form-control" placeholder="Middle Name" name="smname" value="<?php echo $smname; ?>">
                   </div>
                    <div class="col-sm-3">
-                    <input type="text" class="form-control" placeholder="Last Name" name="slname" value="<?php echo $slaname; ?>">
+                    <input type="text" class="form-control" placeholder="Last Name" name="slname" value="<?php echo $slname; ?>">
                   </div>
                  
                 </div>
@@ -878,7 +878,7 @@ $editpic = $picname;
   $editpic   = $img_name;
 }
 
-$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slaname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic',`cedulanumber` = '$cedulanumber', `cedulalocation` = '$cedulalocation', `ceduladate` = '$ceduladate', `bloodtype` = '$bloodtype' WHERE `driveroperator`.`pid` =  $doid";
+$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic',`cedulanumber` = '$cedulanumber', `cedulalocation` = '$cedulalocation', `ceduladate` = '$ceduladate', `bloodtype` = '$bloodtype' WHERE `driveroperator`.`pid` =  $doid";
 
 if ($conn->query($sql) === TRUE) {  
  
