@@ -1309,7 +1309,7 @@ if ($conn->query($sqlt) === TRUE) {
 if(isset($_POST['paymtop'])){
 
 
-$sqlmtop2 = "SELECT * FROM `mtop` where YEAR(mtopdate) = YEAR(CURDATE()) and status = 'paid' ORDER BY id desc limit 1";
+$sqlmtop2 = "SELECT * FROM `mtop` where YEAR(mtopdate) = YEAR(CURDATE()) and status = 'paid' ORDER BY mtopnumber desc limit 1";
                     $results = $conn->query($sqlmtop2);
                     if ($results->num_rows > 0) {
                         // output data of each row

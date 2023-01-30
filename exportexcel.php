@@ -109,7 +109,7 @@ FROM tricycle
 JOIN driveroperator
 ON tricycle.operatorid = driveroperator.pid
 JOIN mtop
-ON tricycle.id = mtop.trikeid WHERE YEAR(mtopdate) = YEAR(CURDATE()) and mtopdate BETWEEN '$from' AND '$to'";
+ON tricycle.id = mtop.trikeid WHERE mtop.status ='paid' and YEAR(mtopdate) = YEAR(CURDATE()) and mtopdate BETWEEN '$from' AND '$to'";
                      $query = $conn->query($sql);
                         // output data of each row
                      
