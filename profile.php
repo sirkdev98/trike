@@ -3382,7 +3382,7 @@ ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid'";
                 <td><?php echo $dbarangay; ?></td>
                 
                 <td>
-  <a href="driveroperatorprofile.php?id=<?php echo  $id; ?>&bdynum=<?php echo  $brgycode.'-'.$bodynum; ?>"><button type='button' class='btn btn-primary btn-sm'>
+  <a href="driveroperatorprofile.php?id=<?php echo  $did; ?>&bdynum=<?php echo  $brgycode.'-'.$bodynum; ?>"><button type='button' class='btn btn-primary btn-sm'>
   <i class="bi bi-card-text"></i></button></a></i>
 
  
