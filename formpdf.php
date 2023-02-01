@@ -386,7 +386,7 @@ $pdf->Write(0, $toda);
 
 
 
-if ($type != "OPERATOR/DRIVER") {
+if ($type != "Operator/Driver") {
 
 
 
@@ -407,7 +407,7 @@ FROM driveroperator
 JOIN drivers
 ON driveroperator.pid = drivers.driverid
 JOIN tricycle
-ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid' limit 2 ";
+ON tricycle.bodynum = drivers.bdynumber WHERE tricycle.id = '$tid' limit 2";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row

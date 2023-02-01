@@ -1500,7 +1500,11 @@ if ($conn->query($sqlt) === TRUE) {
                           echo "hidden";
                       }
                      ?>>MTOP NUMBER: <font color="green"><?php echo $mtopnumber; ?></font></h5>
-                     <h5 class="card-title">MTOP TOTAL: <font color="green"><?php echo $mtoptotal; ?></font>&nbsp;&nbsp;  OR#: <font color="green"><?php echo $mtopor; ?></font></h5>
+
+                     <h5 class="card-title"  <?php if (!isset($mtoptotal)) {
+                          echo "hidden";
+                      }
+                     ?>>MTOP TOTAL: <font color="green"><?php echo $mtoptotal; ?></font>&nbsp;&nbsp;  OR#: <font color="green"><?php echo $mtopor; ?></font></h5>
 
 
                   <form method="POST">
@@ -1687,13 +1691,14 @@ if ($conn->query($sqlt) === TRUE) {
 <?php 
 
 
-if ($mtopexpformatted =="No record") {
+if ($mtopexpformatted =="No record" ||  $mtopstat =="mtopvalid") {
 ?>
  <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>">
                       <label class="form-check-label" for="gridCheck2">
                        Penalty Fee
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <label class="form-check-label" for="gridCheck2" id="penaltyamount">
                      
                       </label>
@@ -1703,10 +1708,10 @@ if ($mtopexpformatted =="No record") {
   if ($mtopstat =="mtopexpired") {
 ?>
                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="penaltyfee"  onclick="return false;" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked>
+                      <input class="form-check-input" type="checkbox" id="penaltyfee"   onclick="funcpenalty()" name="penaltyfee" value="<?php echo $penaltyfee; ?>" checked  >
                       <label class="form-check-label" for="gridCheck2">
                        Penalty Fee
-                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <label class="form-check-label" for="gridCheck2" id="penaltyamount">
                      50
                       </label>
