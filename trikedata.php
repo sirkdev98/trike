@@ -492,7 +492,7 @@ $userlname= $_SESSION['lname'];
                   <div class="row mb-2">
                  
                   <div class="col-sm-3">
-                    <input type=button class="btn-success" value="Take Snapshot" onClick="take_snapshot()">
+                    <input type=button class="btn btn-success" value="Take Snapshot" onClick="take_snapshot()">
                   </div>
                   
                 
@@ -690,8 +690,25 @@ $userlname= $_SESSION['lname'];
                     Cedula date
                     <input type="date" class="form-control" placeholder="dateofissue" name="ceduladate">
                   </div>
+
                   </div>
 
+<br>
+                   <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>E - Wallet</b></label>
+                  
+                  <div class="col-sm-3">
+                   <span class="text-info">Gcash #</span>
+                    <input class="form-control" type="number" name="gcash" placeholder="Gcash number"/>
+                  </div>
+                   <div class="col-sm-3">
+                    <span class="text-success">Maya #</span>
+                    <input class="form-control" type="number" name="paymaya"  placeholder="Maya number"/>
+                  </div>
+                  
+
+                  
+                  </div>
 
                   <br><!--divider -->
                   <div class="row mb-3">

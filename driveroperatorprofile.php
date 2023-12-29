@@ -440,6 +440,9 @@ if(isset($_SESSION['username'])){
                           $_SESSION['ceduladate'] =  $ceduladate = $row['ceduladate']; 
                           $_SESSION['bloodtype'] =  $bloodtype = $row['bloodtype']; 
                           $_SESSION['addcheck'] = "driverexist";
+                          $_SESSION['gcash'] =  $gcash = $row['gcash']; 
+                          $_SESSION['gcash'] =  $paymaya = $row['maya']; 
+
                      }
                             
 
@@ -813,6 +816,21 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                     <input type="date" class="form-control" placeholder="dateofissue" name="ceduladate" value="<?php echo $ceduladate; ?>">
                   </div>
                   </div>
+                   <div class="row mb-6">
+                  <label for="inputEmail" class="col-sm-2 col-form-label"><b>E - Wallet</b></label>
+                  
+                  <div class="col-sm-3">
+                   <span class="text-info">Gcash #</span>
+                    <input class="form-control" type="number" name="gcash" placeholder="Gcash number" value="<?php echo $gcash; ?>">
+                  </div>
+                   <div class="col-sm-3">
+                    <span class="text-success">Maya #</span>
+                    <input class="form-control" type="number" name="paymaya"  placeholder="Maya number" value="<?php echo $paymaya; ?>">
+                  </div>
+                  
+
+                  
+                  </div>
             
              <!-- End General Form Elements -->
 
@@ -872,6 +890,8 @@ $cedulanumber = $_POST['cedulanumber'];
 $cedulalocation = $_POST['cedulalocation'];
 $ceduladate = $_POST['ceduladate'];
 $bloodtype = $_POST['bloodtype'];
+$gcash = $_POST['gcash'];
+$paymaya = $_POST['paymaya'];
 if ($img =="") {
 $editpic = $picname;
 }else {
@@ -879,7 +899,7 @@ $editpic = $picname;
   $editpic   = $img_name;
 }
 
-$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic',`cedulanumber` = '$cedulanumber', `cedulalocation` = '$cedulalocation', `ceduladate` = '$ceduladate', `bloodtype` = '$bloodtype' WHERE `driveroperator`.`pid` =  $doid";
+$sql = "UPDATE `driveroperator` SET `fname` = '$fname', `mname` = '$mname', `lname` = '$lname', `gender` = '$gender', `extname` = '$xname', `address1` = '$address1', `barangay` = '$barangay', `contactnumber` = '$contactnum', `sfname` = '$sfname', `smname` = '$smname', `slaname` = '$slname', `bday` = '$bday', `type` = '$type', `licensenum` = '$licensid', `licensetype` = '$licensetype', `licensevalid` = '$expiration', `picname` = '$editpic',`cedulanumber` = '$cedulanumber', `cedulalocation` = '$cedulalocation', `ceduladate` = '$ceduladate', `bloodtype` = '$bloodtype', `gcash` = '$gcash',  `maya` = '$paymaya' WHERE `driveroperator`.`pid` =  $doid";
 
 if ($conn->query($sql) === TRUE) {  
  
@@ -971,6 +991,14 @@ if($date < $now) {
                      
 
                     </div>
+                  </div>
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Gcash number</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $gcash; ?></div>
+                  </div>
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Paymaya number</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $paymaya; ?></div>
                   </div>
 
                
