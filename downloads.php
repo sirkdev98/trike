@@ -519,9 +519,18 @@ if(isset($_SESSION['username'])){
                 </div><!-- End activity item-->
             </form>
 <br>
+
+ <form method="post" action="exportmasterdrivers.php">
                  <div class="activity-item d-flex">
-                  <button class='btn btn-primary btn-lg'><i class="bi bi-download"></i>&nbsp;DOWNLOAD LIST OF DRIVERS</button>
+                  <button class='btn btn-primary btn-lg' name="exportmasterdrivers"><i class="bi bi-download"></i>&nbsp;DOWNLOAD LIST OF DRIVERS</button>
                 </div><!-- End activity item-->
+                </form>
+
+                <form method="post" action="exportdriven.php">
+                 <div class="activity-item d-flex">
+                  <button class='btn btn-primary btn-lg' name="exportmasterdrivers"><i class="bi bi-download"></i>&nbsp;DOWNLOAD LIST DRIVEN TRICYCLE OF DRIVERS</button>
+                </div><!-- End activity item-->
+                </form>
 
              
 

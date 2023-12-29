@@ -1,4 +1,4 @@
-
+﻿
 
 
 <?php
@@ -32,11 +32,11 @@ $pdf->AddFont('montsemibold','','montsemibold.php');
                         
 
                           $_SESSION['opid'] = $id = $row['pid'];  
-                          $_SESSION['opfname'] =  $fname = $row['fname']; 
-                          $_SESSION['opmname'] =  $mname = $row['mname']; 
+                          $_SESSION['opfname'] =  $fname = $row['fname'];
+                          $_SESSION['opmname'] =  $mname = $row['mname'];
                           $_SESSION['oplname'] =  $lname = $row['lname']; 
                            $_SESSION['gender'] =  $gender = $row['gender']; 
-                          $_SESSION['extname'] =  $extname = $row['extname']; 
+                          $_SESSION['extname'] =  $extname = utf8_encode($row['extname']); 
                           $_SESSION['bloodtype'] =  $bloodtype = $row['bloodtype']; 
                           $_SESSION['opaddress1'] =  $address1 = $row['address1']; 
                           $_SESSION['opbarangay'] =  $barangay = $row['barangay']; 
@@ -90,8 +90,8 @@ $pdf->SetFont('montsemibold', '', 24);
 $pdf ->SetTextColor(255,255,255);
 /*$pdf ->MultiCell(80,6,$row['fname']."  ".$mini.".",'C');*/
 
-$pdf ->Cell(0,0,$row['fname']."  ".$mini.".",0,1,'C');
-$pdf ->Cell(0,15,$lname,0,1,'C');
+$pdf ->Cell(0,0,utf8_decode($row['fname'])."  ".$mini.".",0,1,'C');
+$pdf ->Cell(0,15,utf8_decode ($lname." ".$extname),0,1,'C');
 
 $pdf ->SetTextColor(0,0,0);
 $pdf ->SetTextColor(255,255,255);
@@ -116,6 +116,7 @@ $pdf ->Cell(8,24,'',0,1);
 $pdf->SetFont('montsemibold', '', 9);
 $pdf ->Cell(5,1,'',0,0);
 $pdf ->SetTextColor(0,0,0);
+$pdf->SetXY(14, 35);
 $pdf ->MultiCell(65, 5,$row['address1'], 0, 1, 0);
 
 $pdf ->Cell(5,3,'',0,0);
@@ -131,7 +132,9 @@ $pdf ->Cell(8,8,'',0,1);
 $pdf->SetFont('BebasKai', '', 16);
 
 $pdf ->SetTextColor(0,0,0);
-$pdf ->Cell(0,2,$row['licensenum'],0,1,'C');
+$pdf->SetXY(16,58);
+$pdf ->MultiCell(65, 5,$row['licensenum'],0,'C');
+
 $pdf ->Cell(10,8.5,'',0,1);
 $pdf ->SetTextColor(0,0,0);
 

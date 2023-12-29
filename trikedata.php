@@ -597,6 +597,7 @@ $userlname= $_SESSION['lname'];
                    <div class="col-sm-4">
                        <select class="form-select" aria-label="Default select example" name="bloodtype">
                       <option value="" selected>SELECT BLOOD TYPE</option>
+                      <option value="-">-</option>
                       <option value="A+">A+</option>
                       <option value="A-">A-</option>
                       <option value="B+">B+</option>

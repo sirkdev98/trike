@@ -2212,7 +2212,14 @@ if ($conn->query($sql) === TRUE) {
 <div class="social-links mt-2">
   <a href="#drop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-lg' 
   <i class="bi bi-trash-fill"></i> DROP UNIT</button> </a></i>
-  
+
+  </div>
+
+  <div class="social-links mt-2">
+  <a href="#transfer<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-success btn-lg' 
+  <i class="bi bi-trash-fill"></i> Transfer UNIT</button> </a></i>
+
+  </div>
 
 
 </div>
@@ -2330,6 +2337,51 @@ if ($conn->query($sql) === TRUE) {
 
                                         <div class="modal-footer">
                                            <button type="submit" name="droprecord" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                     <div id="transfer<?php echo $tid;?>" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                        <form method="post"> <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                       
+                                        <h4 class="modal-title">Drop record</h4>
+                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="pid" value="<?php echo $tid; ?>">
+                
+
+                                        <div class="alert alert-danger">Are you sure you want to transfer the unit of <strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
+
+
+                   <select class="form-select" aria-label="Default select example" required name="newoperator">
+                      <option value="" disabled selected>SELECT New Operator</option>
+                    <?php
+                      $sql = "SELECT `pid`,`fname`,`mname`,`lname` from driveroperator ORDER by lname desc";
+                       $result = $conn->query($sql);
+                      if($result->num_rows> 0){
+                         $options= mysqli_fetch_all($result, MYSQLI_ASSOC);
+                           }
+                           foreach ($options as $option) {
+  ?>
+    <option value="<?php echo $option['pid']; ?>"><?php echo $option['lname'].", ".$option['fname']." ".$option['mname']; ?> </option>
+    <?php 
+    }
+                    ?>
+                    
+                    </select>
+
+                                        <div class="modal-footer">
+                                           <button type="submit" name="transferrecod" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
                                         </div>
                                     </div>
@@ -2827,6 +2879,27 @@ if ($conn->query($sql) === TRUE) {
 $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname DROPPED UNIT', 'DROPPED Unit', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sqlt) === TRUE) {  
   echo "<script type='text/javascript'>alert(\"Successfully Dropped  \")</script>";
+                                       echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
+                  }                                  
+}}}
+
+
+if(isset($_POST['transferrecod'])){
+  $rowprintid= $_POST['pid'];
+  $newoperator= $_POST['newoperator'];
+
+
+
+
+  $sql = "UPDATE `tricycle` SET `operatorid` = $newoperator WHERE `tricycle`.`id` = $rowprintid";
+if ($conn->query($sql) === TRUE) {  
+
+   $sql = "INSERT INTO `transfer` (`id`, `oldoperator`, `newoperator`, `transferdate`) VALUES (NULL, '$pid', '$newoperator', now())";
+if ($conn->query($sql) === TRUE) {  
+
+$sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Transfered unit from $pid to $newoperator', 'Transfered Unit', now(), 'done', '', '$rowprintid')";
+if ($conn->query($sqlt) === TRUE) {  
+  echo "<script type='text/javascript'>alert(\"Successfully Transferred  \")</script>";
                                        echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
                   }                                  
 }}}
@@ -3717,7 +3790,7 @@ $ceduladate = $_POST['ceduladate'];
 $tranid = $_GET['id'];
 
 
-$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `cedulanumber`, `cedulalocation`, `ceduladate`, `picname`) VALUES (NULL, '$fname', '$mname', '$lname', '$newgender', '$xname', '$address1', '$barangay', '$newcontact', '$sfname', '$mname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$cedulanumber', '$cedulalocation', '$ceduladate', '$img_name')";
+$sql = "INSERT INTO `driveroperator` (`pid`, `fname`, `mname`, `lname`, `gender`, `extname`, `address1`, `barangay`, `contactnumber`, `sfname`, `smname`, `slaname`, `bday`, `type`, `licensenum`, `licensetype`, `licensevalid`, `cedulanumber`, `cedulalocation`, `ceduladate`, `picname`) VALUES (NULL, '$fname', '$mname', '$lname', '$newgender', '$xname', '$address1', '$barangay', '$newcontact', '$sfname', '$smname', '$slname', '$bday', '$type', '$licensid', '$licensetype', '$expiration', '$cedulanumber', '$cedulalocation', '$ceduladate', '$img_name')";
 
 if ($conn->query($sql) === TRUE) {  
 

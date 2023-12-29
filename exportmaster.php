@@ -14,7 +14,47 @@ elseif(isset($_POST["exportmaster"]))
 {
 
   $output = '';
-    $sql ="SELECT * FROM `tricycle`";
+    $sql ="SELECT
+  tricycle.id,
+  tricycle.bodynum,
+  tricycle.mvfileno,
+  tricycle.plateno,
+  tricycle.engineno,
+  tricycle.chasisno,
+  tricycle.maker,
+  tricycle.motorcolor,
+  tricycle.pistondisp,
+  tricycle.cor,
+  tricycle.ornum,
+  tricycle.applicationdate,
+  tricycle.brgycode,
+  tricycle.toda, 
+  tricycle.sidecarcolor,
+  tricycle.classification,  
+  tricycle.bodynum, 
+  tricycle.inspectionstat,
+  tricycle.operatorid,
+  tricycle.currentmtop,
+  tricycle.currentfranchise,
+  tricycle.parking,
+  tricycle.parkinglocation,
+  tricycle.acquisitiondate,
+  tricycle.yearmodel,
+  tricycle.applicationdate,
+  tricycle.status,
+  driveroperator.pid,
+  driveroperator.fname,
+  driveroperator.mname, 
+  driveroperator.lname, 
+  driveroperator.type,
+  driveroperator.picname,
+  driveroperator.bday,
+  driveroperator.extname,
+   driveroperator.contactnumber
+
+FROM tricycle
+JOIN driveroperator
+ON tricycle.operatorid = driveroperator.pid";
                            $query = $conn->query($sql);
                           
       
@@ -27,7 +67,9 @@ elseif(isset($_POST["exportmaster"]))
                         <th>Operator Fname</th>
                         <th>Operator Mname</th> 
                         <th>Operator Lname</th> 
-                        <th>Operator Ext Name</th> 
+                        <th>Operator Ext Name</th>
+                        <th>Birthday</th>
+                        <th>Contact #</th> 
                         <th>MVfile</th>   
                         <th>Plate#</th>  
                         <th>Engine#</th>  
@@ -41,7 +83,7 @@ elseif(isset($_POST["exportmaster"]))
                         <th>parking location</th>
                         <th>acquisition date</th>
                         <th>year model</th>
-                          <th>application date</th>
+                          
                           <th>brgy code</th>
                           <th>bodynum</th>
                           <th>toda</th>
@@ -49,6 +91,7 @@ elseif(isset($_POST["exportmaster"]))
                           <th>classification</th>
                           <th>current mtop</th>
                           <th>current franchise</th>
+                           <th>application date</th>
 
 
                        
@@ -64,6 +107,8 @@ elseif(isset($_POST["exportmaster"]))
                          <td>'.$row["mname"].'</td>  
                          <td>'.$row["lname"].'</td> 
                          <td>'.$row["extname"].'</td> 
+                         <td>'.$row["bday"].'</td> 
+                         <td>'.$row["contactnumber"].'</td>
                          <td>'.$row["mvfileno"].'</td> 
                          <td>'.$row["plateno"].'</td> 
                          

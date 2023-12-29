@@ -735,6 +735,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                    <div class="col-sm-4">
                        <select class="form-select" aria-label="Default select example" name="bloodtype">
                        <option value="<?php echo $bloodtype; ?>" selected><?php echo $bloodtype; ?>
+                       <option value="-">-</option>
                       <option value="A+">A+</option>
                       <option value="A-">A-</option>
                       <option value="B+">B+</option>
@@ -770,8 +771,8 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                       <option value="<?php echo $licensetype; ?>" selected><?php echo $licensetype; ?>
                       
                       <option value="COMPANY ID">COMPANY ID</option>
-                      <option value="OPERATOR">PROFESSIONAL</option>
-                      <option value="OPERATOR/DRIVER">NON-PROFESSIONAL</option>
+                      <option value="PROFESSIONAL">PROFESSIONAL</option>
+                      <option value="NON-PROFESSIONAL">NON-PROFESSIONAL</option>
                      
                       <option value="PASSPORT">PASSPORT</option>
                       <option value="SSS">SSS</option>
