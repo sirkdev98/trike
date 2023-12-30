@@ -2876,6 +2876,7 @@ $sql = "INSERT INTO dropped (dmvfileno, dplateno, dengineno, dchasisno, dmaker, 
 SELECT `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`yearmodel`,'$rowprintid',CURDATE()
 FROM tricycle WHERE id = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
+   $dropid = $conn->insert_id;
 
   $sql = "UPDATE `tricycle` SET `mvfileno` = 'dropped', `plateno` = 'dropped', `engineno` = 'dropped', `chasisno` = 'dropped', `maker` = 'dropped', `motorcolor` = 'dropped', `pistondisp` = 'dropped', `cor` = 'dropped', `ornum` = 'dropped', `yearmodel` = 'dropped', `acquisitiondate` = '', `status` = 'no unit' WHERE `tricycle`.`id` = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
