@@ -1148,6 +1148,8 @@ ON tricycle.operatorid = driveroperator.pid where extract(year from tricycle.cur
                 <td>
   <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm' >
   <i class="bi bi-card-text"></i></button></a></i>
+  <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-danger btn-sm' >
+  <i class="bi bi-printer"></i>Drop</button></a></i>
 
 <!--   <a href="#" data-toggle="modal"><button type='button' class='btn btn-warning btn-sm'>
   <i class="bi bi-pencil-fill"></i></button></a></i>

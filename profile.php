@@ -2211,12 +2211,16 @@ if ($conn->query($sql) === TRUE) {
 </div>
 <div class="social-links mt-2">
   <a href="#drop<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-lg' 
-  <i class="bi bi-trash-fill"></i> DROP UNIT</button> </a></i>
+  <i class="bi bi-trash-fill" <?php if ($trikestatus =="no unit"): echo "hidden"?>
+    
+  <?php endif ?>></i> DROP UNIT</button> </a></i>
 
   </div>
 
   <div class="social-links mt-2">
-  <a href="#transfer<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-success btn-lg' 
+  <a href="#transfer<?php echo $tid;?>" data-toggle="modal"><button type='button' class='btn btn-success btn-lg' <?php if ($trikestatus =="no unit"): echo "hidden"?>
+    
+  <?php endif ?>></i> 
   <i class="bi bi-trash-fill"></i> Transfer UNIT</button> </a></i>
 
   </div>
@@ -2873,7 +2877,7 @@ SELECT `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pi
 FROM tricycle WHERE id = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
 
-  $sql = "UPDATE `tricycle` SET `mvfileno` = 'dropped', `plateno` = 'dropped', `engineno` = 'dropped', `chasisno` = 'dropped', `maker` = 'dropped', `motorcolor` = 'dropped', `pistondisp` = 'dropped', `cor` = 'dropped', `ornum` = 'dropped', `status` = 'no unit' WHERE `tricycle`.`id` = $rowprintid";
+  $sql = "UPDATE `tricycle` SET `mvfileno` = 'dropped', `plateno` = 'dropped', `engineno` = 'dropped', `chasisno` = 'dropped', `maker` = 'dropped', `motorcolor` = 'dropped', `pistondisp` = 'dropped', `cor` = 'dropped', `ornum` = 'dropped', `yearmodel` = 'dropped', `acquisitiondate` = '', `status` = 'no unit' WHERE `tricycle`.`id` = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
 
 $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname DROPPED UNIT', 'DROPPED Unit', now(), 'done', '', '$rowprintid')";
@@ -2930,10 +2934,11 @@ $sql = "SELECT * from dropped where dropid = $dropdid";
                             $recor = $row['dcor']; 
                             $reornum =$row['dornum'];
                             $reropdate = $row['dropdate']; 
+                            $reyearmodel = $row['dyearmodel']; 
                             $trikeid = $row['trikeid']; 
                           
                   }}
-  $sql = "UPDATE `tricycle` SET `mvfileno` = '$remvfileno', `plateno` = '$replateno', `engineno` = '$reengineno', `chasisno` = '$rechasisno', `maker` = '$remaker', `motorcolor` = '$remotorcolor', `pistondisp` = '$repistondisp', `cor` = '$recor', `ornum` = '$reornum', `status` = 'with unit' WHERE `tricycle`.`id` = $trike";
+  $sql = "UPDATE `tricycle` SET `mvfileno` = '$remvfileno', `plateno` = '$replateno', `engineno` = '$reengineno', `chasisno` = '$rechasisno', `maker` = '$remaker', `motorcolor` = '$remotorcolor', `pistondisp` = '$repistondisp', `cor` = '$recor', `yearmodel` = '$reyearmodel', `ornum` = '$reornum', `status` = 'with unit' WHERE `tricycle`.`id` = $trike";
 if ($conn->query($sql) === TRUE) {  
 
 $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname Get Dropped Unit', ' Get DROPPED Unit', now(), 'done', '', '$trike')";
