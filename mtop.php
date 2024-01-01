@@ -315,6 +315,12 @@ if(isset($_SESSION['username'])){
               <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
             </a>
           </li>
+            <li> 
+          <a href="revoked.php">
+              <i class="bi bi-circle"></i><span>REVOKED FRANCHISE</span>
+            </a>
+          </li>
+          
            <li> 
           <a href="mtop.php" class='active'>
               <i class="bi bi-circle"></i><span>MTOP</span>

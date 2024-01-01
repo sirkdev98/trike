@@ -315,6 +315,17 @@ if(isset($_SESSION['username'])){
               <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
             </a>
           </li>
+            <li> 
+          <a href="revoked.php">
+              <i class="bi bi-circle"></i><span>REVOKED FRANCHISE</span>
+            </a>
+          </li>
+          <li> 
+          <a href="mtop.php">
+              <i class="bi bi-circle"></i><span>MTOP</span>
+            </a>
+          </li>
+
        </ul>
 <?php $filter  = $_GET['filter']; ?>
         <li class="nav-item">
@@ -389,6 +400,7 @@ if(isset($_SESSION['username'])){
                 <th>Piston Dip</th>
                 <th>Drop Date</th>
                 <th>Dropped By</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody><?php
@@ -432,6 +444,9 @@ if(isset($_SESSION['username'])){
                     
                       <?php echo $trikeid;?></td>
                   </a>
+
+                  <td><a href="drop.php?id=<?php echo $dropid; ?>"><button type='button' class='btn btn-danger btn-sm' >
+  <i class="bi bi-printer"></i>Drop</button></a></i></td>
 </td>
             </tr>
             <?php }}?>

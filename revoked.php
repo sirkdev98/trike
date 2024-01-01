@@ -359,14 +359,15 @@ $userlname= $_SESSION['lname'];
               <i class="bi bi-circle"></i><span>DROPPED UNITS</span>
             </a>
           </li>
-          <li> 
-          <a href="mtop.php">
-              <i class="bi bi-circle"></i><span>MTOP</span>
-            </a>
-          </li>
+          
           <li> 
           <a href="revoked.php" class='active'>
               <i class="bi bi-circle"></i><span class="text-danger">REVOKED FRANCHISE</span>
+            </a>
+          </li>
+          <li> 
+          <a href="mtop.php">
+              <i class="bi bi-circle"></i><span>MTOP</span>
             </a>
           </li>
 
@@ -1089,7 +1090,7 @@ $sqlfranchiserecord = "UPDATE `franchiserecord` SET `franchiseapproval` = '$fran
 
 FROM tricycle
 JOIN driveroperator
-ON tricycle.operatorid = driveroperator.pid where extract(year from tricycle.currentmtop) < extract(year from CURRENT_TIMESTAMP)";
+ON tricycle.operatorid = driveroperator.pid where extract(year from tricycle.currentmtop) < extract(year from CURRENT_TIMESTAMP) and tricycle.status !='no unit'";
       
             
 
@@ -1148,6 +1149,8 @@ ON tricycle.operatorid = driveroperator.pid where extract(year from tricycle.cur
                 <td>
   <a href="profile.php?id=<?php echo  $id; ?>"><button type='button' class='btn btn-primary btn-sm' >
   <i class="bi bi-card-text"></i></button></a></i>
+
+
   <a href="#drop<?php echo $id;?>" data-toggle="modal"><button type='button' class='btn btn-danger btn-sm' >
   <i class="bi bi-printer"></i>Drop</button></a></i>
 

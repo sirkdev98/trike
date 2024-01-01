@@ -360,6 +360,11 @@ $userlname= $_SESSION['lname'];
             </a>
           </li>
           <li> 
+          <a href="revoked.php">
+              <i class="bi bi-circle"></i><span>REVOKED FRANCHISE</span>
+            </a>
+          </li>
+          <li> 
           <a href="mtop.php">
               <i class="bi bi-circle"></i><span>MTOP</span>
             </a>
