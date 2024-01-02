@@ -95,6 +95,7 @@ elseif(isset($_POST["mtopdata"]))
   tricycle.acquisitiondate,
   tricycle.yearmodel,
   tricycle.status,
+  tricycle.toda,
   driveroperator.pid,
   driveroperator.fname,
   driveroperator.mname, 
@@ -109,7 +110,7 @@ FROM tricycle
 JOIN driveroperator
 ON tricycle.operatorid = driveroperator.pid
 JOIN mtop
-ON tricycle.id = mtop.trikeid WHERE mtop.status ='paid' and YEAR(mtopdate) = YEAR(CURDATE()) and mtopdate BETWEEN '$from' AND '$to'";
+ON tricycle.id = mtop.trikeid WHERE mtop.status ='paid' and mtopdate BETWEEN '$from' AND '$to'";
                      $query = $conn->query($sql);
                         // output data of each row
                      
@@ -127,6 +128,7 @@ ON tricycle.id = mtop.trikeid WHERE mtop.status ='paid' and YEAR(mtopdate) = YEA
                         <th>Full Name</th> 
                         <th>Brgy Code</th> 
                         <th>Body Number</th> 
+                        <th>Toda</th> 
                         <th>MV File No</th> 
                         <th>Plate No</th> 
                         <th>Chasis No</th> 
@@ -154,6 +156,7 @@ ON tricycle.id = mtop.trikeid WHERE mtop.status ='paid' and YEAR(mtopdate) = YEA
                          <td>'.$row["fname"].' '.$row["mname"].' '.$row["lname"].'</td>
                          <td>'.$row["brgycode"].'</td>
                          <td>'.$row["bodynum"].'</td>
+                         <td>'.$row["toda"].'</td>
                          <td>'.$row["mvfileno"].'</td>
                          <td>'.$row["plateno"].'</td>
                          <td>'.$row["chasisno"].'</td>
