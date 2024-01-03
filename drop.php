@@ -152,7 +152,13 @@ $pdf->Write(0, 'PETITIONER');
 $pdf->SetFont('Arial','B',10);
 $pdf->SetTextColor(255, 0, 0);
 $pdf->SetXY(54 , 110);
-$pdf->Write(0, $dropid.$trikeid);
+$pdf->Write(0, $dropid);
+
+$pdf->SetFont('Arial','B',10);
+$pdf->SetTextColor(255, 0, 0);
+$pdf->SetXY(78 , 110);
+$pdf->Write(0, $dropdate);
+
 $pdf->SetFont('Arial','',12);
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(38, 155);
@@ -167,13 +173,13 @@ $pdf->AddPage('P', 'A4');
 $pdf->useTemplate($tplIdx2);
 
 
-$pdf->SetFont('Arial','B',12);
+$pdf->SetFont('Arial','B',10);
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(135, 205);
+$pdf->SetXY(120, 205);
 $pdf->Write(0, $opfname." ".$opmname." ".$oplname." ".$opextname);
-$pdf->SetFont('Arial','',12);
+$pdf->SetFont('Arial','',10);
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetXY(150, 210);
+$pdf->SetXY(140, 210);
 $pdf->Write(0, 'PETITIONER');
 
 
@@ -182,10 +188,11 @@ $pdf->SetTextColor(255, 0, 0);
 $pdf->SetXY(50, 95);
 $pdf->Write(0,$dmaker);
 
+
 $pdf->SetFont('Arial','B',11);
 $pdf->SetTextColor(255, 0, 0);
-$pdf->SetXY(125, 95);
-$pdf->Write(0,$dropid.$trikeid);
+$pdf->SetXY(135, 95);
+$pdf->Write(0,$dropid);
 
 
 $pdf->SetFont('Arial','B',11);
@@ -229,6 +236,21 @@ $pdf->SetFont('Arial','');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(145, 255);
 $pdf->Write(0, 'Municipal Mayor');
+
+
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(20, 248);
+$pdf->Write(0,"CTC No.:   ".$dropcedula);
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(20, 252);
+$pdf->Write(0,"Issued On: ".$dropdate);
+$pdf->SetFont('Arial','',11);
+$pdf->SetTextColor(0, 0, 0);
+$pdf->SetXY(20, 256);
+$pdf->Write(0,"Issued At:  "."Orani Bataan");
+
 
 
 
