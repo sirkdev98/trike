@@ -88,9 +88,10 @@ $sqlop = "SELECT * FROM `tricycle` WHERE id = $trikeid";
 $resultss = $conn->query($sqlop);
  if ($resultss->num_rows > 0) {
                         while($row = $resultss->fetch_assoc()) {
-                             $opfname = $row['fname'];
-                             $opmname = $row['mname'];
-                             $oplname = $row['lname'];
+                            $opfname = utf8_decode($row['fname']); 
+                            $opmname = utf8_decode($row['mname']); 
+                            $oplname = utf8_decode($row['lname']); 
+                           
                              $opextname = $row['extname'];
                            }}
 
