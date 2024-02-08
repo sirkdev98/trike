@@ -2327,18 +2327,17 @@ if ($conn->query($sql) === TRUE) {
                                 <div class="modal-content">
                                     <div class="modal-header">
                                        
-                                        <h4 class="modal-title">Drop record</h4>
+                                        <h4 class="modal-title">Generate Dropping Certificate</h4>
                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <input type="hidden" name="pid" value="<?php echo $tid; ?>">
+                                        <input type="hidden" name="dropid" value="<?php echo $tid; ?>">
                 
 
-                                        <div class="alert alert-danger">Are you sure you want to drop the unit of <strong>
-                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?>? </div>
+                                        <div class="alert alert-warning">Please Input CEDULA for<strong>
+                                                <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?></div>
 
-
-
+                                        <input type="text" name="droping" class="form-control" placeholder="CEDULA number" required>
                                         <div class="modal-footer">
                                            <button type="submit" name="droprecord" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> YES</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> NO</button>
@@ -2650,7 +2649,7 @@ if ($conn->query($sql) === TRUE) {
                   <label for="inputEmail" class="col-sm-2 col-form-label"><b>FRANCHISE</b></label>
                   <div class="col-sm-4">
                     Date of Application
-                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate" value="<?php echo $applicationdate; ?>" <?php if ($currentfrachise !="0000-00-00"){ echo "disabled";}?>>
+                    <input type="date" class="form-control" placeholder="dateofissue" name="applicationdate" value="<?php echo $applicationdate; ?>" <?php if ($currentfrachise !="0000-00-00"){ ;}?>>
                 
                   </div>
                   <div class="col-sm-1">
@@ -2788,14 +2787,10 @@ $acquisitiondate = $_POST['acquisitiondate'];
 $yearmodel = $_POST['yearmodel'];
 
 
-if ($currentfrachise == "0000-00-00") {
+
 
    $applicationdate = $_POST['applicationdate'];
 
-}else{
-
- $applicationdate = $editapplicationdate;
-}
 
   $selectquery = "SELECT `color` from toda where `toda` = '$toda'";
   $result = $conn->query($selectquery);
@@ -2869,13 +2864,16 @@ if ($conn->query($sql) === TRUE) {
                                       
 }}
 
-if(isset($_POST['droprecord'])){
-  $rowprintid= $_POST['pid'];
 
-$sql = "INSERT INTO dropped (dmvfileno, dplateno, dengineno, dchasisno, dmaker, dmotorcolor, dpistondisp, dcor, dornum,dyearmodel, trikeid, dropdate)
-SELECT `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,`yearmodel`,'$rowprintid',CURDATE()
+  if(isset($_POST['droprecord'])){
+  $rowprintid= $_POST['dropid'];
+   $dropcedula= $_POST['droping'];
+
+$sql = "INSERT INTO dropped (dmvfileno, dplateno, dengineno, dchasisno, dmaker, dmotorcolor, dpistondisp, dcor, dornum, dropcedula, dyearmodel, trikeid, dropdate)
+SELECT `mvfileno`, `plateno`, `engineno`, `chasisno`, `maker`, `motorcolor`, `pistondisp`, `cor`, `ornum`,'$dropcedula', `yearmodel`,'$rowprintid',CURDATE()
 FROM tricycle WHERE id = $rowprintid";
 if ($conn->query($sql) === TRUE) {  
+
    $dropid = $conn->insert_id;
 
   $sql = "UPDATE `tricycle` SET `mvfileno` = 'dropped', `plateno` = 'dropped', `engineno` = 'dropped', `chasisno` = 'dropped', `maker` = 'dropped', `motorcolor` = 'dropped', `pistondisp` = 'dropped', `cor` = 'dropped', `ornum` = 'dropped', `yearmodel` = 'dropped', `acquisitiondate` = '', `status` = 'no unit' WHERE `tricycle`.`id` = $rowprintid";
@@ -2884,9 +2882,11 @@ if ($conn->query($sql) === TRUE) {
 $sqlt = "INSERT INTO `transactions` (`id`, `transaction`, `description`, `date`, `status`, `type`, `trikeid`) VALUES (NULL, '$userfname DROPPED UNIT', 'DROPPED Unit', now(), 'done', '', '$rowprintid')";
 if ($conn->query($sqlt) === TRUE) {  
   echo "<script type='text/javascript'>alert(\"Successfully Dropped  \")</script>";
-                                       echo '<script>window.location.href="profile.php?id='.$rowprintid.'"</script>';
+                                       echo '<script>window.location.href="drop.php?id='.$dropid.'"</script>';
                   }                                  
 }}}
+
+
 
 
 if(isset($_POST['transferrecod'])){
