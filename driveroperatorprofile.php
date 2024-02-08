@@ -1480,7 +1480,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
                         while($row = $result->fetch_assoc()) {
                             $id = $row['id'];  
                             $bdynumber = $row['bodynum']; 
-                            $applicationdate = $row['applicationdate']; 
+                            $franchisedate = $row['currentfranchise']; 
                             $classification = $row['classification']; 
                             $toda = $row['toda']; 
 
@@ -1497,7 +1497,7 @@ $sql = "SELECT * from tricycle WHERE operatorid =$oppid";
             <tr>
                 <td><?php echo $id; ?></td>
                 <td><?php echo $bdynumber; ?></td>
-                <td><?php echo $applicationdate; ?></td>
+                <td><?php echo $franchisedate; ?></td>
                 <td><?php echo $classification; ?></td>
                 <td><?php echo $toda; ?></td>
                 <td>
