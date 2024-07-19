@@ -383,8 +383,7 @@ if(isset($_SESSION['username'])){
             <div class="card-body">
               <h5 class="card-title">MTOP TABLE</h5>
               <!-- Extra large modal -->
-
-
+           
               <br></br>
 
              <table id="tblPeople" class="display" style="width:100%">
