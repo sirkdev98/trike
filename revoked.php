@@ -1177,7 +1177,7 @@ ON tricycle.operatorid = driveroperator.pid where extract(year from tricycle.cur
                                         <input type="hidden" name="dropid" value="<?php echo $id; ?>">
                 
 
-                                        <div class="alert alert-success">Please Input CEDULA for<strong>
+                                        <div class="alert alert-warning">Please Input CEDULA for<strong>
                                                 <?php echo $fname." ".$lname."</strong>  with Body Number: "."<strong>".$bodynum."</strong>"; ?></div>
 
                                         <input type="text" name="droping" class="form-control" placeholder="CEDULA number" required>

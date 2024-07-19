@@ -31,6 +31,7 @@ $sql = "SELECT
   tricycle.bodynum, 
   tricycle.inspectionstat,
   franchiserecord.franchiseapproval,
+  franchiserecord.franchiseexpiration,
   driveroperator.pid,
   driveroperator.fname,
   driveroperator.mname, 
@@ -68,6 +69,7 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
                         while($row = $result->fetch_assoc()) {
                             $id = $row['id'];  
                             $franchiseapproval = $row['franchiseapproval']; 
+                            $franchiseexpiration = $row['franchiseexpiration']; 
                             $bodynum = $row['bodynum']; 
                             $mvfileno = $row['mvfileno']; 
                             $plateno = $row['plateno']; 
@@ -109,6 +111,9 @@ ON tricycle.id = inspection.trikeid WHERE tricycle.id = '$id'";
                             $licensenum = $row['licensenum'];
 
 $bday = date("F-d-Y", strtotime($bday));
+
+$franchiseexpiration2 = date("y-m-d", strtotime($franchiseexpiration));
+
 
 
 
@@ -218,9 +223,9 @@ $pdf ->Cell(5,10,'',0,0);
 $pdf ->Cell(30,5,'',0,0);
 $pdf->SetFont('BebasKai', '', 10);
 $pdf ->Cell(72,10,'',0,0);
-$pdf ->Cell(17,5,$bday = date("d", strtotime($franchiseapproval)),0,0);
-$pdf ->Cell(15,5,$bday = date("F", strtotime($franchiseapproval)),0,0);
-$pdf ->Cell(50,5,$bday = date("Y", strtotime($franchiseapproval)),0,0);
+$pdf ->Cell(17,5,date("d", strtotime($franchiseexpiration2)),0,0);
+$pdf ->Cell(15,5,date("F", strtotime($franchiseexpiration2)),0,0);
+$pdf ->Cell(50,5,date("Y", strtotime($franchiseexpiration2)),0,0);
 
 
 
